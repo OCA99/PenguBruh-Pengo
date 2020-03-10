@@ -1,5 +1,6 @@
 #include "Game.h"
-#include <iostream>
+
+SDL_Texture* pengo = nullptr;
 
 Game::Game() {
 
@@ -9,14 +10,14 @@ Game::~Game() {
 
 }
 
-int Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
+void Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "SDL system initialized" << std::endl;
 	}
 	else {
 		std::cout << "Could not initialize SDL" << std::endl;
-		return 1;
+		return;
 	}
 
 	window = SDL_CreateWindow(title, x, y, w, h, flags);
@@ -25,7 +26,7 @@ int Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
 	}
 	else {
 		std::cout << "Could not create window" << std::endl;
-		return 1;
+		return;
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, 0);
@@ -35,10 +36,14 @@ int Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
 	}
 	else {
 		std::cout << "Could not create renderer" << std::endl;
-		return 1;
+		return;
 	}
 
 	isRunning = true;
+
+	SDL_Surface* tmpSurface = IMG_Load("assets/sprites/pengo.png");
+	pengo = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
 }
 
 void Game::handleEvents() {
@@ -60,7 +65,7 @@ void Game::update() {
 
 void Game::render() {
 	SDL_RenderClear(renderer);
-	// Render
+	SDL_RenderCopy(renderer, pengo, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
 
