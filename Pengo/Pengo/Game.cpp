@@ -1,7 +1,5 @@
 #include "Game.h"
 
-SDL_Texture* pengo = nullptr;
-
 Game::Game() {
 
 }
@@ -40,10 +38,6 @@ void Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
 	}
 
 	isRunning = true;
-
-	SDL_Surface* tmpSurface = IMG_Load("assets/sprites/pengo.png");
-	pengo = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-	SDL_FreeSurface(tmpSurface);
 }
 
 void Game::handleEvents() {
@@ -65,7 +59,6 @@ void Game::update() {
 
 void Game::render() {
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, pengo, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
 
