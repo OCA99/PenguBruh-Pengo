@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
-
+	renderer = nullptr;
 }
 
 Game::~Game() {
@@ -30,7 +30,6 @@ void Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
 	renderer = SDL_CreateRenderer(window, -1, 0);
 	if (renderer) {
 		std::cout << "Renderer created" << std::endl;
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	}
 	else {
 		std::cout << "Could not create renderer" << std::endl;
@@ -59,6 +58,7 @@ void Game::update() {
 
 void Game::render() {
 	SDL_RenderClear(renderer);
+	// Render objects
 	SDL_RenderPresent(renderer);
 }
 
