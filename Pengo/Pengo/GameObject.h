@@ -1,7 +1,7 @@
 #pragma once
+//#include "Vec2.h"
+//#include "SDL_image.h"
 #include "Game.h"
-#include "Vec2.h"
-
 class GameObject
 {
 	Vec2f position;
@@ -10,11 +10,15 @@ class GameObject
 	SDL_Texture* texture;
 
 public:
+	GameObject();
 	GameObject(const char* texturePath, int _x, int _y);
 	GameObject(const char* texturePath, Vec2i _gridPosition);
 	~GameObject();
 
+	void init();
 	void update();
 	void render();
+
+	void clean();
 
 };

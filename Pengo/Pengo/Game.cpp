@@ -1,14 +1,15 @@
 #include "Game.h"
 
+SDL_Renderer* Game::renderer = nullptr;
 Game::Game() {
-	renderer = nullptr;
+	
 }
 
 Game::~Game() {
 
 }
 
-void Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
+void Game::init(const char* title, int x, int y, int scale, Uint32 flags) {
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "SDL system initialized" << std::endl;
@@ -18,7 +19,7 @@ void Game::init(const char* title, int x, int y, int w, int h, Uint32 flags) {
 		return;
 	}
 
-	window = SDL_CreateWindow(title, x, y, w, h, flags);
+	window = SDL_CreateWindow(title, x, y, size.x * scale, size.y * scale, flags);
 	if (window) {
 		std::cout << "Window created" << std::endl;
 	}
@@ -54,17 +55,32 @@ void Game::handleEvents() {
 
 void Game::update() {
 
+	currentScene->update();
+	
 }
 
 void Game::render() {
 	SDL_RenderClear(renderer);
 	// Render objects
+	currentScene->render();
+
 	SDL_RenderPresent(renderer);
+
+
 }
 
 void Game::clean() {
+	currentScene->clean();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Clean up done" << std::endl;
+}
+
+void Game::loadScene(Scene* s)
+{
+	if (currentScene) currentScene->clean();
+	
+	currentScene = s;
+	currentScene->init();
 }
