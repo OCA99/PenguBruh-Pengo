@@ -1,6 +1,8 @@
 #include "Game.h"
 
 SDL_Renderer* Game::renderer = nullptr;
+int Game::scale = 1;
+
 Game::Game() {
 	
 }
@@ -9,7 +11,7 @@ Game::~Game() {
 
 }
 
-void Game::init(const char* title, int x, int y, int scale, Uint32 flags) {
+void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "SDL system initialized" << std::endl;
@@ -19,6 +21,7 @@ void Game::init(const char* title, int x, int y, int scale, Uint32 flags) {
 		return;
 	}
 
+	scale = _scale;
 	window = SDL_CreateWindow(title, x, y, size.x * scale, size.y * scale, flags);
 	if (window) {
 		std::cout << "Window created" << std::endl;

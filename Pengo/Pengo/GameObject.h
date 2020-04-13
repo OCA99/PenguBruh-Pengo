@@ -1,21 +1,24 @@
 #pragma once
+
+#include <iostream>
+#include "Vec2.h"
+#include "Animation.h"
 #include "Game.h"
+#include "TextureManager.h"
 
 class GameObject
 {
-	Vec2f position;
-	Vec2i gridPosition;
-
-	SDL_Texture* texture;
-
 public:
 	GameObject();
-	GameObject(const char* texturePath, int _x, int _y);
-	GameObject(const char* texturePath, Vec2i _gridPosition);
 	~GameObject();
 
 	void init();
 	void update();
 	void render();
 	void clean();
+
+	Vec2f position;
+	Vec2i gridPosition;
+
+	Animation* animation;
 };

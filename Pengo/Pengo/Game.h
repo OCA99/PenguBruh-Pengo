@@ -3,22 +3,19 @@
 class GameObject;
 class Scene;
 class Game;
+class Animation;
 
 #include <iostream>
-#include <vector>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL.h>
 #include "Vec2.h"
 #include "Scene.h"
-#include "GameObject.h"
-#include "TextureManager.h"
 
 class Game {
 public:
 	Game();
 	~Game();
 
-	void init(const char* title, int x, int y, int scale, Uint32 flags);
+	void init(const char* title, int x, int y, int _scale, Uint32 flags);
 	void handleEvents();
 	void update();
 	void render();
@@ -29,6 +26,7 @@ public:
 	bool running() { return isRunning; };
 
 	static SDL_Renderer* renderer;
+	static int scale;
 private:
 	bool isRunning = false;
 	SDL_Window* window = nullptr;
