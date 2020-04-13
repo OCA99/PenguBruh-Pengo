@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Game.h"
 #include "TextureManager.h"
+#include "StateMachine.h"
 
 class GameObject
 {
@@ -13,12 +14,12 @@ public:
 	~GameObject();
 
 	void init();
-	void update();
+	virtual void update();
 	void render();
 	void clean();
 
 	Vec2f position;
 	Vec2i gridPosition;
 
-	Animation* animation;
+	Animation* animation = nullptr;
 };

@@ -25,7 +25,6 @@ void GameObject::render()
 	if (!animation) return;
 	animation->step();
 	SDL_Rect* frame = animation->getFrame();
-	//std::cout << frame->x << " " << frame->y << " " << frame->w << " " << frame->h << std::endl;
 	SDL_Rect target;
 	target.x = 64;
 	target.y = 64;

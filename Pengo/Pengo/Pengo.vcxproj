@@ -142,6 +142,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Pengo.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>

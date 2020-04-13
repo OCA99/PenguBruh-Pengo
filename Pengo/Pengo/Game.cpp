@@ -2,6 +2,7 @@
 
 SDL_Renderer* Game::renderer = nullptr;
 int Game::scale = 1;
+bool Game::KEYS[322];
 
 Game::Game() {
 	
@@ -41,15 +42,28 @@ void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 	}
 
 	isRunning = true;
+
+	std::fill_n(KEYS, 322, false);
 }
 
 void Game::handleEvents() {
 	SDL_Event event;
 	SDL_PollEvent(&event);
+	SDL_Keycode key = NULL;
 	switch (event.type)
 	{
 	case SDL_QUIT:
 		isRunning = false;
+		break;
+	case SDL_KEYDOWN:
+		key = event.key.keysym.sym;
+		if (key < 0 || key > 321) break;
+		KEYS[key] = true;
+		break;
+	case SDL_KEYUP:
+		key = event.key.keysym.sym;
+		if (key < 0 || key > 321) break;
+		KEYS[key] = false;
 		break;
 	default:
 		break;

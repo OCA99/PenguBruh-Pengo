@@ -59,5 +59,8 @@
     <ClInclude Include="Pengo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

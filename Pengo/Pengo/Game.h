@@ -6,6 +6,7 @@ class Game;
 class Animation;
 
 #include <iostream>
+#include <algorithm>
 #include <SDL.h>
 #include "Vec2.h"
 #include "Scene.h"
@@ -27,6 +28,7 @@ public:
 
 	static SDL_Renderer* renderer;
 	static int scale;
+	static bool KEYS[322];
 private:
 	bool isRunning = false;
 	SDL_Window* window = nullptr;

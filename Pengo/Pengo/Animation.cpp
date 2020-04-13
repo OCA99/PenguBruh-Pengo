@@ -23,6 +23,7 @@ Animation::~Animation()
 }
 
 void Animation::step() {
+	if (!running) return;
 	timer++;
 	if (timer == delay) {
 		timer = 0;
@@ -31,6 +32,14 @@ void Animation::step() {
 			currentFrame = 0;
 		}
 	}
+}
+
+void Animation::play() {
+	running = true;
+}
+
+void Animation::pause() {
+	running = false;
 }
 
 SDL_Rect* Animation::getFrame() {
