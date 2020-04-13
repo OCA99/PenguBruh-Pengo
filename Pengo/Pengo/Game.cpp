@@ -80,10 +80,7 @@ void Game::render() {
 	SDL_RenderClear(renderer);
 	// Render objects
 	currentScene->render();
-
 	SDL_RenderPresent(renderer);
-
-
 }
 
 void Game::clean() {
