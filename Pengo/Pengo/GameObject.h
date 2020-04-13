@@ -1,7 +1,6 @@
 #pragma once
-//#include "Vec2.h"
-//#include "SDL_image.h"
 #include "Game.h"
+
 class GameObject
 {
 	Vec2f position;
@@ -18,7 +17,5 @@ public:
 	void init();
 	void update();
 	void render();
-
 	void clean();
-
 };

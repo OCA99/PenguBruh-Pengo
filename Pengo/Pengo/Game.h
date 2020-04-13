@@ -1,5 +1,9 @@
 #pragma once
 
+class GameObject;
+class Scene;
+class Game;
+
 #include <iostream>
 #include <vector>
 #include "SDL.h"
@@ -7,6 +11,7 @@
 #include "Vec2.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "TextureManager.h"
 
 class Game {
 public:

@@ -15,7 +15,6 @@ void Scene::init()
 		o->init();
 
 	}
-
 }
 
 void Scene::update()
@@ -24,7 +23,6 @@ void Scene::update()
 	{
 		o->update();
 	}
-
 }
 
 void Scene::render()
@@ -33,7 +31,6 @@ void Scene::render()
 	{
 		o->render();
 	}
-
 }
 
 void Scene::clean()
