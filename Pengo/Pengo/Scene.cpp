@@ -1,8 +1,13 @@
 #include "Scene.h"
+#include "Player.h"
+
 
 Scene::Scene( )
 {
 	objects = std::vector<GameObject*>();
+	prefabs = new TypeMap<GameObject>();
+	prefabs->registerType<Player>("player");
+	objects.push_back(prefabs->getObject("player"));
 }
 
 Scene::~Scene()

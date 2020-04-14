@@ -1,0 +1,7 @@
+scene_name,object_type,pos_x,pos_y
+level_1,block,24,32
+level_1,block,24,48
+level_1,block,24,64
+level_1,block,24,80
+level_1,block,24,96
+level_1,block,24,112

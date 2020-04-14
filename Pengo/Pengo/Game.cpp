@@ -5,7 +5,7 @@ int Game::scale = 1;
 bool Game::KEYS[322];
 
 Game::Game() {
-	
+
 }
 
 Game::~Game() {
@@ -44,6 +44,9 @@ void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 	isRunning = true;
 
 	std::fill_n(KEYS, 322, false);
+
+	Scene* s1 = new Scene();
+	loadScene(s1);
 }
 
 void Game::handleEvents() {

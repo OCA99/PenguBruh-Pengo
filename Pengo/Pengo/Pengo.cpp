@@ -1,6 +1,22 @@
 #include "Pengo.h"
 
-Pengo::Pengo() {
+Pengo::Pengo() : GameObject::GameObject() {
+	construct();
+}
+
+Pengo::Pengo(Vec2i _position) : GameObject::GameObject(_position) {
+	construct();
+}
+
+Pengo::~Pengo() {
+
+}
+
+void Pengo::update() {
+	animation = animator->getCurrentValue();
+}
+
+void Pengo::construct() {
 	SDL_Texture* sprites = TextureManager::LoadTexture("assets/sprites/pengos.png");
 	std::map<PengoAnimations, Animation*>* states = new std::map<PengoAnimations, Animation*>();
 	SDL_Rect rect;
@@ -20,60 +36,5 @@ Pengo::Pengo() {
 	Animation* right = new Animation(sprites, &rect, 1, 2, 15);
 	(*states)[PengoAnimations::WalkRight] = right;
 	animator = new StateMachine<PengoAnimations, Animation*>(states);
-	gridPosition = Vec2i(0, 0);
-	position = Vec2f(0, 0);
 	animator->setCurrentState(PengoAnimations::WalkDown);
-	pressedKeys = new std::vector<SDL_Keycode>();
-	direction = Directions::Down;
-}
-
-Pengo::~Pengo() {
-
-}
-
-void Pengo::update() {
-	animation = animator->getCurrentValue();
-	if (Game::KEYS[SDLK_w]) {
-		if (std::find(pressedKeys->begin(), pressedKeys->end(), SDLK_w) == pressedKeys->end())
-			pressedKeys->push_back(SDLK_w);
-	}
-	if (Game::KEYS[SDLK_a]) {
-		if (std::find(pressedKeys->begin(), pressedKeys->end(), SDLK_a) == pressedKeys->end())
-			pressedKeys->push_back(SDLK_a);
-	}
-	if (Game::KEYS[SDLK_s]) {
-		if (std::find(pressedKeys->begin(), pressedKeys->end(), SDLK_s) == pressedKeys->end())
-			pressedKeys->push_back(SDLK_s);
-	}
-	if (Game::KEYS[SDLK_d]) {
-		if (std::find(pressedKeys->begin(), pressedKeys->end(), SDLK_d) == pressedKeys->end())
-			pressedKeys->push_back(SDLK_d);
-	}
-	if (!pressedKeys->empty()) {
-		switch ((*pressedKeys)[pressedKeys->size() - 1])
-		{
-		case SDLK_w:
-			direction = Directions::Up;
-			animator->setCurrentState(PengoAnimations::WalkUp);
-			break;
-		case SDLK_a:
-			direction = Directions::Left;
-			animator->setCurrentState(PengoAnimations::WalkLeft);
-			break;
-		case SDLK_s:
-			direction = Directions::Down;
-			animator->setCurrentState(PengoAnimations::WalkDown);
-			break;
-		case SDLK_d:
-			direction = Directions::Right;
-			animator->setCurrentState(PengoAnimations::WalkRight);
-			break;
-		default:
-			break;
-		}
-	}
-	for (SDL_Keycode k : *pressedKeys) {
-		if (!Game::KEYS[k])
-			pressedKeys->erase(std::remove(pressedKeys->begin(), pressedKeys->end(), k), pressedKeys->end());
-	}
 }

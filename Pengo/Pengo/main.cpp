@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "Scene.h"
-#include "Pengo.h"
 
 Game* game = nullptr;
 
@@ -14,10 +12,6 @@ int main(int argc, char* argv[]) {
 
 	game = new Game();
 	game->init("Pengo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 2, SDL_WINDOW_SHOWN);
-	Scene* s1 = new Scene();
-	Pengo* pingu = new Pengo();
-	s1->objects.push_back(pingu);
-	game->loadScene(s1);
 
 	while (game->running()) {
 

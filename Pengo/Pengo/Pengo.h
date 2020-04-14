@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include "GameObject.h"
 
 enum class PengoAnimations {
@@ -10,22 +9,17 @@ enum class PengoAnimations {
 	WalkRight
 };
 
-enum class Directions {
-	Up,
-	Down,
-	Left,
-	Right
-};
-
 class Pengo : public GameObject {
 public:
 	Pengo();
+	Pengo(Vec2i _position);
 	~Pengo();
 
 	void update() override;
 
-private:
+protected:
 	StateMachine<PengoAnimations, Animation*>* animator = nullptr;
-	std::vector<SDL_Keycode>* pressedKeys = nullptr;
-	Directions direction;
+
+private:
+	void construct();
 };

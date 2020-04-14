@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include "Animation.h"
 
 template <typename K, class T>
 class StateMachine {
