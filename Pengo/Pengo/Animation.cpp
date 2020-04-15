@@ -1,5 +1,7 @@
 #include "Animation.h"
 
+#include <iostream>
+
 Animation::Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int columns, int _delay, std::function<void()> _callback)
 {
 	source = _source;
@@ -9,7 +11,7 @@ Animation::Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int col
 		for (int j = 0; j < columns; j++) {
 			SDL_Rect frame;
 			frame.x = location->x + j * frameWidth;
-			frame.y = location->y - i * frameHeight;
+			frame.y = location->y + i * frameHeight;
 			frame.w = frameWidth;
 			frame.h = frameHeight;
 			frames.push_back(frame);

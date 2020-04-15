@@ -1,4 +1,0 @@
-level_1,wall,0,24
-level_1,wall,216,272
-
-

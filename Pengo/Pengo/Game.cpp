@@ -2,6 +2,9 @@
 #include "Player.h"
 #include "Block.h"
 #include "Diamond.h"
+#include "Blob.h"
+#include "WallHorizontal.h"
+#include "WallVertical.h"
 
 SDL_Renderer* Game::renderer = nullptr;
 int Game::scale = 1;
@@ -12,7 +15,9 @@ Game::Game() {
 	prefabs->registerType<Player>("player");
 	prefabs->registerType<Block>("block");
 	prefabs->registerType<Diamond>("diamond");
-	prefabs->registerType<Player>("blob");
+	prefabs->registerType<Blob>("blob");
+	prefabs->registerType<WallHorizontal>("wall_hor");
+	prefabs->registerType<WallVertical>("wall_vert");
 }
 
 Game::~Game() {
