@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-Animation::Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int columns, int _delay)
+Animation::Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int columns, int _delay, std::function<void()> _callback)
 {
 	source = _source;
 	int frameWidth = location->w / columns;
@@ -16,6 +16,7 @@ Animation::Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int col
 		}
 	}
 	delay = _delay;
+	callback = _callback;
 }
 
 Animation::~Animation()
@@ -30,6 +31,7 @@ void Animation::step() {
 		currentFrame++;
 		if (currentFrame == frames.size()) {
 			currentFrame = 0;
+			if (callback != nullptr) callback();
 		}
 	}
 }

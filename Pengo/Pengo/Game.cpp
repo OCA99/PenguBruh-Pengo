@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "Player.h"
+#include "Block.h"
+#include "Diamond.h"
 
 SDL_Renderer* Game::renderer = nullptr;
 int Game::scale = 1;
@@ -8,6 +10,9 @@ bool Game::KEYS[322];
 Game::Game() {
 	prefabs = new TypeMap<GameObject>();
 	prefabs->registerType<Player>("player");
+	prefabs->registerType<Block>("block");
+	prefabs->registerType<Diamond>("diamond");
+	prefabs->registerType<Player>("blob");
 }
 
 Game::~Game() {
