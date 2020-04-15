@@ -10,6 +10,8 @@ class Animation;
 #include <SDL.h>
 #include "Vec2.h"
 #include "Scene.h"
+#include "CSVReader.h"
+#include "TypeMap.h"
 
 class Game {
 public:
@@ -35,4 +37,6 @@ private:
 	const Vec2i size = Vec2i(224,288);
 
 	Scene* currentScene = nullptr;
+
+	TypeMap<GameObject>* prefabs;
 };

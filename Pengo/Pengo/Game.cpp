@@ -1,11 +1,13 @@
 #include "Game.h"
+#include "Player.h"
 
 SDL_Renderer* Game::renderer = nullptr;
 int Game::scale = 1;
 bool Game::KEYS[322];
 
 Game::Game() {
-
+	prefabs = new TypeMap<GameObject>();
+	prefabs->registerType<Player>("player");
 }
 
 Game::~Game() {
@@ -45,8 +47,9 @@ void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 
 	std::fill_n(KEYS, 322, false);
 
-	Scene* s1 = new Scene();
-	loadScene(s1);
+	CSV* data = readCSV("assets/scenes/scenes.txt");
+	std::map<std::string, Scene*>* scenes = Scene::CreateScenesFromCSV(data, prefabs);
+	loadScene((*scenes)["level_1"]);
 }
 
 void Game::handleEvents() {
