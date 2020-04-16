@@ -1,24 +1,18 @@
 #pragma once
 
-#include "GameObject.h"
+#include "Wall.h"
 
-enum class WallVerticalAnimations {
-	Normal,
-	Shake
-};
-
-class WallVertical : public GameObject {
+class WallVertical : public Wall {
 public:
 	WallVertical();
 	WallVertical(Vec2i _position);
 	~WallVertical();
 
 	void update() override;
-	void destroy();
 
 protected:
-	StateMachine<WallVerticalAnimations, Animation*>* animator = nullptr;
+	StateMachine<WallAnimations, Animation*>* animator = nullptr;
 
 private:
-	void construct();
+	void construct() override;
 };

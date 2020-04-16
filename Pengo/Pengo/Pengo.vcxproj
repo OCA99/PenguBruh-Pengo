@@ -140,6 +140,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="WallHorizontal.cpp" />
     <ClCompile Include="WallVertical.cpp" />
   </ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TypeMap.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="Wall.h" />
     <ClInclude Include="WallHorizontal.h" />
     <ClInclude Include="WallVertical.h" />
   </ItemGroup>

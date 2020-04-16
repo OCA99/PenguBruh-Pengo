@@ -83,7 +83,7 @@ level_1,block,184,208
 level_1,block,184,224
 level_1,blob,184,240
 level_1,block,184,256
-level_1,wall_hor,0,24
-level_1,wall_hor,0,272
 level_1,wall_vert,0,24
 level_1,wall_vert,216,24
+level_1,wall_hor,0,24
+level_1,wall_hor,0,272
