@@ -132,7 +132,9 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Diamond.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GridManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -151,7 +153,9 @@
     <ClInclude Include="CSVReader.h" />
     <ClInclude Include="Diamond.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameData.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GridManager.h" />
     <ClInclude Include="Pengo.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
