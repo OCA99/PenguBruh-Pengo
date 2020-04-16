@@ -4,6 +4,7 @@
 Scene::Scene( )
 {
 	objects = std::vector<GameObject*>();
+	gridManager = new GridManager();
 }
 
 Scene::~Scene()
@@ -49,13 +50,27 @@ std::map<std::string, Scene*>* Scene::CreateScenesFromCSV(CSV* data, TypeMap<Gam
 		if ((*result).find(name) == (*result).end()) {
 			(*result)[name] = new Scene();
 		}
-		std::string object_type = line[1];
+		if (line[1] == "manager") {
+			(*result)[name]->gridManager->w = std::stoi(line[3], nullptr);
+			(*result)[name]->gridManager->h = std::stoi(line[4], nullptr);
+			int xi = std::stoi(line[5], nullptr);
+			int yi = std::stoi(line[6], nullptr);
+			int xf = std::stoi(line[7], nullptr);
+			int yf = std::stoi(line[8], nullptr);
+			(*result)[name]->gridManager->upperLeft = Vec2i(xi, yi);
+			(*result)[name]->gridManager->lowerRight = Vec2i(xf, yf);
+			(*result)[name]->gridManager->init();
+			continue;
+		}
+		std::string object_type = line[2];
 		GameObject* obj = prefabs->getObject(object_type);
-		int x = std::stoi(line[2], nullptr);
-		int y = std::stoi(line[3], nullptr);
+		int x = std::stoi(line[3], nullptr);
+		int y = std::stoi(line[4], nullptr);
 		(*obj).position = Vec2i(x, y);
 		(*result)[name]->objects.push_back(obj);
-
+		if (line[1] == "grid_object") {
+			(*result)[name]->gridManager->addObject(obj);
+		}
 	}
 	return result;
 }

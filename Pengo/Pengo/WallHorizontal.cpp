@@ -31,5 +31,5 @@ void WallHorizontal::construct() {
 	Animation* shake = new Animation(sprites, &rect, 2, 1, 8, nullptr);
 	(*states)[WallAnimations::Shake] = shake;
 	animator = new StateMachine<WallAnimations, Animation*>(states);
-	animator->setCurrentState(WallAnimations::Normal);
+	animator->setCurrentState(WallAnimations::Shake);
 }

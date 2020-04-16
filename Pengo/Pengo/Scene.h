@@ -5,6 +5,7 @@
 #include "TypeMap.h"
 #include "GameObject.h"
 #include "CSVReader.h"
+#include "GridManager.h"
 
 class Scene
 {
@@ -21,5 +22,5 @@ public:
 
 	std::vector<GameObject*> objects;
 private:
-	TypeMap<GameObject>* prefabs;
+	GridManager* gridManager = nullptr;
 };
