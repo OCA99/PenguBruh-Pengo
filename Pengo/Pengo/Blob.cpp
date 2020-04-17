@@ -41,4 +41,5 @@ void Blob::construct() {
 	(*states)[BlobAnimations::WalkRight] = right;
 	animator = new StateMachine<BlobAnimations, Animation*>(states);
 	animator->setCurrentState(BlobAnimations::Spawn);
+	//type = ObjectType::Blob;
 }

@@ -1,8 +1,10 @@
 #pragma once
 
 #include <vector>
-#include "GameObject.h"
 #include "Vec2.h"
+#include <iostream>
+
+class GameObject;
 
 class GridManager
 {
@@ -13,11 +15,16 @@ public:
 	std::vector<GameObject*>* getCell(int x, int y);
 	void init();
 	void addObject(GameObject* o);
+	Vec2i pixelPositionToGrid(Vec2i pos);
+	bool containsObject(Vec2i position, int type);
+	bool canMoveToPosition(Vec2i position);
+	Vec2i gridToPixelPosition(Vec2i gridPos);
 
-	int w;
-	int h;
-	Vec2i upperLeft;
-	Vec2i lowerRight;
-	std::vector<GameObject*>* grid;
+	int w = 0;
+	int h = 0;
+	Vec2i upperLeft = Vec2i();
+	Vec2i lowerRight = Vec2i();
+	std::vector<GameObject*>* grid = nullptr;
 private:
+	int cellSize = 0;
 };

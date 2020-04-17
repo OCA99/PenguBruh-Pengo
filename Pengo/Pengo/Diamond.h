@@ -12,7 +12,7 @@ public:
 	Diamond(Vec2i _position);
 	~Diamond();
 
-	void update() override;
+	void update();
 	void destroy();
 
 protected:

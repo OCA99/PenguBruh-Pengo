@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <iostream>
 
 template<typename G>
 class TypeMap {

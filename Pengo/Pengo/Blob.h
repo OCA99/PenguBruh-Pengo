@@ -16,7 +16,7 @@ public:
 	Blob(Vec2i _position);
 	~Blob();
 
-	void update() override;
+	void update();
 
 protected:
 	StateMachine<BlobAnimations, Animation*>* animator = nullptr;

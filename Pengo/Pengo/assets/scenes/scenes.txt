@@ -88,4 +88,3 @@ level_1,ui_object,wall_vert,0,24
 level_1,ui_object,wall_vert,216,24
 level_1,ui_object,wall_hor,0,24
 level_1,ui_object,wall_hor,0,272
-level_1,ui_object,lives,0,8

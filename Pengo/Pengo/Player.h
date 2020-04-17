@@ -23,4 +23,6 @@ private:
 
 	std::vector<SDL_Keycode>* pressedKeys = nullptr;
 	Directions direction;
+
+	bool done = false;
 };

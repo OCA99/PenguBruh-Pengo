@@ -1,6 +1,7 @@
 #include "Player.h"
 
 Player::Player() : Pengo::Pengo() {
+	std::cout << "Constructing player" << std::endl;
 	construct();
 }
 
@@ -34,20 +35,19 @@ void Player::update() {
 		switch ((*pressedKeys)[pressedKeys->size() - 1])
 		{
 		case SDLK_w:
-			direction = Directions::Up;
-			animator->setCurrentState(PengoAnimations::WalkUp);
+			if (!moving) {
+				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
+					moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
+			}
 			break;
 		case SDLK_a:
-			direction = Directions::Left;
-			animator->setCurrentState(PengoAnimations::WalkLeft);
+
 			break;
 		case SDLK_s:
-			direction = Directions::Down;
-			animator->setCurrentState(PengoAnimations::WalkDown);
+			
 			break;
 		case SDLK_d:
-			direction = Directions::Right;
-			animator->setCurrentState(PengoAnimations::WalkRight);
+			
 			break;
 		default:
 			break;
@@ -57,9 +57,12 @@ void Player::update() {
 		if (!Game::KEYS[k])
 			pressedKeys->erase(std::remove(pressedKeys->begin(), pressedKeys->end(), k), pressedKeys->end());
 	}
+	
 }
 
 void Player::construct() {
 	pressedKeys = new std::vector<SDL_Keycode>();
 	direction = Directions::Down;
+	type = 1;
+	speed = 2;
 }

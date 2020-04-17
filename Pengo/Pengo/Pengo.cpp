@@ -1,6 +1,7 @@
 #include "Pengo.h"
 
 Pengo::Pengo() : GameObject::GameObject() {
+	std::cout << "Constructing pengo" << std::endl;
 	construct();
 }
 
@@ -13,10 +14,12 @@ Pengo::~Pengo() {
 }
 
 void Pengo::update() {
+	GameObject::update();
 	animation = animator->getCurrentValue();
 }
 
 void Pengo::construct() {
+	std::cout << "Constructing pengo constructor" << std::endl;
 	SDL_Texture* sprites = TextureManager::LoadTexture("assets/sprites/pengos.png");
 	std::map<PengoAnimations, Animation*>* states = new std::map<PengoAnimations, Animation*>();
 	SDL_Rect rect;

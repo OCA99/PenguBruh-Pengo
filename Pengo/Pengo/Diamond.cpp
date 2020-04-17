@@ -32,4 +32,5 @@ void Diamond::construct() {
 	(*states)[DiamondAnimations::Normal] = normal;
 	animator = new StateMachine<DiamondAnimations, Animation*>(states);
 	animator->setCurrentState(DiamondAnimations::Normal);
+	type = 3;
 }

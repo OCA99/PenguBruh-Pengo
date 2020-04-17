@@ -13,7 +13,7 @@ public:
 	Block(Vec2i _position);
 	~Block();
 
-	void update() override;
+	void update();
 	void destroy();
 
 protected:

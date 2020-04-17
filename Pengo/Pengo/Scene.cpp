@@ -1,5 +1,6 @@
 #include "Scene.h"
 
+#include "GameObject.h"
 
 Scene::Scene( )
 {
@@ -31,6 +32,7 @@ void Scene::render()
 {
 	for (GameObject* o : objects)
 	{
+		//std::cout << "obj" << std::endl;
 		o->render();
 	}
 }
@@ -67,6 +69,7 @@ std::map<std::string, Scene*>* Scene::CreateScenesFromCSV(CSV* data, TypeMap<Gam
 		int x = std::stoi(line[3], nullptr);
 		int y = std::stoi(line[4], nullptr);
 		(*obj).position = Vec2i(x, y);
+		(*obj).targetPosition = Vec2i(x, y);
 		(*result)[name]->objects.push_back(obj);
 		if (line[1] == "grid_object") {
 			(*result)[name]->gridManager->addObject(obj);

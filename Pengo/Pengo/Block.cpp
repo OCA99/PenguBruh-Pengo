@@ -36,4 +36,5 @@ void Block::construct() {
 	(*states)[BlockAnimations::Breaking] = breaking;
 	animator = new StateMachine<BlockAnimations, Animation*>(states);
 	animator->setCurrentState(BlockAnimations::Normal);
+	type = 2;
 }

@@ -87,7 +87,6 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-
 	currentScene->update();
 	
 }
