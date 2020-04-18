@@ -6,7 +6,12 @@ enum class PengoAnimations {
 	WalkUp,
 	WalkDown,
 	WalkLeft,
-	WalkRight
+	WalkRight,
+	Die,
+	PushUp,
+	PushDown,
+	PushLeft,
+	PushRight
 };
 
 class Pengo : public GameObject {
@@ -19,6 +24,8 @@ public:
 
 protected:
 	StateMachine<PengoAnimations, Animation*>* animator = nullptr;
+	bool pushing = false;
+
 
 private:
 	void construct();

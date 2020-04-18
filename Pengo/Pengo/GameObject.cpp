@@ -17,7 +17,6 @@ GameObject::~GameObject()
 
 void GameObject::init()
 {
-	//std::cout << "Initialized" << std::endl;
 }
 
 void GameObject::update() {
@@ -25,8 +24,6 @@ void GameObject::update() {
 }
 
 void GameObject::stepToTargetPosition() {
-	if (type == 1)
-		std::cout << position.x << " " << targetPosition.x << std::endl;
 	if (position.x != targetPosition.x) {
 		moving = true;
 		if (position.x < targetPosition.x)
@@ -46,10 +43,13 @@ void GameObject::stepToTargetPosition() {
 	}
 }
 
+bool GameObject::isInTargetPosition() {
+	return gridPosition.x == targetPosition.x && gridPosition.y == targetPosition.y;
+}
+
 void GameObject::render()
 {
 	if (!animation) {
-		//std::cout << "Animation missing" << std::endl;
 		return;
 	}
 	animation->step();
@@ -72,5 +72,4 @@ void GameObject::moveToGridPosition(Vec2i newPosition) {
 
 void GameObject::clean()
 {
-	//std::cout << "Cleaned" << std::endl;
 }

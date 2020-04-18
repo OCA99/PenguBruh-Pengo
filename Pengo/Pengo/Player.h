@@ -3,12 +3,6 @@
 #include <vector>
 #include "Pengo.h"
 
-enum class Directions {
-	Up,
-	Down,
-	Left,
-	Right
-};
 
 class Player : public Pengo {
 public:
@@ -17,6 +11,16 @@ public:
 	~Player();
 
 	void update() override;
+	void die();
+	void push();
+	bool checkForEnemy();
+
+	enum class Directions {
+		Up,
+		Down,
+		Left,
+		Right
+	};
 
 private:
 	void construct();
@@ -24,5 +28,4 @@ private:
 	std::vector<SDL_Keycode>* pressedKeys = nullptr;
 	Directions direction;
 
-	bool done = false;
 };

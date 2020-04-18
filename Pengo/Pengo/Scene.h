@@ -19,6 +19,8 @@ public:
 	void render();
 	void clean();
 
+	Scene& operator=(const Scene& rhs) {};
+
 	static std::map<std::string, Scene*>* CreateScenesFromCSV(CSV* data, TypeMap<GameObject>* prefabs);
 
 	std::vector<GameObject*> objects;

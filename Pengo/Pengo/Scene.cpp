@@ -32,7 +32,6 @@ void Scene::render()
 {
 	for (GameObject* o : objects)
 	{
-		//std::cout << "obj" << std::endl;
 		o->render();
 	}
 }

@@ -1,7 +1,6 @@
 #include "Player.h"
 
 Player::Player() : Pengo::Pengo() {
-	std::cout << "Constructing player" << std::endl;
 	construct();
 }
 
@@ -31,23 +30,36 @@ void Player::update() {
 		if (std::find(pressedKeys->begin(), pressedKeys->end(), SDLK_d) == pressedKeys->end())
 			pressedKeys->push_back(SDLK_d);
 	}
-	if (!pressedKeys->empty()) {
+	if (!pressedKeys->empty() && !pushing) {
 		switch ((*pressedKeys)[pressedKeys->size() - 1])
 		{
 		case SDLK_w:
 			if (!moving) {
+				direction = Directions::Up;
 				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
 					moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
 			}
 			break;
 		case SDLK_a:
-
+			if (!moving) {
+				direction = Directions::Left;
+				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
+					moveToGridPosition(Vec2i(gridPosition.x - 1, gridPosition.y));
+			}
 			break;
 		case SDLK_s:
-			
+			if (!moving) {
+				direction = Directions::Down;
+				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
+					moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y + 1));
+			}
 			break;
 		case SDLK_d:
-			
+			if (!moving) {
+				direction = Directions::Right;
+				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y)))
+					moveToGridPosition(Vec2i(gridPosition.x + 1, gridPosition.y));
+			}
 			break;
 		default:
 			break;
@@ -57,12 +69,89 @@ void Player::update() {
 		if (!Game::KEYS[k])
 			pressedKeys->erase(std::remove(pressedKeys->begin(), pressedKeys->end(), k), pressedKeys->end());
 	}
-	
+	if (!pushing) {
+		switch (direction) {
+		case Directions::Up:
+			animator->setCurrentState(PengoAnimations::WalkUp);
+			break;
+		case Directions::Left:
+			animator->setCurrentState(PengoAnimations::WalkLeft);
+			break;
+		case Directions::Down:
+			animator->setCurrentState(PengoAnimations::WalkDown);
+			break;
+		case Directions::Right:
+			animator->setCurrentState(PengoAnimations::WalkRight);
+			break;
+		default:
+			break;
+		}
+		if (moving) {
+			animator->getCurrentValue()->play();
+		}
+		else {
+			animator->getCurrentValue()->pause();
+		}
+	}
+	if (!moving)
+		if (checkForEnemy() && !Game::godMode) die();
+	//std::cout << pushing << std::endl;
+	if (Game::KEYS[SDLK_SPACE] && !moving && !pushing) {
+		push();
+	}
+}
+
+void Player::die() {
+	animator->setCurrentState(PengoAnimations::Die);
+}
+
+void Player::push() {
+	GameObject* block = nullptr;
+	Vec2i pos = Vec2i();
+	switch (direction) {
+	case Directions::Up:
+		pos = Vec2i(gridPosition.x, gridPosition.y - 1);
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
+		animator->setCurrentState(PengoAnimations::PushUp);
+		animator->getCurrentValue()->play();
+		break;
+	case Directions::Left:
+		pos = Vec2i(gridPosition.x - 1, gridPosition.y);
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
+		animator->setCurrentState(PengoAnimations::PushLeft);
+		animator->getCurrentValue()->play();
+		break;
+	case Directions::Down:
+		pos = Vec2i(gridPosition.x, gridPosition.y + 1);
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
+		animator->setCurrentState(PengoAnimations::PushDown);
+		animator->getCurrentValue()->play();
+		break;
+	case Directions::Right:
+		pos = Vec2i(gridPosition.x + 1, gridPosition.y);
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
+		animator->setCurrentState(PengoAnimations::PushRight);
+		animator->getCurrentValue()->play();
+		break;
+	}
+	pushing = true;
+	if (!block) return;
+	block->pushed(this);
+	//std::cout << block->gridPosition.x << " " << block->gridPosition.y << std::endl;
+}
+
+bool Player::checkForEnemy() {
+	if (gridManager->containsObject(gridManager->pixelPositionToGrid(position), 4)) return true;
+	return false;
 }
 
 void Player::construct() {
 	pressedKeys = new std::vector<SDL_Keycode>();
 	direction = Directions::Down;
 	type = 1;
-	speed = 2;
+	speed = 1;
 }

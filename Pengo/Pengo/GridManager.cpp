@@ -43,15 +43,40 @@ bool GridManager::containsObject(Vec2i position, int type) {
 	return false;
 }
 
-bool GridManager::canMoveToPosition(Vec2i position) {
-	// 2 = Block, 3 = Diamond
+GameObject* GridManager::getObjectOfType(Vec2i position, int type) {
+	for (GameObject* o : *getCell(position.x, position.y)) {
+		if (o->type == type) {
+			return o;
+		}
+	}
+	return nullptr;
+}
+
+GameObject* GridManager::getAnyBlock(Vec2i position) {
+	GameObject* block = getObjectOfType(position, 2);
+	if (block) return block;
+	GameObject* diamond = getObjectOfType(position, 3);
+	if (diamond) return diamond;
+	return nullptr;
+}
+
+bool GridManager::isPartOfGrid(Vec2i position) {
 	if (position.x > w - 1 || position.x < 0) return false;
 	if (position.y > h - 1 || position.y < 0) return false;
+	return true;
+}
+
+
+bool GridManager::canMoveToPosition(Vec2i position) {
+	if (position.x > w - 1 || position.x < 0) return false;
+	if (position.y > h - 1 || position.y < 0) return false;
+	// 2 = Block, 3 = Diamond
 	if (containsObject(position, 2) || containsObject(position, 3)) return false;
 	return true;
 }
 
 std::vector<GameObject*>* GridManager::getCell(int x, int y) {
+	if (x > w - 1 || x < 0 || y > h - 1 || y < 0) nullptr;
 	return &grid[y * w + x];
 }
 

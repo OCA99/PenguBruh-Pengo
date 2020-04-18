@@ -7,7 +7,7 @@
 class Animation
 {
 public:
-	Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int columns, int _delay, std::function<void()> _callback);
+	Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int columns, int _delay, int repeat, std::function<void()> _callback);
 	~Animation();
 	void step();
 	SDL_Rect* getFrame();

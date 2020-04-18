@@ -20,6 +20,7 @@ public:
 
 	void init(const char* title, int x, int y, int _scale, Uint32 flags);
 	void handleEvents();
+	void handleFKeys(SDL_Keycode k);
 	void update();
 	void render();
 	void clean();
@@ -31,6 +32,7 @@ public:
 	static SDL_Renderer* renderer;
 	static int scale;
 	static bool KEYS[322];
+	static bool godMode;
 private:
 	bool isRunning = false;
 	SDL_Window* window = nullptr;
@@ -39,4 +41,6 @@ private:
 	Scene* currentScene = nullptr;
 
 	TypeMap<GameObject>* prefabs;
+
+	bool canChangeDebug = true;
 };

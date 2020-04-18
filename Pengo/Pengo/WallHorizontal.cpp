@@ -24,12 +24,12 @@ void WallHorizontal::construct() {
 	rect.y = 260;
 	rect.w = 224;
 	rect.h = 8;
-	Animation* normal = new Animation(sprites, &rect, 1, 1, 1, nullptr);
+	Animation* normal = new Animation(sprites, &rect, 1, 1, 1, 1, nullptr);
 	(*states)[WallAnimations::Normal] = normal;
 	rect.x = 456;
 	rect.h = 16;
-	Animation* shake = new Animation(sprites, &rect, 2, 1, 8, nullptr);
+	Animation* shake = new Animation(sprites, &rect, 2, 1, 8, 1, nullptr);
 	(*states)[WallAnimations::Shake] = shake;
 	animator = new StateMachine<WallAnimations, Animation*>(states);
-	animator->setCurrentState(WallAnimations::Shake);
+	animator->setCurrentState(WallAnimations::Normal);
 }

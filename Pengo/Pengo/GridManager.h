@@ -19,6 +19,9 @@ public:
 	bool containsObject(Vec2i position, int type);
 	bool canMoveToPosition(Vec2i position);
 	Vec2i gridToPixelPosition(Vec2i gridPos);
+	GameObject* getObjectOfType(Vec2i position, int type);
+	GameObject* getAnyBlock(Vec2i position);
+	bool isPartOfGrid(Vec2i position);
 
 	int w = 0;
 	int h = 0;

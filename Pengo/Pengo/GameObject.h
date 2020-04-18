@@ -20,6 +20,8 @@ public:
 	void render();
 	void clean();
 	void moveToGridPosition(Vec2i position);
+	virtual void pushed(GameObject* origin) {};
+	bool isInTargetPosition();
 
 	Vec2i position;
 

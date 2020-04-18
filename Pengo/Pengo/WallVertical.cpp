@@ -24,11 +24,11 @@ void WallVertical::construct() {
 	rect.y = 0;
 	rect.w = 8;
 	rect.h = 256;
-	Animation* normal = new Animation(sprites, &rect, 1, 1, 1, nullptr);
+	Animation* normal = new Animation(sprites, &rect, 1, 1, 1, 1, nullptr);
 	(*states)[WallAnimations::Normal] = normal;
 	rect.x = 684;
 	rect.w = 16;
-	Animation* shake = new Animation(sprites, &rect, 1, 2, 8, nullptr);
+	Animation* shake = new Animation(sprites, &rect, 1, 2, 8, 1, nullptr);
 	(*states)[WallAnimations::Shake] = shake;
 	animator = new StateMachine<WallAnimations, Animation*>(states);
 	animator->setCurrentState(WallAnimations::Normal);

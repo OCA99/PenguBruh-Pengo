@@ -9,6 +9,7 @@
 SDL_Renderer* Game::renderer = nullptr;
 int Game::scale = 1;
 bool Game::KEYS[322];
+bool Game::godMode = false;
 
 Game::Game() {
 	prefabs = new TypeMap<GameObject>();
@@ -62,6 +63,18 @@ void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 	loadScene((*scenes)["level_1"]);
 }
 
+void Game::handleFKeys(int k) {
+	if (canChangeDebug) {
+		if (k == 1073741882) {
+			godMode = !godMode;
+		}
+		canChangeDebug = false;
+	}
+	else {
+		canChangeDebug = true;
+	}
+}
+
 void Game::handleEvents() {
 	SDL_Event event;
 	SDL_PollEvent(&event);
@@ -73,11 +86,13 @@ void Game::handleEvents() {
 		break;
 	case SDL_KEYDOWN:
 		key = event.key.keysym.sym;
+		handleFKeys(key);
 		if (key < 0 || key > 321) break;
 		KEYS[key] = true;
 		break;
 	case SDL_KEYUP:
 		key = event.key.keysym.sym;
+		handleFKeys(key);
 		if (key < 0 || key > 321) break;
 		KEYS[key] = false;
 		break;
@@ -86,9 +101,9 @@ void Game::handleEvents() {
 	}
 }
 
+
 void Game::update() {
 	currentScene->update();
-	
 }
 
 void Game::render() {

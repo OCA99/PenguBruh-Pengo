@@ -28,7 +28,7 @@ void Diamond::construct() {
 	rect.y = 16;
 	rect.w = 16;
 	rect.h = 16;
-	Animation* normal = new Animation(sprites, &rect, 1, 1, 1, nullptr);
+	Animation* normal = new Animation(sprites, &rect, 1, 1, 1, 1, nullptr);
 	(*states)[DiamondAnimations::Normal] = normal;
 	animator = new StateMachine<DiamondAnimations, Animation*>(states);
 	animator->setCurrentState(DiamondAnimations::Normal);
