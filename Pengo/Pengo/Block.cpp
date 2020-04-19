@@ -51,21 +51,40 @@ void Block::move() {
 }
 
 void Block::destroy() {
-	// Define object destroy
+	animator->setCurrentState(BlockAnimations::Breaking);
+	std::vector<GameObject*>* cell = gridManager->getCell(gridPosition.x, gridPosition.y);
+	cell->erase(std::remove(cell->begin(), cell->end(), this), cell->end());
+	//needs delay to do animation
+	//animator->setCurrentState(BlockAnimations::Empty);
 }
 
 void Block::pushed(GameObject* origin) {
-	if (gridPosition.x > origin->gridPosition.x) {
-		direction = Directions::Right;
+	if (gridPosition.y < origin->gridPosition.y) {
+		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
+		{
+			Block::destroy();
+		}
+		direction = Directions::Up;
 	}
 	if (gridPosition.x < origin->gridPosition.x) {
+		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
+		{
+			Block::destroy();
+		}
 		direction = Directions::Left;
 	}
 	if (gridPosition.y > origin->gridPosition.y) {
+		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
+		{
+			Block::destroy();
+		}
 		direction = Directions::Down;
 	}
-	if (gridPosition.y < origin->gridPosition.y) {
-		direction = Directions::Up;
+	if (gridPosition.x > origin->gridPosition.x) {
+		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y))) {
+			Block::destroy();
+		}
+		direction = Directions::Right;
 	}
 }
 

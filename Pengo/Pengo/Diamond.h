@@ -14,10 +14,21 @@ public:
 
 	void update();
 	void destroy();
+	void pushed(GameObject* origin) override;
+	void move();
+
+	enum class Directions {
+		Up,
+		Down,
+		Left,
+		Right,
+		Stopped
+	};
 
 protected:
 	StateMachine<DiamondAnimations, Animation*>* animator = nullptr;
 
 private:
 	void construct();
+	Directions direction = Directions::Stopped;
 };

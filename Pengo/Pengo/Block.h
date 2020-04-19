@@ -4,7 +4,8 @@
 
 enum class BlockAnimations {
 	Normal,
-	Breaking
+	Breaking,
+	Empty
 };
 
 class Block : public GameObject {

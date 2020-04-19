@@ -106,7 +106,7 @@ void Player::die() {
 }
 
 void Player::push() {
-	GameObject* block = nullptr;
+	GameObject* block_type = nullptr;
 	Vec2i pos = Vec2i();
 	switch (direction) {
 	case Directions::Up:
@@ -114,33 +114,34 @@ void Player::push() {
 		animator->setCurrentState(PengoAnimations::PushUp);
 		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
+		block_type = gridManager->getAnyBlock(pos);
+		std::cout << gridManager->getAnyBlock(pos) << std::endl;
 		break;
 	case Directions::Left:
 		pos = Vec2i(gridPosition.x - 1, gridPosition.y);
 		animator->setCurrentState(PengoAnimations::PushLeft);
 		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
+		block_type = gridManager->getAnyBlock(pos);
 		break;
 	case Directions::Down:
 		pos = Vec2i(gridPosition.x, gridPosition.y + 1);
 		animator->setCurrentState(PengoAnimations::PushDown);
 		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
+		block_type = gridManager->getAnyBlock(pos);
 		break;
 	case Directions::Right:
 		pos = Vec2i(gridPosition.x + 1, gridPosition.y);
 		animator->setCurrentState(PengoAnimations::PushRight);
 		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
+		block_type = gridManager->getAnyBlock(pos);
 		break;
 	}
 	pushing = true;
-	if (!block) return;
-	block->pushed(this);
+	if (!block_type) return;
+	block_type->pushed(this);
 	//std::cout << block->gridPosition.x << " " << block->gridPosition.y << std::endl;
 }
 

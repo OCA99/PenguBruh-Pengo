@@ -13,12 +13,64 @@ Diamond::~Diamond() {
 }
 
 void Diamond::update() {
+	GameObject::update();
 	animation = animator->getCurrentValue();
+	move();
 }
+
+void Diamond::move() {
+	if (moving) return;
+	switch (direction) {
+	case Directions::Up:
+		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
+			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
+		else
+			direction = Directions::Stopped;
+		break;
+	case Directions::Left:
+		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
+			moveToGridPosition(Vec2i(gridPosition.x - 1, gridPosition.y));
+		else
+			direction = Directions::Stopped;
+		break;
+	case Directions::Down:
+		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
+			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y + 1));
+		else
+			direction = Directions::Stopped;
+		break;
+	case Directions::Right:
+		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y)))
+			moveToGridPosition(Vec2i(gridPosition.x + 1, gridPosition.y));
+		else
+			direction = Directions::Stopped;
+		break;
+	default:
+		break;
+	}
+}
+
+
 
 void Diamond::destroy() {
 	// Define object destroy
 }
+
+void Diamond::pushed(GameObject* origin) {
+	if (gridPosition.x > origin->gridPosition.x) {
+		direction = Directions::Right;
+	}
+	if (gridPosition.x < origin->gridPosition.x) {
+		direction = Directions::Left;
+	}
+	if (gridPosition.y > origin->gridPosition.y) {
+		direction = Directions::Down;
+	}
+	if (gridPosition.y < origin->gridPosition.y) {
+		direction = Directions::Up;
+	}
+}
+
 
 void Diamond::construct() {
 	SDL_Texture* sprites = TextureManager::LoadTexture("assets/sprites/Stages.png");
@@ -33,4 +85,5 @@ void Diamond::construct() {
 	animator = new StateMachine<DiamondAnimations, Animation*>(states);
 	animator->setCurrentState(DiamondAnimations::Normal);
 	type = 3;
+	speed = 2;
 }
