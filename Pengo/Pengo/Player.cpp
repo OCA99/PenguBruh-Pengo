@@ -111,31 +111,31 @@ void Player::push() {
 	switch (direction) {
 	case Directions::Up:
 		pos = Vec2i(gridPosition.x, gridPosition.y - 1);
-		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
 		animator->setCurrentState(PengoAnimations::PushUp);
 		animator->getCurrentValue()->play();
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
 		break;
 	case Directions::Left:
 		pos = Vec2i(gridPosition.x - 1, gridPosition.y);
-		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
 		animator->setCurrentState(PengoAnimations::PushLeft);
 		animator->getCurrentValue()->play();
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
 		break;
 	case Directions::Down:
 		pos = Vec2i(gridPosition.x, gridPosition.y + 1);
-		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
 		animator->setCurrentState(PengoAnimations::PushDown);
 		animator->getCurrentValue()->play();
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
 		break;
 	case Directions::Right:
 		pos = Vec2i(gridPosition.x + 1, gridPosition.y);
-		if (!gridManager->isPartOfGrid(pos)) break;
-		block = gridManager->getAnyBlock(pos);
 		animator->setCurrentState(PengoAnimations::PushRight);
 		animator->getCurrentValue()->play();
+		if (!gridManager->isPartOfGrid(pos)) break;
+		block = gridManager->getAnyBlock(pos);
 		break;
 	}
 	pushing = true;

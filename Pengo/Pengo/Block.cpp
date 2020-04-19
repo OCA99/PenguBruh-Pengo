@@ -25,25 +25,25 @@ void Block::move() {
 		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
 			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
 		else
-			Directions::Stopped;
+			direction = Directions::Stopped;
 		break;
 	case Directions::Left:
 		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
 			moveToGridPosition(Vec2i(gridPosition.x - 1, gridPosition.y));
 		else
-			Directions::Stopped;
+			direction = Directions::Stopped;
 		break;
 	case Directions::Down:
 		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
 			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y + 1));
 		else
-			Directions::Stopped;
+			direction = Directions::Stopped;
 		break;
 	case Directions::Right:
 		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y)))
 			moveToGridPosition(Vec2i(gridPosition.x + 1, gridPosition.y));
 		else
-			Directions::Stopped;
+			direction = Directions::Stopped;
 		break;
 	default:
 		break;
