@@ -107,7 +107,6 @@ void Player::update() {
 	}
 	if (!moving)
 		if (checkForEnemy() && !Game::godMode) die();
-	std::cout << moving << std::endl;
 	if (Game::KEYS[SDLK_SPACE] && !moving && !pushing) {
 		push();
 	}

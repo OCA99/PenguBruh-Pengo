@@ -38,7 +38,7 @@ void Pengo::construct() {
 	(*states)[PengoAnimations::WalkRight] = right;
 	rect.x = 0;
 	rect.y = 32;
-	Animation* die = new Animation(sprites, &rect, 1, 2, 8, 11, [] { std::cout << "You died" << std::endl; });
+	Animation* die = new Animation(sprites, &rect, 1, 2, 8, 11, [] { Game::changeScene("menu"); });
 	(*states)[PengoAnimations::Die] = die;
 	rect.y = 16;
 	Animation* pushDown = new Animation(sprites, &rect, 1, 2, 10, 1, [&] { pushing = false; animator->setCurrentState(PengoAnimations::WalkDown); });

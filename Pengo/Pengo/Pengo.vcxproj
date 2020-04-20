@@ -76,12 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\include;D:\Projecte\Tutorials\Dev\SDL2-2.0.12\include;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SDL\SDL2-2.0.10\include;D:\SDL\SDL2_ttf-2.0.15\include;D:\SDL\SDL2_image-2.0.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>D:\Projecte\Tutorials\Dev\SDL2-2.0.12\lib\x86;D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\lib\x86;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>D:\SDL\SDL2-2.0.10\lib\x86;D:\SDL\SDL2_image-2.0.5\lib\x86;D:\SDL\SDL2_ttf-2.0.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -133,12 +133,14 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Blob.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="Diamond.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GridManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuBackground.cpp" />
     <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -154,12 +156,14 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Blob.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="CSVReader.h" />
     <ClInclude Include="Diamond.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GridManager.h" />
+    <ClInclude Include="MenuBackground.h" />
     <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Pengo.h" />
     <ClInclude Include="Player.h" />

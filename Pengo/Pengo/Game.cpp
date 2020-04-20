@@ -5,6 +5,8 @@
 #include "Blob.h"
 #include "WallHorizontal.h"
 #include "WallVertical.h"
+#include "MenuBackground.h"
+#include "Credits.h"
 
 
 SDL_Renderer* Game::renderer = nullptr;
@@ -22,6 +24,8 @@ Game::Game() {
 	prefabs->registerType<Blob>("blob");
 	prefabs->registerType<WallHorizontal>("wall_hor");
 	prefabs->registerType<WallVertical>("wall_vert");
+	prefabs->registerType<MenuBackground>("menu_background");
+	prefabs->registerType<Credits>("credits");
 }
 
 Game::~Game() {
@@ -65,7 +69,7 @@ void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 	std::map<std::string, Scene*>* scenes = Scene::CreateScenesFromCSV(data, prefabs);
 	sceneManager = new StateMachine <std::string, Scene*>(scenes);
 	
-	loadScene("level_1");
+	loadScene("credits");
 	
 }
 
