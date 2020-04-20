@@ -134,3 +134,12 @@ void Game::loadScene(std::string name)
 	
 	s->init();
 }
+
+void Game::changeScene(std::string name)
+{
+	Scene* current = sceneManager->getCurrentValue();
+	current->clean();
+
+	loadScene(name);
+
+}

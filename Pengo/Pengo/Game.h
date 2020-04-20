@@ -26,10 +26,10 @@ public:
 	void render();
 	void clean();
 
-	void loadScene(std::string name);
-
 	bool running() { return isRunning; };
 
+	static void loadScene(std::string name);
+	static void changeScene(std::string name);
 	static SDL_Renderer* renderer;
 	static int scale;
 	static bool KEYS[322];
