@@ -12,7 +12,6 @@ public:
 	}
 	~StateMachine() {
 		if (!std::is_pointer<T>::value) return;
-		std::cout << "Type is a pointer" << std::endl;
 		for (auto const& x : (*states))
 		{
 			T value = x.second;

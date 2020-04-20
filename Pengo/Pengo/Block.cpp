@@ -7,7 +7,6 @@ Block::Block(Vec2i _position) : GameObject::GameObject(_position) {
 }
 
 Block::~Block() {
-	//std::cout << "block destructor" << std::endl;
 }
 
 void Block::update() {
@@ -30,7 +29,6 @@ void Block::move() {
 		nextpos = Vec2i(gridPosition.x, gridPosition.y - 1);
 		if (gridManager->isPartOfGrid(nextpos) && gridManager->containsObject(nextpos, 4))
 		{
-			std::cout << "Bloque Empujado" << std::endl;
 			gridManager->getAnyBlob(nextpos)->pushed(this);
 		}
 		if (gridManager->canMoveToPosition(nextpos))

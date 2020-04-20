@@ -37,28 +37,40 @@ void Player::update() {
 			if (!moving) {
 				direction = Directions::Up;
 				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
+				{
 					moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
+					moving = true;
+				}
 			}
 			break;
 		case SDLK_a:
 			if (!moving) {
 				direction = Directions::Left;
 				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
+				{
 					moveToGridPosition(Vec2i(gridPosition.x - 1, gridPosition.y));
+					moving = true;
+				}
 			}
 			break;
 		case SDLK_s:
 			if (!moving) {
 				direction = Directions::Down;
 				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
+				{
 					moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y + 1));
+					moving = true;
+				}
 			}
 			break;
 		case SDLK_d:
 			if (!moving) {
 				direction = Directions::Right;
 				if (gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y)))
+				{
 					moveToGridPosition(Vec2i(gridPosition.x + 1, gridPosition.y));
+					moving = true;
+				}
 			}
 			break;
 		default:
@@ -95,7 +107,7 @@ void Player::update() {
 	}
 	if (!moving)
 		if (checkForEnemy() && !Game::godMode) die();
-	//std::cout << pushing << std::endl;
+	std::cout << moving << std::endl;
 	if (Game::KEYS[SDLK_SPACE] && !moving && !pushing) {
 		push();
 	}
@@ -111,38 +123,48 @@ void Player::push() {
 	switch (direction) {
 	case Directions::Up:
 		pos = Vec2i(gridPosition.x, gridPosition.y - 1);
-		animator->setCurrentState(PengoAnimations::PushUp);
-		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
 		block_type = gridManager->getAnyBlock(pos);
-		std::cout << gridManager->getAnyBlock(pos) << std::endl;
+		if (block_type)
+		{
+			animator->setCurrentState(PengoAnimations::PushUp);
+			animator->getCurrentValue()->play();
+		}
 		break;
 	case Directions::Left:
 		pos = Vec2i(gridPosition.x - 1, gridPosition.y);
-		animator->setCurrentState(PengoAnimations::PushLeft);
-		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
 		block_type = gridManager->getAnyBlock(pos);
+		if (block_type)
+		{
+			animator->setCurrentState(PengoAnimations::PushLeft);
+			animator->getCurrentValue()->play();
+		}
 		break;
 	case Directions::Down:
 		pos = Vec2i(gridPosition.x, gridPosition.y + 1);
-		animator->setCurrentState(PengoAnimations::PushDown);
-		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
 		block_type = gridManager->getAnyBlock(pos);
+		if (block_type)
+		{
+			animator->setCurrentState(PengoAnimations::PushDown);
+			animator->getCurrentValue()->play();
+		}
 		break;
 	case Directions::Right:
 		pos = Vec2i(gridPosition.x + 1, gridPosition.y);
-		animator->setCurrentState(PengoAnimations::PushRight);
-		animator->getCurrentValue()->play();
 		if (!gridManager->isPartOfGrid(pos)) break;
 		block_type = gridManager->getAnyBlock(pos);
+		if (block_type)
+		{
+			animator->setCurrentState(PengoAnimations::PushRight);
+			animator->getCurrentValue()->play();
+		}
 		break;
 	}
-	pushing = true;
 	if (!block_type) return;
+	pushing = true;
 	block_type->pushed(this);
-	//std::cout << block->gridPosition.x << " " << block->gridPosition.y << std::endl;
 }
 
 bool Player::checkForEnemy() {

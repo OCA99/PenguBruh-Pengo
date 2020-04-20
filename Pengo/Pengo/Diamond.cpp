@@ -17,7 +17,6 @@ void Diamond::update() {
 }
 
 void Diamond::clean() {
-	//std::cout << "cleaning" << std::endl;
 	Block::clean();
 }
 
