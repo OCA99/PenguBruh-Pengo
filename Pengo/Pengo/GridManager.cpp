@@ -60,6 +60,12 @@ GameObject* GridManager::getAnyBlock(Vec2i position) {
 	return nullptr;
 }
 
+GameObject* GridManager::getAnyBlob(Vec2i position) {
+	GameObject* blob = getObjectOfType(position, 4);
+	if (blob) return blob;
+	return nullptr;
+}
+
 bool GridManager::isPartOfGrid(Vec2i position) {
 	if (position.x > w - 1 || position.x < 0) return false;
 	if (position.y > h - 1 || position.y < 0) return false;

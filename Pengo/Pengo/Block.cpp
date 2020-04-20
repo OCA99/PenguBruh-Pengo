@@ -24,28 +24,50 @@ void Block::clean() {
 
 void Block::move() {
 	if (moving) return;
+	Vec2i nextpos = Vec2i();
 	switch (direction) {
 	case Directions::Up:
-		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
-			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
+		nextpos = Vec2i(gridPosition.x, gridPosition.y - 1);
+		if (gridManager->isPartOfGrid(nextpos) && gridManager->containsObject(nextpos, 4))
+		{
+			std::cout << "Bloque Empujado" << std::endl;
+			gridManager->getAnyBlob(nextpos)->pushed(this);
+		}
+		if (gridManager->canMoveToPosition(nextpos))
+			moveToGridPosition(nextpos);
 		else
 			direction = Directions::Stopped;
 		break;
 	case Directions::Left:
-		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
-			moveToGridPosition(Vec2i(gridPosition.x - 1, gridPosition.y));
+		nextpos = Vec2i(gridPosition.x - 1, gridPosition.y);
+		if (gridManager->isPartOfGrid(nextpos) && gridManager->containsObject(nextpos, 4))
+		{
+			gridManager->getAnyBlob(nextpos)->pushed(this);
+		}
+		if (gridManager->canMoveToPosition(nextpos))
+			moveToGridPosition(nextpos);
 		else
 			direction = Directions::Stopped;
 		break;
 	case Directions::Down:
-		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
-			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y + 1));
+		nextpos = Vec2i(gridPosition.x, gridPosition.y + 1);
+		if (gridManager->isPartOfGrid(nextpos) && gridManager->containsObject(nextpos, 4))
+		{
+			gridManager->getAnyBlob(nextpos)->pushed(this);
+		}
+		if (gridManager->canMoveToPosition(nextpos))
+			moveToGridPosition(nextpos);
 		else
 			direction = Directions::Stopped;
 		break;
 	case Directions::Right:
-		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y)))
-			moveToGridPosition(Vec2i(gridPosition.x + 1, gridPosition.y));
+		nextpos = Vec2i(gridPosition.x + 1, gridPosition.y);
+		if (gridManager->isPartOfGrid(nextpos) && gridManager->containsObject(nextpos, 4))
+		{
+			gridManager->getAnyBlob(nextpos)->pushed(this);
+		}
+		if (gridManager->canMoveToPosition(nextpos))
+			moveToGridPosition(nextpos);
 		else
 			direction = Directions::Stopped;
 		break;
@@ -67,28 +89,32 @@ void Block::pushed(GameObject* origin) {
 		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
 		{
 			destroy();
-		} else
+		}
+		else
 			direction = Directions::Up;
 	}
 	if (gridPosition.x < origin->gridPosition.x) {
 		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x - 1, gridPosition.y)))
 		{
 			destroy();
-		} else
+		}
+		else
 			direction = Directions::Left;
 	}
 	if (gridPosition.y > origin->gridPosition.y) {
 		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y + 1)))
 		{
 			destroy();
-		} else
+		}
+		else
 			direction = Directions::Down;
 	}
 	if (gridPosition.x > origin->gridPosition.x) {
 		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x + 1, gridPosition.y)))
 		{
 			destroy();
-		} else
+		}
+		else
 			direction = Directions::Right;
 	}
 }
