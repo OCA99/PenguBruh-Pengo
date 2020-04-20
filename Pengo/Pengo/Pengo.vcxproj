@@ -76,12 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projecte\Tutorials\Dev\SDL2-2.0.12\include;D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\include;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SDL\SDL2-2.0.10\include;D:\SDL\SDL2_image-2.0.5\include;D:\SDL\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>D:\Projecte\Tutorials\Dev\SDL2-2.0.12\lib\x86;D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\lib\x86;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SDL\SDL2-2.0.10\lib\x86;D:\SDL\SDL2_image-2.0.5\lib\x86;D:\SDL\SDL2_ttf-2.0.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -139,6 +139,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GridManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NormalBlock.cpp" />
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp">
@@ -159,6 +160,7 @@
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GridManager.h" />
+    <ClInclude Include="NormalBlock.h" />
     <ClInclude Include="Pengo.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />

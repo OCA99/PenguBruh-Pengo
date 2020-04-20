@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "Player.h"
-#include "Block.h"
+#include "NormalBlock.h"
 #include "Diamond.h"
 #include "Blob.h"
 #include "WallHorizontal.h"
@@ -14,7 +14,7 @@ bool Game::godMode = false;
 Game::Game() {
 	prefabs = new TypeMap<GameObject>();
 	prefabs->registerType<Player>("player");
-	prefabs->registerType<Block>("block");
+	prefabs->registerType<NormalBlock>("block");
 	prefabs->registerType<Diamond>("diamond");
 	prefabs->registerType<Blob>("blob");
 	prefabs->registerType<WallHorizontal>("wall_hor");

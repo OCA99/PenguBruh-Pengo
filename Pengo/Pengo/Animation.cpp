@@ -25,6 +25,7 @@ Animation::Animation(SDL_Texture* _source, SDL_Rect* location, int rows, int col
 
 Animation::~Animation()
 {
+	SDL_DestroyTexture(source);
 }
 
 void Animation::step() {
@@ -35,10 +36,6 @@ void Animation::step() {
 		currentFrame++;
 		if (currentFrame == frames.size()) {
 			if (callback != nullptr) callback();
-			if (!running) {
-				currentFrame--;
-				return;
-			}
 			currentFrame = 0;
 		}
 	}

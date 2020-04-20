@@ -13,7 +13,9 @@ GameObject::GameObject(Vec2i _position)
 }
 
 GameObject::~GameObject()
-{}
+{
+	ownerScene->objects.erase(std::remove(ownerScene->objects.begin(), ownerScene->objects.end(), this), ownerScene->objects.end());
+}
 
 void GameObject::init()
 {
@@ -72,4 +74,5 @@ void GameObject::moveToGridPosition(Vec2i newPosition) {
 
 void GameObject::clean()
 {
+	//delete animation;
 }

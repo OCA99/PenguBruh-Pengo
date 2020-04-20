@@ -18,6 +18,7 @@ public:
 	void destroy();
 	void pushed(GameObject* origin) override;
 	void move();
+	void clean();
 
 	enum class Directions {
 		Up,
@@ -31,6 +32,6 @@ protected:
 	StateMachine<BlockAnimations, Animation*>* animator = nullptr;
 
 private:
-	void construct();
+	virtual void construct() = 0;
 	Directions direction = Directions::Stopped;
 };

@@ -2,11 +2,11 @@
 
 #include "Block.h"
 
-class Diamond : public Block {
+class NormalBlock : public Block {
 public:
-	Diamond();
-	Diamond(Vec2i _position);
-	~Diamond();
+	NormalBlock();
+	NormalBlock(Vec2i _position);
+	~NormalBlock();
 
 	void update();
 	void clean();

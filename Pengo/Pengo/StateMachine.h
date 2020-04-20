@@ -1,6 +1,8 @@
 #pragma once
 
 #include <map>
+#include <iterator>
+#include <type_traits>
 
 template <typename K, class T>
 class StateMachine {
@@ -9,7 +11,13 @@ public:
 		states = _states;
 	}
 	~StateMachine() {
-
+		if (!std::is_pointer<T>::value) return;
+		std::cout << "Type is a pointer" << std::endl;
+		for (auto const& x : (*states))
+		{
+			T value = x.second;
+			delete value;
+		}
 	}
 	T getCurrentValue() {
 		return (*states)[currentState];

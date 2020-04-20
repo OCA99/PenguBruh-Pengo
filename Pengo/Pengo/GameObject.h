@@ -31,6 +31,7 @@ public:
 
 	int type = 0;
 	Vec2i targetPosition = Vec2i();
+	Scene* ownerScene = nullptr;
 private:
 
 	void stepToTargetPosition();
