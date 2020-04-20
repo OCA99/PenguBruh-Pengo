@@ -9,7 +9,6 @@ NormalBlock::NormalBlock(Vec2i _position) : Block::Block(_position) {
 }
 
 NormalBlock::~NormalBlock() {
-	//std::cout << "normal block destructor" << std::endl;
 }
 
 void NormalBlock::update() {

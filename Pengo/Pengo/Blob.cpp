@@ -53,7 +53,6 @@ void Blob::construct() {
 }
 
 void Blob::pushed(GameObject* origin) {
-	std::cout << "Blob function called" << std::endl;
 	if (gridPosition.y < origin->gridPosition.y) {
 		if (!gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
 		{
@@ -62,7 +61,6 @@ void Blob::pushed(GameObject* origin) {
 		else
 		{
 			direction = Directions::Up;
-			std::cout << "Blob directioned up" << std::endl;
 		}
 	}
 	if (gridPosition.x < origin->gridPosition.x) {
@@ -96,27 +94,21 @@ void Blob::destroy() {
 	std::vector<GameObject*>* cell = gridManager->getCell(gridPosition.x, gridPosition.y);
 	cell->erase(std::remove(cell->begin(), cell->end(), this), cell->end());
 	animator->setCurrentState(BlobAnimations::Empty);
-	std::cout << "Tontito destroyed" << std::endl;
 	//needs delay to do animation
 	//animator->setCurrentState(BlockAnimations::Empty);
 }
 
 void Blob::move() {
-	std::cout << "MOVE" << std::endl;
 	if (moving) return;
-	std::cout << (int) direction << std::endl;
 	switch (direction) {
 	case Directions::Up:
-		std::cout << "Direction Up" << std::endl;
 		if (gridManager->canMoveToPosition(Vec2i(gridPosition.x, gridPosition.y - 1)))
 		{
 			moveToGridPosition(Vec2i(gridPosition.x, gridPosition.y - 1));
-			std::cout << "CAN MOVE" << std::endl;
 		}
 		else
 		{
 			destroy();
-			std::cout << "DESTROYED" << std::endl;
 		}
 
 		break;

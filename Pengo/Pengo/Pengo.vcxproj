@@ -76,12 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Dev\SDL2_image-2.0.5\include;C:\Dev\SDL2_ttf-2.0.15\include;C:\Dev\SDL2-2.0.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\include;D:\Projecte\Tutorials\Dev\SDL2-2.0.12\include;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Dev\SDL2_image-2.0.5\lib\x86;C:\Dev\SDL2_ttf-2.0.15\lib\x86;C:\Dev\SDL2-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Projecte\Tutorials\Dev\SDL2-2.0.12\lib\x86;D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\lib\x86;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
