@@ -6,10 +6,13 @@
 #include "WallHorizontal.h"
 #include "WallVertical.h"
 
+
 SDL_Renderer* Game::renderer = nullptr;
 int Game::scale = 1;
 bool Game::KEYS[322];
 bool Game::godMode = false;
+
+StateMachine <std::string, Scene*>* Game::sceneManager = nullptr;
 
 Game::Game() {
 	prefabs = new TypeMap<GameObject>();
@@ -60,7 +63,10 @@ void Game::init(const char* title, int x, int y, int _scale, Uint32 flags) {
 
 	CSV* data = readCSV("assets/scenes/scenes.txt");
 	std::map<std::string, Scene*>* scenes = Scene::CreateScenesFromCSV(data, prefabs);
-	loadScene((*scenes)["level_1"]);
+	sceneManager = new StateMachine <std::string, Scene*>(scenes);
+	
+	loadScene("level_1");
+	
 }
 
 void Game::handleFKeys(int k) {
@@ -103,28 +109,28 @@ void Game::handleEvents() {
 
 
 void Game::update() {
-	currentScene->update();
+	sceneManager->getCurrentValue()->update();
 }
 
 void Game::render() {
 	SDL_RenderClear(renderer);
 	// Render objects
-	currentScene->render();
+	sceneManager->getCurrentValue()->render();
 	SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {
-	currentScene->clean();
+	sceneManager->getCurrentValue()->clean();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Clean up done" << std::endl;
 }
 
-void Game::loadScene(Scene* s)
+void Game::loadScene(std::string name)
 {
-	if (currentScene) currentScene->clean();
+	sceneManager->setCurrentState(name);
+	Scene* s = sceneManager->getCurrentValue();
 	
-	currentScene = s;
-	currentScene->init();
+	s->init();
 }

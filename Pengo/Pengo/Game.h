@@ -12,6 +12,7 @@ class Animation;
 #include "Scene.h"
 #include "CSVReader.h"
 #include "TypeMap.h"
+#include "StateMachine.h"
 
 class Game {
 public:
@@ -25,7 +26,7 @@ public:
 	void render();
 	void clean();
 
-	void loadScene(Scene* s);
+	void loadScene(std::string name);
 
 	bool running() { return isRunning; };
 
@@ -33,12 +34,13 @@ public:
 	static int scale;
 	static bool KEYS[322];
 	static bool godMode;
+	static StateMachine <std::string, Scene*>* sceneManager;
 private:
 	bool isRunning = false;
 	SDL_Window* window = nullptr;
 	const Vec2i size = Vec2i(224,288);
 
-	Scene* currentScene = nullptr;
+
 
 	TypeMap<GameObject>* prefabs;
 

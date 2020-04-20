@@ -1,44 +1,44 @@
-line 1, 1P, 10,0
-line1, score, 64,0
-line1, HI, 81, 0
-line1, HIScore, 105, 0
-line1, 2P, 153,0
-line1, score, 209, 0;
-line2, title, 42, 24
-line3, pengo_sprite, 57, 96
-line3, P, 97, 104
-line3, E, 106, 104
-line3, N, 113, 104
-line3, G, 121, 104
-line3, O, 129, 104
-line4, S, 56, 136
-line4, N, 105, 136
-line4, O, 113, 136
-line4, -, 122, 136
-line4, B, 129, 136
-line4, O, 138, 136
-line4, O, 146, 136
-line4, nom sno,97, 136
-line5, block, 56, 160
-line 5, I, 98, 168
-line 5, C, 105, 168
-line 5, E, 114, 168
-line 5, B, 129, 168
-line 5, L, 138, 168
-line 5, O, 145, 168
-line 5, C, 153, 168
-line 5, K, 161, 168
-line 6, D, 97, 192
-line 6, D, 106, 192
-line 6, I, 113, 192
-line 6, A, 121, 192
-line 6, M, 129, 192
-line 6, O, 137, 192
-line 6, N, 145, 192
-line 6, B, 161, 192
-line 6, L, 170, 192
-line 6, O, 177, 192
-line 6, C, 185, 192
-line 6, K, 193, 192
-line 6, nom, 97, 200
-line 7, SEGA, 97, 237
+menu, 1P, 10,0
+menu, score, 64,0
+menu, HI, 81, 0
+menu, HIScore, 105, 0
+menu, 2P, 153,0
+menu, score, 209, 0;
+menu, title, 42, 24
+menu, pengo_sprite, 57, 96
+menu, P, 97, 104
+menu, E, 106, 104
+menu, N, 113, 104
+menu, G, 121, 104
+menu, O, 129, 104
+menu, S, 56, 136
+menu, N, 105, 136
+menu, O, 113, 136
+menu, -, 122, 136
+menu, B, 129, 136
+menu, O, 138, 136
+menu, O, 146, 136
+menu, nom sno,97, 136
+menu, block, 56, 160
+menu, I, 98, 168
+menu, C, 105, 168
+menu, E, 114, 168
+menu, B, 129, 168
+menu, L, 138, 168
+menu, O, 145, 168
+menu, C, 153, 168
+menu, K, 161, 168
+menu, D, 97, 192
+menu, D, 106, 192
+menu, I, 113, 192
+menu, A, 121, 192
+menu, M, 129, 192
+menu, O, 137, 192
+menu, N, 145, 192
+menu, B, 161, 192
+menu, L, 170, 192
+menu, O, 177, 192
+menu, C, 185, 192
+menu, K, 193, 192
+menu, nom, 97, 200
+menu, SEGA, 97, 237
