@@ -18,6 +18,72 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Block.h" />
+    <ClInclude Include="Source\Block_Diamond.h" />
+    <ClInclude Include="Source\Block_Normal.h" />
+    <ClInclude Include="Source\Collider.h" />
+    <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\Globals.h" />
+    <ClInclude Include="Source\MemLeaks.h" />
+    <ClInclude Include="Source\Module.h" />
+    <ClInclude Include="Source\ModuleAudio.h" />
+    <ClInclude Include="Source\ModuleBlocks.h" />
+    <ClInclude Include="Source\ModuleEnemies.h" />
+    <ClInclude Include="Source\ModuleFadeToBlack.h" />
+    <ClInclude Include="Source\ModuleFonts.h" />
+    <ClInclude Include="Source\ModuleInput.h" />
+    <ClInclude Include="Source\ModuleParticles.h" />
+    <ClInclude Include="Source\ModulePlayer.h" />
+    <ClInclude Include="Source\ModuleRender.h" />
+    <ClInclude Include="Source\ModuleTextures.h" />
+    <ClInclude Include="Source\ModuleWalls.h" />
+    <ClInclude Include="Source\ModuleWindow.h" />
+    <ClInclude Include="Source\p2Point.h" />
+    <ClInclude Include="Source\Particle.h" />
+    <ClInclude Include="Source\Path.h" />
+    <ClInclude Include="Source\SceneIntro.h" />
+    <ClInclude Include="Source\SceneLevel.h" />
+    <ClInclude Include="Source\SceneLevel1.h" />
+    <ClInclude Include="Source\SceneMenu.h" />
+    <ClInclude Include="Source\Wall.h" />
+    <ClInclude Include="Source\WallHorizontal.h" />
+    <ClInclude Include="Source\WallVertical.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Block.cpp" />
+    <ClCompile Include="Source\Block_Diamond.cpp" />
+    <ClCompile Include="Source\Block_Normal.cpp" />
+    <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\Globals.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Module.cpp" />
+    <ClCompile Include="Source\ModuleAudio.cpp" />
+    <ClCompile Include="Source\ModuleBlocks.cpp" />
+    <ClCompile Include="Source\ModuleEnemies.cpp" />
+    <ClCompile Include="Source\ModuleFadeToBlack.cpp" />
+    <ClCompile Include="Source\ModuleFonts.cpp" />
+    <ClCompile Include="Source\ModuleInput.cpp" />
+    <ClCompile Include="Source\ModuleParticles.cpp" />
+    <ClCompile Include="Source\ModulePlayer.cpp" />
+    <ClCompile Include="Source\ModuleRender.cpp" />
+    <ClCompile Include="Source\ModuleTextures.cpp" />
+    <ClCompile Include="Source\ModuleWalls.cpp" />
+    <ClCompile Include="Source\ModuleWindow.cpp" />
+    <ClCompile Include="Source\Particle.cpp" />
+    <ClCompile Include="Source\Path.cpp" />
+    <ClCompile Include="Source\SceneIntro.cpp" />
+    <ClCompile Include="Source\SceneLevel.cpp" />
+    <ClCompile Include="Source\SceneLevel1.cpp" />
+    <ClCompile Include="Source\SceneMenu.cpp" />
+    <ClCompile Include="Source\Wall.cpp" />
+    <ClCompile Include="Source\WallHorizontal.cpp" />
+    <ClCompile Include="Source\WallVertical.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{7C630EB4-714C-4B06-A34A-BBF23EED1643}</ProjectGuid>
@@ -69,7 +135,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)/$(SolutionName)/External_Libraries</IncludePath>
+    <LibraryPath>$(SolutionDir)/$(SolutionName)/External_Libraries</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)/$(SolutionName)/External_Libraries;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)/$(SolutionName)/External_Libraries;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)/$(SolutionName)/External_Libraries;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)/$(SolutionName)/External_Libraries;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -91,7 +168,6 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projecte\Tutorials\Dev\SDL2-2.0.12\include;D:\Projecte\Tutorials\Dev\SDL2_image-2.0.5\include;D:\Projecte\Tutorials\Dev\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,7 +185,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
@@ -129,56 +205,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Blob.cpp" />
-    <ClCompile Include="Block.cpp" />
-    <ClCompile Include="Credits.cpp" />
-    <ClCompile Include="Diamond.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameData.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GridManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuBackground.cpp" />
-    <ClCompile Include="NormalBlock.cpp" />
-    <ClCompile Include="Pengo.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Scene.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="Wall.cpp" />
-    <ClCompile Include="WallHorizontal.cpp" />
-    <ClCompile Include="WallVertical.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="Blob.h" />
-    <ClInclude Include="Block.h" />
-    <ClInclude Include="Credits.h" />
-    <ClInclude Include="CSVReader.h" />
-    <ClInclude Include="Diamond.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameData.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GridManager.h" />
-    <ClInclude Include="MenuBackground.h" />
-    <ClInclude Include="NormalBlock.h" />
-    <ClInclude Include="Pengo.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="StateMachine.h" />
-    <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="TypeMap.h" />
-    <ClInclude Include="Vec2.h" />
-    <ClInclude Include="Wall.h" />
-    <ClInclude Include="WallHorizontal.h" />
-    <ClInclude Include="WallVertical.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="assets\scenes\scenes.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
