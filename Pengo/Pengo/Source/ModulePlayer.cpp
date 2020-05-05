@@ -243,37 +243,39 @@ Update_Status ModulePlayer::Update()
 		currentAnimation->running = false;
 	}
 
-	if (!moving && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) {
-		switch (direction) {
-		case Directions::Up:
-			if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y - 1)) App->walls->PushWall(0);
-			App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y - 1);
-			pushUpAnim.Reset();
-			currentAnimation = &pushUpAnim;
-			break;
-		case Directions::Down:
-			if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y + 1)) App->walls->PushWall(1);
-			App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y + 1);
-			pushDownAnim.Reset();
-			currentAnimation = &pushDownAnim;
-			break;
-		case Directions::Left:
-			if (!App->blocks->PositionInMap(gridPosition.x - 1, gridPosition.y)) App->walls->PushWall(2);
-			App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x - 1, gridPosition.y);
-			pushLeftAnim.Reset();
-			currentAnimation = &pushLeftAnim;
-			break;
-		case Directions::Right:
-			if (!App->blocks->PositionInMap(gridPosition.x + 1, gridPosition.y)) App->walls->PushWall(3);
-			App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x + 1, gridPosition.y);
-			pushRightAnim.Reset();
-			currentAnimation = &pushRightAnim;
-			break;
-		default:
-			break;
+	if (!dead)
+	{
+		if (!moving && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) {
+			switch (direction) {
+			case Directions::Up:
+				if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y - 1)) App->walls->PushWall(0);
+				App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y - 1);
+				pushUpAnim.Reset();
+				currentAnimation = &pushUpAnim;
+				break;
+			case Directions::Down:
+				if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y + 1)) App->walls->PushWall(1);
+				App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y + 1);
+				pushDownAnim.Reset();
+				currentAnimation = &pushDownAnim;
+				break;
+			case Directions::Left:
+				if (!App->blocks->PositionInMap(gridPosition.x - 1, gridPosition.y)) App->walls->PushWall(2);
+				App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x - 1, gridPosition.y);
+				pushLeftAnim.Reset();
+				currentAnimation = &pushLeftAnim;
+				break;
+			case Directions::Right:
+				if (!App->blocks->PositionInMap(gridPosition.x + 1, gridPosition.y)) App->walls->PushWall(3);
+				App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x + 1, gridPosition.y);
+				pushRightAnim.Reset();
+				currentAnimation = &pushRightAnim;
+				break;
+			default:
+				break;
+			}
 		}
 	}
-
 	if (currentAnimation == &pushUpAnim && currentAnimation->HasFinished()) {
 		currentAnimation = &walkUpAnim;
 	}

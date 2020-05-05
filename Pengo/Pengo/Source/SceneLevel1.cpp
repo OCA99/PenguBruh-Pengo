@@ -33,6 +33,8 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
+	App->player->dead = false;
+
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 
