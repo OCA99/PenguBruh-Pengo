@@ -105,103 +105,110 @@ Update_Status ModulePlayer::Update()
 {
 	int x = 0;
 	int y = 0;
+	
 	positionToGrid(position.x, position.y, x, y);
+	if (App->enemies->EnemyInGridPosition(x, y)) {
+		dead = true;
+		currentAnimation = &dieAnim;
+	}
 	if (App->enemies->EnemyInGridPosition(x, y)) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
 	// Moving the player with the camera scroll
 	//App->player->position.x += 1;
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
-	{
-		lastPressed = (int)SDL_SCANCODE_A;
-	}
-	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_UP) {
-		lastPressed = (int)SDL_SCANCODE_0;
-	}
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
+		{
+			lastPressed = (int)SDL_SCANCODE_A;
+		}
+		else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_UP) {
+			lastPressed = (int)SDL_SCANCODE_0;
+		}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
-	{
-		lastPressed = (int)SDL_SCANCODE_D;
-	}
-	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_UP) {
-		lastPressed = (int)SDL_SCANCODE_0;
-	}
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
+		{
+			lastPressed = (int)SDL_SCANCODE_D;
+		}
+		else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_UP) {
+			lastPressed = (int)SDL_SCANCODE_0;
+		}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
-	{
-		lastPressed = (int)SDL_SCANCODE_S;
-	}
-	else if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_UP) {
-		lastPressed = (int)SDL_SCANCODE_0;
-	}
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
+		{
+			lastPressed = (int)SDL_SCANCODE_S;
+		}
+		else if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_UP) {
+			lastPressed = (int)SDL_SCANCODE_0;
+		}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
-	{
-		lastPressed = (int)SDL_SCANCODE_W;
-	}
-	else if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_UP) {
-		lastPressed = (int)SDL_SCANCODE_0;
-	}
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
+		{
+			lastPressed = (int)SDL_SCANCODE_W;
+		}
+		else if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_UP) {
+			lastPressed = (int)SDL_SCANCODE_0;
+		}
 
-	switch (lastPressed) {
-	case (int)SDL_SCANCODE_A:
-		if (!moving) {
-			currentAnimation->running = true;
-			if (currentAnimation != &walkLeftAnim)
-			{
-				walkLeftAnim.Reset();
-				currentAnimation = &walkLeftAnim;
-			}
-			direction = Directions::Left;
-			if (!App->blocks->BlockInGridPosition(gridPosition.x - 1, gridPosition.y)) {
-				gridPosition.x -= 1;
+		if (!dead) {
+			switch (lastPressed) {
+			case (int)SDL_SCANCODE_A:
+				if (!moving) {
+					currentAnimation->running = true;
+					if (currentAnimation != &walkLeftAnim)
+					{
+						walkLeftAnim.Reset();
+						currentAnimation = &walkLeftAnim;
+					}
+					direction = Directions::Left;
+					if (!App->blocks->BlockInGridPosition(gridPosition.x - 1, gridPosition.y)) {
+						gridPosition.x -= 1;
+					}
+				}
+				break;
+			case (int)SDL_SCANCODE_D:
+				if (!moving) {
+					currentAnimation->running = true;
+					if (currentAnimation != &walkRightAnim)
+					{
+						walkRightAnim.Reset();
+						currentAnimation = &walkRightAnim;
+					}
+					direction = Directions::Right;
+					if (!App->blocks->BlockInGridPosition(gridPosition.x + 1, gridPosition.y)) {
+						gridPosition.x += 1;
+					}
+				}
+				break;
+			case (int)SDL_SCANCODE_S:
+				if (!moving) {
+					currentAnimation->running = true;
+					if (currentAnimation != &walkDownAnim)
+					{
+						walkDownAnim.Reset();
+						currentAnimation = &walkDownAnim;
+					}
+					direction = Directions::Down;
+					if (!App->blocks->BlockInGridPosition(gridPosition.x, gridPosition.y + 1)) {
+						gridPosition.y += 1;
+					}
+				}
+				break;
+			case (int)SDL_SCANCODE_W:
+				if (!moving) {
+					currentAnimation->running = true;
+					if (currentAnimation != &walkUpAnim)
+					{
+						walkUpAnim.Reset();
+						currentAnimation = &walkUpAnim;
+					}
+					direction = Directions::Up;
+					if (!App->blocks->BlockInGridPosition(gridPosition.x, gridPosition.y - 1)) {
+						gridPosition.y -= 1;
+					}
+				}
+				break;
+			default:
+				break;
 			}
 		}
-		break;
-	case (int)SDL_SCANCODE_D:
-		if (!moving) {
-			currentAnimation->running = true;
-			if (currentAnimation != &walkRightAnim)
-			{
-				walkRightAnim.Reset();
-				currentAnimation = &walkRightAnim;
-			}
-			direction = Directions::Right;
-			if (!App->blocks->BlockInGridPosition(gridPosition.x + 1, gridPosition.y)) {
-				gridPosition.x += 1;
-			}
-		}
-		break;
-	case (int)SDL_SCANCODE_S:
-		if (!moving) {
-			currentAnimation->running = true;
-			if (currentAnimation != &walkDownAnim)
-			{
-				walkDownAnim.Reset();
-				currentAnimation = &walkDownAnim;
-			}
-			direction = Directions::Down;
-			if (!App->blocks->BlockInGridPosition(gridPosition.x, gridPosition.y + 1)) {
-				gridPosition.y += 1;
-			}
-		}
-		break;
-	case (int)SDL_SCANCODE_W:
-		if (!moving) {
-			currentAnimation->running = true;
-			if (currentAnimation != &walkUpAnim)
-			{
-				walkUpAnim.Reset();
-				currentAnimation = &walkUpAnim;
-			}
-			direction = Directions::Up;
-			if (!App->blocks->BlockInGridPosition(gridPosition.x, gridPosition.y - 1)) {
-				gridPosition.y -= 1;
-			}
-		}
-		break;
-	default:
-		break;
-	}
 
 	if (gridPosition.x < 0) gridPosition.x = 0;
 	if (gridPosition.x > 12) gridPosition.x = 12;
