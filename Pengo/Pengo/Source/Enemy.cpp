@@ -18,6 +18,10 @@ Enemy::Enemy(int x, int y) : position(x, y)
 	position.x = gridPosition.x * 16 + 8;
 	position.y = gridPosition.y * 16 + 32;
 
+	spawnAnim.GenerateAnimation({ 128,128,96,16 }, 1, 6);
+	spawnAnim.speed = 0.04f;
+	spawnAnim.loop = false;
+
 	idleAnim.GenerateAnimation({ 128,144,32,16 }, 1, 2);
 	idleAnim.speed = 0.05f;
 	currentAnim = &idleAnim;
@@ -37,6 +41,7 @@ Enemy::Enemy(int x, int y) : position(x, y)
 	crushLeft.GenerateAnimation({ 192,192,32,16 }, 1, 2);
 	crushLeft.speed = 0.2f;
 	crushLeft.loop = false;
+
 }
 
 Enemy::~Enemy()
@@ -47,6 +52,13 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
+
+	currentAnim = &spawnAnim;
+	if (currentAnim == &spawnAnim && currentAnim->HasFinished())
+	{
+		currentAnim = &idleAnim;
+	}
+
 	if (!moving) {
 		int x = 0;
 		int y = 0;
@@ -95,7 +107,7 @@ void Enemy::Update()
 			break;
 		}
 	}
-
+	
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
