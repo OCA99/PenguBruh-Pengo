@@ -29,6 +29,7 @@ public:
 	// Performs the render call of the player sprite
 	Update_Status PostUpdate() override;
 
+
 	enum class Directions {
 		Up,
 		Down,
@@ -49,6 +50,9 @@ public:
 
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
+
+	//Counter to repeat animations
+	int deadPause = 0;
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;

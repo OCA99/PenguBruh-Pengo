@@ -88,6 +88,9 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
+	dead = false;
+	deadPause = 0;
+
 	//collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
@@ -111,7 +114,10 @@ Update_Status ModulePlayer::Update()
 		dead = true;
 		currentAnimation = &dieAnim;
 	}
-	if (App->enemies->EnemyInGridPosition(x, y)) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+	
+	if (dead) deadPause++;
+	if (deadPause == 100) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+
 	// Moving the player with the camera scroll
 	//App->player->position.x += 1;
 
@@ -239,7 +245,7 @@ Update_Status ModulePlayer::Update()
 		moving = true;
 	}
 
-	if (!moving && currentAnimation != &pushUpAnim && currentAnimation != &pushDownAnim && currentAnimation != &pushLeftAnim && currentAnimation != &pushRightAnim) {
+	if (!moving && currentAnimation != &pushUpAnim && currentAnimation != &pushDownAnim && currentAnimation != &pushLeftAnim && currentAnimation != &pushRightAnim && !dead) {
 		currentAnimation->running = false;
 	}
 
@@ -289,7 +295,10 @@ Update_Status ModulePlayer::Update()
 		currentAnimation = &walkRightAnim;
 	}
 
-	currentAnimation->Update();
+	if (deadPause <= 100)
+	{
+		currentAnimation->Update();
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
