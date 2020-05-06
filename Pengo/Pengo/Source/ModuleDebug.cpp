@@ -45,6 +45,18 @@ Update_Status ModuleDebug::Update()
 			GMODE = 0;
 		}
 	}
+	if (GMODE == 1)
+	{
+		if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN)
+		{
+			level += 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_DOWN)
+		{
+			level -= 1;
+		}
+	}
+	
 
 	return Update_Status::UPDATE_CONTINUE;
 }

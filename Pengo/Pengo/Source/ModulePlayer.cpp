@@ -108,7 +108,7 @@ Update_Status ModulePlayer::Update()
 {
 	int x = 0;
 	int y = 0;
-	
+	printf("%d", App->debug->level);
 	positionToGrid(position.x, position.y, x, y);
 
 	if (App->debug->GMODE == 0)
@@ -120,7 +120,62 @@ Update_Status ModulePlayer::Update()
 	}
 	
 	if (dead) deadPause++;
-	if (deadPause == 100) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+
+	//GODMODE
+	if (App->debug->GMODE == 0)
+	{
+		if (deadPause == 100) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+	}
+	
+	if (App->debug->GMODE == 1)
+	{
+		switch (App->debug->level)
+		{
+		case 1:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
+			break;
+		case 2:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_3, 90);
+			break;
+		case 3:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_3, (Module*)App->sceneLevel_4, 90);
+			break;
+		case 4:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_4, (Module*)App->sceneLevel_5, 90);
+			break;
+		case 5:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_6, 90);
+			break;
+		case 6:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_6, (Module*)App->sceneLevel_7, 90);
+			break;
+		case 7:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_8, 90);
+			break;
+		case 8:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_8, (Module*)App->sceneLevel_9, 90);
+			break;
+		case 9:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_10, 90);
+			break;
+		case 10:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_10, (Module*)App->sceneLevel_11, 90);
+			break;
+		case 11:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_11, (Module*)App->sceneLevel_12, 90);
+			break;
+		case 12:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_12, (Module*)App->sceneLevel_13, 90);
+			break;
+		case 13:
+			App->fade->FadeToBlack((Module*)App->sceneLevel_13, (Module*)App->sceneLevel_14, 90);
+			break;
+		}
+	}
+		
+		
+
+	
 
 	// Moving the player with the camera scroll
 	//App->player->position.x += 1;

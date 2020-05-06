@@ -9,6 +9,19 @@
 #include "SceneIntro.h"
 #include "SceneMenu.h"
 #include "SceneLevel1.h"
+#include "SceneLevel2.h"
+#include "SceneLevel3.h"
+#include "SceneLevel4.h"
+#include "SceneLevel5.h"
+#include "SceneLevel6.h"
+#include "SceneLevel7.h"
+#include "SceneLevel8.h"
+#include "SceneLevel9.h"
+#include "SceneLevel10.h"
+#include "SceneLevel11.h"
+#include "SceneLevel12.h"
+#include "SceneLevel13.h"
+#include "SceneLevel14.h"
 //#include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 //#include "ModuleCollisions.h"
@@ -42,8 +55,21 @@ Application::Application()
 	modules[10] =	fade =			new ModuleFadeToBlack(true);
 	modules[11] =	fonts =			new ModuleFonts(true);
 	modules[12] =	render =		new ModuleRender(true);
-	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[14] =	debug =			new ModuleDebug(true);
+	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);	
+	modules[13] = sceneLevel_1 = new SceneLevel1(false);	
+	modules[14] = sceneLevel_2 = new SceneLevel2(false);	
+	modules[15] = sceneLevel_3 = new SceneLevel3(false);	
+	modules[16] = sceneLevel_4 = new SceneLevel4(false);	
+	modules[17] = sceneLevel_5 = new SceneLevel5(false);	
+	modules[18] = sceneLevel_6 = new SceneLevel6(false);	
+	modules[19] = sceneLevel_7 = new SceneLevel7(false);	
+	modules[20] = sceneLevel_8 = new SceneLevel8(false);	
+	modules[21] = sceneLevel_9 = new SceneLevel9(false);	
+	modules[22] = sceneLevel_10 = new SceneLevel10(false);	
+	modules[23] = sceneLevel_11 = new SceneLevel11(false);	
+	modules[24] = sceneLevel_12 = new SceneLevel12(false);
+	modules[25] = sceneLevel_13 = new SceneLevel13(false);//Gameplay scene starts disabled
+	modules[26] =	debug =			new ModuleDebug(true);
 }
 
 Application::~Application()

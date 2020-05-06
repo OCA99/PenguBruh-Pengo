@@ -41,6 +41,7 @@ public:
 	inline bool IsEnabled() const { return isEnabled; }
 
 	bool GMODE = 0;
+	int level = 0;
 
 private:
 	bool isEnabled = true;
