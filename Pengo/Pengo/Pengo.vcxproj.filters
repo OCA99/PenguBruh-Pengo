@@ -111,6 +111,9 @@
     <ClInclude Include="Source\WallHorizontal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ModuleDebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -201,6 +204,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\WallVertical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ModuleDebug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

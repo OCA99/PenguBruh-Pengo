@@ -12,7 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleWalls.h"
 #include "ModuleFonts.h"
-
+#include "ModuleDebug.h"
 #include <stdio.h>
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
@@ -110,9 +110,13 @@ Update_Status ModulePlayer::Update()
 	int y = 0;
 	
 	positionToGrid(position.x, position.y, x, y);
-	if (App->enemies->EnemyInGridPosition(x, y)) {
-		dead = true;
-		currentAnimation = &dieAnim;
+
+	if (App->debug->GMODE == 0)
+	{
+		if (App->enemies->EnemyInGridPosition(x, y)) {
+			dead = true;
+			currentAnimation = &dieAnim;
+		}
 	}
 	
 	if (dead) deadPause++;

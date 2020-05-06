@@ -17,6 +17,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
+#include "ModuleDebug.h"
 
 Application::Application()
 {
@@ -42,6 +43,7 @@ Application::Application()
 	modules[11] =	fonts =			new ModuleFonts(true);
 	modules[12] =	render =		new ModuleRender(true);
 	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[14] =	debug =			new ModuleDebug(true);
 }
 
 Application::~Application()
