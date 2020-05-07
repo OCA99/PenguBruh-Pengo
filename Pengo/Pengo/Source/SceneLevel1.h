@@ -30,7 +30,8 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
-public:
+	bool win;
+
 };
 
 #endif

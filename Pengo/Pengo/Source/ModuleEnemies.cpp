@@ -24,6 +24,8 @@ bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("assets/sprites/pengos.png");
 
+	winCounter = 0;
+
 	return true;
 }
 
@@ -123,3 +125,22 @@ void ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
 		}
 	}
 }
+
+bool ModuleEnemies::victoryCheck(bool win)
+{
+	//Check if there are enemies on screen. If = 0 then win
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr) winCounter++;
+	}
+
+	if (winCounter != 0) {
+		winCounter = 0;
+	}
+	else {
+		win = true;
+	}
+
+	return win;
+}
+
