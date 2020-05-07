@@ -3,6 +3,7 @@
 
 #include "Module.h"
 
+
 struct Collider;
 
 class ModuleDebug : public Module
@@ -39,6 +40,8 @@ public:
 	void Disable();
 
 	inline bool IsEnabled() const { return isEnabled; }
+
+	void LevelUpDown();
 
 	bool GMODE = 0;
 	int level = 0;
