@@ -56,7 +56,7 @@ Application::Application()
 	modules[11] =	fonts =			new ModuleFonts(true);
 	modules[12] =	render =		new ModuleRender(true);
 	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);	
-	modules[13] = sceneLevel_1 = new SceneLevel1(false);	
+	//modules[13] = sceneLevel_1 = new SceneLevel1(false);	
 	modules[14] = sceneLevel_2 = new SceneLevel2(false);	
 	modules[15] = sceneLevel_3 = new SceneLevel3(false);	
 	modules[16] = sceneLevel_4 = new SceneLevel4(false);	

@@ -51,16 +51,29 @@ Update_Status ModuleDebug::Update()
 	}
 	if (GMODE == 1)
 	{
+		
 		if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN)
 		{
-			level += 1;
-			LevelUpDown();
+			if (level < 15)
+			{
+				descending = false;
+				level += 1;
+				LevelUpDown();
+			}
+			
 		}
 		if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_DOWN)
 		{
-			level -= 1;
-			LevelUpDown();
+			if (level > 0)
+			{
+				descending = true;
+				level -= 1;
+				LevelUpDown();
+			}
+			
 		}
+		
+		
 	}
 	
 
@@ -102,59 +115,174 @@ void ModuleDebug::LevelUpDown()
 	switch (level)
 	{
 		case 1:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_1, 20);
+			}
 			printf("Lvl1");
 			break;
 		case 2:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_3, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_3, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_3, (Module*)App->sceneLevel_2, 20);
+			}
 			printf("Lvl2");
 			break;
 		case 3:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_3, (Module*)App->sceneLevel_4, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_3, (Module*)App->sceneLevel_4, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_4, (Module*)App->sceneLevel_3, 20);
+			}
 			printf("Lvl3");
 			break;
 		case 4:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_4, (Module*)App->sceneLevel_5, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_4, (Module*)App->sceneLevel_5, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_4, 20);
+			}
 			printf("Lvl4");
 			break;
 		case 5:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_6, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_6, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_6, (Module*)App->sceneLevel_5, 20);
+			}
 			printf("Lvl5");
 			break;
 		case 6:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_6, (Module*)App->sceneLevel_7, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_6, (Module*)App->sceneLevel_7, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_6, 20);
+			}
 			printf("Lvl6");
 			break;
 		case 7:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_8, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_8, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_8, (Module*)App->sceneLevel_7, 20);
+			}
 			printf("Lvl7");
 			break;
 		case 8:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_8, (Module*)App->sceneLevel_9, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_8, (Module*)App->sceneLevel_9, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_8, 20);
+			}
 			printf("Lvl8");
 			break;
 		case 9:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_10, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_10, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_10, (Module*)App->sceneLevel_9, 20);
+			}
 			printf("Lvl9");
 			break;
 		case 10:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_10, (Module*)App->sceneLevel_11, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_10, (Module*)App->sceneLevel_11, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_11, (Module*)App->sceneLevel_10, 20);
+			}
 			printf("Lvl10");
 			break;
 		case 11:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_11, (Module*)App->sceneLevel_12, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_11, (Module*)App->sceneLevel_12, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_12, (Module*)App->sceneLevel_10, 20);
+			}
 			printf("Lvl11");
 			break;
 		case 12:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_12, (Module*)App->sceneLevel_13, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_12, (Module*)App->sceneLevel_13, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_12, (Module*)App->sceneLevel_11, 20);
+			}
 			printf("Lvl12");
 			break;
 		case 13:
-			App->fade->FadeToBlack((Module*)App->sceneLevel_13, (Module*)App->sceneLevel_14, 90);
+			if (!descending)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_13, (Module*)App->sceneLevel_14, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_13, (Module*)App->sceneLevel_12, 20);
+			}
 			printf("Lvl13");
+			break;
+		case 14:
+			if (!descending) 
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_14, (Module*)App->sceneMenu, 20);
+			}
+			else
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_14, (Module*)App->sceneLevel_13, 20);
+			}
+			
+			printf("Lvl14");
 			break;
 	}
 	
-
+	
+		/*
+		if (!descending)
+		{
+			App->fade->FadeToBlack((Module*)(13+level), (Module*)(13+level+1), 20);
+		}
+		else
+		{
+			App->fade->FadeToBlack((Module*)(13+level), (Module*)(13+level-1), 20);
+		}
+			*/
+			
+	
 
 }
