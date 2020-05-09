@@ -153,7 +153,6 @@ Update_Status SceneLevel1::PostUpdate()
 	win = App->enemies->victoryCheck(win);
 	if(win) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
 	
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 

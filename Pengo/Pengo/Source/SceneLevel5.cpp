@@ -10,6 +10,7 @@
 #include "ModuleBlocks.h"
 #include "ModuleWalls.h"
 #include "ModuleEnemies.h"
+#include "ModuleFadeToBlack.h"
 
 SceneLevel5::SceneLevel5(bool startEnabled) : SceneLevel(startEnabled)
 {
@@ -32,7 +33,7 @@ bool SceneLevel5::Start()
 	App->enemies->Enable();
 
 	bool ret = true;
-
+	win = false;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
@@ -147,6 +148,9 @@ Update_Status SceneLevel5::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	//App->render->Blit(bgTexture, 0, 0, NULL);
+
+	win = App->enemies->victoryCheck(win);
+	if (win) App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_6, 90);
 
 	return Update_Status::UPDATE_CONTINUE;
 }

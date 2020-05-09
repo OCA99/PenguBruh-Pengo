@@ -68,8 +68,9 @@ Application::Application()
 	modules[22] = sceneLevel_10 = new SceneLevel10(false);	
 	modules[23] = sceneLevel_11 = new SceneLevel11(false);	
 	modules[24] = sceneLevel_12 = new SceneLevel12(false);
-	modules[25] = sceneLevel_13 = new SceneLevel13(false);//Gameplay scene starts disabled
-	modules[26] =	debug =			new ModuleDebug(true);
+	modules[25] = sceneLevel_13 = new SceneLevel13(false);
+	modules[26] = sceneLevel_14 = new SceneLevel14(false);//Gameplay scene starts disabled
+	modules[27] =	debug =			new ModuleDebug(true);
 }
 
 Application::~Application()

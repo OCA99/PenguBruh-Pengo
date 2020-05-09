@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 27
+#define NUM_MODULES 28
 
 class Module;
 class ModuleWindow;
