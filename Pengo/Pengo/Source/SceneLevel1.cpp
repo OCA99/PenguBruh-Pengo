@@ -155,6 +155,7 @@ Update_Status SceneLevel1::PostUpdate()
 	{
 		if (App->debug->ascending == true)
 		{
+			App->debug->ascending = false;
 			win = true;
 		}
 	}
@@ -164,6 +165,7 @@ Update_Status SceneLevel1::PostUpdate()
 	{
 		if (App->debug->descending == true)
 		{
+			App->debug->descending = false;
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
 		}
 	}

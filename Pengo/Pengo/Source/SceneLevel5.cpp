@@ -1,5 +1,5 @@
 #include "SceneLevel5.h"
-
+#include "ModuleDebug.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -150,8 +150,24 @@ Update_Status SceneLevel5::PostUpdate()
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
 	win = App->enemies->victoryCheck(win);
+	if (App->debug->GMODE == true)
+	{
+		if (App->debug->ascending == true)
+		{
+			App->debug->ascending = false;
+			win = true;
+		}
+	}
 	if (win) App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_6, 90);
 
+	if (App->debug->GMODE == true)
+	{
+		if (App->debug->descending == true)
+		{
+			App->debug->descending = false;
+			App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_4, 90);
+		}
+	}
 	return Update_Status::UPDATE_CONTINUE;
 }
 
