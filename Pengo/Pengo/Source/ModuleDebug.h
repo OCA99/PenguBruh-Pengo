@@ -44,7 +44,7 @@ public:
 	void LevelUpDown();
 
 	bool GMODE = 0;
-	int level = 0;
+	int level = 1;
 	bool descending = 0;
 
 private:

@@ -111,6 +111,8 @@ void ModuleDebug::Disable()
 void ModuleDebug::LevelUpDown()
 {
 	printf("%d", level);
+	printf("%d", descending);
+
 	
 	switch (level)
 	{
@@ -121,7 +123,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_1, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 20);
 			}
 			printf("Lvl1");
 			break;
@@ -132,7 +134,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_3, (Module*)App->sceneLevel_2, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_1, 20);
 			}
 			printf("Lvl2");
 			break;
@@ -143,7 +145,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_4, (Module*)App->sceneLevel_3, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_3, (Module*)App->sceneLevel_2, 20);
 			}
 			printf("Lvl3");
 			break;
@@ -154,7 +156,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_4, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_4, (Module*)App->sceneLevel_3, 20);
 			}
 			printf("Lvl4");
 			break;
@@ -165,7 +167,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_6, (Module*)App->sceneLevel_5, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_5, (Module*)App->sceneLevel_4, 20);
 			}
 			printf("Lvl5");
 			break;
@@ -176,7 +178,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_6, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_6, (Module*)App->sceneLevel_5, 20);
 			}
 			printf("Lvl6");
 			break;
@@ -187,7 +189,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_8, (Module*)App->sceneLevel_7, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_6, 20);
 			}
 			printf("Lvl7");
 			break;
@@ -198,7 +200,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_8, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_8, (Module*)App->sceneLevel_7, 20);
 			}
 			printf("Lvl8");
 			break;
@@ -209,7 +211,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_10, (Module*)App->sceneLevel_9, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_8, 20);
 			}
 			printf("Lvl9");
 			break;
@@ -220,7 +222,7 @@ void ModuleDebug::LevelUpDown()
 			}
 			else
 			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_11, (Module*)App->sceneLevel_10, 20);
+				App->fade->FadeToBlack((Module*)App->sceneLevel_10, (Module*)App->sceneLevel_9, 20);
 			}
 			printf("Lvl10");
 			break;
@@ -272,16 +274,16 @@ void ModuleDebug::LevelUpDown()
 	}
 	
 	
-		/*
-		if (!descending)
-		{
-			App->fade->FadeToBlack((Module*)(13+level), (Module*)(13+level+1), 20);
-		}
-		else
-		{
-			App->fade->FadeToBlack((Module*)(13+level), (Module*)(13+level-1), 20);
-		}
-			*/
+	/*
+	if (!descending)
+	{
+		App->fade->FadeToBlack((Module*)(12+level), (Module*)(12+level+1), 20);
+	}
+	else
+	{
+		App->fade->FadeToBlack((Module*)(12+level), (Module*)(12+level-1), 20);
+	}
+	*/
 			
 	
 
