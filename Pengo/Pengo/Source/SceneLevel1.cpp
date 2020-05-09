@@ -1,5 +1,5 @@
 #include "SceneLevel1.h"
-
+#include "ModuleDebug.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -151,8 +151,24 @@ Update_Status SceneLevel1::PostUpdate()
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
 	win = App->enemies->victoryCheck(win);
+	if (App->debug->GMODE == true)
+	{
+		if (App->debug->ascending == true)
+		{
+			win = true;
+		}
+	}
 	if(win) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
 	
+	if (App->debug->GMODE == true)
+	{
+		if (App->debug->descending == true)
+		{
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+		}
+	}
+
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 

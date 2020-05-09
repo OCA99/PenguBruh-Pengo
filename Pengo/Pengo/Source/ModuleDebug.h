@@ -45,7 +45,10 @@ public:
 
 	bool GMODE = 0;
 	int level = 1;
+	bool ascending = 0;
 	bool descending = 0;
+	bool FULLSCREEN = 0;
+	
 
 private:
 	bool isEnabled = true;
