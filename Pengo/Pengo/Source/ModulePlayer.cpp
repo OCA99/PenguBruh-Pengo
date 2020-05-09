@@ -13,6 +13,7 @@
 #include "ModuleWalls.h"
 #include "ModuleFonts.h"
 #include "ModuleDebug.h"
+
 #include <stdio.h>
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
@@ -106,6 +107,8 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
+	GamePad& pad = App->input->pads[0];
+
 	int x = 0;
 	int y = 0;
 	
@@ -127,43 +130,50 @@ Update_Status ModulePlayer::Update()
 		if (deadPause == 100) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
 	}
 	
-	
-		
 
-	
+	////Debug key for gamepad rumble testing purposes
+	//if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN)
+	//{
+	//	App->input->ShakeController(0, 12, 0.33f);
+	//}
+
+	////Debug key for gamepad rumble testing purposes
+	//if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN)
+	//{
+	//	App->input->ShakeController(0, 36, 0.66f);
+	//}
+
+	////Debug key for gamepad rumble testing purposes
+	//if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN)
+	//{
+	//	App->input->ShakeController(0, 60, 1.0f);
+	//}
 
 	// Moving the player with the camera scroll
 	//App->player->position.x += 1;
 
-		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
+
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT || pad.l_x < 0.0f || pad.left == true)
 		{
 			lastPressed = (int)SDL_SCANCODE_A;
 		}
-		else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_UP) {
-			lastPressed = (int)SDL_SCANCODE_0;
-		}
 
-		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT || pad.l_x > 0.0f || pad.right == true)
 		{
 			lastPressed = (int)SDL_SCANCODE_D;
 		}
-		else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_UP) {
-			lastPressed = (int)SDL_SCANCODE_0;
-		}
 
-		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT || pad.l_y > 0.0f || pad.down == true)
 		{
 			lastPressed = (int)SDL_SCANCODE_S;
 		}
-		else if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_UP) {
-			lastPressed = (int)SDL_SCANCODE_0;
-		}
 
-		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT || pad.l_y < 0.0f || pad.up == true)
 		{
 			lastPressed = (int)SDL_SCANCODE_W;
 		}
-		else if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_UP) {
+
+		if (App->input->keys[SDL_SCANCODE_A] == false && App->input->keys[SDL_SCANCODE_D] == false && App->input->keys[SDL_SCANCODE_S] == false && App->input->keys[SDL_SCANCODE_W] == false && pad.l_x == 0.0f && pad.left == false && pad.right == false && pad.l_y == 0.0f && pad.down == false && pad.up == false) {
 			lastPressed = (int)SDL_SCANCODE_0;
 		}
 
@@ -265,7 +275,7 @@ Update_Status ModulePlayer::Update()
 
 	if (!dead)
 	{
-		if (!moving && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) {
+		if (!moving && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true) {
 			switch (direction) {
 			case Directions::Up:
 				if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y - 1)) App->walls->PushWall(0);
