@@ -81,6 +81,8 @@ public:
 	bool destroyed = false;
 
 	int lastPressed = NULL;
+	
+	bool aPressed = true;
 
 	// Sound effects indices
 	//uint laserFx = 0;
