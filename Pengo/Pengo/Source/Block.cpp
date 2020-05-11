@@ -137,9 +137,6 @@ void Block::Draw()
 void Block::SetToDelete()
 {
 	pendingToDelete = true;
-	App->audio->LoadFx("assets/fx/Ice Block Destroyed.wav");
-	App->audio->PlayFx(0, 0);
-	
 	/*if (collider != nullptr)
 		collider->pendingToDelete = true;*/
 }
@@ -160,6 +157,5 @@ void Block::Pushed(int fromx, int fromy) {
 }
 
 void Block::destroy() {
-	
 	SetToDelete();
 }
