@@ -14,6 +14,8 @@
 #include "ModuleFonts.h"
 #include "ModuleDebug.h"
 
+#include <stdio.h>
+
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite
@@ -125,7 +127,20 @@ Update_Status ModulePlayer::Update()
 	//GODMODE
 	if (App->debug->GMODE == 0)
 	{
-		if (deadPause == 100) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+		if (lifes != 0)
+		{
+			if (deadPause == 100)
+			{
+				lifes--;
+				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_1, 90);
+			}
+		} else {
+			if (deadPause == 100)
+			{
+				lifes = 2;
+				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+			}
+		}
 	}
 	
 

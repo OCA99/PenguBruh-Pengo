@@ -54,6 +54,8 @@ public:
 	//Counter to repeat animations
 	int deadPause = 0;
 
+	int lifes = 2;
+
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
 	
