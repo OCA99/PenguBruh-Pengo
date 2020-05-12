@@ -75,22 +75,22 @@ bool ModuleAudio::CleanUp()
 
 bool ModuleAudio::Start()
 {//index
-	App->audio->LoadFx("assets/fx/Act Clear.wav");//0
-	App->audio->LoadFx("assets/fx/Act Start.wav");//1
-	App->audio->LoadFx("assets/fx/Block Stopped.wav");//2
-	App->audio->LoadFx("assets/fx/Counting Bonus Points.wav");//3
+	App->audio->LoadFx("assets/fx/Act Clear.wav");//0 //fet
+	App->audio->LoadFx("assets/fx/Act Start.wav");//1 //fet
+	App->audio->LoadFx("assets/fx/Block Stopped.wav");//2 //fet
+	App->audio->LoadFx("assets/fx/Counting Bonus Points.wav");//3 
 	App->audio->LoadFx("assets/fx/Credit Sound.wav");//4
 	App->audio->LoadFx("assets/fx/Diamond Blocks Lined Up.wav");//5
-	App->audio->LoadFx("assets/fx/Ice Block Destroyed.wav");//6
+	App->audio->LoadFx("assets/fx/Ice Block Destroyed.wav");//6 //fet
 	App->audio->LoadFx("assets/fx/Miss.wav");//7
 	App->audio->LoadFx("assets/fx/One Snow-Bee Left.wav");//8
-	App->audio->LoadFx("assets/fx/Push Ice Block.wav");//9
-	App->audio->LoadFx("assets/fx/Push Outside Walls.wav");//10
+	App->audio->LoadFx("assets/fx/Push Ice Block.wav");//9 //fet
+	App->audio->LoadFx("assets/fx/Push Outside Walls.wav");//10 //fet
 	App->audio->LoadFx("assets/fx/Snow-Bee Egg Destroyed.wav");//11
-	App->audio->LoadFx("assets/fx/Snow-Bee Spawning.wav");//12
-	App->audio->LoadFx("assets/fx/Snow-Bee Squashed.wav");//13
+	App->audio->LoadFx("assets/fx/Snow-Bee Spawning.wav");//12 //fet
+	App->audio->LoadFx("assets/fx/Snow-Bee Squashed.wav");//13 //fet
 	App->audio->LoadFx("assets/fx/Snow-Bee Stunned.wav");//14
-	App->audio->LoadFx("assets/fx/Time Bonus - Extend.wav");//15
+	App->audio->LoadFx("assets/fx/Time Bonus - Extend.wav");//15 
 	App->audio->LoadFx("assets/fx/Touch Snow-Bee.wav");//16
 
 	return true;

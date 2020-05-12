@@ -43,7 +43,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(3, 3);
 	App->enemies->AddEnemy(9, 5);
 	App->enemies->AddEnemy(11, 13);
-
+	App->audio->PlayFx(12, 0);
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 0);
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 2);

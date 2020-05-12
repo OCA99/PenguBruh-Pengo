@@ -99,5 +99,7 @@ void ModuleWalls::AddWall(Wall_Type type, int x, int y)
 }
 
 void ModuleWalls::PushWall(int i) {
+	
 	walls[i]->Shake();
+	App->audio->PlayFx(10, 0);
 }

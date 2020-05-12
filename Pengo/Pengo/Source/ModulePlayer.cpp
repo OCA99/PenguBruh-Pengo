@@ -118,6 +118,7 @@ Update_Status ModulePlayer::Update()
 	{
 		if (App->enemies->EnemyInGridPosition(x, y)) {
 			dead = true;
+			App->audio->PlayFx(16, 0);
 			currentAnimation = &dieAnim;
 		}
 	}

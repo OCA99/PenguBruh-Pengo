@@ -38,6 +38,7 @@ void Block::Update()
 			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
+				App->audio->PlayFx(2, 0);
 			}
 			else {
 				gridPosition.y -= 1;
@@ -49,6 +50,7 @@ void Block::Update()
 			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
+				App->audio->PlayFx(2, 0);
 			}
 			else {
 				gridPosition.y += 1;
@@ -60,6 +62,7 @@ void Block::Update()
 			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
+				App->audio->PlayFx(2, 0);
 			}
 			else {
 				gridPosition.x -= 1;
@@ -71,6 +74,7 @@ void Block::Update()
 			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
+				App->audio->PlayFx(2, 0);
 			}
 			else {
 				gridPosition.x += 1;
@@ -146,15 +150,19 @@ void Block::SetToDelete()
 
 void Block::Pushed(int fromx, int fromy) {
 	if (fromx < gridPosition.x) {
+		App->audio->PlayFx(9, 0);
 		direction = Directions::Right;
 	}
 	if (fromx > gridPosition.x) {
+		App->audio->PlayFx(9, 0);
 		direction = Directions::Left;
 	}
 	if (fromy < gridPosition.y) {
+		App->audio->PlayFx(9, 0);
 		direction = Directions::Down;
 	}
 	if (fromy > gridPosition.y) {
+		App->audio->PlayFx(9, 0);
 		direction = Directions::Up;
 	}
 }

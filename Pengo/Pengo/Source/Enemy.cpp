@@ -68,6 +68,7 @@ void Enemy::Update()
 			y = gridPosition.y - 1;
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				currentAnim = &crushUp;
+				App->audio->PlayFx(13, 0);
 			}
 			else {
 				gridPosition.y -= 1;
@@ -78,6 +79,7 @@ void Enemy::Update()
 			y = gridPosition.y + 1;
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				currentAnim = &crushDown;
+				App->audio->PlayFx(13, 0);
 			}
 			else {
 				gridPosition.y += 1;
@@ -88,6 +90,7 @@ void Enemy::Update()
 			y = gridPosition.y;
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				currentAnim = &crushLeft;
+				App->audio->PlayFx(13, 0);
 			}
 			else {
 				gridPosition.x -= 1;
@@ -98,6 +101,7 @@ void Enemy::Update()
 			y = gridPosition.y;
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				currentAnim = &crushRight;
+				App->audio->PlayFx(13, 0);
 			}
 			else {
 				gridPosition.x += 1;
@@ -186,5 +190,6 @@ void Enemy::SetToDelete()
 }
 
 void Enemy::destroy() {
+	//App->audio->PlayFx(10, 0);
 	SetToDelete();
 }
