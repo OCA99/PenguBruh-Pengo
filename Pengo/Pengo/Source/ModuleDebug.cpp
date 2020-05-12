@@ -3,6 +3,7 @@
 #include "ModuleInput.h"
 #include "Application.h"
 #include "ModuleFadeToBlack.h"
+#include "ModulePlayer.h"
 #include <stdio.h>
 
 
@@ -51,7 +52,16 @@ Update_Status ModuleDebug::Update()
 	}
 	if (GMODE == 1)
 	{
-		
+		if (App->input->keys[SDL_SCANCODE_LSHIFT] == Key_State::KEY_DOWN)
+		{
+			if (App->player->lifes != 2)
+			{
+				App->player->lifes++;
+			}
+			printf("%d", App->player->lifes);
+		}
+
+
 		if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN)
 		{
 				ascending = true;
