@@ -10,6 +10,8 @@
 #include "WallHorizontal.h"
 #include "WallVertical.h"
 
+#include "ModuleEnemies.h"
+
 ModuleWalls::ModuleWalls(bool startEnabled) : Module(startEnabled)
 {
 	for (uint i = 0; i < MAX_WALLS; ++i)
@@ -99,7 +101,26 @@ void ModuleWalls::AddWall(Wall_Type type, int x, int y)
 }
 
 void ModuleWalls::PushWall(int i) {
-	
-	walls[i]->Shake();
-	App->audio->PlayFx(10, 0);
+
+	if (walls[i] != nullptr) {
+		switch (i) {
+		case 0:
+			App->enemies->WallPushed(i);
+			break;
+		case 1:
+			App->enemies->WallPushed(i);
+			break;
+		case 2:
+			App->enemies->WallPushed(i);
+			break;
+		case 3:
+			App->enemies->WallPushed(i);
+			break;
+		default:
+			break;
+		}
+
+		walls[i]->Shake();
+		App->audio->PlayFx(10, 0);
+	}
 }

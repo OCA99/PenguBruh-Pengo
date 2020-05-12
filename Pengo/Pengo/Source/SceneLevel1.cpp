@@ -39,6 +39,11 @@ bool SceneLevel1::Start()
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 
+	App->enemies->AddEnemy(0, 0);
+	App->enemies->AddEnemy(12, 14);
+	App->enemies->AddEnemy(0, 14);
+	App->enemies->AddEnemy(12, 0);
+
 	App->enemies->AddEnemy(1, 5);
 	App->enemies->AddEnemy(3, 3);
 	App->enemies->AddEnemy(9, 5);
@@ -151,7 +156,7 @@ Update_Status SceneLevel1::PostUpdate()
 	// Draw everything --------------------------------------
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
-	win = App->enemies->victoryCheck(win);
+	win = App->enemies->VictoryCheck(win);
 	if (App->debug->GMODE == true)
 	{
 		if (App->debug->ascending == true)

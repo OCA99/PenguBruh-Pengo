@@ -29,6 +29,8 @@ public:
 
 	void Pushed(int fromx, int fromy);
 
+	void WallStunned(int wallID);
+
 	enum class Directions {
 		Up,
 		Down,

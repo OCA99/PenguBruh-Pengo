@@ -126,7 +126,7 @@ void ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
 	}
 }
 
-bool ModuleEnemies::victoryCheck(bool win)
+bool ModuleEnemies::VictoryCheck(bool win)
 {
 	//Check if there are enemies on screen. If = 0 then win
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -144,3 +144,13 @@ bool ModuleEnemies::victoryCheck(bool win)
 	return win;
 }
 
+void ModuleEnemies::WallPushed(int wallID)
+{
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			enemies[i]->WallStunned(wallID);
+		}
+	}
+}

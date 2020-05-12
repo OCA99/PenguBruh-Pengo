@@ -44,7 +44,9 @@ public:
 
 	void PushEnemy(int fromx, int fromy, int x, int y);
 
-	bool victoryCheck(bool win);
+	bool VictoryCheck(bool win);
+
+	void WallPushed(int wallID);
 
 	//This wil determine wether or not there are enemies on screen
 	int winCounter;

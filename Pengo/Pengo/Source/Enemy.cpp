@@ -7,6 +7,8 @@
 #include "ModuleRender.h"
 #include "ModuleBlocks.h"
 
+#include <stdio.h>
+
 Enemy::Enemy(int x, int y) : position(x, y)
 {
 	gridPosition.x = x;
@@ -181,6 +183,52 @@ void Enemy::Pushed(int fromx, int fromy) {
 		direction = Directions::Up;
 	}
  }
+
+void Enemy::WallStunned(int wallID)
+{
+	switch (wallID){
+
+	case 0:
+		for (int i = 0; i <= 12; i++)
+		{
+			if (gridPosition.x == i && gridPosition.y == 0)
+			{
+				printf("fallesió el blob en la linea de arriba");
+			}
+		}
+		break;
+	case 1:
+		for (int i = 0; i <= 12; i++)
+		{
+			if (gridPosition.x == i && gridPosition.y == 14)
+			{
+				printf("fallesió el blob en la linea de abajo");
+			}
+		}
+		break;
+	case 2:
+		for (int i = 0; i <= 14; i++)
+		{
+			if (gridPosition.y == i && gridPosition.x == 0)
+			{
+				printf("fallesió el blob en la linea de izquierda");
+			}
+		}
+		break;
+	case 3:
+		for (int i = 0; i <= 14; i++)
+		{
+			if (gridPosition.y == i && gridPosition.x == 12)
+			{
+				printf("fallesió el blob en la linea de arriba");
+			}
+		}
+		break;
+	default:
+		break;
+
+	}
+}
 
 void Enemy::SetToDelete()
 {

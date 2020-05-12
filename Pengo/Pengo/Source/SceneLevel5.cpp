@@ -149,7 +149,7 @@ Update_Status SceneLevel5::PostUpdate()
 	// Draw everything --------------------------------------
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
-	win = App->enemies->victoryCheck(win);
+	win = App->enemies->VictoryCheck(win);
 	if (App->debug->GMODE == true)
 	{
 		if (App->debug->ascending == true)
