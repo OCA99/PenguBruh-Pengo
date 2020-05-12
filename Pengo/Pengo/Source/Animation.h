@@ -13,9 +13,9 @@ public:
 	// Allows the animation to keep going back and forth
 	bool pingpong = false;
 	bool running = true;
+	float currentFrame = 0.0f;
 
 private:
-	float currentFrame = 0.0f;
 	int totalFrames = 0;
 	int loopCount = 0;
 	int pingpongDirection = 1;

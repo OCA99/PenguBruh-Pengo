@@ -44,6 +44,10 @@ Enemy::Enemy(int x, int y) : position(x, y)
 	crushLeft.speed = 0.2f;
 	crushLeft.loop = false;
 
+	stunAnim.GenerateAnimation({ 224,128,32,16 }, 1, 2);
+	stunAnim.speed = 0.05f;
+	stunAnim.loop = false;
+
 }
 
 Enemy::~Enemy()
@@ -54,11 +58,19 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
-
-	currentAnim = &spawnAnim;
-	if (currentAnim == &spawnAnim && currentAnim->HasFinished())
+	if (currentAnim == &stunAnim)
 	{
-		currentAnim = &idleAnim;
+		printf("%.6f \n", &stunAnim.currentFrame);
+	}
+
+	if (!stunned)
+	{
+		currentAnim = &spawnAnim;
+	
+		if (currentAnim == &spawnAnim && currentAnim->HasFinished())
+		{
+			currentAnim = &idleAnim;
+		}
 	}
 
 	if (!moving) {
@@ -193,7 +205,8 @@ void Enemy::WallStunned(int wallID)
 		{
 			if (gridPosition.x == i && gridPosition.y == 0)
 			{
-				printf("fallesió el blob en la linea de arriba");
+				stunned = true;
+				currentAnim = &stunAnim;
 			}
 		}
 		break;
@@ -202,7 +215,8 @@ void Enemy::WallStunned(int wallID)
 		{
 			if (gridPosition.x == i && gridPosition.y == 14)
 			{
-				printf("fallesió el blob en la linea de abajo");
+				stunned = true;
+				currentAnim = &stunAnim;
 			}
 		}
 		break;
@@ -211,7 +225,8 @@ void Enemy::WallStunned(int wallID)
 		{
 			if (gridPosition.y == i && gridPosition.x == 0)
 			{
-				printf("fallesió el blob en la linea de izquierda");
+				stunned = true;
+				currentAnim = &stunAnim;
 			}
 		}
 		break;
@@ -220,7 +235,8 @@ void Enemy::WallStunned(int wallID)
 		{
 			if (gridPosition.y == i && gridPosition.x == 12)
 			{
-				printf("fallesió el blob en la linea de arriba");
+				stunned = true;
+				currentAnim = &stunAnim;
 			}
 		}
 		break;

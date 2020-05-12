@@ -55,6 +55,8 @@ public:
 
 	void destroy();
 
+	bool stunned = false;
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
@@ -65,6 +67,8 @@ protected:
 	Animation crushDown;
 	Animation crushLeft;
 	Animation crushRight;
+	Animation stunAnim;
+
 private:
 	int speed = 2;
 	bool moving = false;
