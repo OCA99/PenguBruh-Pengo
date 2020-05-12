@@ -23,6 +23,8 @@ public:
 	// Initializes the SDL audio subsystem and SDL Mixer
 	bool Init();
 
+	bool Start();
+
 	// Called on application exit.
 	// Frees the memory from all stored audio fx and music
 	// Uninitializes the SDL_Mixer library

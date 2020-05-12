@@ -26,7 +26,7 @@ SceneLevel1::~SceneLevel1()
 bool SceneLevel1::Start()
 {
 	LOG("Loading background assets");
-
+	App->audio->PlayFx(1, 0);
 	App->player->Enable();
 	App->blocks->Enable();
 	App->walls->Enable();
@@ -133,7 +133,8 @@ bool SceneLevel1::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
-
+	//App->audio->LoadFx("assets/fx/Act Start.wav");
+	//App->audio->PlayFx(1, 0);
 	return ret;
 }
 
@@ -159,8 +160,13 @@ Update_Status SceneLevel1::PostUpdate()
 			win = true;
 		}
 	}
-	if(win) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
-	
+
+	if (win) 
+	{
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
+		App->audio->PlayFx(0, 0);
+	}
+
 	if (App->debug->GMODE == true)
 	{
 		if (App->debug->descending == true)
