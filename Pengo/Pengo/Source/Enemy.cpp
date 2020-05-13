@@ -46,7 +46,7 @@ Enemy::Enemy(int x, int y) : position(x, y)
 
 	stunAnim.GenerateAnimation({ 224,128,32,16 }, 1, 2);
 	stunAnim.speed = 0.05f;
-	stunAnim.loop = false;
+	stunAnim.loop = true;
 
 }
 
