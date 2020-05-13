@@ -23,7 +23,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("assets/sprites/pengos.png");
-
+	fx_once = true;
 	winCounter = 0;
 
 	return true;
@@ -132,7 +132,13 @@ bool ModuleEnemies::VictoryCheck(bool win)
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr) winCounter++;
+		
 	}
+	/*if (winCounter == 1 && fx_once == true)
+	{
+		//App->audio->PlayFx(8, 0);
+		//fx_once = false;
+	}*/
 
 	if (winCounter != 0) {
 		winCounter = 0;

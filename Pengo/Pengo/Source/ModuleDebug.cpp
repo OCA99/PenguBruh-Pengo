@@ -36,21 +36,42 @@ Update_Status ModuleDebug::PreUpdate()
 
 Update_Status ModuleDebug::Update()
 {
-
-	if (App->input->keys[SDL_SCANCODE_G] == Key_State::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_F] == Key_State::KEY_DOWN)
 	{
-		if (GMODE == 0)
+		if (DEBUG_MODE == 0)
 		{
-			GMODE = 1;
-			printf("God Mode ON");
+			DEBUG_MODE = 1;
+			
+			printf("Debug Mode ON\n");
 		}
 		else
 		{
 			GMODE = 0;
-			printf("God Mode Off");
+			DEBUG_MODE = 0;
+			printf("Debug Mode Off \n");
+			printf("God Mode Off \n");
 		}
 	}
-	if (GMODE == 1)
+	if (App->input->keys[SDL_SCANCODE_G] == Key_State::KEY_DOWN)
+	{
+		if (DEBUG_MODE == 1)
+		{
+			if (GMODE == 0)
+			{
+				GMODE = 1;
+				printf("God Mode ON\n");
+			}
+			else
+			{
+				GMODE = 0;
+				printf("God Mode Off\n");
+			}
+		}
+		
+		
+	}
+	
+	if (DEBUG_MODE == 1)
 	{
 		if (App->input->keys[SDL_SCANCODE_LSHIFT] == Key_State::KEY_DOWN)
 		{
@@ -73,6 +94,16 @@ Update_Status ModuleDebug::Update()
 		
 		
 	}
+	if (DEBUG_MODE == 1)
+	{
+		if (App->input->keys[SDL_SCANCODE_L] == Key_State::KEY_DOWN)
+		{
+			App->player->lifes = 0;
+			App->player->instaloss = true;
+		}
+	}
+	
+
 	
 
 	return Update_Status::UPDATE_CONTINUE;

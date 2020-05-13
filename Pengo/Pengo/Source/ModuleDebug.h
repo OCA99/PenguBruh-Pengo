@@ -48,6 +48,8 @@ public:
 	bool ascending = 0;
 	bool descending = 0;
 	bool FULLSCREEN = 0;
+	bool DEBUG_MODE = 0;
+	
 	
 
 private:

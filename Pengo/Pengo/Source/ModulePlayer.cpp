@@ -1,5 +1,5 @@
 #include "ModulePlayer.h"
-
+#include "ModuleDebug.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
@@ -12,7 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleWalls.h"
 #include "ModuleFonts.h"
-#include "ModuleDebug.h"
+
 
 #include <stdio.h>
 
@@ -116,7 +116,8 @@ Update_Status ModulePlayer::Update()
 
 	if (App->debug->GMODE == 0)
 	{
-		if (App->enemies->EnemyInGridPosition(x, y)) {
+		if (App->enemies->EnemyInGridPosition(x, y) || instaloss) {
+			instaloss = false;
 			dead = true;
 			App->audio->PlayFx(16, 0);
 			currentAnimation = &dieAnim;
@@ -126,6 +127,7 @@ Update_Status ModulePlayer::Update()
 	if (dead) deadPause++;
 
 	//GODMODE
+	
 	if (App->debug->GMODE == 0)
 	{
 		if (lifes != 0)

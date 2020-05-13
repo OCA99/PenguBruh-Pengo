@@ -13,7 +13,7 @@ class ModulePlayer : public Module
 public:
 	// Constructor
 	ModulePlayer(bool startEnabled);
-
+	
 	// Destructor
 	~ModulePlayer();
 
@@ -47,7 +47,7 @@ public:
 	bool moving = false;
 
 	bool dead = false;
-
+	bool instaloss = false;
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
@@ -55,6 +55,7 @@ public:
 	int deadPause = 0;
 
 	int lifes = 2;
+	
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;

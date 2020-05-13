@@ -48,6 +48,7 @@ public:
 
 	void WallPushed(int wallID);
 
+	bool fx_once;
 	//This wil determine wether or not there are enemies on screen
 	int winCounter;
 
