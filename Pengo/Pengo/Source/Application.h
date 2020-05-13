@@ -72,6 +72,7 @@ public:
 
 	SceneIntro* sceneIntro = nullptr;
 	SceneMenu* sceneMenu = nullptr;
+	SceneLevel* currentLevel = nullptr;
 	SceneLevel1* sceneLevel_1 = nullptr;
 	SceneLevel2* sceneLevel_2 = nullptr;
 	SceneLevel3* sceneLevel_3 = nullptr;

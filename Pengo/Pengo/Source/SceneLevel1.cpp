@@ -140,6 +140,8 @@ bool SceneLevel1::Start()
 	App->render->camera.y = 0;
 	//App->audio->LoadFx("assets/fx/Act Start.wav");
 	//App->audio->PlayFx(1, 0);
+	App->currentLevel = this;
+
 	return ret;
 }
 

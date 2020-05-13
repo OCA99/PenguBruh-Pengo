@@ -134,6 +134,8 @@ bool SceneLevel3::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	App->currentLevel = this;
+
 	return ret;
 }
 
