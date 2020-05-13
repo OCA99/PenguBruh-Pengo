@@ -17,7 +17,7 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 
 ModuleEnemies::~ModuleEnemies()
 {
-
+	
 }
 
 bool ModuleEnemies::Start()
@@ -108,7 +108,7 @@ bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y) return true;
+			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y && !enemies[i]->stunned) return true;
 		}
 	}
 	return false;

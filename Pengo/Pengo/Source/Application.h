@@ -13,6 +13,7 @@ class ModuleAudio;
 class ModulePlayer;
 class SceneIntro;
 class SceneMenu;
+class SceneLevel;
 class SceneLevel1;
 class SceneLevel2;
 class SceneLevel3;

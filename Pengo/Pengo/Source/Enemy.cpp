@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleBlocks.h"
+#include "ModulePlayer.h"
 
 #include <stdio.h>
 
@@ -58,9 +59,10 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
-	if (currentAnim == &stunAnim)
+
+	if (stunned && App->player->gridPosition == gridPosition)
 	{
-		printf("%.6f \n", &stunAnim.currentFrame);
+		destroy();
 	}
 
 	if (!stunned)
