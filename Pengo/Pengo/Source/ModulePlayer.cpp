@@ -133,13 +133,13 @@ Update_Status ModulePlayer::Update()
 			if (deadPause == 100)
 			{
 				lifes--;
-				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_1, 90);
+				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->currentLevel, 90);
 			}
 		} else {
 			if (deadPause == 100)
 			{
 				lifes = 2;
-				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
 			}
 		}
 	}
