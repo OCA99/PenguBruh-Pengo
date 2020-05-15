@@ -39,16 +39,28 @@ bool SceneLevel1::Start()
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 
-	//App->enemies->AddEnemy(0, 0);
-	//App->enemies->AddEnemy(12, 14);
-	//App->enemies->AddEnemy(0, 14);
-	//App->enemies->AddEnemy(12, 0);
+	App->enemies->AddEnemy(0, 0);
+	App->enemies->AddEnemy(12, 14);
+	App->enemies->AddEnemy(0, 14);
+	App->enemies->AddEnemy(12, 0);
 
-	//App->enemies->AddEnemy(1, 5);
-	//App->enemies->AddEnemy(3, 3);
+	App->enemies->AddEnemy(1, 5);
+	App->enemies->AddEnemy(3, 3);
 	App->enemies->AddEnemy(9, 5);
 	App->enemies->AddEnemy(11, 13);
+
+	//These are the enemies that will spawn inside a block (right coordinates)
+	//App->enemies->AddEnemy(3, 14);
+	//App->enemies->AddEnemy(9, 1);
+	//App->enemies->AddEnemy(9, 9);
+	//App->enemies->AddEnemy(11, 5);
+
+	App->blocks->AddBlock(Block_Type::DIAMOND, 3, 11);
+	App->blocks->AddBlock(Block_Type::DIAMOND, 5, 5);
+	App->blocks->AddBlock(Block_Type::DIAMOND, 11, 7);
+
 	App->audio->PlayFx(12, 0);
+
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 0);
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 2);
@@ -70,7 +82,6 @@ bool SceneLevel1::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 8);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 10);
-	App->blocks->AddBlock(Block_Type::DIAMOND, 3, 11);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 12);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 13);
 	App->blocks->AddBlock(Block_Type::NORMAL, 4, 1);
@@ -80,7 +91,6 @@ bool SceneLevel1::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 5, 0);
 	App->blocks->AddBlock(Block_Type::NORMAL, 5, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 5, 3);
-	App->blocks->AddBlock(Block_Type::DIAMOND, 5, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 5, 6);
 	App->blocks->AddBlock(Block_Type::NORMAL, 5, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 5, 8);
@@ -123,7 +133,6 @@ bool SceneLevel1::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 4);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 6);
-	App->blocks->AddBlock(Block_Type::DIAMOND, 11, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 10);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 11);
