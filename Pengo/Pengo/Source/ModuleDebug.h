@@ -50,6 +50,7 @@ public:
 	bool FULLSCREEN = 0;
 	bool DEBUG_MODE = 0;
 	
+	int levelChoose = 0;
 	
 
 private:
