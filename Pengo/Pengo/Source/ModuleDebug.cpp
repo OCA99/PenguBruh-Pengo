@@ -147,6 +147,7 @@ Update_Status ModuleDebug::Update()
 				case 10:
 					App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_10, 90);
 					break;
+
 				case 11:
 					App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_11, 90);
 					break;
