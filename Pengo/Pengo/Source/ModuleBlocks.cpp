@@ -10,6 +10,7 @@
 
 #include "Block_Normal.h"
 #include "Block_Diamond.h"
+#include "Block_Egg.h"
 
 ModuleBlocks::ModuleBlocks(bool startEnabled) : Module(startEnabled)
 {
@@ -100,6 +101,9 @@ void ModuleBlocks::AddBlock(Block_Type type, int x, int y)
 					break;
 				case Block_Type::DIAMOND:
 					blocks[i] = new Block_Diamond(x, y);
+					break;
+				case Block_Type::EGG:
+					blocks[i] = new Block_Egg(x, y);
 					break;
 			}
 			blocks[i]->texture = texture;

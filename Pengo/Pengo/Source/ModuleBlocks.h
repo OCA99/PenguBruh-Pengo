@@ -9,7 +9,8 @@ enum class Block_Type
 {
 	NO_TYPE,
 	NORMAL,
-	DIAMOND
+	DIAMOND,
+	EGG
 };
 
 class Block;

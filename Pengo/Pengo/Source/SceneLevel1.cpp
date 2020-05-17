@@ -8,6 +8,7 @@
 //#include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
+#include "Block_Normal.h"
 #include "ModuleWalls.h"
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
@@ -48,12 +49,12 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(3, 3);
 	App->enemies->AddEnemy(9, 5);
 	App->enemies->AddEnemy(11, 13);
-
-	//These are the enemies that will spawn inside a block (right coordinates)
-	//App->enemies->AddEnemy(3, 14);
-	//App->enemies->AddEnemy(9, 1);
-	//App->enemies->AddEnemy(9, 9);
-	//App->enemies->AddEnemy(11, 5);
+	
+	
+	App->blocks->AddBlock(Block_Type::EGG, 3, 14);
+	App->blocks->AddBlock(Block_Type::EGG, 9, 1);
+	App->blocks->AddBlock(Block_Type::EGG, 9, 9);
+	App->blocks->AddBlock(Block_Type::EGG, 11, 5);
 
 	App->blocks->AddBlock(Block_Type::DIAMOND, 3, 11);
 	App->blocks->AddBlock(Block_Type::DIAMOND, 5, 5);
@@ -115,13 +116,11 @@ bool SceneLevel1::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 13);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 4);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 6);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 8);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 11);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 13);
 	App->blocks->AddBlock(Block_Type::NORMAL, 10, 3);
@@ -131,7 +130,6 @@ bool SceneLevel1::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 2);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 4);
-	App->blocks->AddBlock(Block_Type::NORMAL, 11, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 6);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 10);

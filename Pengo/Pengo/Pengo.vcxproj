@@ -23,6 +23,7 @@
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Block.h" />
     <ClInclude Include="Source\Block_Diamond.h" />
+    <ClInclude Include="Source\Block_Egg.h" />
     <ClInclude Include="Source\Block_Normal.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\ModuleDebug.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Block.cpp" />
     <ClCompile Include="Source\Block_Diamond.cpp" />
+    <ClCompile Include="Source\Block_Egg.cpp" />
     <ClCompile Include="Source\Block_Normal.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\ModuleDebug.cpp" />

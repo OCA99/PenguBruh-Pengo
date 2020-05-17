@@ -134,6 +134,7 @@ bool ModuleEnemies::VictoryCheck(bool win)
 		if (enemies[i] != nullptr) winCounter++;
 		
 	}
+
 	/*if (winCounter == 1 && fx_once == true)
 	{
 		//App->audio->PlayFx(8, 0);

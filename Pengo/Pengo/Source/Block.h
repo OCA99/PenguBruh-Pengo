@@ -52,7 +52,8 @@ public:
 	enum class Block_Type {
 		NO_TYPE,
 		NORMAL,
-		DIAMOND
+		DIAMOND,
+		EGG
 	};
 
 	Directions direction = Directions::Stopped;
