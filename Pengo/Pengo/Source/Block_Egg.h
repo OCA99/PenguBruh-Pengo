@@ -20,12 +20,15 @@ public:
 
 	void NextBlobSpawn();
 
+	int pause = 0;
+
 private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation normalAnim;
 	Animation destroyAnim;
+	Animation initAnim;
 };
 
 #endif // Block_Egg_H

@@ -4,14 +4,21 @@
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
 
+#include <stdio.h>
+
 Block_Egg::Block_Egg(int x, int y) : Block(x, y)
 {
 	normalAnim.GenerateAnimation({ 708,0,16,16 }, 1, 1);
-	currentAnim = &normalAnim;
+
+	initAnim.GenerateAnimation({ 708,0,32,16 }, 1, 2);
+	initAnim.speed = 0.05f;
+	initAnim.loop = true;
 
 	destroyAnim.GenerateAnimation({ 708,48,144,16 }, 1, 9);
 	destroyAnim.speed = 0.5f;
 	destroyAnim.loop = false;
+
+	currentAnim = &initAnim;
 
 	type = Block_Type::EGG;
 }
@@ -20,7 +27,14 @@ void Block_Egg::Update()
 {
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
+	if (currentAnim == &initAnim) pause++;
+	if (pause == 120)
+	{
+		pause = 0;
+		currentAnim = &normalAnim;
+	}
 	if (currentAnim == &destroyAnim && currentAnim->HasFinished()) Block::destroy();
+
 	Block::Update();
 }
 
