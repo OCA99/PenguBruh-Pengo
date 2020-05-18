@@ -82,7 +82,7 @@ void Enemy::Update()
 		case Directions::Up:
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
-			if (App->blocks->BlockInGridPosition(x, y)) {
+			if (App->blocks->BlockInGridPosition(x, y) || y == -1) {
 				currentAnim = &crushUp;
 				App->audio->PlayFx(13, 0);
 			}
@@ -93,7 +93,7 @@ void Enemy::Update()
 		case Directions::Down:
 			x = gridPosition.x;
 			y = gridPosition.y + 1;
-			if (App->blocks->BlockInGridPosition(x, y)) {
+			if (App->blocks->BlockInGridPosition(x, y) || y == 15) {
 				currentAnim = &crushDown;
 				App->audio->PlayFx(13, 0);
 			}
@@ -104,7 +104,7 @@ void Enemy::Update()
 		case Directions::Left:
 			x = gridPosition.x - 1;
 			y = gridPosition.y;
-			if (App->blocks->BlockInGridPosition(x, y)) {
+			if (App->blocks->BlockInGridPosition(x, y) || x == -1) {
 				currentAnim = &crushLeft;
 				App->audio->PlayFx(13, 0);
 			}
@@ -115,7 +115,7 @@ void Enemy::Update()
 		case Directions::Right:
 			x = gridPosition.x + 1;
 			y = gridPosition.y;
-			if (App->blocks->BlockInGridPosition(x, y)) {
+			if (App->blocks->BlockInGridPosition(x, y) || x == 13) {
 				currentAnim = &crushRight;
 				App->audio->PlayFx(13, 0);
 			}
