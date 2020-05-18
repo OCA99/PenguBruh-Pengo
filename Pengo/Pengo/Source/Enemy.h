@@ -33,10 +33,15 @@ public:
 
 	enum class Directions {
 		Up,
+		CrushUp,
 		Down,
+		CrushDown,
 		Left,
+		CrushLeft,
 		Right,
-		Stopped
+		CrushRight,
+		Stopped,
+
 	};
 
 	Directions direction = Directions::Stopped;

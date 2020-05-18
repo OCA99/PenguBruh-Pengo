@@ -68,21 +68,29 @@ void Enemy::Update()
 	if (!stunned)
 	{
 		currentAnim = &spawnAnim;
-	
+
 		if (currentAnim == &spawnAnim && currentAnim->HasFinished())
 		{
 			currentAnim = &idleAnim;
 		}
 	}
 
+
 	if (!moving) {
+
 		int x = 0;
 		int y = 0;
 		switch (direction) {
-		case Directions::Up:
+		case Directions::CrushUp:
+
+			if (stunned)
+			{
+				printf("stuneado");
+			}
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
 			if (App->blocks->BlockInGridPosition(x, y) || y == -1) {
+				
 				currentAnim = &crushUp;
 				App->audio->PlayFx(13, 0);
 			}
@@ -90,7 +98,12 @@ void Enemy::Update()
 				gridPosition.y -= 1;
 			}
 			break;
-		case Directions::Down:
+		case Directions::CrushDown:
+			if (stunned)
+			{
+				printf("stuneado");
+
+			}
 			x = gridPosition.x;
 			y = gridPosition.y + 1;
 			if (App->blocks->BlockInGridPosition(x, y) || y == 15) {
@@ -101,7 +114,12 @@ void Enemy::Update()
 				gridPosition.y += 1;
 			}
 			break;
-		case Directions::Left:
+		case Directions::CrushLeft:
+			if (stunned)
+			{
+				printf("stuneado");
+
+			}
 			x = gridPosition.x - 1;
 			y = gridPosition.y;
 			if (App->blocks->BlockInGridPosition(x, y) || x == -1) {
@@ -112,7 +130,12 @@ void Enemy::Update()
 				gridPosition.x -= 1;
 			}
 			break;
-		case Directions::Right:
+		case Directions::CrushRight:
+			if (stunned)
+			{
+				printf("stuneado");
+
+			}
 			x = gridPosition.x + 1;
 			y = gridPosition.y;
 			if (App->blocks->BlockInGridPosition(x, y) || x == 13) {
@@ -127,7 +150,7 @@ void Enemy::Update()
 			break;
 		}
 	}
-	
+
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
@@ -172,7 +195,11 @@ void Enemy::Update()
 		moving = true;
 	}
 
-	if ((currentAnim == &crushUp || currentAnim == &crushDown || currentAnim == &crushLeft || currentAnim == &crushRight) && currentAnim->HasFinished()) destroy();
+	if ((currentAnim == &crushUp || currentAnim == &crushDown || currentAnim == &crushLeft || currentAnim == &crushRight) && currentAnim->HasFinished())
+	{
+		destroy();
+		printf("entra");
+	}
 }
 
 void Enemy::Draw()
@@ -184,23 +211,25 @@ void Enemy::Draw()
 }
 
 void Enemy::Pushed(int fromx, int fromy) {
+
 	if (fromx < gridPosition.x) {
-		direction = Directions::Right;
+		direction = Directions::CrushRight;
 	}
 	if (fromx > gridPosition.x) {
-		direction = Directions::Left;
+		direction = Directions::CrushLeft;
 	}
 	if (fromy < gridPosition.y) {
-		direction = Directions::Down;
+		direction = Directions::CrushDown;
 	}
 	if (fromy > gridPosition.y) {
-		direction = Directions::Up;
+		direction = Directions::CrushUp;
 	}
- }
+
+}
 
 void Enemy::WallStunned(int wallID)
 {
-	switch (wallID){
+	switch (wallID) {
 
 	case 0:
 		for (int i = 0; i <= 12; i++)
