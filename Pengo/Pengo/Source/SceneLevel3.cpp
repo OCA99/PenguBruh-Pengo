@@ -128,7 +128,6 @@ bool SceneLevel3::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 6);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 9);
-	App->blocks->AddBlock(Block_Type::NORMAL, 11, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 12, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 12, 11);
 	
