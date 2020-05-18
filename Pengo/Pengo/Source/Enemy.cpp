@@ -63,6 +63,7 @@ void Enemy::Update()
 	if (stunned && App->player->gridPosition == gridPosition)
 	{
 		destroy();
+		//PTS = 100pts
 	}
 
 	if (!stunned)
@@ -83,10 +84,6 @@ void Enemy::Update()
 		switch (direction) {
 		case Directions::CrushUp:
 
-			if (stunned)
-			{
-				printf("stuneado");
-			}
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
 			if (App->blocks->BlockInGridPosition(x, y) || y == -1) {
@@ -99,11 +96,7 @@ void Enemy::Update()
 			}
 			break;
 		case Directions::CrushDown:
-			if (stunned)
-			{
-				printf("stuneado");
 
-			}
 			x = gridPosition.x;
 			y = gridPosition.y + 1;
 			if (App->blocks->BlockInGridPosition(x, y) || y == 15) {
@@ -115,11 +108,7 @@ void Enemy::Update()
 			}
 			break;
 		case Directions::CrushLeft:
-			if (stunned)
-			{
-				printf("stuneado");
 
-			}
 			x = gridPosition.x - 1;
 			y = gridPosition.y;
 			if (App->blocks->BlockInGridPosition(x, y) || x == -1) {
@@ -131,11 +120,7 @@ void Enemy::Update()
 			}
 			break;
 		case Directions::CrushRight:
-			if (stunned)
-			{
-				printf("stuneado");
 
-			}
 			x = gridPosition.x + 1;
 			y = gridPosition.y;
 			if (App->blocks->BlockInGridPosition(x, y) || x == 13) {
@@ -198,7 +183,11 @@ void Enemy::Update()
 	if ((currentAnim == &crushUp || currentAnim == &crushDown || currentAnim == &crushLeft || currentAnim == &crushRight) && currentAnim->HasFinished())
 	{
 		destroy();
-		printf("entra");
+		//Score Counter
+		//1 enemie counts 400pts
+		//2 enemies with one block = pts 1600
+		//3 =3200pts
+		//4 = 6400pts
 	}
 }
 
