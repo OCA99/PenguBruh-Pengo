@@ -5,11 +5,15 @@
 #include "Globals.h"
 #include "SDL/include/SDL_scancode.h"
 
+
 #define MAX_KEYS 256
 #define MAX_PADS 4
 
+
 struct _SDL_GameController;
 struct _SDL_Haptic;
+
+
 
 enum Key_State
 {
@@ -79,6 +83,8 @@ public:
 
 	// An array to fill in all detected gamepads
 	GamePad pads[MAX_PADS];
+
+	
 };
 
 #endif // __ModuleInput_H__

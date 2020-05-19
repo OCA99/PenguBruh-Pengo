@@ -6,6 +6,8 @@
 #include "Application.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
+#include "ModuleBlocks.h"
+#include "SDL/include/SDL.h"
 #include <stdio.h>
 
 
@@ -164,6 +166,14 @@ Update_Status ModuleDebug::Update()
 					App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_14, 90);
 					break;
 
+				case 15:
+					App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_15, 90);
+					break;
+
+				case 16:
+					App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_16, 90);
+					break;
+
 
 				default:
 					break;
@@ -181,7 +191,7 @@ Update_Status ModuleDebug::Update()
 	}
 
 	
-
+	
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -202,6 +212,12 @@ void ModuleDebug::Enable()
 		isEnabled = true;
 		Start();
 	}
+}
+
+void ModuleDebug::BlockOnMap()
+{
+	SDL_GetMouseState(&x, &y);
+	App->blocks->AddBlock(Block_Type::NORMAL, x, y);
 }
 
 void ModuleDebug::Disable()

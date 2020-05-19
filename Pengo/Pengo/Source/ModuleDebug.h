@@ -39,6 +39,8 @@ public:
 	// Switches isEnabled and calls CleanUp() method
 	void Disable();
 
+	void BlockOnMap();
+
 	inline bool IsEnabled() const { return isEnabled; }
 
 	void LevelUpDown();
@@ -49,7 +51,7 @@ public:
 	bool descending = 0;
 	bool FULLSCREEN = 0;
 	bool DEBUG_MODE = 0;
-	
+	int x, y;
 	int levelChoose = 0;
 	
 

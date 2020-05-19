@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ModuleDebug.h"
 #include "SDL/include/SDL.h"
 
 ModuleInput::ModuleInput(bool startEnabled) : Module(startEnabled)
@@ -68,6 +69,11 @@ Update_Status ModuleInput::PreUpdate()
 		case(SDL_CONTROLLERDEVICEREMOVED):
 		{
 			HandleDeviceRemoval(event.cdevice.which);
+			break;
+		}
+		case(SDL_MOUSEBUTTONDOWN) :
+		{
+			App->debug->BlockOnMap();
 			break;
 		}
 		case(SDL_QUIT):
