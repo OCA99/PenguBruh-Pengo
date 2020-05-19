@@ -23,6 +23,8 @@
 #include "SceneLevel12.h"
 #include "SceneLevel13.h"
 #include "SceneLevel14.h"
+#include "SceneLevel15.h"
+#include "SceneLevel16.h"
 //#include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 //#include "ModuleCollisions.h"
@@ -70,8 +72,10 @@ Application::Application()
 	modules[23] = sceneLevel_11 = new SceneLevel11(false);	
 	modules[24] = sceneLevel_12 = new SceneLevel12(false);
 	modules[25] = sceneLevel_13 = new SceneLevel13(false);
-	modules[26] = sceneLevel_14 = new SceneLevel14(false);//Gameplay scene starts disabled
-	modules[27] =	debug =			new ModuleDebug(true);
+	modules[26] = sceneLevel_14 = new SceneLevel14(false);
+	modules[27] = sceneLevel_15 = new SceneLevel15(false);
+	modules[28] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
+	modules[29] =	debug =		  new ModuleDebug(true);
 }
 
 Application::~Application()

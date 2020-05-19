@@ -26,7 +26,7 @@ SceneLevel7::~SceneLevel7()
 bool SceneLevel7::Start()
 {
 	LOG("Loading background assets");
-
+	App->audio->PlayFx(1, 0);
 	App->player->Enable();
 	App->blocks->Enable();
 	App->walls->Enable();
@@ -44,15 +44,16 @@ bool SceneLevel7::Start()
 	App->enemies->AddEnemy(3, 9);
 	App->enemies->AddEnemy(11, 7);
 
-	//These are the enemies that will spawn inside a block (right coordinates)
-	//App->enemies->AddEnemy(1, 9);
-	//App->enemies->AddEnemy(5, 1);
-	//App->enemies->AddEnemy(9, 13);
-	//App->enemies->AddEnemy(11, 11);
+	App->blocks->AddBlock(Block_Type::EGG, 1, 9);
+	App->blocks->AddBlock(Block_Type::EGG, 5, 1);
+	App->blocks->AddBlock(Block_Type::EGG, 9, 13);
+	App->blocks->AddBlock(Block_Type::EGG, 11, 11);
 
 	App->blocks->AddBlock(Block_Type::DIAMOND, 1, 1);
 	App->blocks->AddBlock(Block_Type::DIAMOND, 3, 5);
 	App->blocks->AddBlock(Block_Type::DIAMOND, 7, 3);
+
+	App->audio->PlayFx(12, 0);
 
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 0);
 	App->blocks->AddBlock(Block_Type::NORMAL, 1, 3);
@@ -168,14 +169,18 @@ Update_Status SceneLevel7::PostUpdate()
 			win = true;
 		}
 	}
-	if (win) App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_8, 90);
+	if (win)
+	{
+		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_8, 90);
+		App->audio->PlayFx(0, 0);
+	}
 
 	if (App->debug->GMODE == true)
 	{
 		if (App->debug->descending == true)
 		{
 			App->debug->descending = false;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_7, (Module*)App->sceneLevel_6, 90);
+			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_6, 90);
 		}
 	}
 	return Update_Status::UPDATE_CONTINUE;

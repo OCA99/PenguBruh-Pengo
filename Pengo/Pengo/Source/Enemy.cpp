@@ -87,7 +87,6 @@ void Enemy::Update()
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
 			if (App->blocks->BlockInGridPosition(x, y) || y == -1) {
-				
 				currentAnim = &crushUp;
 				App->audio->PlayFx(13, 0);
 			}
@@ -182,6 +181,7 @@ void Enemy::Update()
 
 	if ((currentAnim == &crushUp || currentAnim == &crushDown || currentAnim == &crushLeft || currentAnim == &crushRight) && currentAnim->HasFinished())
 	{
+		App->blocks->HatchNextEgg();
 		destroy();
 		//Score Counter
 		//1 enemie counts 400pts

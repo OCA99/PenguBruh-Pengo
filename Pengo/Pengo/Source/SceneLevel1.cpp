@@ -8,7 +8,7 @@
 //#include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
-#include "Block_Normal.h"
+//#include "Block_Normal.h"
 #include "ModuleWalls.h"
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
@@ -172,7 +172,7 @@ Update_Status SceneLevel1::PostUpdate()
 
 	if (win) 
 	{
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 90);
+		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_2, 90);
 		App->audio->PlayFx(0, 0);
 	}
 
@@ -181,7 +181,7 @@ Update_Status SceneLevel1::PostUpdate()
 		if (App->debug->descending == true)
 		{
 			App->debug->descending = false;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 90);
+			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
 		}
 	}
 

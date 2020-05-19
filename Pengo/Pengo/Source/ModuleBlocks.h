@@ -45,6 +45,8 @@ public:
 
 	bool PositionInMap(int x, int y);
 
+	void HatchNextEgg();
+
 private:
 
 	// All spawned enemies in the scene

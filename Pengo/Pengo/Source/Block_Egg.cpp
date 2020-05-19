@@ -47,28 +47,32 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x;
 		y = gridPosition.y - 1;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			NextBlobSpawn();
+			printf("Telmo implements points here\n");
+			destroy();
 		}
 		break;
 	case Directions::Left:
 		x = gridPosition.x - 1;
 		y = gridPosition.y;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			NextBlobSpawn();
+			printf("Telmo implements points here\n");
+			destroy();
 		}
 		break;
 	case Directions::Right:
 		x = gridPosition.x + 1;
 		y = gridPosition.y;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			NextBlobSpawn();
+			printf("Telmo implements points here\n");
+			destroy();
 		}
 		break;
 	case Directions::Down:
 		x = gridPosition.x;
 		y = gridPosition.y + 1;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			NextBlobSpawn();
+			printf("Telmo implements points here\n");
+			destroy();
 		}
 		break;
 	default:

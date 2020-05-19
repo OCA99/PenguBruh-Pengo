@@ -26,7 +26,7 @@ SceneLevel9::~SceneLevel9()
 bool SceneLevel9::Start()
 {
 	LOG("Loading background assets");
-
+	App->audio->PlayFx(1, 0);
 	App->player->Enable();
 	App->blocks->Enable();
 	App->walls->Enable();
@@ -52,9 +52,18 @@ bool SceneLevel9::Start()
 	//App->enemies->AddEnemy(11, 6);
 	//App->enemies->AddEnemy(11, 11);
 
+	App->blocks->AddBlock(Block_Type::EGG, 1, 9);
+	App->blocks->AddBlock(Block_Type::EGG, 3, 9);
+	App->blocks->AddBlock(Block_Type::EGG, 5, 1);
+	App->blocks->AddBlock(Block_Type::EGG, 9, 13);
+	App->blocks->AddBlock(Block_Type::EGG, 11, 6);
+	App->blocks->AddBlock(Block_Type::EGG, 11, 11);
+
 	App->blocks->AddBlock(Block_Type::DIAMOND, 3, 5);
 	App->blocks->AddBlock(Block_Type::DIAMOND, 5, 3);
 	App->blocks->AddBlock(Block_Type::DIAMOND, 5, 5);
+
+	App->audio->PlayFx(12, 0);
 
 	App->blocks->AddBlock(Block_Type::NORMAL, 0, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 0, 11);
@@ -171,14 +180,18 @@ Update_Status SceneLevel9::PostUpdate()
 			win = true;
 		}
 	}
-	if (win) App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_10, 90);
+	if (win)
+	{
+		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_10, 90);
+		App->audio->PlayFx(0, 0);
+	}
 
 	if (App->debug->GMODE == true)
 	{
 		if (App->debug->descending == true)
 		{
 			App->debug->descending = false;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_9, (Module*)App->sceneLevel_8, 90);
+			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_8, 90);
 		}
 	}
 

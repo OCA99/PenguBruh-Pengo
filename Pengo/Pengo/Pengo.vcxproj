@@ -54,6 +54,8 @@
     <ClInclude Include="Source\SceneLevel12.h" />
     <ClInclude Include="Source\SceneLevel13.h" />
     <ClInclude Include="Source\SceneLevel14.h" />
+    <ClInclude Include="Source\SceneLevel15.h" />
+    <ClInclude Include="Source\SceneLevel16.h" />
     <ClInclude Include="Source\SceneLevel2.h" />
     <ClInclude Include="Source\SceneLevel3.h" />
     <ClInclude Include="Source\SceneLevel4.h" />
@@ -101,6 +103,8 @@
     <ClCompile Include="Source\SceneLevel12.cpp" />
     <ClCompile Include="Source\SceneLevel13.cpp" />
     <ClCompile Include="Source\SceneLevel14.cpp" />
+    <ClCompile Include="Source\SceneLevel15.cpp" />
+    <ClCompile Include="Source\SceneLevel16.cpp" />
     <ClCompile Include="Source\SceneLevel2.cpp" />
     <ClCompile Include="Source\SceneLevel3.cpp" />
     <ClCompile Include="Source\SceneLevel4.cpp" />

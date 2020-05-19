@@ -12,6 +12,8 @@
 #include "Block_Diamond.h"
 #include "Block_Egg.h"
 
+#include <stdio.h>
+
 ModuleBlocks::ModuleBlocks(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_BLOCKS; ++i)
@@ -154,4 +156,21 @@ bool ModuleBlocks::PositionInMap(int x, int y) {
 	if (y < 0) return false;
 	if (y > 14) return false;
 	return true;
+}
+
+void ModuleBlocks::HatchNextEgg()
+{
+	for (uint i = 0; i < MAX_BLOCKS; ++i)
+	{
+		if (blocks[i] != nullptr)
+		{
+			if (blocks[i]->type == Block::Block_Type::EGG)
+			{
+				printf("lavaina");
+				Block_Egg* b = (Block_Egg*)blocks[i];
+				b->NextBlobSpawn();
+				break;
+			}
+		}
+	}
 }

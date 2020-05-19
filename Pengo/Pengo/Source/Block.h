@@ -59,11 +59,11 @@ public:
 	Directions direction = Directions::Stopped;
 
 	virtual void Pushed(int fromx, int fromy);
+	Block_Type type = Block_Type::NO_TYPE;
 
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
-	Block_Type type = Block_Type::NO_TYPE;
 
 private:
 	int speed = 2;
