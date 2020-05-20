@@ -85,6 +85,7 @@ public:
 	GamePad pads[MAX_PADS];
 
 	
+	int xpos, ypos;
 };
 
 #endif // __ModuleInput_H__

@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "Application.h"
 #include "ModuleFadeToBlack.h"
+#include "Block.h"
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
 #include "SDL/include/SDL.h"
@@ -214,10 +215,16 @@ void ModuleDebug::Enable()
 	}
 }
 
-void ModuleDebug::BlockOnMap()
+void ModuleDebug::BlockOnMap(int x, int y)
 {
-	SDL_GetMouseState(&x, &y);
-	App->blocks->AddBlock(Block_Type::NORMAL, x, y);
+	printf("%d \n", x);
+	printf("%d \n", y);
+	
+	int gridposX =  ( x - 8 ) / 16;
+	int gridposY =  (y - 32) / 16;
+	App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
+	printf("%d, %d \n", gridposX, gridposY);
+	
 }
 
 void ModuleDebug::Disable()
