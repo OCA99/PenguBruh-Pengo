@@ -233,7 +233,6 @@ void Enemy::GetNextTargetTile() {
 	} while (y > 12 || y < 0);
 
 	targetTile = iPoint(x, y);
-	printf("New target: %d , %d\n", x, y);
 }
 
 void Enemy::GetNextStepToTarget() {
