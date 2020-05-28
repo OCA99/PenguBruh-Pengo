@@ -5,8 +5,11 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleBlocks.h"
 
 #include "Enemy.h"
+
+#include <stdio.h>
 
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
@@ -158,6 +161,46 @@ void ModuleEnemies::WallPushed(int wallID)
 		if (enemies[i] != nullptr)
 		{
 			enemies[i]->WallStunned(wallID);
+		}
+	}
+}
+
+void ModuleEnemies::Reset() {
+	int count = 0;
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] != nullptr) {
+			switch (count) {
+			case 0:
+				if (App->blocks->BlockInGridPosition(0, 0)) {
+					App->blocks->DestroyBlock(0, 0);
+				}
+				enemies[i]->SetPosition(0, 0);
+				break;
+			case 1:
+				if (App->blocks->BlockInGridPosition(12, 0)) {
+					App->blocks->DestroyBlock(12, 0);
+				}
+				enemies[i]->SetPosition(12, 0);
+				break;
+			case 2:
+				if (App->blocks->BlockInGridPosition(0, 14)) {
+					App->blocks->DestroyBlock(0, 14);
+				}
+				enemies[i]->SetPosition(0, 14);
+				break;
+			case 3:
+				if (App->blocks->BlockInGridPosition(12, 14)) {
+					App->blocks->DestroyBlock(12, 14);
+				}
+				enemies[i]->SetPosition(12, 14);
+				break;
+			default:
+				printf("This should not be happening");
+				delete enemies[i];
+				enemies[i] = nullptr;
+				break;
+			}
+			count++;
 		}
 	}
 }

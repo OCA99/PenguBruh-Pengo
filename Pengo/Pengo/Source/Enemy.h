@@ -31,6 +31,8 @@ public:
 
 	void WallStunned(int wallID);
 
+	void SetPosition(int x, int y);
+
 	enum class Directions {
 		Up,
 		CrushUp,

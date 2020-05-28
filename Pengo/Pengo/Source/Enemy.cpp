@@ -57,6 +57,17 @@ Enemy::~Enemy()
 		collider->pendingToDelete = true;*/
 }
 
+void Enemy::SetPosition(int x, int y) {
+	gridPosition.x = x;
+	gridPosition.y = y;
+
+	targetPosition.x = gridPosition.x * 16 + 8;
+	targetPosition.y = gridPosition.y * 16 + 32;
+
+	position.x = gridPosition.x * 16 + 8;
+	position.y = gridPosition.y * 16 + 32;
+}
+
 void Enemy::Update()
 {
 

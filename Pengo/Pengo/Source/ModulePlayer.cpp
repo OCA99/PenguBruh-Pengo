@@ -116,7 +116,7 @@ Update_Status ModulePlayer::Update()
 
 	if (App->debug->GMODE == 0)
 	{
-		if (App->enemies->EnemyInGridPosition(x, y) || instaloss) {
+		if ((App->enemies->EnemyInGridPosition(x, y) && position == targetPosition) || instaloss) {
 			instaloss = false;
 			dead = true;
 			App->audio->PlayFx(16, 0);
@@ -135,7 +135,8 @@ Update_Status ModulePlayer::Update()
 			if (deadPause == 100)
 			{
 				lifes--;
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->currentLevel, 90);
+				App->enemies->Reset();
+				Reset();
 			}
 		} else {
 			if (deadPause == 100)
@@ -372,4 +373,28 @@ Update_Status ModulePlayer::PostUpdate()
 void ModulePlayer::positionToGrid(int gx, int gy, int& x, int& y) {
 	x = (gx - 8) / 16;
 	y = (gy - 32) / 16;
+}
+
+void ModulePlayer::Reset() {
+	if(App->blocks->BlockInGridPosition(6, 6)) {
+		App->blocks->DestroyBlock(6, 6);
+	}
+	SetPosition(6, 6);
+	currentAnimation = &idleAnim;
+
+	destroyed = false;
+
+	dead = false;
+	deadPause = 0;
+}
+
+void ModulePlayer::SetPosition(int x, int y) {
+	gridPosition.x = x;
+	gridPosition.y = y;
+
+	targetPosition.x = gridPosition.x * 16 + 8;
+	targetPosition.y = gridPosition.y * 16 + 32;
+
+	position.x = gridPosition.x * 16 + 8;
+	position.y = gridPosition.y * 16 + 32;
 }
