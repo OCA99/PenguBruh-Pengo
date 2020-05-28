@@ -150,6 +150,33 @@ void ModuleBlocks::DestroyBlock(int x, int y) {
 	}
 }
 
+bool ModuleBlocks::DestructibleByEnemy(int x, int y) {
+	for (uint i = 0; i < MAX_BLOCKS; ++i)
+	{
+		if (blocks[i] != nullptr)
+		{
+			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) {
+				return blocks[i]->type == Block::Block_Type::NORMAL;
+			}
+		}
+	}
+	return false;
+}
+
+void ModuleBlocks::BreakBlock(int x, int y) {
+	for (uint i = 0; i < MAX_BLOCKS; ++i)
+	{
+		if (blocks[i] != nullptr)
+		{
+			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) {
+				if (blocks[i]->type == Block::Block_Type::NORMAL) {
+					((Block_Normal*)blocks[i])->destroy();
+				}
+			}
+		}
+	}
+}
+
 bool ModuleBlocks::PositionInMap(int x, int y) {
 	if (x < 0) return false;
 	if (x > 12) return false;

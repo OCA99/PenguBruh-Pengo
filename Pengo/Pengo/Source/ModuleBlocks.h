@@ -47,6 +47,10 @@ public:
 
 	void HatchNextEgg();
 
+	bool DestructibleByEnemy(int x, int y);
+
+	void BreakBlock(int x, int y);
+
 private:
 
 	// All spawned enemies in the scene

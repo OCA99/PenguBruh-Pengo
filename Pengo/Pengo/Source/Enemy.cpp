@@ -176,18 +176,20 @@ void Enemy::Update()
 	targetPosition.x = gridPosition.x * 16 + 8;
 	targetPosition.y = gridPosition.y * 16 + 32;
 
-	if (position.x < targetPosition.x) {
-		position.x += speed;
-	}
-	else if (position.x > targetPosition.x) {
-		position.x -= speed;
-	}
+	if (currentAnim != &spawnAnim) {
+		if (position.x < targetPosition.x) {
+			position.x += speed;
+		}
+		else if (position.x > targetPosition.x) {
+			position.x -= speed;
+		}
 
-	if (position.y < targetPosition.y) {
-		position.y += speed;
-	}
-	else if (position.y > targetPosition.y) {
-		position.y -= speed;
+		if (position.y < targetPosition.y) {
+			position.y += speed;
+		}
+		else if (position.y > targetPosition.y) {
+			position.y -= speed;
+		}
 	}
 
 	if ((currentAnim == &crushUp || currentAnim == &crushDown || currentAnim == &crushLeft || currentAnim == &crushRight) && currentAnim->HasFinished())
@@ -205,7 +207,7 @@ void Enemy::Update()
 		GetNextTargetTile();
 	}
 
-	if (position == targetPosition) {
+	if (position == targetPosition && currentAnim != &spawnAnim) {
 		GetNextStepToTarget();
 		moving = false;
 	}
@@ -231,37 +233,114 @@ void Enemy::GetNextTargetTile() {
 	} while (y > 12 || y < 0);
 
 	targetTile = iPoint(x, y);
+	printf("New target: %d , %d\n", x, y);
 }
 
 void Enemy::GetNextStepToTarget() {
+
+	//float xdiff = ABS(App->player->gridPosition.x - gridPosition.x);
+	//float ydiff = ABS(App->player->gridPosition.y - gridPosition.y);
 	float xdiff = ABS(targetTile.x - gridPosition.x);
 	float ydiff = ABS(targetTile.y - gridPosition.y);
 	float totaldiff = xdiff + ydiff;
 
 	if (totaldiff == 0) return;
 
-	float xprob = xdiff / totaldiff;
-	float yprob = ydiff / totaldiff;
+	float prob = xdiff / totaldiff;
 
 	std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
 	float sample = distribution(generator);
 
-	//printf("%f, %f, %f\n", sample, xprob, yprob);
-	if (sample < xprob) {
+	bool canmovex = true;
+	bool canmovey = true;
+	bool blockx = false;
+	bool blocky = false;
+
+	if (gridPosition.x < targetTile.x) {
+		if (App->blocks->BlockInGridPosition(gridPosition.x + 1, gridPosition.y)) {
+			blockx = true;
+		}
+		if (blockx && !App->blocks->DestructibleByEnemy(gridPosition.x + 1, gridPosition.y)) {
+			canmovex = false;
+		}
+	}
+	else if (gridPosition.x > targetTile.x) {
+		if (App->blocks->BlockInGridPosition(gridPosition.x - 1, gridPosition.y)) {
+			blockx = true;
+		}
+		if (blockx && !App->blocks->DestructibleByEnemy(gridPosition.x - 1, gridPosition.y)) {
+			canmovex = false;
+		}
+	}
+
+	if (gridPosition.y < targetTile.y) {
+		if (App->blocks->BlockInGridPosition(gridPosition.x, gridPosition.y + 1)) {
+			blocky = true;
+		}
+		if (blocky && !App->blocks->DestructibleByEnemy(gridPosition.x, gridPosition.y + 1)) {
+			canmovey = false;
+		}
+	}
+	else if (gridPosition.y > targetTile.y) {
+		if (App->blocks->BlockInGridPosition(gridPosition.x, gridPosition.y - 1)) {
+			blocky = true;
+		}
+		if (blocky && !App->blocks->DestructibleByEnemy(gridPosition.x, gridPosition.y - 1)) {
+			canmovey = false;
+		}
+	}
+
+	if (!canmovex || !canmovey) {
+		if (!canmovex && !canmovey) {
+			GetNextTargetTile();
+			return;
+		}
+		if (!canmovex) {
+			prob = 0;
+		}
+		if (!canmovey) {
+			prob = 1;
+		}
+	}
+
+	if (blockx) sample += 0.7f;
+	if (blocky) sample -= 0.7f;
+
+	if (sample < prob) {
 		if (gridPosition.x < targetTile.x) {
+			if (blockx) {
+				App->blocks->BreakBlock(gridPosition.x + 1, gridPosition.y);
+			}
 			gridPosition.x++;
 		}
-		else {
+		else if (gridPosition.x > targetTile.x) {
+			if (blockx) {
+				App->blocks->BreakBlock(gridPosition.x - 1, gridPosition.y);
+			}
 			gridPosition.x--;
+		}
+		else {
+			GetNextTargetTile();
+			return;
 		}
 	}
 	else {
 		if (gridPosition.y < targetTile.y) {
+			if (blocky) {
+				App->blocks->BreakBlock(gridPosition.x, gridPosition.y + 1);
+			}
 			gridPosition.y++;
 		}
-		else {
+		else if (gridPosition.y > targetTile.y) {
+			if (blocky) {
+				App->blocks->BreakBlock(gridPosition.x, gridPosition.y - 1);
+			}
 			gridPosition.y--;
+		}
+		else {
+			GetNextTargetTile();
+			return;
 		}
 	}
 }
