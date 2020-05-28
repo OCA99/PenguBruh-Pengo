@@ -4,6 +4,10 @@
 #include "p2Point.h"
 #include "Animation.h"
 
+#include <random>
+#include <stdlib.h> // used for random
+#include <time.h> // used for random
+
 struct SDL_Texture;
 struct Collider;
 
@@ -33,6 +37,10 @@ public:
 
 	void SetPosition(int x, int y);
 
+	void GetNextTargetTile();
+
+	void GetNextStepToTarget();
+
 	enum class Directions {
 		Up,
 		CrushUp,
@@ -53,6 +61,7 @@ public:
 	iPoint position;
 	iPoint gridPosition;
 	iPoint targetPosition;
+	iPoint targetTile;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
@@ -77,8 +86,13 @@ protected:
 	Animation stunAnim;
 
 private:
-	int speed = 2;
+	int speed = 1;
 	bool moving = false;
+	std::random_device generator;
+
+	float ABS(float x) {
+		return x > 0 ? x : -x;
+	}
 };
 
 #endif // __ENEMY_H__

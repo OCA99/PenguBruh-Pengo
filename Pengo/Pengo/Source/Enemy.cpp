@@ -15,6 +15,9 @@ Enemy::Enemy(int x, int y) : position(x, y)
 	gridPosition.x = x;
 	gridPosition.y = y;
 
+	targetTile.x = x;
+	targetTile.y = y;
+
 	targetPosition.x = gridPosition.x * 16 + 8;
 	targetPosition.y = gridPosition.y * 16 + 32;
 
@@ -49,6 +52,7 @@ Enemy::Enemy(int x, int y) : position(x, y)
 	stunAnim.speed = 0.05f;
 	stunAnim.loop = true;
 
+	GetNextTargetTile();
 }
 
 Enemy::~Enemy()
@@ -60,6 +64,9 @@ Enemy::~Enemy()
 void Enemy::SetPosition(int x, int y) {
 	gridPosition.x = x;
 	gridPosition.y = y;
+
+	targetTile.x = x;
+	targetTile.y = y;
 
 	targetPosition.x = gridPosition.x * 16 + 8;
 	targetPosition.y = gridPosition.y * 16 + 32;
@@ -183,13 +190,6 @@ void Enemy::Update()
 		position.y -= speed;
 	}
 
-	if (position.x == targetPosition.x && position.y == targetPosition.y) {
-		moving = false;
-	}
-	else {
-		moving = true;
-	}
-
 	if ((currentAnim == &crushUp || currentAnim == &crushDown || currentAnim == &crushLeft || currentAnim == &crushRight) && currentAnim->HasFinished())
 	{
 		App->blocks->HatchNextEgg();
@@ -199,6 +199,70 @@ void Enemy::Update()
 		//2 enemies with one block = pts 1600
 		//3 =3200pts
 		//4 = 6400pts
+	}
+
+	if (gridPosition == targetTile) {
+		GetNextTargetTile();
+	}
+
+	if (position == targetPosition) {
+		GetNextStepToTarget();
+		moving = false;
+	}
+	else {
+		moving = true;
+	}
+}
+
+void Enemy::GetNextTargetTile() {
+	iPoint playerPos = App->player->gridPosition;
+
+	std::normal_distribution<double> x_distribution(playerPos.x, 5.0);
+	std::normal_distribution<double> y_distribution(playerPos.y, 5.0);
+
+	int x;
+	do {
+		x = x_distribution(generator);
+	} while (x > 12 || x < 0);
+
+	int y;
+	do {
+		y = y_distribution(generator);
+	} while (y > 12 || y < 0);
+
+	targetTile = iPoint(x, y);
+}
+
+void Enemy::GetNextStepToTarget() {
+	float xdiff = ABS(targetTile.x - gridPosition.x);
+	float ydiff = ABS(targetTile.y - gridPosition.y);
+	float totaldiff = xdiff + ydiff;
+
+	if (totaldiff == 0) return;
+
+	float xprob = xdiff / totaldiff;
+	float yprob = ydiff / totaldiff;
+
+	std::uniform_real_distribution<double> distribution(0.0, 1.0);
+
+	float sample = distribution(generator);
+
+	//printf("%f, %f, %f\n", sample, xprob, yprob);
+	if (sample < xprob) {
+		if (gridPosition.x < targetTile.x) {
+			gridPosition.x++;
+		}
+		else {
+			gridPosition.x--;
+		}
+	}
+	else {
+		if (gridPosition.y < targetTile.y) {
+			gridPosition.y++;
+		}
+		else {
+			gridPosition.y--;
+		}
 	}
 }
 
