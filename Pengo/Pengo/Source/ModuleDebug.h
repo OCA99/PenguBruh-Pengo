@@ -40,13 +40,15 @@ public:
 	void Disable();
 
 	void BlockOnMap(int x, int y);
-
+	
 	inline bool IsEnabled() const { return isEnabled; }
 
+	int CanPut(int x, int y);
 	void LevelUpDown();
 
 	bool GMODE = 0;
 	int level = 1;
+	int canput = 0;
 	bool ascending = 0;
 	bool descending = 0;
 	bool DEBUG_MODE = 0;

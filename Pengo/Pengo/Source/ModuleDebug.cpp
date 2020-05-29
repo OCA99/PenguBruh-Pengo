@@ -8,6 +8,7 @@
 #include "Block.h"
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
+#include "ModuleEnemies.h"
 #include "SDL/include/SDL.h"
 #include <stdio.h>
 
@@ -214,15 +215,39 @@ void ModuleDebug::Enable()
 		Start();
 	}
 }
-
+int ModuleDebug::CanPut(int x, int y)
+{
+	int a = x;
+	int b = y;
+	canput = 1;
+	if (App->enemies->EnemyInGridPosition(a,b))
+	{
+		canput = 0;
+	}
+	else if (App->blocks->BlockInGridPosition(a, b))
+	{
+		canput = 0;
+	}
+	else if (x > 24 || y > 14 || x < 0 || y < 0)
+	{
+		canput = 0;
+	}
+	
+	return canput;
+}
 void ModuleDebug::BlockOnMap(int x, int y)
 {
-	printf("%d \n", x);
-	printf("%d \n", y);
+	//printf("%d \n", x);
+	//printf("%d \n", y);
 	
 	int gridposX =  ( x - 8 ) / 16;
 	int gridposY =  (y - 32) / 16;
-	App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
+	printf("%d", CanPut(gridposX, gridposY));
+	if (CanPut(gridposX, gridposY) == 1)
+	{
+		App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
+	}
+	
 	printf("%d, %d \n", gridposX, gridposY);
 	
 }
