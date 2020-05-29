@@ -54,6 +54,8 @@ bool ModuleTextures::CleanUp()
 	return true;
 }
 
+#include <iostream>
+
 SDL_Texture* const ModuleTextures::Load(const char* path)
 {
 	SDL_Texture* texture = nullptr;
@@ -61,6 +63,7 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 
 	if (surface == NULL)
 	{
+		std::cout << IMG_GetError() << std::endl;
 		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
 	}
 	else

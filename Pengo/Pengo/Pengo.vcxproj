@@ -41,6 +41,7 @@
     <ClInclude Include="Source\ModulePlayer.h" />
     <ClInclude Include="Source\ModuleRender.h" />
     <ClInclude Include="Source\ModuleTextures.h" />
+    <ClInclude Include="Source\ModuleUI.h" />
     <ClInclude Include="Source\ModuleWalls.h" />
     <ClInclude Include="Source\ModuleWindow.h" />
     <ClInclude Include="Source\p2Point.h" />
@@ -91,6 +92,7 @@
     <ClCompile Include="Source\ModulePlayer.cpp" />
     <ClCompile Include="Source\ModuleRender.cpp" />
     <ClCompile Include="Source\ModuleTextures.cpp" />
+    <ClCompile Include="Source\ModuleUI.cpp" />
     <ClCompile Include="Source\ModuleWalls.cpp" />
     <ClCompile Include="Source\ModuleWindow.cpp" />
     <ClCompile Include="Source\Particle.cpp" />

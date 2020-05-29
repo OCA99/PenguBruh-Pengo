@@ -7,6 +7,8 @@
 #include "ModuleInput.h"
 
 #include "SDL/include/SDL_render.h"
+#include <iostream>
+
 
 ModuleRender::ModuleRender(bool startEnabled) : Module(startEnabled)
 {
@@ -54,27 +56,14 @@ Update_Status ModuleRender::PreUpdate()
 
 	//Clear rendering target
 	SDL_RenderClear(renderer);
+	std::cout << "pre" << std::endl;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 Update_Status ModuleRender::Update()
 {
-	//Handle positive vertical movement
-	/*if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
-		camera.y -= cameraSpeed;
-		       
-	//Handle negative vertical movement
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-		camera.y += cameraSpeed;
 
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
-		camera.x -= cameraSpeed;
-	if (camera.x < 0) camera.x = 0;
-
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
-		camera.x += cameraSpeed;
-		*/
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -98,9 +87,13 @@ bool ModuleRender::CleanUp()
 	return true;
 }
 
+
 // Blit to screen
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, bool useCamera)
 {
+
+	std::cout << "blit" << std::endl;
+
 	bool ret = true;
 
 	SDL_Rect dstRect{ x * SCREEN_SIZE, y * SCREEN_SIZE, 0, 0 };

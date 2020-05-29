@@ -162,6 +162,9 @@
     <ClInclude Include="Source\SceneLevel16.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ModuleUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -303,6 +306,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneLevel16.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ModuleUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

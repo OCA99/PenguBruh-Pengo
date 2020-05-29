@@ -34,6 +34,7 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 #include "ModuleDebug.h"
+#include "ModuleUI.h"
 
 Application::Application()
 {
@@ -57,7 +58,7 @@ Application::Application()
 	modules[9] =	sceneMenu = new SceneMenu(false);
 	modules[10] =	fade =			new ModuleFadeToBlack(true);
 	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[12] =	render =		new ModuleRender(true);
+	modules[12] = ui = new ModuleUI(true);
 	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);	
 	//modules[13] = sceneLevel_1 = new SceneLevel1(false);	
 	modules[14] = sceneLevel_2 = new SceneLevel2(false);	
@@ -76,6 +77,8 @@ Application::Application()
 	modules[27] = sceneLevel_15 = new SceneLevel15(false);
 	modules[28] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
 	modules[29] =	debug =		  new ModuleDebug(true);
+	modules[30] = render = new ModuleRender(true);
+
 }
 
 Application::~Application()

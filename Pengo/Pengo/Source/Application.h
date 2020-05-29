@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 30
+#define NUM_MODULES 31
 
 class Module;
 class ModuleWindow;
@@ -40,6 +40,7 @@ class ModuleFadeToBlack;
 class ModuleFonts;
 class ModuleRender;
 class ModuleDebug;
+class ModuleUI;
 
 class Application
 {
@@ -105,6 +106,7 @@ public:
 
 	ModuleRender* render = nullptr;
 	ModuleDebug* debug = nullptr;
+	ModuleUI* ui = nullptr;
 
 };
 
