@@ -228,7 +228,11 @@ int ModuleDebug::CanPut(int x, int y)
 	{
 		canput = 0;
 	}
-	else if (x > 24 || y > 14 || x < 0 || y < 0)
+	else if (x > 12 || y > 14 || x < 0 || y < 0)
+	{
+		canput = 0;
+	}
+	else if ((App->player->position.x - 8) / 16 == a && (App->player->position.y - 32) / 16 == b)
 	{
 		canput = 0;
 	}
