@@ -13,9 +13,6 @@
 #include "ModuleWalls.h"
 #include "ModuleFonts.h"
 
-
-#include <stdio.h>
-
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite
@@ -359,14 +356,6 @@ Update_Status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
 
-	/*// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%7d", score);
-
-	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(58, 248, scoreFont, scoreText);
-
-	App->fonts->BlitText(150, 248, scoreFont, "this is just a font test");
-	*/
 	return Update_Status::UPDATE_CONTINUE;
 }
 

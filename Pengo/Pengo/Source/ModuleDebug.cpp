@@ -10,9 +10,6 @@
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
 #include "SDL/include/SDL.h"
-#include <stdio.h>
-
-
 
 ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled)
 {
@@ -47,15 +44,11 @@ Update_Status ModuleDebug::Update()
 		if (DEBUG_MODE == 0)
 		{
 			DEBUG_MODE = 1;
-			
-			printf("Debug Mode ON\n");
 		}
 		else
 		{
 			GMODE = 0;
 			DEBUG_MODE = 0;
-			printf("Debug Mode Off \n");
-			printf("God Mode Off \n");
 		}
 	}
 	if (App->input->keys[SDL_SCANCODE_G] == Key_State::KEY_DOWN)
@@ -65,12 +58,10 @@ Update_Status ModuleDebug::Update()
 			if (GMODE == 0)
 			{
 				GMODE = 1;
-				printf("God Mode ON\n");
 			}
 			else
 			{
 				GMODE = 0;
-				printf("God Mode Off\n");
 			}
 		}
 		
@@ -87,7 +78,6 @@ Update_Status ModuleDebug::Update()
 				{
 					App->player->lifes++;
 				}
-				printf("%d", App->player->lifes);
 			}
 
 
@@ -102,9 +92,6 @@ Update_Status ModuleDebug::Update()
 
 			if (App->input->keys[SDL_SCANCODE_C] == Key_State::KEY_DOWN)
 			{
-				printf("Choose level: ");
-
-				scanf("%d", &levelChoose);
 
 				switch (levelChoose)
 				{
@@ -241,18 +228,12 @@ int ModuleDebug::CanPut(int x, int y)
 }
 void ModuleDebug::BlockOnMap(int x, int y)
 {
-	//printf("%d \n", x);
-	//printf("%d \n", y);
-	
 	int gridposX =  ( x - 8 ) / 16;
 	int gridposY =  (y - 32) / 16;
-	printf("%d", CanPut(gridposX, gridposY));
 	if (CanPut(gridposX, gridposY) == 1)
 	{
 		App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
 	}
-	
-	printf("%d, %d \n", gridposX, gridposY);
 	
 }
 

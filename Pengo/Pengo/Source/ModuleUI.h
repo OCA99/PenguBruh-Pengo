@@ -3,6 +3,8 @@
 
 #include "Module.h"
 
+#define DYNAMIC_TEXT_LEN 5
+
 class ModuleUI : public Module
 {
 public:
@@ -23,6 +25,10 @@ public:
 	Update_Status Update() override;
 
 	Update_Status PostUpdate() override;
+
+	void intToString(char* buffer, int k);
+
+	void RenderDynamicText(char* text, int x, int y, int fontIndex, bool inverse);
 
 private:
 	int blueFontID = -1;

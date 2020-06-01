@@ -2,13 +2,15 @@
 #include "Score.h"
 
 
-Score::Score(){
-	m_score = 0;
-}
+Score::Score(bool startEnabled) : Module(startEnabled) {}
 
 Score::~Score(){}
 
-void Score::SumPoints(Score &score, int points) {
-	score.m_score += points;
+void Score::AddScore(int s) {
+	score += s;
+	if (score > 99999) score = 99999;
+}
 
+void Score::SetHighscore(int s) {
+	highscore = s;
 }

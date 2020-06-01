@@ -4,10 +4,6 @@
 #include "ModuleRender.h"
 #include "ModuleFonts.h"
 
-#include<string.h>
-#include <stdio.h>
-#include <iostream>
-
 ModuleFonts::ModuleFonts(bool isEnabled) : Module(isEnabled)
 {
 
@@ -85,12 +81,15 @@ void ModuleFonts::UnLoad(int font_id)
 	}
 }
 
+#include <iostream>
+
 void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 {
 
+	std::cout << text << std::endl;
+
 	if(text == nullptr || font_id < 0 || font_id >= MAX_FONTS || fonts[font_id].texture == nullptr)
 	{
-		std::cout << text << " " << font_id << " " << fonts[font_id].texture << std::endl;
 		LOG("Unable to render text with bmp font id %d", font_id);
 		return;
 	}
@@ -120,8 +119,6 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 		// Retrieve the position of the current character in the sprite
 		spriteRect.x = spriteRect.w * (charIndex % font->columns);
 		spriteRect.y = spriteRect.h * (charIndex / font->columns);
-
-		std::cout << "blitting" << std::endl;
 
 		App->render->Blit(font->texture, x, y, &spriteRect, 0.0f, false);
 

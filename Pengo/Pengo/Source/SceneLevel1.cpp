@@ -12,6 +12,7 @@
 #include "ModuleWalls.h"
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleUI.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : SceneLevel(startEnabled)
 {
@@ -32,6 +33,7 @@ bool SceneLevel1::Start()
 	App->blocks->Enable();
 	App->walls->Enable();
 	App->enemies->Enable();
+	App->ui->Enable();
 
 	bool ret = true;
 
@@ -195,6 +197,7 @@ bool SceneLevel1::CleanUp()
 	App->blocks->Disable();
 	App->walls->Disable();
 	App->enemies->Disable();
+	App->ui->Disable();
 
 	return true;
 }

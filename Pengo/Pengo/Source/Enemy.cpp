@@ -8,8 +8,6 @@
 #include "ModuleBlocks.h"
 #include "ModulePlayer.h"
 
-#include <stdio.h>
-
 Enemy::Enemy(int x, int y) : position(x, y)
 {
 	gridPosition.x = x;
@@ -78,7 +76,7 @@ void Enemy::SetPosition(int x, int y) {
 void Enemy::Update()
 {
 
-	if (stunned && App->player->gridPosition == gridPosition)
+	if (stunned && App->player->position == position)
 	{
 		destroy();
 		//PTS = 100pts
@@ -176,7 +174,7 @@ void Enemy::Update()
 	targetPosition.x = gridPosition.x * 16 + 8;
 	targetPosition.y = gridPosition.y * 16 + 32;
 
-	if (currentAnim != &spawnAnim) {
+	if (currentAnim != &spawnAnim && !stunned) {
 		if (position.x < targetPosition.x) {
 			position.x += speed;
 		}
@@ -219,8 +217,8 @@ void Enemy::Update()
 void Enemy::GetNextTargetTile() {
 	iPoint playerPos = App->player->gridPosition;
 
-	std::normal_distribution<double> x_distribution(playerPos.x, 5.0);
-	std::normal_distribution<double> y_distribution(playerPos.y, 5.0);
+	std::normal_distribution<double> x_distribution(playerPos.x, 3.0);
+	std::normal_distribution<double> y_distribution(playerPos.y, 3.0);
 
 	int x;
 	do {

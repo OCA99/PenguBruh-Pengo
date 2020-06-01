@@ -12,8 +12,6 @@
 #include "Block_Diamond.h"
 #include "Block_Egg.h"
 
-#include <stdio.h>
-
 ModuleBlocks::ModuleBlocks(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_BLOCKS; ++i)
@@ -193,7 +191,6 @@ void ModuleBlocks::HatchNextEgg()
 		{
 			if (blocks[i]->type == Block::Block_Type::EGG)
 			{
-				printf("lavaina");
 				Block_Egg* b = (Block_Egg*)blocks[i];
 				b->NextBlobSpawn();
 				break;

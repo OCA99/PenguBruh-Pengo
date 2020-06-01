@@ -4,8 +4,6 @@
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
 
-#include <stdio.h>
-
 Block_Egg::Block_Egg(int x, int y) : Block(x, y)
 {
 	normalAnim.GenerateAnimation({ 708,0,16,16 }, 1, 1);
@@ -47,7 +45,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x;
 		y = gridPosition.y - 1;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			printf("Telmo implements points here\n");
+			//printf("Telmo implements points here\n");
 			destroy();
 		}
 		break;
@@ -55,7 +53,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x - 1;
 		y = gridPosition.y;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			printf("Telmo implements points here\n");
+			//printf("Telmo implements points here\n");
 			destroy();
 		}
 		break;
@@ -63,7 +61,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x + 1;
 		y = gridPosition.y;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			printf("Telmo implements points here\n");
+			//printf("Telmo implements points here\n");
 			destroy();
 		}
 		break;
@@ -71,7 +69,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x;
 		y = gridPosition.y + 1;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			printf("Telmo implements points here\n");
+			//printf("Telmo implements points here\n");
 			destroy();
 		}
 		break;

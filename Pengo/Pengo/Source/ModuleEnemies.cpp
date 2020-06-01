@@ -9,9 +9,6 @@
 
 #include "Enemy.h"
 
-#include <stdio.h>
-
-
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
@@ -195,7 +192,6 @@ void ModuleEnemies::Reset() {
 				enemies[i]->SetPosition(12, 14);
 				break;
 			default:
-				printf("This should not be happening");
 				delete enemies[i];
 				enemies[i] = nullptr;
 				break;

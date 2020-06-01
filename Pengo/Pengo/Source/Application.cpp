@@ -35,6 +35,7 @@
 #include "ModuleRender.h"
 #include "ModuleDebug.h"
 #include "ModuleUI.h"
+#include "Score.h"
 
 Application::Application()
 {
@@ -58,7 +59,7 @@ Application::Application()
 	modules[9] =	sceneMenu = new SceneMenu(false);
 	modules[10] =	fade =			new ModuleFadeToBlack(true);
 	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[12] = ui = new ModuleUI(true);
+	modules[12] = ui = new ModuleUI(false);
 	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);	
 	//modules[13] = sceneLevel_1 = new SceneLevel1(false);	
 	modules[14] = sceneLevel_2 = new SceneLevel2(false);	
@@ -78,6 +79,7 @@ Application::Application()
 	modules[28] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
 	modules[29] =	debug =		  new ModuleDebug(true);
 	modules[30] = render = new ModuleRender(true);
+	modules[31] = score = new Score(true);
 
 }
 

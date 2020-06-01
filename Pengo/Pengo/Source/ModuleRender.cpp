@@ -7,8 +7,6 @@
 #include "ModuleInput.h"
 
 #include "SDL/include/SDL_render.h"
-#include <iostream>
-
 
 ModuleRender::ModuleRender(bool startEnabled) : Module(startEnabled)
 {
@@ -56,7 +54,6 @@ Update_Status ModuleRender::PreUpdate()
 
 	//Clear rendering target
 	SDL_RenderClear(renderer);
-	std::cout << "pre" << std::endl;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -91,8 +88,6 @@ bool ModuleRender::CleanUp()
 // Blit to screen
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, bool useCamera)
 {
-
-	std::cout << "blit" << std::endl;
 
 	bool ret = true;
 

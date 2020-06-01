@@ -1,18 +1,18 @@
 #pragma once
 
+#include "Module.h"
 
-class Score {
-public:
-	int m_score;
-
-private:
-	int highscore;
-	int lastscore;
+class Score : public Module {
 public:
 	//Methods
-	Score();
+	Score(bool startEnabled);
 	~Score();
 
-	void SumPoints(Score& score, int points);
-
+	void AddScore(int s);
+	void SetHighscore(int s);
+	int GetScore() { return score; };
+	int GetHighscore() { return highscore; };
+private:
+	int highscore = 0;
+	int score = 12345;
 };

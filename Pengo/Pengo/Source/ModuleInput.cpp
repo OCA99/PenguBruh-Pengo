@@ -1,5 +1,4 @@
 #include "Globals.h"
-#include <stdio.h>
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleDebug.h"
@@ -77,7 +76,6 @@ Update_Status ModuleInput::PreUpdate()
 			
 			SDL_GetMouseState(&xpos, &ypos);
 			App->debug->BlockOnMap(xpos, ypos);
-			//printf("%d %d", xpos, ypos);
 			break;
 		}
 		case(SDL_QUIT):
