@@ -42,6 +42,5 @@ Update_Status ModuleUI::Update()
 
 Update_Status ModuleUI::PostUpdate()
 {
-	
 	return Update_Status::UPDATE_CONTINUE;
 }
