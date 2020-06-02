@@ -77,12 +77,19 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 	Animation spawnAnim;
+	Animation walkUpAnim;
 	Animation walkDownAnim;
+	Animation walkLeftAnim;
+	Animation walkRightAnim;
 	Animation idleAnim;
 	Animation crushUp;
 	Animation crushDown;
 	Animation crushLeft;
 	Animation crushRight;
+	Animation destroyBUp;
+	Animation destroyBDown;
+	Animation destroyBLeft;
+	Animation destroyBRight;
 	Animation stunAnim;
 
 private:

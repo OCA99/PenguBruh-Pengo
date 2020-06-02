@@ -56,33 +56,64 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 		break;
 	}
 
-	spawnAnim.GenerateAnimation({ 0 + xoffset,128 + yoffset,96,16 }, 1, 6);
+	spawnAnim.GenerateAnimation({ 0 + xoffset, 128 + yoffset, 96, 16 }, 1, 6);
 	spawnAnim.speed = 0.04f;
 	spawnAnim.loop = false;
+	currentAnim = &spawnAnim;
 
-	idleAnim.GenerateAnimation({ 0 + xoffset,144 + yoffset,32,16 }, 1, 2);
-	idleAnim.speed = 0.05f;
-	currentAnim = &idleAnim;
+	walkUpAnim.GenerateAnimation({ 64 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkUpAnim.speed = 0.04f;
+	walkUpAnim.loop = true;
+
+	walkDownAnim.GenerateAnimation({ 0 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkDownAnim.speed = 0.04f;
+	walkDownAnim.loop = true;
+
+	walkLeftAnim.GenerateAnimation({ 32 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkLeftAnim.speed = 0.04f;
+	walkLeftAnim.loop = true;
+
+	walkRightAnim.GenerateAnimation({ 96 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkRightAnim.speed = 0.04f;
+	walkRightAnim.loop = true;
 
 	crushUp.GenerateAnimation({ 0 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushUp.speed = 0.2f;
 	crushUp.loop = false;
 
-	crushRight.GenerateAnimation({ 32 + xoffset,192 + yoffset,32,16 }, 1, 2);
+	crushRight.GenerateAnimation({ 32 + xoffset, 192 + yoffset, 32, 16 }, 1, 2);
 	crushRight.speed = 0.2f;
 	crushRight.loop = false;
 
-	crushDown.GenerateAnimation({ 48 + xoffset,192 + yoffset,32,16 }, 1, 2);
+	crushDown.GenerateAnimation({ 48 + xoffset, 192 + yoffset, 32, 16 }, 1, 2);
 	crushDown.speed = 0.2f;
 	crushDown.loop = false;
 
-	crushLeft.GenerateAnimation({ 64 + xoffset,192 + yoffset,32,16 }, 1, 2);
+	crushLeft.GenerateAnimation({ 64 + xoffset, 192 + yoffset, 32, 16 }, 1, 2);
 	crushLeft.speed = 0.2f;
 	crushLeft.loop = false;
 
-	stunAnim.GenerateAnimation({ 96 + xoffset,128 + yoffset,32,16 }, 1, 2);
+	destroyBUp.GenerateAnimation({ 64 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	destroyBUp.speed = 0.4f;
+	destroyBUp.loop = false;
+
+	destroyBDown.GenerateAnimation({ 0 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	destroyBDown.speed = 0.4f;
+	destroyBDown.loop = false;
+
+	destroyBLeft.GenerateAnimation({ 32 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	destroyBLeft.speed = 0.4f;
+	destroyBLeft.loop = false;
+
+	destroyBRight.GenerateAnimation({ 96 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	destroyBRight.speed = 0.4f;
+	destroyBRight.loop = false;
+
+	stunAnim.GenerateAnimation({ 96 + xoffset, 128 + yoffset, 32, 16 }, 1, 2);
 	stunAnim.speed = 0.05f;
 	stunAnim.loop = true;
+
+
 
 	GetNextTargetTile();
 }
@@ -118,11 +149,9 @@ void Enemy::Update()
 
 	if (!stunned)
 	{
-		currentAnim = &spawnAnim;
-
 		if (currentAnim == &spawnAnim && currentAnim->HasFinished())
 		{
-			currentAnim = &idleAnim;
+			currentAnim = &walkDownAnim;
 		}
 	}
 
@@ -342,12 +371,18 @@ void Enemy::GetNextStepToTarget() {
 		if (gridPosition.x < targetTile.x) {
 			if (blockx) {
 				App->blocks->BreakBlock(gridPosition.x + 1, gridPosition.y);
+				currentAnim = &destroyBRight;
+			} else {
+				currentAnim = &walkRightAnim;
 			}
 			gridPosition.x++;
 		}
 		else if (gridPosition.x > targetTile.x) {
 			if (blockx) {
 				App->blocks->BreakBlock(gridPosition.x - 1, gridPosition.y);
+				currentAnim = &destroyBLeft;
+			} else {
+				currentAnim = &walkLeftAnim;
 			}
 			gridPosition.x--;
 		}
@@ -360,14 +395,22 @@ void Enemy::GetNextStepToTarget() {
 		if (gridPosition.y < targetTile.y) {
 			if (blocky) {
 				App->blocks->BreakBlock(gridPosition.x, gridPosition.y + 1);
+				currentAnim = &destroyBDown;
+			} else {
+				currentAnim = &walkDownAnim;
 			}
 			gridPosition.y++;
+			
 		}
 		else if (gridPosition.y > targetTile.y) {
 			if (blocky) {
 				App->blocks->BreakBlock(gridPosition.x, gridPosition.y - 1);
+				currentAnim = &destroyBUp;
+			} else {
+				currentAnim = &walkUpAnim;
 			}
 			gridPosition.y--;
+			
 		}
 		else {
 			GetNextTargetTile();
