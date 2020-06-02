@@ -7,6 +7,8 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 
+#include <iostream>
+
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
 }
@@ -61,6 +63,8 @@ Update_Status ModuleUI::PostUpdate()
 
 	intToString(highScoreText, highScore);
 	RenderDynamicText(highScoreText, 136, 0, whiteFontID, true);
+
+	std::cout << App->player->lifes << std::endl;
 
 	if (App->player->lifes > 1) App->render->Blit(texture, 0, 10, &life.GetCurrentFrame());
 	if (App->player->lifes > 2) App->render->Blit(texture, 18, 10, &life.GetCurrentFrame());

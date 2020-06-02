@@ -63,8 +63,11 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 	spawnAnim.speed = 0.04f;
 	spawnAnim.loop = false;
 
+	currentAnim = &spawnAnim;
+
 	idleAnim.GenerateAnimation({ 0 + xoffset,144 + yoffset,32,16 }, 1, 2);
 	idleAnim.speed = 0.05f;
+	idleAnim.loop = true;
 
 	walkDownAnim.GenerateAnimation({ 0 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
 	walkDownAnim.speed = 0.05f;

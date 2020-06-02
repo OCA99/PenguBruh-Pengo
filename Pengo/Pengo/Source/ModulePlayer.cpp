@@ -138,7 +138,7 @@ Update_Status ModulePlayer::Update()
 		} else {
 			if (deadPause == 100)
 			{
-				lifes = 2;
+				lifes = 3;
 				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
 			}
 		}
