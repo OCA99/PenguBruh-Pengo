@@ -191,7 +191,7 @@ Update_Status ModulePlayer::Update()
 			lastPressed = (int)SDL_SCANCODE_0;
 		}
 
-		if (!dead) {
+		if (!dead && !pushing) {
 			switch (lastPressed) {
 			case (int)SDL_SCANCODE_A:
 				if (!moving) {
@@ -283,13 +283,19 @@ Update_Status ModulePlayer::Update()
 		moving = true;
 	}
 
+	if ((currentAnimation == &pushUpAnim || currentAnimation == &pushDownAnim || currentAnimation == &pushLeftAnim || currentAnimation == &pushRightAnim) && currentAnimation->HasFinished())
+	{
+		pushing = false;
+	}
+
 	if (!moving && currentAnimation != &pushUpAnim && currentAnimation != &pushDownAnim && currentAnimation != &pushLeftAnim && currentAnimation != &pushRightAnim && !dead) {
 		currentAnimation->running = false;
 	}
 
 	if (!dead)
 	{
-		if (!moving && (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)) {
+		if (!moving && !pushing && (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)) {
+			pushing = true;
 			if (aPressed)
 			{
 				switch (direction) {
