@@ -51,6 +51,7 @@ public:
 	iPoint gridPosition;
 
 	bool moving = false;
+	bool pushing = false;
 
 	bool dead = false;
 	bool instaloss = false;
