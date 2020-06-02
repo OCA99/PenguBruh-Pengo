@@ -8,7 +8,7 @@
 #include "ModuleBlocks.h"
 #include "ModulePlayer.h"
 
-Enemy::Enemy(int x, int y) : position(x, y)
+Enemy::Enemy(int x, int y, int color) : position(x, y)
 {
 	gridPosition.x = x;
 	gridPosition.y = y;
@@ -22,31 +22,65 @@ Enemy::Enemy(int x, int y) : position(x, y)
 	position.x = gridPosition.x * 16 + 8;
 	position.y = gridPosition.y * 16 + 32;
 
-	spawnAnim.GenerateAnimation({ 128,128,96,16 }, 1, 6);
+	int xoffset = 0;
+	int yoffset = 0;
+
+	switch (color) {
+	case 0:
+		break;
+	case 1:
+		xoffset = 128;
+		break;
+	case 2:
+		xoffset = 256;
+		break;
+	case 3:
+		xoffset = 384;
+		break;
+	case 4:
+		yoffset = 80;
+		break;
+	case 5:
+		xoffset = 128;
+		yoffset = 80;
+		break;
+	case 6:
+		xoffset = 256;
+		yoffset = 80;
+		break;
+	case 7:
+		xoffset = 384;
+		yoffset = 80;
+		break;
+	default:
+		break;
+	}
+
+	spawnAnim.GenerateAnimation({ 0 + xoffset,128 + yoffset,96,16 }, 1, 6);
 	spawnAnim.speed = 0.04f;
 	spawnAnim.loop = false;
 
-	idleAnim.GenerateAnimation({ 128,144,32,16 }, 1, 2);
+	idleAnim.GenerateAnimation({ 0 + xoffset,144 + yoffset,32,16 }, 1, 2);
 	idleAnim.speed = 0.05f;
 	currentAnim = &idleAnim;
 
-	crushUp.GenerateAnimation({ 128,192,32,16 }, 1, 2);
+	crushUp.GenerateAnimation({ 0 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushUp.speed = 0.2f;
 	crushUp.loop = false;
 
-	crushRight.GenerateAnimation({ 160,192,32,16 }, 1, 2);
+	crushRight.GenerateAnimation({ 32 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushRight.speed = 0.2f;
 	crushRight.loop = false;
 
-	crushDown.GenerateAnimation({ 176,192,32,16 }, 1, 2);
+	crushDown.GenerateAnimation({ 48 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushDown.speed = 0.2f;
 	crushDown.loop = false;
 
-	crushLeft.GenerateAnimation({ 192,192,32,16 }, 1, 2);
+	crushLeft.GenerateAnimation({ 64 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushLeft.speed = 0.2f;
 	crushLeft.loop = false;
 
-	stunAnim.GenerateAnimation({ 224,128,32,16 }, 1, 2);
+	stunAnim.GenerateAnimation({ 96 + xoffset,128 + yoffset,32,16 }, 1, 2);
 	stunAnim.speed = 0.05f;
 	stunAnim.loop = true;
 

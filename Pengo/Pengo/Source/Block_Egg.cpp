@@ -4,11 +4,12 @@
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
 
-Block_Egg::Block_Egg(int x, int y) : Block(x, y)
+Block_Egg::Block_Egg(int x, int y, int color) : Block(x, y)
 {
 	normalAnim.GenerateAnimation({ 708,0,16,16 }, 1, 1);
 
-	initAnim.GenerateAnimation({ 708,0,32,16 }, 1, 2);
+	initAnim.PushBack({ 708, 0, 16, 16 });
+	initAnim.PushBack({ 724 + color * 16, 0, 16, 16 });
 	initAnim.speed = 0.05f;
 	initAnim.loop = true;
 

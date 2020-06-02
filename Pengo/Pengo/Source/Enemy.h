@@ -16,7 +16,7 @@ class Enemy
 public:
 	// Constructor
 	// Saves the spawn position for later movement calculations
-	Enemy(int x, int y);
+	Enemy(int x, int y, int color);
 
 	// Destructor
 	virtual ~Enemy();

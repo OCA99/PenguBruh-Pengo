@@ -103,7 +103,7 @@ void ModuleBlocks::AddBlock(Block_Type type, int x, int y)
 					blocks[i] = new Block_Diamond(x, y);
 					break;
 				case Block_Type::EGG:
-					blocks[i] = new Block_Egg(x, y);
+					blocks[i] = new Block_Egg(x, y, eggColor);
 					break;
 			}
 			blocks[i]->texture = texture;

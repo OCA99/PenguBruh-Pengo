@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModuleBlocks.h"
 
+
 #include "Enemy.h"
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
@@ -20,11 +21,21 @@ ModuleEnemies::~ModuleEnemies()
 	
 }
 
+#include <iostream>
+
 bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("assets/sprites/pengos.png");
 	fx_once = true;
 	winCounter = 0;
+	
+	std::random_device generator;
+
+	std::uniform_int_distribution<int> distribution(0, 7);
+
+	color = distribution(generator);
+
+	std::cout << "Color: " << color << std::endl;
 
 	return true;
 }
@@ -96,7 +107,7 @@ void ModuleEnemies::AddEnemy(int x, int y)
 	{
 		if (enemies[i] == nullptr)
 		{
-			enemies[i] = new Enemy(x, y);
+			enemies[i] = new Enemy(x, y, color);
 			enemies[i]->texture = texture;
 			break;
 		}
@@ -166,6 +177,7 @@ void ModuleEnemies::Reset() {
 	int count = 0;
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (enemies[i] != nullptr) {
+			enemies[i]->stunned = false;
 			switch (count) {
 			case 0:
 				if (App->blocks->BlockInGridPosition(0, 0)) {
@@ -199,4 +211,9 @@ void ModuleEnemies::Reset() {
 			count++;
 		}
 	}
+}
+
+void ModuleEnemies::NextColor() {
+	color++;
+	color = color % 7;
 }

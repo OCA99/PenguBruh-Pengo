@@ -51,6 +51,8 @@ public:
 
 	void BreakBlock(int x, int y);
 
+	void SetEggColor(int color) { eggColor = color; };
+
 private:
 
 	// All spawned enemies in the scene
@@ -58,6 +60,8 @@ private:
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
+
+	int eggColor = 0;
 };
 
 #endif // __MODULE_ENEMIES_H__

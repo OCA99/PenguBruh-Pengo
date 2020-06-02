@@ -35,6 +35,10 @@ bool SceneLevel1::Start()
 	App->enemies->Enable();
 	App->ui->Enable();
 
+	App->enemies->NextColor();
+	int color = App->enemies->GetColor();
+	App->blocks->SetEggColor(color);
+
 	bool ret = true;
 
 	win = false;

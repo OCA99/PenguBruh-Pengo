@@ -110,6 +110,12 @@ public:
 	ModuleUI* ui = nullptr;
 	Score* score = nullptr;
 
+private:
+	const int FPS = 60;
+	const int frameDelay = 1000 / FPS;
+
+	UINT64 frameStart;
+	int frameTime;
 };
 
 // Global var made extern for Application ---

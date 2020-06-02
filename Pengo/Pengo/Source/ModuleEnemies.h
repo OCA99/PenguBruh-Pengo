@@ -3,6 +3,9 @@
 
 #include "Module.h"
 
+#include <random>
+
+
 #define MAX_ENEMIES 100
 
 class Enemy;
@@ -54,6 +57,10 @@ public:
 	//This wil determine wether or not there are enemies on screen
 	int winCounter;
 
+	void NextColor();
+
+	int GetColor() { return color; };
+
 private:
 
 
@@ -64,6 +71,8 @@ private:
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
+
+	char color = 0;
 };
 
 #endif // __MODULE_ENEMIES_H__
