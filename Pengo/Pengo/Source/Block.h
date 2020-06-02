@@ -29,6 +29,8 @@ public:
 
 	virtual void destroy();
 
+	bool isMoving() { return moving; };
+
 public:
 	// The current position in the world
 	iPoint position;
@@ -68,6 +70,9 @@ protected:
 private:
 	int speed = 2;
 	bool moving = false;
+	int pushedEnemies = 0;
+
+	void AddScore(int& pushedEnemies);
 };
 
 #endif // __Block_H__

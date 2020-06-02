@@ -3,7 +3,11 @@
 
 #include "Module.h"
 
+#include "Animation.h"
+
 #define DYNAMIC_TEXT_LEN 5
+
+struct SDL_Texture;
 
 class ModuleUI : public Module
 {
@@ -33,6 +37,9 @@ public:
 private:
 	int blueFontID = -1;
 	int whiteFontID = -1;
+
+	Animation life;
+	SDL_Texture* texture = nullptr;
 };
 
 #endif

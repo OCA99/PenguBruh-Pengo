@@ -154,7 +154,7 @@ bool ModuleBlocks::DestructibleByEnemy(int x, int y) {
 		if (blocks[i] != nullptr)
 		{
 			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) {
-				return blocks[i]->type == Block::Block_Type::NORMAL;
+				return blocks[i]->type == Block::Block_Type::NORMAL && !blocks[i]->isMoving();
 			}
 		}
 	}

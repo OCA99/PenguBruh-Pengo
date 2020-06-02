@@ -8,6 +8,10 @@
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
 
+#include "Score.h"
+
+#include <iostream>
+
 Block::Block(int x, int y) : position(x, y)
 {
 	gridPosition.x = x;
@@ -35,10 +39,13 @@ void Block::Update()
 		case Directions::Up:
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
-			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			if (App->enemies->EnemyInGridPosition(x, y)) {
+				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
 				App->audio->PlayFx(2, 0);
+				AddScore(pushedEnemies);
 			}
 			else {
 				gridPosition.y -= 1;
@@ -47,10 +54,13 @@ void Block::Update()
 		case Directions::Down:
 			x = gridPosition.x;
 			y = gridPosition.y + 1;
-			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			if (App->enemies->EnemyInGridPosition(x, y)) {
+				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
 				App->audio->PlayFx(2, 0);
+				AddScore(pushedEnemies);
 			}
 			else {
 				gridPosition.y += 1;
@@ -59,10 +69,13 @@ void Block::Update()
 		case Directions::Left:
 			x = gridPosition.x - 1;
 			y = gridPosition.y;
-			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			if (App->enemies->EnemyInGridPosition(x, y)) {
+				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
 				App->audio->PlayFx(2, 0);
+				AddScore(pushedEnemies);
 			}
 			else {
 				gridPosition.x -= 1;
@@ -71,10 +84,13 @@ void Block::Update()
 		case Directions::Right:
 			x = gridPosition.x + 1;
 			y = gridPosition.y;
-			if (App->enemies->EnemyInGridPosition(x, y)) App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			if (App->enemies->EnemyInGridPosition(x, y)) {
+				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
+			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
 				direction = Directions::Stopped;
 				App->audio->PlayFx(2, 0);
+				AddScore(pushedEnemies);
 			}
 			else {
 				gridPosition.x += 1;
@@ -170,4 +186,24 @@ void Block::Pushed(int fromx, int fromy) {
 void Block::destroy() {
 	
 	SetToDelete();
+}
+
+void Block::AddScore(int& pushedEnemies) {
+	switch (pushedEnemies) {
+	case 1:
+		App->score->AddScore(400);
+		break;
+	case 2:
+		App->score->AddScore(1600);
+		break;
+	case 3:
+		App->score->AddScore(3200);
+		break;
+	case 4:
+		App->score->AddScore(6400);
+		break;
+	default:
+		break;
+	}
+	pushedEnemies = 0;
 }

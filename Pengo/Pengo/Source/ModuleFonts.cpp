@@ -86,7 +86,6 @@ void ModuleFonts::UnLoad(int font_id)
 void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 {
 
-	std::cout << text << std::endl;
 
 	if(text == nullptr || font_id < 0 || font_id >= MAX_FONTS || fonts[font_id].texture == nullptr)
 	{

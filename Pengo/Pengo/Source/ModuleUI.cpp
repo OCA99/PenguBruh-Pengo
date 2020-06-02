@@ -3,8 +3,9 @@
 #include "Application.h"
 #include "ModuleFonts.h"
 #include "Score.h"
-
-#include "SDL/include/SDL_render.h"
+#include "ModuleTextures.h"
+#include "ModuleRender.h"
+#include "ModulePlayer.h"
 
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
@@ -23,6 +24,10 @@ bool ModuleUI::Start() {
 	char lookupTable[] = { "0123456789.,\"!'-©ABCDEFGHIJKLMNOPQRSTUVWXYZ.    " };
 	whiteFontID = App->fonts->Load("assets/sprites/Fonts/white.png", lookupTable, 3);
 	blueFontID = App->fonts->Load("assets/sprites/Fonts/blue.png", lookupTable, 3);
+
+	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
+
+	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
 	return true;
 }
 
@@ -40,8 +45,6 @@ Update_Status ModuleUI::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-#include <iostream>
-
 Update_Status ModuleUI::PostUpdate()
 {
 	App->fonts->BlitText(8, 0, blueFontID, "1P");
@@ -50,6 +53,18 @@ Update_Status ModuleUI::PostUpdate()
 
 	intToString(scoreText, score);
 	RenderDynamicText(scoreText, 64, 0, whiteFontID, true);
+
+	App->fonts->BlitText(80, 0, blueFontID, "HI");
+
+	int highScore = App->score->GetHighscore();
+	char highScoreText[DYNAMIC_TEXT_LEN + 1];
+
+	intToString(highScoreText, highScore);
+	RenderDynamicText(highScoreText, 136, 0, whiteFontID, true);
+
+	if (App->player->lifes > 1) App->render->Blit(texture, 0, 10, &life.GetCurrentFrame());
+	if (App->player->lifes > 2) App->render->Blit(texture, 18, 10, &life.GetCurrentFrame());
+	if (App->player->lifes > 3) App->render->Blit(texture, 36, 10, &life.GetCurrentFrame());
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -71,5 +86,14 @@ void ModuleUI::intToString(char* buffer, int k) {
 }
 
 void ModuleUI::RenderDynamicText(char* text, int x, int y, int fontIndex, bool inverse) {
-	App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - 1) * 9 : 0), y, fontIndex, text);
+	int i = 0;
+	for (; i < DYNAMIC_TEXT_LEN; i++) {
+		if (text[i] != '0') break;
+	}
+	if (i == DYNAMIC_TEXT_LEN) {
+		App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - i) * 9 : 0), y, fontIndex, "0");
+	}
+	else {
+		App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - 1 - i) * 9 : 0), y, fontIndex, text + i);
+	}
 }

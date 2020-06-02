@@ -7,6 +7,7 @@
 #include <random>
 #include <stdlib.h> // used for random
 #include <time.h> // used for random
+#include <math.h>
 
 struct SDL_Texture;
 struct Collider;
@@ -63,6 +64,9 @@ public:
 	iPoint targetPosition;
 	iPoint targetTile;
 
+	float xpositionfraction = 0;
+	float ypositionfraction = 0;
+
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
 
@@ -72,22 +76,33 @@ public:
 	void destroy();
 
 	bool stunned = false;
+	bool pushed = false;
 
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 	Animation spawnAnim;
-	Animation walkDownAnim;
 	Animation idleAnim;
+	Animation walkUpAnim;
+	Animation walkDownAnim;
+	Animation walkLeftAnim;
+	Animation walkRightAnim;
 	Animation crushUp;
 	Animation crushDown;
 	Animation crushLeft;
 	Animation crushRight;
+	Animation breakUpAnim;
+	Animation breakDownAnim;
+	Animation breakLeftAnim;
+	Animation breakRightAnim;
 	Animation stunAnim;
 
 private:
-	int speed = 1;
+	int pushedSpeed = 2;
+	float speed = 0.7f;
 	bool moving = false;
+	bool crushed = false;
+	bool breakingBlock = false;
 	std::random_device generator;
 
 	float ABS(float x) {

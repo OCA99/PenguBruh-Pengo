@@ -57,9 +57,9 @@ Application::Application()
 	modules[8] =	player = new ModulePlayer(false);	//Player starts disabled
 	//modules[9] =	collisions =	new ModuleCollisions(true);
 	modules[9] =	sceneMenu = new SceneMenu(false);
-	modules[10] =	fade =			new ModuleFadeToBlack(true);
+	modules[12] =	fade =			new ModuleFadeToBlack(true);
 	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[12] = ui = new ModuleUI(false);
+	modules[10] = ui = new ModuleUI(false);
 	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);	
 	//modules[13] = sceneLevel_1 = new SceneLevel1(false);	
 	modules[14] = sceneLevel_2 = new SceneLevel2(false);	

@@ -45,7 +45,7 @@ public:
 
 	bool EnemyInGridPosition(int x, int y);
 
-	void PushEnemy(int fromx, int fromy, int x, int y);
+	int PushEnemy(int fromx, int fromy, int x, int y);
 
 	bool VictoryCheck(bool win);
 

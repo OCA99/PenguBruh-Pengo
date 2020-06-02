@@ -13,6 +13,6 @@ public:
 	int GetScore() { return score; };
 	int GetHighscore() { return highscore; };
 private:
-	int highscore = 0;
-	int score = 12345;
+	int highscore = 999;
+	int score = 0;
 };

@@ -7,6 +7,9 @@
 #include "ModuleRender.h"
 #include "ModuleBlocks.h"
 #include "ModulePlayer.h"
+#include "Score.h"
+
+#include <iostream>
 
 Enemy::Enemy(int x, int y, int color) : position(x, y)
 {
@@ -62,7 +65,38 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 
 	idleAnim.GenerateAnimation({ 0 + xoffset,144 + yoffset,32,16 }, 1, 2);
 	idleAnim.speed = 0.05f;
-	currentAnim = &idleAnim;
+
+	walkDownAnim.GenerateAnimation({ 0 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkDownAnim.speed = 0.05f;
+	walkDownAnim.loop = true;
+
+	walkUpAnim.GenerateAnimation({ 64 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkUpAnim.speed = 0.05f;
+	walkUpAnim.loop = true;
+
+	walkLeftAnim.GenerateAnimation({ 32 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkLeftAnim.speed = 0.05f;
+	walkLeftAnim.loop = true;
+
+	walkRightAnim.GenerateAnimation({ 96 + xoffset, 144 + yoffset, 32, 16 }, 1, 2);
+	walkRightAnim.speed = 0.05f;
+	walkRightAnim.loop = true;
+
+	breakDownAnim.GenerateAnimation({ 0 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	breakDownAnim.speed = 0.13f;
+	breakDownAnim.loop = true;
+
+	breakUpAnim.GenerateAnimation({ 64 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	breakUpAnim.speed = 0.13f;
+	breakUpAnim.loop = true;
+
+	breakLeftAnim.GenerateAnimation({ 32 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	breakLeftAnim.speed = 0.13f;
+	breakLeftAnim.loop = true;
+
+	breakRightAnim.GenerateAnimation({ 96 + xoffset, 160 + yoffset, 32, 16 }, 1, 2);
+	breakRightAnim.speed = 0.13f;
+	breakRightAnim.loop = true;
 
 	crushUp.GenerateAnimation({ 0 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushUp.speed = 0.2f;
@@ -89,8 +123,6 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 
 Enemy::~Enemy()
 {
-	/*if (collider != nullptr)
-		collider->pendingToDelete = true;*/
 }
 
 void Enemy::SetPosition(int x, int y) {
@@ -113,19 +145,13 @@ void Enemy::Update()
 	if (stunned && App->player->position == position)
 	{
 		destroy();
-		//PTS = 100pts
+		App->score->AddScore(100);
 	}
 
-	if (!stunned)
+	if (currentAnim == &spawnAnim && currentAnim->HasFinished())
 	{
-		currentAnim = &spawnAnim;
-
-		if (currentAnim == &spawnAnim && currentAnim->HasFinished())
-		{
-			currentAnim = &idleAnim;
-		}
+		currentAnim = &idleAnim;
 	}
-
 
 	if (!moving) {
 
@@ -139,6 +165,7 @@ void Enemy::Update()
 			if (App->blocks->BlockInGridPosition(x, y) || y == -1) {
 				currentAnim = &crushUp;
 				App->audio->PlayFx(13, 0);
+				crushed = true;
 			}
 			else {
 				gridPosition.y -= 1;
@@ -151,6 +178,7 @@ void Enemy::Update()
 			if (App->blocks->BlockInGridPosition(x, y) || y == 15) {
 				currentAnim = &crushDown;
 				App->audio->PlayFx(13, 0);
+				crushed = true;
 			}
 			else {
 				gridPosition.y += 1;
@@ -163,6 +191,7 @@ void Enemy::Update()
 			if (App->blocks->BlockInGridPosition(x, y) || x == -1) {
 				currentAnim = &crushLeft;
 				App->audio->PlayFx(13, 0);
+				crushed = true;
 			}
 			else {
 				gridPosition.x -= 1;
@@ -175,6 +204,7 @@ void Enemy::Update()
 			if (App->blocks->BlockInGridPosition(x, y) || x == 13) {
 				currentAnim = &crushRight;
 				App->audio->PlayFx(13, 0);
+				crushed = true;
 			}
 			else {
 				gridPosition.x += 1;
@@ -208,19 +238,31 @@ void Enemy::Update()
 	targetPosition.x = gridPosition.x * 16 + 8;
 	targetPosition.y = gridPosition.y * 16 + 32;
 
-	if (currentAnim != &spawnAnim && !stunned) {
+	if (currentAnim != &spawnAnim && !stunned && !crushed) {
 		if (position.x < targetPosition.x) {
-			position.x += speed;
+			if (!breakingBlock) currentAnim = &walkRightAnim;
+			xpositionfraction += (pushed ? pushedSpeed : speed);
+			position.x += xpositionfraction;
+			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
 		else if (position.x > targetPosition.x) {
-			position.x -= speed;
+			if (!breakingBlock) currentAnim = &walkLeftAnim;
+			xpositionfraction -= (pushed ? pushedSpeed : speed);
+			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
+			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
 
 		if (position.y < targetPosition.y) {
-			position.y += speed;
+			if (!breakingBlock) currentAnim = &walkDownAnim;
+			ypositionfraction += (pushed ? pushedSpeed : speed);
+			position.y += ypositionfraction;
+			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
 		}
 		else if (position.y > targetPosition.y) {
-			position.y -= speed;
+			if (!breakingBlock) currentAnim = &walkUpAnim;
+			ypositionfraction -= (pushed ? pushedSpeed : speed);
+			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
+			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
 		}
 	}
 
@@ -228,20 +270,20 @@ void Enemy::Update()
 	{
 		App->blocks->HatchNextEgg();
 		destroy();
-		//Score Counter
-		//1 enemie counts 400pts
-		//2 enemies with one block = pts 1600
-		//3 =3200pts
-		//4 = 6400pts
 	}
 
-	if (gridPosition == targetTile) {
+	if ((currentAnim == &breakDownAnim || currentAnim == &breakUpAnim || currentAnim == &breakLeftAnim || currentAnim == &breakRightAnim) && currentAnim->loopCount > 1)
+	{
+		breakingBlock = false;
+	}
+
+	if (gridPosition == targetTile && !pushed) {
 		GetNextTargetTile();
 	}
 
-	if (position == targetPosition && currentAnim != &spawnAnim) {
-		GetNextStepToTarget();
+	if (position == targetPosition && currentAnim != &spawnAnim && !pushed) {
 		moving = false;
+		GetNextStepToTarget();
 	}
 	else {
 		moving = true;
@@ -249,6 +291,7 @@ void Enemy::Update()
 }
 
 void Enemy::GetNextTargetTile() {
+
 	iPoint playerPos = App->player->gridPosition;
 
 	std::normal_distribution<double> x_distribution(playerPos.x, 3.0);
@@ -262,7 +305,7 @@ void Enemy::GetNextTargetTile() {
 	int y;
 	do {
 		y = y_distribution(generator);
-	} while (y > 12 || y < 0);
+	} while (y > 14 || y < 0);
 
 	targetTile = iPoint(x, y);
 }
@@ -342,12 +385,18 @@ void Enemy::GetNextStepToTarget() {
 		if (gridPosition.x < targetTile.x) {
 			if (blockx) {
 				App->blocks->BreakBlock(gridPosition.x + 1, gridPosition.y);
+				breakingBlock = true;
+				currentAnim = &breakRightAnim;
+				currentAnim->Reset();
 			}
 			gridPosition.x++;
 		}
 		else if (gridPosition.x > targetTile.x) {
 			if (blockx) {
 				App->blocks->BreakBlock(gridPosition.x - 1, gridPosition.y);
+				breakingBlock = true;
+				currentAnim = &breakLeftAnim;
+				currentAnim->Reset();
 			}
 			gridPosition.x--;
 		}
@@ -360,12 +409,18 @@ void Enemy::GetNextStepToTarget() {
 		if (gridPosition.y < targetTile.y) {
 			if (blocky) {
 				App->blocks->BreakBlock(gridPosition.x, gridPosition.y + 1);
+				breakingBlock = true;
+				currentAnim = &breakDownAnim;
+				currentAnim->Reset();
 			}
 			gridPosition.y++;
 		}
 		else if (gridPosition.y > targetTile.y) {
 			if (blocky) {
 				App->blocks->BreakBlock(gridPosition.x, gridPosition.y - 1);
+				breakingBlock = true;
+				currentAnim = &breakUpAnim;
+				currentAnim->Reset();
 			}
 			gridPosition.y--;
 		}
@@ -399,6 +454,8 @@ void Enemy::Pushed(int fromx, int fromy) {
 		direction = Directions::CrushUp;
 	}
 
+	moving = false;
+	pushed = true;
 }
 
 void Enemy::WallStunned(int wallID)
@@ -412,6 +469,8 @@ void Enemy::WallStunned(int wallID)
 			{
 				stunned = true;
 				currentAnim = &stunAnim;
+				currentAnim->Reset();
+
 			}
 		}
 		break;
@@ -422,6 +481,7 @@ void Enemy::WallStunned(int wallID)
 			{
 				stunned = true;
 				currentAnim = &stunAnim;
+				currentAnim->Reset();
 			}
 		}
 		break;
@@ -432,6 +492,7 @@ void Enemy::WallStunned(int wallID)
 			{
 				stunned = true;
 				currentAnim = &stunAnim;
+				currentAnim->Reset();
 			}
 		}
 		break;
@@ -442,6 +503,7 @@ void Enemy::WallStunned(int wallID)
 			{
 				stunned = true;
 				currentAnim = &stunAnim;
+				currentAnim->Reset();
 			}
 		}
 		break;

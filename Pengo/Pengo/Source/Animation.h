@@ -14,10 +14,10 @@ public:
 	bool pingpong = false;
 	bool running = true;
 	float currentFrame = 0.0f;
+	int loopCount = 0;
 
 private:
 	int totalFrames = 0;
-	int loopCount = 0;
 	int pingpongDirection = 1;
 
 public:

@@ -21,8 +21,6 @@ ModuleEnemies::~ModuleEnemies()
 	
 }
 
-#include <iostream>
-
 bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("assets/sprites/pengos.png");
@@ -34,8 +32,6 @@ bool ModuleEnemies::Start()
 	std::uniform_int_distribution<int> distribution(0, 7);
 
 	color = distribution(generator);
-
-	std::cout << "Color: " << color << std::endl;
 
 	return true;
 }
@@ -125,16 +121,19 @@ bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
 	return false;
 }
 
-void ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
+int ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
+	int pushedEnemies = 0;
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
 			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y) {
+				if (!enemies[i]->pushed) pushedEnemies++;
 				enemies[i]->Pushed(fromx, fromy);
 			}
 		}
 	}
+	return pushedEnemies;
 }
 
 bool ModuleEnemies::VictoryCheck(bool win)
