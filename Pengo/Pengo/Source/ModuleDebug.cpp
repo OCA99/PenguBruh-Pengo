@@ -44,11 +44,13 @@ Update_Status ModuleDebug::Update()
 		if (DEBUG_MODE == 0)
 		{
 			DEBUG_MODE = 1;
+			printf("DEBUG ON");
 		}
 		else
 		{
 			GMODE = 0;
 			DEBUG_MODE = 0;
+			printf("DEBUG OFF");
 		}
 	}
 	if (App->input->keys[SDL_SCANCODE_G] == Key_State::KEY_DOWN)
@@ -58,6 +60,7 @@ Update_Status ModuleDebug::Update()
 			if (GMODE == 0)
 			{
 				GMODE = 1;
+				printf("GOD MODE ON");
 			}
 			else
 			{
@@ -235,6 +238,16 @@ void ModuleDebug::BlockOnMap(int x, int y)
 		App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
 	}
 	
+}
+void ModuleDebug::SnoBeeOnMap(int x, int y)
+{
+	int gridposX = (x - 8) / 16;
+	int gridposY = (y - 32) / 16;
+	if (CanPut(gridposX, gridposY) == 1)
+	{
+		App->enemies->AddEnemy(gridposX, gridposY);
+	}
+
 }
 
 void ModuleDebug::Disable()

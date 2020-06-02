@@ -40,6 +40,7 @@ public:
 	void Disable();
 
 	void BlockOnMap(int x, int y);
+	void SnoBeeOnMap(int x, int y);
 	
 	inline bool IsEnabled() const { return isEnabled; }
 

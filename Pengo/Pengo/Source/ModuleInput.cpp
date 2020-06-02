@@ -3,6 +3,7 @@
 #include "ModuleInput.h"
 #include "ModuleDebug.h"
 #include "SDL/include/SDL.h"
+#include <stdio.h>
 
 ModuleInput::ModuleInput(bool startEnabled) : Module(startEnabled)
 {
@@ -75,7 +76,17 @@ Update_Status ModuleInput::PreUpdate()
 		{
 			
 			SDL_GetMouseState(&xpos, &ypos);
-			App->debug->BlockOnMap(xpos, ypos);
+			
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				
+				App->debug->BlockOnMap(xpos, ypos);
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				
+				App->debug->SnoBeeOnMap(xpos, ypos);
+			}
 			break;
 		}
 		case(SDL_QUIT):
@@ -90,6 +101,8 @@ Update_Status ModuleInput::PreUpdate()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
+
+
 
 bool ModuleInput::CleanUp()
 {
