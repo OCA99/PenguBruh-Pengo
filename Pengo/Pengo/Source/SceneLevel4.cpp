@@ -70,7 +70,6 @@ bool SceneLevel4::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 2, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 2);
-	App->blocks->AddBlock(Block_Type::NORMAL, 3, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 4);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 6);
@@ -109,12 +108,9 @@ bool SceneLevel4::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 7);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 3);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 8);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 10);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 11);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 12);

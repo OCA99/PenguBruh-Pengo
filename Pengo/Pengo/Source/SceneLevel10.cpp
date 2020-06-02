@@ -44,16 +44,8 @@ bool SceneLevel10::Start()
 	App->enemies->AddEnemy(9, 1);
 	App->enemies->AddEnemy(11, 7);
 
-	//These are the enemies that will spawn inside a block (right coordinates)
-	//App->enemies->AddEnemy(3, 3);
-	//App->enemies->AddEnemy(3, 13);
-	//App->enemies->AddEnemy(9, 5);
-	//App->enemies->AddEnemy(9, 9);
-	//App->enemies->AddEnemy(11, 5);
-	//App->enemies->AddEnemy(11, 13);
-
-	App->blocks->AddBlock(Block_Type::EGG, 3, 14);
 	App->blocks->AddBlock(Block_Type::EGG, 3, 13);
+	App->blocks->AddBlock(Block_Type::EGG, 3, 14);
 	App->blocks->AddBlock(Block_Type::EGG, 9, 5);
 	App->blocks->AddBlock(Block_Type::EGG, 9, 9);
 	App->blocks->AddBlock(Block_Type::EGG, 11, 5);
@@ -88,8 +80,6 @@ bool SceneLevel10::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 8);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 3, 10);
-	App->blocks->AddBlock(Block_Type::NORMAL, 3, 13);
-	App->blocks->AddBlock(Block_Type::NORMAL, 3, 14);
 	App->blocks->AddBlock(Block_Type::NORMAL, 4, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 4, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 4, 7);
@@ -120,10 +110,8 @@ bool SceneLevel10::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 0);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 4);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 8);
-	App->blocks->AddBlock(Block_Type::NORMAL, 9, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 11);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 12);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 13);
@@ -132,14 +120,12 @@ bool SceneLevel10::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 1);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 2);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 3);
-	App->blocks->AddBlock(Block_Type::NORMAL, 11, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 6);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 8);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 9);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 10);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 11);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 12);
-	App->blocks->AddBlock(Block_Type::NORMAL, 11, 13);
 	App->blocks->AddBlock(Block_Type::NORMAL, 11, 14);
 	App->blocks->AddBlock(Block_Type::NORMAL, 12, 3);
 	
