@@ -61,6 +61,8 @@ public:
 
 	int GetColor() { return color; };
 
+	void Suicide();
+
 private:
 
 

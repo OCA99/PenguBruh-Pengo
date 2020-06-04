@@ -5,7 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 //#include "ModuleCollisions.h"
-//#include "ModuleEnemies.h"
+#include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 
 SceneLevel::SceneLevel(bool startEnabled) : Module(startEnabled)
@@ -37,9 +37,11 @@ bool SceneLevel::Start()
 
 Update_Status SceneLevel::Update()
 {
+	timer += 1.0f / 60.0f;
+	if (timer > 5.0f) {
+		App->enemies->Suicide();
+	}
 	return Update_Status::UPDATE_CONTINUE;
-	timer += 1 / 60;
-	std::cout << timer << std::endl;
 }
 
 // Update: draw background

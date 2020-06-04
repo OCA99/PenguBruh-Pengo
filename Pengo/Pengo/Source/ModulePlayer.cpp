@@ -102,6 +102,8 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
+#include <iostream>
+
 Update_Status ModulePlayer::Update()
 {
 	GamePad& pad = App->input->pads[0];
@@ -125,9 +127,11 @@ Update_Status ModulePlayer::Update()
 
 	//GODMODE
 	
+	std::cout << lifes << std::endl;
+
 	if (App->debug->GMODE == 0)
 	{
-		if (lifes != 0)
+		if (lifes - 1 != 0)
 		{
 			if (deadPause == 100)
 			{

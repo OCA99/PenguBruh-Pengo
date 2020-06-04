@@ -107,6 +107,8 @@ private:
 	bool breakingBlock = false;
 	std::random_device generator;
 	bool suicide = false;
+	bool suicideToWall = false;
+	bool suicideToCorner = false;
 
 	float ABS(float x) {
 		return x > 0 ? x : -x;

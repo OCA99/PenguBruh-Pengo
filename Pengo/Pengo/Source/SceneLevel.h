@@ -12,7 +12,7 @@ public:
 	SceneLevel(bool startEnabled);
 	~SceneLevel();
 	virtual bool Start();
-	virtual Update_Status Update();
+	Update_Status Update();
 	virtual Update_Status PostUpdate();
 	virtual bool CleanUp();
 

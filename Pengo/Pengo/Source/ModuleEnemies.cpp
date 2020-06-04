@@ -216,3 +216,13 @@ void ModuleEnemies::NextColor() {
 	color++;
 	color = color % 7;
 }
+
+void ModuleEnemies::Suicide() {
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			//enemies[i]->Suicide();
+		}
+	}
+}

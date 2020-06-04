@@ -254,6 +254,9 @@ void Enemy::Update()
 			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
 			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
+		else {
+			if (!breakingBlock && suicide) currentAnim = &idleAnim;
+		}
 
 		if (position.y < targetPosition.y) {
 			if (!breakingBlock) currentAnim = &walkDownAnim;
@@ -266,6 +269,9 @@ void Enemy::Update()
 			ypositionfraction -= (pushed ? pushedSpeed : speed);
 			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
 			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
+		}
+		else {
+			if (!breakingBlock && suicide) currentAnim = &idleAnim;
 		}
 	}
 
@@ -280,8 +286,74 @@ void Enemy::Update()
 		breakingBlock = false;
 	}
 
-	if (gridPosition == targetTile && !pushed) {
+	if (gridPosition == targetTile && !pushed && !suicide && !breakingBlock) {
 		GetNextTargetTile();
+	}
+
+	if (suicide) {
+		if (!suicideToWall && !suicideToCorner) {
+			std::cout << "first" << std::endl;
+			int dstLeft, dstRight, dstUp, dstDown;
+
+			dstLeft = gridPosition.x;
+			int closest = dstLeft;
+			dstRight = 12 - gridPosition.x;
+			closest = (closest < dstRight ? closest : dstRight);
+			dstUp = gridPosition.y;
+			closest = (closest < dstUp ? closest : dstUp);
+			dstDown = 14 - gridPosition.y;
+			closest = (closest < dstDown ? closest : dstDown);
+
+			if (closest == dstLeft) {
+				targetTile.x = 0;
+				targetTile.y = gridPosition.y;
+			}
+			else if (closest == dstRight) {
+				targetTile.x = 12;
+				targetTile.y = gridPosition.y;
+			}
+			else if (closest == dstUp) {
+				targetTile.x = gridPosition.x;
+				targetTile.y = 0;
+			}
+			else if (closest == dstDown) {
+				targetTile.x = gridPosition.x;
+				targetTile.y = 14;
+			}
+
+			suicideToWall = true;
+		}
+		else if (suicideToWall && !suicideToCorner) {
+			if (gridPosition.x == 0) {
+				suicideToWall = false;
+				suicideToCorner = true;
+				targetTile.y = 0;
+			}
+			if (gridPosition.x == 12) {
+				suicideToWall = false;
+				suicideToCorner = true;
+				targetTile.y = 14;
+			}
+			if (gridPosition.y == 0) {
+				suicideToWall = false;
+				suicideToCorner = true;
+				targetTile.x = 0;
+			}
+			if (gridPosition.y == 14) {
+				suicideToWall = false;
+				suicideToCorner = true;
+				targetTile.x = 12;
+			}
+		}
+
+		if (suicideToCorner) {
+			std::cout << "heeyyy1233" << std::endl;
+		}
+
+		if (suicideToCorner && gridPosition == targetTile) {
+			std::cout << "kill" << std::endl;
+		}
+
 	}
 
 	if (position == targetPosition && currentAnim != &spawnAnim && !pushed) {
