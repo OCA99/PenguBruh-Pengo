@@ -143,13 +143,6 @@ bool SceneLevel13::Start()
 	return ret;
 }
 
-Update_Status SceneLevel13::Update()
-{
-	//App->render->camera.x += 3;
-
-	return Update_Status::UPDATE_CONTINUE;
-}
-
 // Update: draw background
 Update_Status SceneLevel13::PostUpdate()
 {

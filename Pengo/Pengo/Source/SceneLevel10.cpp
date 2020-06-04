@@ -143,12 +143,6 @@ bool SceneLevel10::Start()
 	return ret;
 }
 
-Update_Status SceneLevel10::Update()
-{
-	//App->render->camera.x += 3;
-
-	return Update_Status::UPDATE_CONTINUE;
-}
 
 // Update: draw background
 Update_Status SceneLevel10::PostUpdate()

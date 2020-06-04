@@ -19,9 +19,7 @@ public:
 	// Loads the necessary textures for the map background
 	bool Start() override;
 
-	// Called at the middle of the application loop
-	// Updates the scene's background animations
-	Update_Status Update() override;
+
 
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background
@@ -30,7 +28,7 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
-	bool win;
+	bool win = false;
 
 public:
 };

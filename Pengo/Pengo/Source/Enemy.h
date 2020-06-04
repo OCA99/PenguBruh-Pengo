@@ -57,6 +57,8 @@ public:
 
 	Directions direction = Directions::Stopped;
 
+	void Suicide() { suicide = true; }
+
 public:
 	// The current position in the world
 	iPoint position;
@@ -104,6 +106,7 @@ private:
 	bool crushed = false;
 	bool breakingBlock = false;
 	std::random_device generator;
+	bool suicide = false;
 
 	float ABS(float x) {
 		return x > 0 ? x : -x;

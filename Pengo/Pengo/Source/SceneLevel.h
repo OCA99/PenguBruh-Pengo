@@ -15,6 +15,9 @@ public:
 	virtual Update_Status Update();
 	virtual Update_Status PostUpdate();
 	virtual bool CleanUp();
+
+private:
+	float timer = 0.0f;
 };
 
 #endif

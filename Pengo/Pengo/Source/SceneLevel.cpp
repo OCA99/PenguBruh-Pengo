@@ -33,9 +33,13 @@ bool SceneLevel::Start()
 	return ret;
 }
 
+#include <iostream>
+
 Update_Status SceneLevel::Update()
 {
 	return Update_Status::UPDATE_CONTINUE;
+	timer += 1 / 60;
+	std::cout << timer << std::endl;
 }
 
 // Update: draw background
