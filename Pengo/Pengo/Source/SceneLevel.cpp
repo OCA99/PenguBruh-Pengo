@@ -36,7 +36,7 @@ bool SceneLevel::Start()
 Update_Status SceneLevel::Update()
 {
 	if (!App->player->hasDied && !App->enemies->enemyHasDied) timer += 1.0f / 60.0f;
-	if (timer > 5.0f) {
+	if (timer > 120.0f) {
 		App->enemies->Suicide();
 	}
 	return Update_Status::UPDATE_CONTINUE;

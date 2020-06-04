@@ -103,6 +103,7 @@ protected:
 	Animation breakLeftAnim;
 	Animation breakRightAnim;
 	Animation stunAnim;
+	Animation endStunAnim;
 
 private:
 	int pushedSpeed = 2;
@@ -114,6 +115,8 @@ private:
 	bool suicide = false;
 	bool suicideToWall = false;
 	bool suicideToCorner = false;
+
+	float stunTimer = 0.0f;
 
 	float ABS(float x) {
 		return x > 0 ? x : -x;

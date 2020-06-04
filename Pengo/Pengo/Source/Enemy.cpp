@@ -117,8 +117,13 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 	crushLeft.loop = false;
 
 	stunAnim.GenerateAnimation({ 96 + xoffset,128 + yoffset,32,16 }, 1, 2);
-	stunAnim.speed = 0.05f;
+	stunAnim.speed = 0.1f;
 	stunAnim.loop = true;
+
+	endStunAnim.GenerateAnimation({ 96 + xoffset,128 + yoffset,32,16 }, 1, 2);
+	endStunAnim.GenerateAnimation({ 608, 208, 32, 16 }, 1, 2);
+	endStunAnim.speed = 0.1f;
+	endStunAnim.loop = true;
 
 	GetNextTargetTile();
 }
@@ -143,6 +148,16 @@ void Enemy::SetPosition(int x, int y) {
 
 void Enemy::Update()
 {
+
+	if (stunned) {
+		stunTimer += 1.0f / 60.0f;
+		if (stunTimer > 1.5f) {
+			currentAnim = &endStunAnim;
+		}
+		if (stunTimer > 3.0f) {
+			stunned = false;
+		}
+	}
 
 	if (stunned && App->player->position == position)
 	{
@@ -531,48 +546,36 @@ void Enemy::WallStunned(int wallID)
 	switch (wallID) {
 
 	case 0:
-		for (int i = 0; i <= 12; i++)
+		if (gridPosition.y == 0)
 		{
-			if (gridPosition.x == i && gridPosition.y == 0)
-			{
-				stunned = true;
-				currentAnim = &stunAnim;
-				currentAnim->Reset();
+			stunned = true;
+			currentAnim = &stunAnim;
+			currentAnim->Reset();
 
-			}
 		}
 		break;
 	case 1:
-		for (int i = 0; i <= 12; i++)
+		if (gridPosition.y == 14)
 		{
-			if (gridPosition.x == i && gridPosition.y == 14)
-			{
-				stunned = true;
-				currentAnim = &stunAnim;
-				currentAnim->Reset();
-			}
+			stunned = true;
+			currentAnim = &stunAnim;
+			currentAnim->Reset();
 		}
 		break;
 	case 2:
-		for (int i = 0; i <= 14; i++)
+		if (gridPosition.x == 0)
 		{
-			if (gridPosition.y == i && gridPosition.x == 0)
-			{
-				stunned = true;
-				currentAnim = &stunAnim;
-				currentAnim->Reset();
-			}
+			stunned = true;
+			currentAnim = &stunAnim;
+			currentAnim->Reset();
 		}
 		break;
 	case 3:
-		for (int i = 0; i <= 14; i++)
+		if (gridPosition.x == 12)
 		{
-			if (gridPosition.y == i && gridPosition.x == 12)
-			{
-				stunned = true;
-				currentAnim = &stunAnim;
-				currentAnim->Reset();
-			}
+			stunned = true;
+			currentAnim = &stunAnim;
+			currentAnim->Reset();
 		}
 		break;
 	default:
