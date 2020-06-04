@@ -67,6 +67,8 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
+	Animation destroyAnim;
+
 private:
 	int speed = 2;
 	bool moving = false;

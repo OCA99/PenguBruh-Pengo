@@ -167,9 +167,7 @@ void ModuleBlocks::BreakBlock(int x, int y) {
 		if (blocks[i] != nullptr)
 		{
 			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) {
-				if (blocks[i]->type == Block::Block_Type::NORMAL) {
-					((Block_Normal*)blocks[i])->destroy();
-				}
+				blocks[i]->destroy();
 			}
 		}
 	}

@@ -43,6 +43,8 @@ public:
 		Right
 	};
 
+	bool hasDied = false;
+
 
 public:
 	// Position of the player in the map

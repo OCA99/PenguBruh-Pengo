@@ -118,6 +118,7 @@ Update_Status ModulePlayer::Update()
 		if ((App->enemies->EnemyInGridPosition(x, y) && position == targetPosition) || instaloss) {
 			instaloss = false;
 			dead = true;
+			hasDied = true;
 			App->audio->PlayFx(16, 0);
 			currentAnimation = &dieAnim;
 		}
@@ -125,9 +126,7 @@ Update_Status ModulePlayer::Update()
 	
 	if (dead) deadPause++;
 
-	//GODMODE
-	
-	std::cout << lifes << std::endl;
+	//GODMODE 
 
 	if (App->debug->GMODE == 0)
 	{

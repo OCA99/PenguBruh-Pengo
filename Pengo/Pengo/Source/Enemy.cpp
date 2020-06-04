@@ -1,12 +1,11 @@
 #include "Enemy.h"
 
 #include "Application.h"
-//#include "ModuleCollisions.h"
-//#include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleBlocks.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemies.h"
 #include "Score.h"
 
 #include <iostream>
@@ -254,9 +253,6 @@ void Enemy::Update()
 			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
 			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
-		else {
-			if (!breakingBlock && suicide) currentAnim = &idleAnim;
-		}
 
 		if (position.y < targetPosition.y) {
 			if (!breakingBlock) currentAnim = &walkDownAnim;
@@ -269,9 +265,6 @@ void Enemy::Update()
 			ypositionfraction -= (pushed ? pushedSpeed : speed);
 			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
 			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
-		}
-		else {
-			if (!breakingBlock && suicide) currentAnim = &idleAnim;
 		}
 	}
 
@@ -292,7 +285,6 @@ void Enemy::Update()
 
 	if (suicide) {
 		if (!suicideToWall && !suicideToCorner) {
-			std::cout << "first" << std::endl;
 			int dstLeft, dstRight, dstUp, dstDown;
 
 			dstLeft = gridPosition.x;
@@ -346,12 +338,8 @@ void Enemy::Update()
 			}
 		}
 
-		if (suicideToCorner) {
-			std::cout << "heeyyy1233" << std::endl;
-		}
-
-		if (suicideToCorner && gridPosition == targetTile) {
-			std::cout << "kill" << std::endl;
+		if (suicideToCorner && gridPosition == targetTile && position == targetPosition) {
+			destroy();
 		}
 
 	}
@@ -440,8 +428,13 @@ void Enemy::GetNextStepToTarget() {
 		}
 	}
 
+	if (suicide) {
+		canmovex = true;
+		canmovey = true;
+	}
+
 	if (!canmovex || !canmovey) {
-		if (!canmovex && !canmovey) {
+		if (!canmovex && !canmovey && !suicide) {
 			GetNextTargetTile();
 			return;
 		}
@@ -476,7 +469,7 @@ void Enemy::GetNextStepToTarget() {
 			gridPosition.x--;
 		}
 		else {
-			GetNextTargetTile();
+			if (!suicide) GetNextTargetTile();
 			return;
 		}
 	}
@@ -500,7 +493,7 @@ void Enemy::GetNextStepToTarget() {
 			gridPosition.y--;
 		}
 		else {
-			GetNextTargetTile();
+			if (!suicide) GetNextTargetTile();
 			return;
 		}
 	}
@@ -597,5 +590,6 @@ void Enemy::SetToDelete()
 
 void Enemy::destroy() {
 	//App->audio->PlayFx(10, 0);
+	App->enemies->enemyHasDied = true;
 	SetToDelete();
 }

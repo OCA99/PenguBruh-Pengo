@@ -33,11 +33,9 @@ bool SceneLevel::Start()
 	return ret;
 }
 
-#include <iostream>
-
 Update_Status SceneLevel::Update()
 {
-	timer += 1.0f / 60.0f;
+	if (!App->player->hasDied && !App->enemies->enemyHasDied) timer += 1.0f / 60.0f;
 	if (timer > 5.0f) {
 		App->enemies->Suicide();
 	}

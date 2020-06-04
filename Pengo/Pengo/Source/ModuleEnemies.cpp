@@ -183,24 +183,32 @@ void ModuleEnemies::Reset() {
 					App->blocks->DestroyBlock(0, 0);
 				}
 				enemies[i]->SetPosition(0, 0);
+				enemies[i]->GetNextTargetTile();
+				enemies[i]->UnSuicide();
 				break;
 			case 1:
 				if (App->blocks->BlockInGridPosition(12, 0)) {
 					App->blocks->DestroyBlock(12, 0);
 				}
 				enemies[i]->SetPosition(12, 0);
+				enemies[i]->GetNextTargetTile();
+				enemies[i]->UnSuicide();
 				break;
 			case 2:
 				if (App->blocks->BlockInGridPosition(0, 14)) {
 					App->blocks->DestroyBlock(0, 14);
 				}
 				enemies[i]->SetPosition(0, 14);
+				enemies[i]->GetNextTargetTile();
+				enemies[i]->UnSuicide();
 				break;
 			case 3:
 				if (App->blocks->BlockInGridPosition(12, 14)) {
 					App->blocks->DestroyBlock(12, 14);
 				}
 				enemies[i]->SetPosition(12, 14);
+				enemies[i]->GetNextTargetTile();
+				enemies[i]->UnSuicide();
 				break;
 			default:
 				delete enemies[i];
@@ -222,7 +230,7 @@ void ModuleEnemies::Suicide() {
 	{
 		if (enemies[i] != nullptr)
 		{
-			//enemies[i]->Suicide();
+			enemies[i]->Suicide();
 		}
 	}
 }

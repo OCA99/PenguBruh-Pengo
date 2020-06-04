@@ -58,6 +58,11 @@ public:
 	Directions direction = Directions::Stopped;
 
 	void Suicide() { suicide = true; }
+	void UnSuicide() {
+		suicide = false;
+		suicideToCorner = false;
+		suicideToWall = false;
+	}
 
 public:
 	// The current position in the world

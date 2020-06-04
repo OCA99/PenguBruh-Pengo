@@ -63,6 +63,8 @@ public:
 
 	void Suicide();
 
+	bool enemyHasDied = false;
+
 private:
 
 

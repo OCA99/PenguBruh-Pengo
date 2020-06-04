@@ -22,6 +22,10 @@ Block::Block(int x, int y) : position(x, y)
 
 	position.x = gridPosition.x * 16 + 8;
 	position.y = gridPosition.y * 16 + 32;
+
+	destroyAnim.GenerateAnimation({ 708,48,144,16 }, 1, 9);
+	destroyAnim.speed = 0.5f;
+	destroyAnim.loop = false;
 }
 
 Block::~Block()
@@ -32,6 +36,7 @@ Block::~Block()
 
 void Block::Update()
 {
+	if (currentAnim == &destroyAnim && currentAnim->HasFinished()) SetToDelete();
 	if (!moving) {
 		int x = 0;
 		int y = 0;
@@ -185,7 +190,7 @@ void Block::Pushed(int fromx, int fromy) {
 
 void Block::destroy() {
 	
-	SetToDelete();
+	currentAnim = &destroyAnim;
 }
 
 void Block::AddScore(int& pushedEnemies) {

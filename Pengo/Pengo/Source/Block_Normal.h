@@ -16,14 +16,11 @@ public:
 
 	void Pushed(int fromx, int fromy) override;
 
-	void destroy() override;
-
 private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation normalAnim;
-	Animation destroyAnim;
 };
 
 #endif // Block_Normal_H
