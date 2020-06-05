@@ -49,14 +49,11 @@ public:
 	// Param particle	- A template particle from which the new particle will be created
 	// Param x, y		- Position x,y in the screen (upper left axis)
 	// Param delay		- Delay time from the moment the function is called until the particle is displayed in screen
+	Particle* AddParticle(const Particle& particle, int x, int y);
 	//Particle* AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 public:
-	//Template particle for an explosion
-	Particle explosion;
-
-	//Template particle for a laser
-	Particle laser;
+	Particle score100;
 
 private:
 	// Particles spritesheet loaded into an SDL Texture

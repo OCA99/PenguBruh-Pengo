@@ -9,8 +9,8 @@
 
 ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled)
 {
-	/*for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-		particles[i] = nullptr;*/
+	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+		particles[i] = nullptr;
 }
 
 ModuleParticles::~ModuleParticles()
@@ -21,38 +21,24 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	/*texture = App->textures->Load("Assets/Sprites/particles.png");
+	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
 	// Explosion particle
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	laser.anim.PushBack({ 232, 103, 16, 12 });
-	laser.anim.PushBack({ 249, 103, 16, 12 });
-	laser.speed.x = 5;
-	laser.lifetime = 180;
-	laser.anim.speed = 0.2f;*/
+	score100.anim.GenerateAnimation({ 3, 111, 13, 8 }, 1, 1);
 
 	return true;
 }
 
 Update_Status ModuleParticles::PreUpdate()
 {
-	// Remove all particles scheduled for deletion
-	/*for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (particles[i] != nullptr && particles[i]->pendingToDelete)
 		{
 			delete particles[i];
 			particles[i] = nullptr;
 		}
-	}*/
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -61,22 +47,21 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 
-	// Delete all remaining active particles on application exit 
-	/*for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if(particles[i] != nullptr)
 		{
 			delete particles[i];
 			particles[i] = nullptr;
 		}
-	}*/
+	}
 
 	return true;
 }
 
 Update_Status ModuleParticles::Update()
 {
-	/*for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* particle = particles[i];
 
@@ -87,7 +72,7 @@ Update_Status ModuleParticles::Update()
 		{
 			particles[i]->SetToDelete();
 		}
-	}*/
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -95,7 +80,7 @@ Update_Status ModuleParticles::Update()
 Update_Status ModuleParticles::PostUpdate()
 {
 	//Iterating all particle array and drawing any active particles
-	/*for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* particle = particles[i];
 
@@ -103,12 +88,12 @@ Update_Status ModuleParticles::PostUpdate()
 		{
 			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
-	}*/
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-/*Particle* ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
+Particle* ModuleParticles::AddParticle(const Particle& particle, int x, int y)
 {
 	Particle* newParticle = nullptr;
 
@@ -118,18 +103,14 @@ Update_Status ModuleParticles::PostUpdate()
 		if (particles[i] == nullptr)
 		{
 			newParticle = new Particle(particle);
-			newParticle->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+			newParticle->frameCount = 0;			// We start the frameCount as the negative delay
 			newParticle->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 			newParticle->position.y = y;
-
-			//Adding the particle's collider
-			if (colliderType != Collider::Type::NONE)
-				newParticle->collider = App->collisions->AddCollider(newParticle->anim.GetCurrentFrame(), colliderType, this);
 
 			particles[i] = newParticle;
 			break;
 		}
 	}
 
-	//return newParticle;
-}*/
+	return newParticle;
+}
