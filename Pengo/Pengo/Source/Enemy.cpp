@@ -155,7 +155,7 @@ void Enemy::Update()
 			currentAnim = &endStunAnim;
 		}
 		if (stunTimer > 3.0f) {
-			stunned = false;
+			//stunned = false;
 		}
 	}
 
@@ -539,6 +539,8 @@ void Enemy::Pushed(int fromx, int fromy) {
 
 	moving = false;
 	pushed = true;
+	stunned = false;
+	std::cout << "smegma" << std::endl;
 }
 
 void Enemy::WallStunned(int wallID)

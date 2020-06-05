@@ -115,6 +115,17 @@ bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
+			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y) return true;
+		}
+	}
+	return false;
+}
+
+bool ModuleEnemies::NotStunnedEnemyInGridPosition(int x, int y) {
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
 			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y && !enemies[i]->stunned) return true;
 		}
 	}

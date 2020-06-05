@@ -108,6 +108,7 @@ public:
 private:
 	Directions direction;
 	void positionToGrid(int gx, int gy, int& x, int& y);
+	void gridToPosition(int px, int py, int& x, int& y);
 };
 
 #endif //!__MODULE_PLAYER_H__

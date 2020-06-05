@@ -44,6 +44,7 @@ public:
 	void AddEnemy(int x, int y);
 
 	bool EnemyInGridPosition(int x, int y);
+	bool NotStunnedEnemyInGridPosition(int x, int y);
 
 	int PushEnemy(int fromx, int fromy, int x, int y);
 

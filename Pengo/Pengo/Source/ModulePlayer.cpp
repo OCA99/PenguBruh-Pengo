@@ -113,9 +113,16 @@ Update_Status ModulePlayer::Update()
 	
 	positionToGrid(position.x, position.y, x, y);
 
+	int posx = 0;
+	int posy = 0;
+
+	gridToPosition(x, y, posx, posy);
+
+	iPoint p = iPoint(posx, posy);
+
 	if (App->debug->GMODE == 0)
 	{
-		if ((App->enemies->EnemyInGridPosition(x, y) && position == targetPosition) || instaloss) {
+		if ((App->enemies->NotStunnedEnemyInGridPosition(x, y) && position.DistanceTo(p) < 10) || instaloss) {
 			instaloss = false;
 			dead = true;
 			hasDied = true;
@@ -371,6 +378,11 @@ Update_Status ModulePlayer::PostUpdate()
 void ModulePlayer::positionToGrid(int gx, int gy, int& x, int& y) {
 	x = (gx - 8) / 16;
 	y = (gy - 32) / 16;
+}
+
+void ModulePlayer::gridToPosition(int px, int py, int& x, int& y) {
+	x = px * 16 + 8;
+	y = py * 16 + 32;
 }
 
 void ModulePlayer::Reset() {
