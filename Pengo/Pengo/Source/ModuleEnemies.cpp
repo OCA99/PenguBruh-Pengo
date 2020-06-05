@@ -126,7 +126,7 @@ bool ModuleEnemies::NotStunnedEnemyInGridPosition(int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y && !enemies[i]->stunned) return true;
+			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y && !enemies[i]->stunned && !enemies[i]->spawning) return true;
 		}
 	}
 	return false;

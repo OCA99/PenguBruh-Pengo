@@ -16,13 +16,12 @@ public:
 
 	void Pushed(int fromx, int fromy) override;
 
-	void destroy() override;
-
 	void NextBlobSpawn();
 
 	int pause = 0;
 
 	bool hatched = false;
+	bool hatching = false;
 
 private:
 
@@ -31,6 +30,9 @@ private:
 	Animation normalAnim;
 	Animation destroyAnim;
 	Animation initAnim;
+
+	float hatchTimer = 0.0f;
+	float hatchDelay = 2.0f;
 };
 
 #endif // Block_Egg_H

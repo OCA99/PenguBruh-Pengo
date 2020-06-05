@@ -34,6 +34,16 @@ void Block_Egg::Update()
 	}
 	if (currentAnim == &destroyAnim && currentAnim->HasFinished()) Block::destroy();
 
+	if (hatching) {
+		hatchTimer += 1.0f / 60.0f;
+		if (hatchTimer > hatchDelay) {
+			hatching = false;
+			hatched = true;
+			destroy();
+			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
+		}
+	}
+
 	Block::Update();
 }
 
@@ -46,7 +56,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x;
 		y = gridPosition.y - 1;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			//printf("Telmo implements points here\n");
+			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
 			destroy();
 		}
 		break;
@@ -54,7 +64,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x - 1;
 		y = gridPosition.y;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			//printf("Telmo implements points here\n");
+			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
 			destroy();
 		}
 		break;
@@ -62,7 +72,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x + 1;
 		y = gridPosition.y;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			//printf("Telmo implements points here\n");
+			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
 			destroy();
 		}
 		break;
@@ -70,7 +80,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		x = gridPosition.x;
 		y = gridPosition.y + 1;
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
-			//printf("Telmo implements points here\n");
+			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
 			destroy();
 		}
 		break;
@@ -81,11 +91,5 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 
 void Block_Egg::NextBlobSpawn()
 {
-	hatched = true;
-	destroy();
-	App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
-}
-
-void Block_Egg::destroy() {
-	currentAnim = &destroyAnim;
+	hatching = true;
 }

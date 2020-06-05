@@ -63,6 +63,7 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 	spawnAnim.loop = false;
 
 	currentAnim = &spawnAnim;
+	spawning = true;
 
 	idleAnim.GenerateAnimation({ 0 + xoffset,144 + yoffset,32,16 }, 1, 2);
 	idleAnim.speed = 0.05f;
@@ -159,7 +160,7 @@ void Enemy::Update()
 		}
 	}
 
-	if (stunned && App->player->position == position)
+	if ((spawning || stunned) && App->player->position == position)
 	{
 		App->blocks->HatchNextEgg();
 		destroy();
@@ -168,6 +169,7 @@ void Enemy::Update()
 
 	if (currentAnim == &spawnAnim && currentAnim->HasFinished())
 	{
+		spawning = false;
 		currentAnim = &idleAnim;
 	}
 

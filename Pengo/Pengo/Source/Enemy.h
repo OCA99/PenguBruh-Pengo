@@ -84,6 +84,7 @@ public:
 
 	bool stunned = false;
 	bool pushed = false;
+	bool spawning = false;
 
 protected:
 	// A ptr to the current animation
