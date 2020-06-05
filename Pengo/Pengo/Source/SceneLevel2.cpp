@@ -186,6 +186,7 @@ bool SceneLevel2::CleanUp()
 	App->blocks->Disable();
 	App->walls->Disable();
 	App->enemies->Disable();
+	App->ui->Disable();
 
 	return true;
 }

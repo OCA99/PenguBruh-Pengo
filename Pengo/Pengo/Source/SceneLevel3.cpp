@@ -11,6 +11,7 @@
 #include "ModuleWalls.h"
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleUI.h"
 
 SceneLevel3::SceneLevel3(bool startEnabled) : SceneLevel(startEnabled)
 {
@@ -31,6 +32,12 @@ bool SceneLevel3::Start()
 	App->blocks->Enable();
 	App->walls->Enable();
 	App->enemies->Enable();
+	App->ui->Enable();
+
+	App->enemies->NextColor();
+	int color = App->enemies->GetColor();
+	App->blocks->SetEggColor(color);
+	App->levelNum = 3;
 
 	bool ret = true;
 
@@ -182,6 +189,7 @@ bool SceneLevel3::CleanUp()
 	App->blocks->Disable();
 	App->walls->Disable();
 	App->enemies->Disable();
+	App->ui->Disable();
 
 	return true;
 }

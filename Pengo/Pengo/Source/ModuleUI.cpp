@@ -37,7 +37,15 @@ bool ModuleUI::Start() {
 	return true;
 }
 
+#include <iostream>
+
 bool ModuleUI::CleanUp() {
+	std::cout << "doing it" << std::endl;
+
+	App->fonts->UnLoad(whiteFontID);
+	App->fonts->UnLoad(blueFontID);
+	App->textures->Unload(texture);
+
 	return true;
 }
 
@@ -98,7 +106,7 @@ Update_Status ModuleUI::PostUpdate()
 		x += 14;
 	}
 
-	App->fonts->BlitText(124, 280, whiteFontID, "© SEGA 1982");
+	//App->fonts->BlitText(124, 280, whiteFontID, "© SEGA 1982");
 
 	return Update_Status::UPDATE_CONTINUE;
 }
