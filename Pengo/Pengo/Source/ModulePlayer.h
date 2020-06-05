@@ -57,6 +57,7 @@ public:
 
 	bool dead = false;
 	bool instaloss = false;
+	bool paused = false;
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 

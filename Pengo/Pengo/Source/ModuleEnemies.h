@@ -43,8 +43,8 @@ public:
 	// Add an enemy into the queue to be spawned later
 	void AddEnemy(int x, int y);
 
-	bool EnemyInGridPosition(int x, int y);
-	bool NotStunnedEnemyInGridPosition(int x, int y);
+	bool EnemyInPosition(int x, int y);
+	bool NotStunnedEnemyInPosition(int x, int y);
 
 	int PushEnemy(int fromx, int fromy, int x, int y);
 
@@ -63,6 +63,10 @@ public:
 	int GetColor() { return color; };
 
 	void Suicide();
+
+	void Pause();
+
+	void Unpause();
 
 	bool enemyHasDied = false;
 

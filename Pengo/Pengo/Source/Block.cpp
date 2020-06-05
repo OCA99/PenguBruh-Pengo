@@ -44,7 +44,7 @@ void Block::Update()
 		case Directions::Up:
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
-			if (App->enemies->EnemyInGridPosition(x, y)) {
+			if (App->enemies->EnemyInPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -59,7 +59,7 @@ void Block::Update()
 		case Directions::Down:
 			x = gridPosition.x;
 			y = gridPosition.y + 1;
-			if (App->enemies->EnemyInGridPosition(x, y)) {
+			if (App->enemies->EnemyInPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -74,7 +74,7 @@ void Block::Update()
 		case Directions::Left:
 			x = gridPosition.x - 1;
 			y = gridPosition.y;
-			if (App->enemies->EnemyInGridPosition(x, y)) {
+			if (App->enemies->EnemyInPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -89,7 +89,7 @@ void Block::Update()
 		case Directions::Right:
 			x = gridPosition.x + 1;
 			y = gridPosition.y;
-			if (App->enemies->EnemyInGridPosition(x, y)) {
+			if (App->enemies->EnemyInPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {

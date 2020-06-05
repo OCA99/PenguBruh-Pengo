@@ -110,23 +110,25 @@ void ModuleEnemies::AddEnemy(int x, int y)
 	}
 }
 
-bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
+bool ModuleEnemies::EnemyInPosition(int x, int y) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y) return true;
+			iPoint p = iPoint(x, y);
+			if (enemies[i]->position.DistanceTo(p) < 10) return true;
 		}
 	}
 	return false;
 }
 
-bool ModuleEnemies::NotStunnedEnemyInGridPosition(int x, int y) {
+bool ModuleEnemies::NotStunnedEnemyInPosition(int x, int y) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y && !enemies[i]->stunned && !enemies[i]->spawning) return true;
+			iPoint p = iPoint(x, y);
+			if (enemies[i]->position.DistanceTo(p) < 10 && !enemies[i]->stunned && !enemies[i]->spawning) return true;
 		}
 	}
 	return false;
@@ -229,6 +231,8 @@ void ModuleEnemies::Reset() {
 			count++;
 		}
 	}
+
+	Unpause();
 }
 
 void ModuleEnemies::NextColor() {
@@ -242,6 +246,27 @@ void ModuleEnemies::Suicide() {
 		if (enemies[i] != nullptr)
 		{
 			enemies[i]->Suicide();
+		}
+	}
+}
+
+
+void ModuleEnemies::Pause() {
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			enemies[i]->paused = true;
+		}
+	}
+}
+
+void ModuleEnemies::Unpause() {
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			enemies[i]->paused = false;
 		}
 	}
 }

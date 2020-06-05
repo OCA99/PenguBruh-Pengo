@@ -14,3 +14,14 @@ void Score::AddScore(int s) {
 void Score::SetHighscore(int s) {
 	highscore = s;
 }
+
+void Score::CheckAndSetHighscore() {
+	if (score > highscore) {
+		highscore = score;
+	}
+}
+
+void Score::ResetScore() {
+	score = 0;
+}
+

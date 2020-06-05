@@ -86,6 +86,8 @@ public:
 	bool pushed = false;
 	bool spawning = false;
 
+	bool paused = false;
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;

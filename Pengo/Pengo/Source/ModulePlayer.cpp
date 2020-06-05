@@ -12,6 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleWalls.h"
 #include "ModuleFonts.h"
+#include "Score.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -88,6 +89,7 @@ bool ModulePlayer::Start()
 
 	dead = false;
 	deadPause = 0;
+	paused = false;
 
 	//collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
@@ -106,31 +108,6 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	GamePad& pad = App->input->pads[0];
-
-	int x = 0;
-	int y = 0;
-	
-	positionToGrid(position.x, position.y, x, y);
-
-	int posx = 0;
-	int posy = 0;
-
-	gridToPosition(x, y, posx, posy);
-
-	iPoint p = iPoint(posx, posy);
-
-	if (App->debug->GMODE == 0)
-	{
-		if ((App->enemies->NotStunnedEnemyInGridPosition(x, y) && position.DistanceTo(p) < 10) || instaloss) {
-			instaloss = false;
-			dead = true;
-			hasDied = true;
-			App->audio->PlayFx(16, 0);
-			currentAnimation = &dieAnim;
-		}
-	}
-	
 	if (dead) deadPause++;
 
 	//GODMODE 
@@ -145,14 +122,33 @@ Update_Status ModulePlayer::Update()
 				App->enemies->Reset();
 				Reset();
 			}
-		} else {
+		}
+		else {
 			if (deadPause == 100)
 			{
 				lifes = 3;
+				App->score->CheckAndSetHighscore();
+				App->score->ResetScore();
 				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
 			}
 		}
 	}
+
+	if (!paused) {
+		GamePad& pad = App->input->pads[0];
+
+		if (App->debug->GMODE == 0)
+		{
+			if (App->enemies->NotStunnedEnemyInPosition(position.x, position.y) || instaloss) {
+				instaloss = false;
+				dead = true;
+				hasDied = true;
+				App->audio->PlayFx(16, 0);
+				currentAnimation = &dieAnim;
+				paused = true;
+				App->enemies->Pause();
+			}
+		}
 	
 
 	////Debug key for gamepad rumble testing purposes
@@ -175,7 +171,6 @@ Update_Status ModulePlayer::Update()
 
 	// Moving the player with the camera scroll
 	//App->player->position.x += 1;
-
 
 		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT || pad.l_x < 0.0f || pad.left == true)
 		{
@@ -264,95 +259,96 @@ Update_Status ModulePlayer::Update()
 			}
 		}
 
-	if (gridPosition.x < 0) gridPosition.x = 0;
-	if (gridPosition.x > 12) gridPosition.x = 12;
-	if (gridPosition.y < 0) gridPosition.y = 0;
-	if (gridPosition.y > 14) gridPosition.y = 14;
+		if (gridPosition.x < 0) gridPosition.x = 0;
+		if (gridPosition.x > 12) gridPosition.x = 12;
+		if (gridPosition.y < 0) gridPosition.y = 0;
+		if (gridPosition.y > 14) gridPosition.y = 14;
 
-	targetPosition.x = gridPosition.x * 16 + 8;
-	targetPosition.y = gridPosition.y * 16 + 32;
+		targetPosition.x = gridPosition.x * 16 + 8;
+		targetPosition.y = gridPosition.y * 16 + 32;
 
-	if (position.x < targetPosition.x) {
-		position.x += speed;
-	}
-	else if (position.x > targetPosition.x) {
-		position.x -= speed;
-	}
-
-	if (position.y < targetPosition.y) {
-		position.y += speed;
-	}
-	else if (position.y > targetPosition.y) {
-		position.y -= speed;
-	}
-
-	if (position.x == targetPosition.x && position.y == targetPosition.y) {
-		moving = false;
-	}
-	else {
-		moving = true;
-	}
-
-	if ((currentAnimation == &pushUpAnim || currentAnimation == &pushDownAnim || currentAnimation == &pushLeftAnim || currentAnimation == &pushRightAnim) && currentAnimation->HasFinished())
-	{
-		pushing = false;
-	}
-
-	if (!moving && currentAnimation != &pushUpAnim && currentAnimation != &pushDownAnim && currentAnimation != &pushLeftAnim && currentAnimation != &pushRightAnim && !dead) {
-		currentAnimation->running = false;
-	}
-
-	if (!dead)
-	{
-		if (!moving && !pushing && (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)) {
-			pushing = true;
-			if (aPressed)
-			{
-				switch (direction) {
-				case Directions::Up:
-					if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y - 1)) App->walls->PushWall(0);
-					App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y - 1);
-					pushUpAnim.Reset();
-					currentAnimation = &pushUpAnim;
-					break;
-				case Directions::Down:
-					if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y + 1)) App->walls->PushWall(1);
-					App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y + 1);
-					pushDownAnim.Reset();
-					currentAnimation = &pushDownAnim;
-					break;
-				case Directions::Left:
-					if (!App->blocks->PositionInMap(gridPosition.x - 1, gridPosition.y)) App->walls->PushWall(2);
-					App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x - 1, gridPosition.y);
-					pushLeftAnim.Reset();
-					currentAnimation = &pushLeftAnim;
-					break;
-				case Directions::Right:
-					if (!App->blocks->PositionInMap(gridPosition.x + 1, gridPosition.y)) App->walls->PushWall(3);
-					App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x + 1, gridPosition.y);
-					pushRightAnim.Reset();
-					currentAnimation = &pushRightAnim;
-					break;
-				default:
-					break;
-				}
-			}
-			aPressed = false;		
+		if (position.x < targetPosition.x) {
+			position.x += speed;
 		}
-		if (pad.a == false) aPressed = true;
-	}
+		else if (position.x > targetPosition.x) {
+			position.x -= speed;
+		}
 
-	if (currentAnimation == &pushUpAnim && currentAnimation->HasFinished()) {
-		currentAnimation = &walkUpAnim;
-	}
-	if (currentAnimation == &pushDownAnim && currentAnimation->HasFinished()) {
-		currentAnimation = &walkDownAnim;
-	}
-	if (currentAnimation == &pushLeftAnim && currentAnimation->HasFinished()) {
-		currentAnimation = &walkLeftAnim;
-	}
-	if (currentAnimation == &pushRightAnim && currentAnimation->HasFinished()) {
-		currentAnimation = &walkRightAnim;
+		if (position.y < targetPosition.y) {
+			position.y += speed;
+		}
+		else if (position.y > targetPosition.y) {
+			position.y -= speed;
+		}
+
+		if (position.x == targetPosition.x && position.y == targetPosition.y) {
+			moving = false;
+		}
+		else {
+			moving = true;
+		}
+
+		if ((currentAnimation == &pushUpAnim || currentAnimation == &pushDownAnim || currentAnimation == &pushLeftAnim || currentAnimation == &pushRightAnim) && currentAnimation->HasFinished())
+		{
+			pushing = false;
+		}
+
+		if (!moving && currentAnimation != &pushUpAnim && currentAnimation != &pushDownAnim && currentAnimation != &pushLeftAnim && currentAnimation != &pushRightAnim && !dead) {
+			currentAnimation->running = false;
+		}
+
+		if (!dead)
+		{
+			if (!moving && !pushing && (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)) {
+				pushing = true;
+				if (aPressed)
+				{
+					switch (direction) {
+					case Directions::Up:
+						if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y - 1)) App->walls->PushWall(0);
+						App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y - 1);
+						pushUpAnim.Reset();
+						currentAnimation = &pushUpAnim;
+						break;
+					case Directions::Down:
+						if (!App->blocks->PositionInMap(gridPosition.x, gridPosition.y + 1)) App->walls->PushWall(1);
+						App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x, gridPosition.y + 1);
+						pushDownAnim.Reset();
+						currentAnimation = &pushDownAnim;
+						break;
+					case Directions::Left:
+						if (!App->blocks->PositionInMap(gridPosition.x - 1, gridPosition.y)) App->walls->PushWall(2);
+						App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x - 1, gridPosition.y);
+						pushLeftAnim.Reset();
+						currentAnimation = &pushLeftAnim;
+						break;
+					case Directions::Right:
+						if (!App->blocks->PositionInMap(gridPosition.x + 1, gridPosition.y)) App->walls->PushWall(3);
+						App->blocks->PushBlock(gridPosition.x, gridPosition.y, gridPosition.x + 1, gridPosition.y);
+						pushRightAnim.Reset();
+						currentAnimation = &pushRightAnim;
+						break;
+					default:
+						break;
+					}
+				}
+				aPressed = false;
+			}
+			if (pad.a == false) aPressed = true;
+		}
+
+		if (currentAnimation == &pushUpAnim && currentAnimation->HasFinished()) {
+			currentAnimation = &walkUpAnim;
+		}
+		if (currentAnimation == &pushDownAnim && currentAnimation->HasFinished()) {
+			currentAnimation = &walkDownAnim;
+		}
+		if (currentAnimation == &pushLeftAnim && currentAnimation->HasFinished()) {
+			currentAnimation = &walkLeftAnim;
+		}
+		if (currentAnimation == &pushRightAnim && currentAnimation->HasFinished()) {
+			currentAnimation = &walkRightAnim;
+		}
 	}
 
 	if (deadPause <= 100)
@@ -396,6 +392,7 @@ void ModulePlayer::Reset() {
 
 	dead = false;
 	deadPause = 0;
+	paused = false;
 }
 
 void ModulePlayer::SetPosition(int x, int y) {

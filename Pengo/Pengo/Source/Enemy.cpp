@@ -149,6 +149,7 @@ void Enemy::SetPosition(int x, int y) {
 
 void Enemy::Update()
 {
+	if (paused) return;
 
 	if (stunned) {
 		stunTimer += 1.0f / 60.0f;

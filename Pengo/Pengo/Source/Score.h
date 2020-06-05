@@ -12,7 +12,9 @@ public:
 	void SetHighscore(int s);
 	int GetScore() { return score; };
 	int GetHighscore() { return highscore; };
+	void CheckAndSetHighscore();
+	void ResetScore();
 private:
-	int highscore = 999;
+	int highscore = 0;
 	int score = 0;
 };
