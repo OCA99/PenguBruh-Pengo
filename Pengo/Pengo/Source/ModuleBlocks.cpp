@@ -190,6 +190,7 @@ void ModuleBlocks::HatchNextEgg()
 			if (blocks[i]->type == Block::Block_Type::EGG)
 			{
 				Block_Egg* b = (Block_Egg*)blocks[i];
+				if (b->hatched) continue;
 				b->NextBlobSpawn();
 				break;
 			}

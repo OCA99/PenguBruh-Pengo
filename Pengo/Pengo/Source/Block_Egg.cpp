@@ -81,6 +81,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 
 void Block_Egg::NextBlobSpawn()
 {
+	hatched = true;
 	destroy();
 	App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
 }

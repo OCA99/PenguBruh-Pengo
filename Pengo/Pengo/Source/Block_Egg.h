@@ -22,6 +22,8 @@ public:
 
 	int pause = 0;
 
+	bool hatched = false;
+
 private:
 
 	// This enemy has one sprite and one frame

@@ -161,6 +161,7 @@ void Enemy::Update()
 
 	if (stunned && App->player->position == position)
 	{
+		App->blocks->HatchNextEgg();
 		destroy();
 		App->score->AddScore(100);
 	}
