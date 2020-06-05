@@ -80,7 +80,7 @@ Update_Status ModuleUI::PostUpdate()
 	App->fonts->BlitText(8, 280, whiteFontID, "ACT");
 	char currentLvlText[DYNAMIC_TEXT_LEN + 1];
 	intToString(currentLvlText, App->levelNum);
-	RenderDynamicText(currentLvlText, 40, 280, whiteFontID, false);
+	RenderDynamicText(currentLvlText, 45, 280, whiteFontID, true);
 
 	int level5 = App->levelNum / 5;
 	int remain = App->levelNum % 5;
@@ -89,7 +89,13 @@ Update_Status ModuleUI::PostUpdate()
 	int y = 273;
 
 	for (int i = 0; i < level5; i++) {
+		App->render->Blit(texture, x, y, &levelFlag5.GetCurrentFrame());
+		x += 16;
+	}
 
+	for (int i = 0; i < remain; i++) {
+		App->render->Blit(texture, x, y, &levelFlag.GetCurrentFrame());
+		x += 14;
 	}
 
 	App->fonts->BlitText(124, 280, whiteFontID, "© SEGA 1982");
