@@ -35,7 +35,7 @@ Update_Status ModuleFadeToBlack::Update()
 	if (currentStep == Fade_Step::TO_BLACK)
 	{
 		++frameCount;
-		if (frameCount >= maxFadeFrames)
+		if (frameCount > maxFadeFrames)
 		{
 			printf("Ha cambiao");
 			moduleToDisable->Disable();
@@ -53,10 +53,12 @@ Update_Status ModuleFadeToBlack::Update()
 		}
 	}
 
-	printf("FrameCount: %d\n MaxFrame: %d", frameCount, maxFadeFrames);
+	//printf("FrameCount: %d\n MaxFrame: %d", frameCount, maxFadeFrames);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
+
+#include <iostream>
 
 Update_Status ModuleFadeToBlack::PostUpdate()
 {
@@ -65,11 +67,13 @@ Update_Status ModuleFadeToBlack::PostUpdate()
 
 	float fadeRatio = (float)frameCount / ((float)maxFadeFrames);
 
-	
+	std::cout << fadeRatio << std::endl;
+
 	// Render the black square with alpha on the screen
 	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(255.0f));
+	screenRect.h = firstScreenRect.h * fadeRatio;
 	SDL_RenderFillRect(App->render->renderer, &screenRect);
-	screenRect.h = screenRect.h - firstScreenRect.h * fadeRatio;
+
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -83,7 +87,7 @@ bool ModuleFadeToBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEna
 	{
 		currentStep = Fade_Step::TO_BLACK;
 		frameCount = 0;
-		maxFadeFrames = frames;
+		maxFadeFrames = 45;
 
 		this->moduleToDisable = moduleToDisable;
 		this->moduleToEnable = moduleToEnable;

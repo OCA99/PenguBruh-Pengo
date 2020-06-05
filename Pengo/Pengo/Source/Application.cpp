@@ -25,7 +25,7 @@
 #include "SceneLevel14.h"
 #include "SceneLevel15.h"
 #include "SceneLevel16.h"
-//#include "ModuleParticles.h"
+#include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 //#include "ModuleCollisions.h"
 #include "ModuleBlocks.h"
@@ -52,7 +52,7 @@ Application::Application()
 	modules[5] =	blocks =		new ModuleBlocks(false);
 	modules[6] =	walls =			new ModuleWalls(false);
 	modules[7] = enemies = new ModuleEnemies(false);	//Enemies start disabled	
-	//modules[7] =	particles =		new ModuleParticles(true);
+	modules[32] =	particles =		new ModuleParticles(true);
 	
 	modules[8] =	player = new ModulePlayer(false);	//Player starts disabled
 	//modules[9] =	collisions =	new ModuleCollisions(true);
