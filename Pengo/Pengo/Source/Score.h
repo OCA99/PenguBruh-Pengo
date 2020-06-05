@@ -9,6 +9,7 @@ public:
 	~Score();
 
 	void AddScore(int s);
+	void AddScore(int s, int x, int y);
 	void SetHighscore(int s);
 	int GetScore() { return score; };
 	int GetHighscore() { return highscore; };

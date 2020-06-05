@@ -23,8 +23,20 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
-	// Explosion particle
 	score100.anim.GenerateAnimation({ 3, 111, 13, 8 }, 1, 1);
+	score100.lifetime = 60;
+
+	score400.anim.GenerateAnimation({ 19, 111, 15, 8 }, 1, 1);
+	score400.lifetime = 60;
+
+	score1600.anim.GenerateAnimation({ 36, 111, 16, 8 }, 1, 1);
+	score1600.lifetime = 60;
+
+	score3200.anim.GenerateAnimation({ 54, 111, 16, 8 }, 1, 1);
+	score3200.lifetime = 60;
+
+	score6400.anim.GenerateAnimation({ 72, 111, 16, 8 }, 1, 1);
+	score6400.lifetime = 60;
 
 	return true;
 }

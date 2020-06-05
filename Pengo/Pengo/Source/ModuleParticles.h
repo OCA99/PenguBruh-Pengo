@@ -54,6 +54,10 @@ public:
 
 public:
 	Particle score100;
+	Particle score400;
+	Particle score1600;
+	Particle score3200;
+	Particle score6400;
 
 private:
 	// Particles spritesheet loaded into an SDL Texture

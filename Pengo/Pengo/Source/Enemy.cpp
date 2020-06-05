@@ -165,7 +165,7 @@ void Enemy::Update()
 	{
 		App->blocks->HatchNextEgg();
 		destroy();
-		App->score->AddScore(100);
+		App->score->AddScore(100, position.x, position.y);
 	}
 
 	if (currentAnim == &spawnAnim && currentAnim->HasFinished())

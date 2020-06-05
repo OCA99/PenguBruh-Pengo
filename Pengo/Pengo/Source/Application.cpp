@@ -52,8 +52,6 @@ Application::Application()
 	modules[5] =	blocks =		new ModuleBlocks(false);
 	modules[6] =	walls =			new ModuleWalls(false);
 	modules[7] = enemies = new ModuleEnemies(false);	//Enemies start disabled	
-	modules[32] =	particles =		new ModuleParticles(true);
-	
 	modules[8] =	player = new ModulePlayer(false);	//Player starts disabled
 	//modules[9] =	collisions =	new ModuleCollisions(true);
 	modules[9] =	sceneMenu = new SceneMenu(false);
@@ -78,8 +76,9 @@ Application::Application()
 	modules[27] = sceneLevel_15 = new SceneLevel15(false);
 	modules[28] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
 	modules[29] =	debug =		  new ModuleDebug(true);
-	modules[30] = render = new ModuleRender(true);
-	modules[31] = score = new Score(true);
+	modules[30] = particles = new ModuleParticles(true);
+	modules[31] = render = new ModuleRender(true);
+	modules[32] = score = new Score(true);
 
 }
 

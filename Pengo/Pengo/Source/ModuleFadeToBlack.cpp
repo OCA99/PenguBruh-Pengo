@@ -37,7 +37,6 @@ Update_Status ModuleFadeToBlack::Update()
 		++frameCount;
 		if (frameCount > maxFadeFrames)
 		{
-			printf("Ha cambiao");
 			moduleToDisable->Disable();
 			moduleToEnable->Enable();
 
@@ -66,8 +65,6 @@ Update_Status ModuleFadeToBlack::PostUpdate()
 	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
 
 	float fadeRatio = (float)frameCount / ((float)maxFadeFrames);
-
-	std::cout << fadeRatio << std::endl;
 
 	// Render the black square with alpha on the screen
 	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(255.0f));

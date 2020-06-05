@@ -204,16 +204,16 @@ void Block::destroy() {
 void Block::AddScore(int& pushedEnemies) {
 	switch (pushedEnemies) {
 	case 1:
-		App->score->AddScore(400);
+		App->score->AddScore(400, position.x, position.y);
 		break;
 	case 2:
-		App->score->AddScore(1600);
+		App->score->AddScore(1600, position.x, position.y);
 		break;
 	case 3:
-		App->score->AddScore(3200);
+		App->score->AddScore(3200, position.x, position.y);
 		break;
 	case 4:
-		App->score->AddScore(6400);
+		App->score->AddScore(6400, position.x, position.y);
 		break;
 	default:
 		break;
