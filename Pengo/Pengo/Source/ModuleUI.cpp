@@ -6,6 +6,9 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleBlocks.h"
+
+#include <iostream>
 
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
@@ -28,6 +31,7 @@ bool ModuleUI::Start() {
 	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
 	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
+	egg.GenerateAnimation({ 80, 82, 8, 8 }, 1, 1);
 	return true;
 }
 
@@ -65,6 +69,8 @@ Update_Status ModuleUI::PostUpdate()
 	if (App->player->lifes > 1) App->render->Blit(texture, 0, 10, &life.GetCurrentFrame());
 	if (App->player->lifes > 2) App->render->Blit(texture, 18, 10, &life.GetCurrentFrame());
 	if (App->player->lifes > 3) App->render->Blit(texture, 36, 10, &life.GetCurrentFrame());
+
+	if (App->blocks->remainingEggs > 0) App->render->Blit(texture, 112, 16, &egg.GetCurrentFrame());
 
 	return Update_Status::UPDATE_CONTINUE;
 }

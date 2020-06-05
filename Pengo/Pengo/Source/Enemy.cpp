@@ -160,7 +160,7 @@ void Enemy::Update()
 		}
 	}
 
-	if ((spawning || stunned) && App->player->position == position)
+	if ((spawning || stunned) && App->player->position.DistanceTo(position) < 10)
 	{
 		App->blocks->HatchNextEgg();
 		destroy();

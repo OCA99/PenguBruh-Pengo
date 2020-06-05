@@ -53,6 +53,9 @@ public:
 
 	void SetEggColor(int color) { eggColor = color; };
 
+	int remainingEggs = 0;
+	int waitToHatch = 0;
+
 private:
 
 	// All spawned enemies in the scene

@@ -39,6 +39,7 @@ private:
 	int whiteFontID = -1;
 
 	Animation life;
+	Animation egg;
 	SDL_Texture* texture = nullptr;
 };
 

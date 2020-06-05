@@ -26,6 +26,7 @@ ModuleBlocks::~ModuleBlocks()
 bool ModuleBlocks::Start()
 {
 	texture = App->textures->Load("assets/sprites/stages.png");
+	remainingEggs = 0;
 	return true;
 }
 
@@ -104,6 +105,7 @@ void ModuleBlocks::AddBlock(Block_Type type, int x, int y)
 					break;
 				case Block_Type::EGG:
 					blocks[i] = new Block_Egg(x, y, eggColor);
+					remainingEggs++;
 					break;
 			}
 			blocks[i]->texture = texture;
@@ -183,6 +185,10 @@ bool ModuleBlocks::PositionInMap(int x, int y) {
 
 void ModuleBlocks::HatchNextEgg()
 {
+	if (waitToHatch > 0) {
+		waitToHatch--;
+		return;
+	}
 	for (uint i = 0; i < MAX_BLOCKS; ++i)
 	{
 		if (blocks[i] != nullptr)
