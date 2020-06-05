@@ -71,6 +71,8 @@ public:
 
 	bool enemyHasDied = false;
 
+	float suicideTimer = 0.0f;
+
 private:
 
 

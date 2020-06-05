@@ -175,6 +175,16 @@ bool ModuleEnemies::VictoryCheck(bool win)
 		//fx_once = false;
 	}*/
 
+	if (winCounter == 1) {
+		suicideTimer += 1.0f / 60.0f;
+		if (suicideTimer > 12.0f) {
+			for (uint i = 0; i < MAX_ENEMIES; ++i)
+			{
+				if (enemies[i] != nullptr) enemies[i]->Suicide();
+			}
+		}
+	}
+
 	if (winCounter != 0) {
 		winCounter = 0;
 	}
