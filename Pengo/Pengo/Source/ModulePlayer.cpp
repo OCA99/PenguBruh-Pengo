@@ -110,27 +110,22 @@ Update_Status ModulePlayer::Update()
 {
 	if (dead) deadPause++;
 
-	//GODMODE 
-
-	if (App->debug->GMODE == 0)
+	if (lifes - 1 != 0)
 	{
-		if (lifes - 1 != 0)
+		if (deadPause == 100)
 		{
-			if (deadPause == 100)
-			{
-				lifes--;
-				App->enemies->Reset();
-				Reset();
-			}
+			lifes--;
+			App->enemies->Reset();
+			Reset();
 		}
-		else {
-			if (deadPause == 100)
-			{
-				lifes = 3;
-				App->score->CheckAndSetHighscore();
-				App->score->ResetScore();
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
-			}
+	}
+	else {
+		if (deadPause == 100)
+		{
+			lifes = 3;
+			App->score->CheckAndSetHighscore();
+			App->score->ResetScore();
+			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
 		}
 	}
 

@@ -37,6 +37,7 @@ bool SceneLevel2::Start()
 	App->enemies->NextColor();
 	int color = App->enemies->GetColor();
 	App->blocks->SetEggColor(color);
+	App->levelNum = 2;
 
 	bool ret = true;
 

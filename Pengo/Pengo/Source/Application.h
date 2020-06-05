@@ -94,6 +94,8 @@ public:
 	SceneLevel14* sceneLevel_14 = nullptr;
 	SceneLevel15* sceneLevel_15 = nullptr;
 	SceneLevel16* sceneLevel_16 = nullptr;
+
+	int levelNum = 0;
 	
 
 	ModuleEnemies* enemies = nullptr;

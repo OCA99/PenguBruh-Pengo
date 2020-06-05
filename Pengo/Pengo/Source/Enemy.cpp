@@ -262,26 +262,26 @@ void Enemy::Update()
 	if (currentAnim != &spawnAnim && !stunned && !crushed) {
 		if (position.x < targetPosition.x) {
 			if (!breakingBlock) currentAnim = &walkRightAnim;
-			xpositionfraction += (pushed ? pushedSpeed : speed);
+			xpositionfraction += (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.x += xpositionfraction;
 			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
 		else if (position.x > targetPosition.x) {
 			if (!breakingBlock) currentAnim = &walkLeftAnim;
-			xpositionfraction -= (pushed ? pushedSpeed : speed);
+			xpositionfraction -= (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
 			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
 
 		if (position.y < targetPosition.y) {
 			if (!breakingBlock) currentAnim = &walkDownAnim;
-			ypositionfraction += (pushed ? pushedSpeed : speed);
+			ypositionfraction += (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.y += ypositionfraction;
 			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
 		}
 		else if (position.y > targetPosition.y) {
 			if (!breakingBlock) currentAnim = &walkUpAnim;
-			ypositionfraction -= (pushed ? pushedSpeed : speed);
+			ypositionfraction -= (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
 			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
 		}

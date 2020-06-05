@@ -32,6 +32,8 @@ bool ModuleUI::Start() {
 
 	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
 	egg.GenerateAnimation({ 80, 82, 8, 8 }, 1, 1);
+	levelFlag.GenerateAnimation({ 54, 151, 15, 15}, 1, 1);
+	levelFlag5.GenerateAnimation({ 73, 151, 15, 15}, 1, 1);
 	return true;
 }
 
@@ -74,6 +76,23 @@ Update_Status ModuleUI::PostUpdate()
 	if (App->blocks->remainingEggs > 1) App->render->Blit(texture, 120, 16, &egg.GetCurrentFrame());
 	if (App->blocks->remainingEggs > 2) App->render->Blit(texture, 128, 16, &egg.GetCurrentFrame());
 	if (App->blocks->remainingEggs > 3) App->render->Blit(texture, 136, 16, &egg.GetCurrentFrame());
+
+	App->fonts->BlitText(8, 280, whiteFontID, "ACT");
+	char currentLvlText[DYNAMIC_TEXT_LEN + 1];
+	intToString(currentLvlText, App->levelNum);
+	RenderDynamicText(currentLvlText, 40, 280, whiteFontID, false);
+
+	int level5 = App->levelNum / 5;
+	int remain = App->levelNum % 5;
+
+	int x = 56;
+	int y = 273;
+
+	for (int i = 0; i < level5; i++) {
+
+	}
+
+	App->fonts->BlitText(124, 280, whiteFontID, "© SEGA 1982");
 
 	return Update_Status::UPDATE_CONTINUE;
 }
