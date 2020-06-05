@@ -39,6 +39,8 @@ public:
 
 	bool BlockInGridPosition(int x, int y);
 
+	bool DiamondInGridPosition(int x, int y);
+
 	void PushBlock(int fromx, int fromy, int x, int y);
 
 	void DestroyBlock(int x, int y);

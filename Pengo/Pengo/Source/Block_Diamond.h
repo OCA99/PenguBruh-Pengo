@@ -14,6 +14,9 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	void DiamondsTogether(int x, int y);
+
+	int Dia = 1;
 private:
 
 	// This enemy has one sprite and one frame

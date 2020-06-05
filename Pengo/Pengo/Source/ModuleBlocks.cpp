@@ -89,6 +89,7 @@ bool ModuleBlocks::CleanUp()
 	return true;
 }
 
+
 void ModuleBlocks::AddBlock(Block_Type type, int x, int y)
 {
 	for (uint i = 0; i < MAX_BLOCKS; ++i)
@@ -120,6 +121,21 @@ bool ModuleBlocks::BlockInGridPosition(int x, int y) {
 		if (blocks[i] != nullptr)
 		{
 			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) return true;
+		}
+	}
+	return false;
+}
+
+bool ModuleBlocks::DiamondInGridPosition(int x, int y) {
+	for (uint i = 0; i < MAX_BLOCKS; ++i)
+	{
+		if (blocks[i] != nullptr)
+		{
+			if (blocks[i]->type == Block::Block_Type::DIAMOND)
+			{
+				if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) return true;
+			}
+			
 		}
 	}
 	return false;
