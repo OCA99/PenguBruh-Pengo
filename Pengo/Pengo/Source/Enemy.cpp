@@ -108,11 +108,11 @@ Enemy::Enemy(int x, int y, int color) : position(x, y)
 	crushRight.speed = 0.2f;
 	crushRight.loop = false;
 
-	crushDown.GenerateAnimation({ 48 + xoffset,192 + yoffset,32,16 }, 1, 2);
+	crushDown.GenerateAnimation({ 64 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushDown.speed = 0.2f;
 	crushDown.loop = false;
 
-	crushLeft.GenerateAnimation({ 64 + xoffset,192 + yoffset,32,16 }, 1, 2);
+	crushLeft.GenerateAnimation({ 96 + xoffset,192 + yoffset,32,16 }, 1, 2);
 	crushLeft.speed = 0.2f;
 	crushLeft.loop = false;
 
@@ -526,21 +526,28 @@ void Enemy::Pushed(int fromx, int fromy) {
 
 	if (fromx < gridPosition.x) {
 		direction = Directions::CrushRight;
-	}
-	if (fromx > gridPosition.x) {
+	} else if (fromx > gridPosition.x) {
 		direction = Directions::CrushLeft;
-	}
-	if (fromy < gridPosition.y) {
+	} else if (fromy < gridPosition.y) {
 		direction = Directions::CrushDown;
-	}
-	if (fromy > gridPosition.y) {
+	} else if (fromy > gridPosition.y) {
 		direction = Directions::CrushUp;
 	}
+
+	int x = 0;
+	int y = 0;
+
+	gridToPosition(gridPosition.x, gridPosition.y, x, y);
+
+	position.x = x;
+	position.y = y;
+
+	targetPosition.x = x;
+	targetPosition.y = y;
 
 	moving = false;
 	pushed = true;
 	stunned = false;
-	std::cout << "smegma" << std::endl;
 }
 
 void Enemy::WallStunned(int wallID)
@@ -597,4 +604,14 @@ void Enemy::destroy() {
 	//App->audio->PlayFx(10, 0);
 	App->enemies->enemyHasDied = true;
 	SetToDelete();
+}
+
+void Enemy::positionToGrid(int gx, int gy, int& x, int& y) {
+	x = (gx - 8) / 16;
+	y = (gy - 32) / 16;
+}
+
+void Enemy::gridToPosition(int px, int py, int& x, int& y) {
+	x = px * 16 + 8;
+	y = py * 16 + 32;
 }

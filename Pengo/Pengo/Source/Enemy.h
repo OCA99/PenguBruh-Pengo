@@ -121,6 +121,9 @@ private:
 	float ABS(float x) {
 		return x > 0 ? x : -x;
 	}
+
+	void positionToGrid(int gx, int gy, int& x, int& y);
+	void gridToPosition(int px, int py, int& x, int& y);
 };
 
 #endif // __ENEMY_H__
