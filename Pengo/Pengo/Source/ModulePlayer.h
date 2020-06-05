@@ -52,6 +52,9 @@ public:
 	iPoint targetPosition;
 	iPoint gridPosition;
 
+	float xpositionfraction = 0;
+	float ypositionfraction = 0;
+
 	bool moving = false;
 	bool pushing = false;
 
@@ -59,7 +62,7 @@ public:
 	bool instaloss = false;
 	bool paused = false;
 	// The speed in which we move the player (pixels per frame)
-	int speed = 1;
+	float speed = 0.7f;
 
 	//Counter to repeat animations
 	int deadPause = 0;

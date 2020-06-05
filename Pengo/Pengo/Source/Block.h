@@ -70,7 +70,7 @@ protected:
 	Animation destroyAnim;
 
 private:
-	int speed = 2;
+	int speed = 3;
 	bool moving = false;
 	int pushedEnemies = 0;
 

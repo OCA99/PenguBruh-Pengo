@@ -109,7 +109,7 @@ protected:
 	Animation endStunAnim;
 
 private:
-	int pushedSpeed = 2;
+	int pushedSpeed = 3;
 	float speed = 0.7f;
 	bool moving = false;
 	bool crushed = false;

@@ -210,7 +210,7 @@ int ModuleDebug::CanPut(int x, int y)
 	int a = x;
 	int b = y;
 	canput = 1;
-	if (App->enemies->EnemyInPosition(a,b))
+	if (App->enemies->EnemyInGridPosition(a,b))
 	{
 		canput = 0;
 	}

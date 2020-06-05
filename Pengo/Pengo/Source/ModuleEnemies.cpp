@@ -110,6 +110,17 @@ void ModuleEnemies::AddEnemy(int x, int y)
 	}
 }
 
+bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			if (enemies[i]->gridPosition == iPoint(x, y)) return true;
+		}
+	}
+	return false;
+}
+
 bool ModuleEnemies::EnemyInPosition(int x, int y) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{

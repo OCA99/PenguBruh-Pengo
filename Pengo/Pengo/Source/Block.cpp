@@ -44,7 +44,7 @@ void Block::Update()
 		case Directions::Up:
 			x = gridPosition.x;
 			y = gridPosition.y - 1;
-			if (App->enemies->EnemyInPosition(x, y)) {
+			if (App->enemies->EnemyInGridPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -59,7 +59,7 @@ void Block::Update()
 		case Directions::Down:
 			x = gridPosition.x;
 			y = gridPosition.y + 1;
-			if (App->enemies->EnemyInPosition(x, y)) {
+			if (App->enemies->EnemyInGridPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -74,7 +74,7 @@ void Block::Update()
 		case Directions::Left:
 			x = gridPosition.x - 1;
 			y = gridPosition.y;
-			if (App->enemies->EnemyInPosition(x, y)) {
+			if (App->enemies->EnemyInGridPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -89,7 +89,7 @@ void Block::Update()
 		case Directions::Right:
 			x = gridPosition.x + 1;
 			y = gridPosition.y;
-			if (App->enemies->EnemyInPosition(x, y)) {
+			if (App->enemies->EnemyInGridPosition(x, y)) {
 				pushedEnemies += App->enemies->PushEnemy(gridPosition.x, gridPosition.y, x, y);
 			}
 			if (App->blocks->BlockInGridPosition(x, y)) {
@@ -110,18 +110,22 @@ void Block::Update()
 		currentAnim->Update();
 
 	if (gridPosition.x < 0) {
+		AddScore(pushedEnemies);
 		direction = Directions::Stopped;
 		gridPosition.x = 0;
 	}
 	if (gridPosition.x > 12) {
+		AddScore(pushedEnemies);
 		direction = Directions::Stopped;
 		gridPosition.x = 12;
 	}
 	if (gridPosition.y < 0) {
+		AddScore(pushedEnemies);
 		direction = Directions::Stopped;
 		gridPosition.y = 0;
 	}
 	if (gridPosition.y > 14) {
+		AddScore(pushedEnemies);
 		direction = Directions::Stopped;
 		gridPosition.y = 14;
 	}
@@ -130,17 +134,21 @@ void Block::Update()
 	targetPosition.y = gridPosition.y * 16 + 32;
 
 	if (position.x < targetPosition.x) {
-		position.x += speed;
+		if (position.DistanceTo(targetPosition) < speed) position.x += position.DistanceTo(targetPosition);
+		else position.x += speed;
 	}
 	else if (position.x > targetPosition.x) {
-		position.x -= speed;
+		if (position.DistanceTo(targetPosition) < speed) position.x -= position.DistanceTo(targetPosition);
+		else position.x -= speed;
 	}
 
 	if (position.y < targetPosition.y) {
-		position.y += speed;
+		if (position.DistanceTo(targetPosition) < speed) position.y += position.DistanceTo(targetPosition);
+		else position.y += speed;
 	}
 	else if (position.y > targetPosition.y) {
-		position.y -= speed;
+		if (position.DistanceTo(targetPosition) < speed) position.y -= position.DistanceTo(targetPosition);
+		else position.y -= speed;
 	}
 
 	if (position.x == targetPosition.x && position.y == targetPosition.y) {

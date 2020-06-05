@@ -157,7 +157,7 @@ void Enemy::Update()
 			currentAnim = &endStunAnim;
 		}
 		if (stunTimer > 3.0f) {
-			//stunned = false;
+			stunned = false;
 		}
 	}
 
@@ -556,37 +556,45 @@ void Enemy::Pushed(int fromx, int fromy) {
 
 void Enemy::WallStunned(int wallID)
 {
+	int x = 0;
+	int y = 0;
+
+	positionToGrid(position.x, position.y, x, y);
 	switch (wallID) {
 
 	case 0:
-		if (gridPosition.y == 0)
+		if (y == 0)
 		{
 			stunned = true;
+			stunTimer = 0.0f;
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 
 		}
 		break;
 	case 1:
-		if (gridPosition.y == 14)
+		if (y == 14)
 		{
 			stunned = true;
+			stunTimer = 0.0f;
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 		}
 		break;
 	case 2:
-		if (gridPosition.x == 0)
+		if (x == 0)
 		{
 			stunned = true;
+			stunTimer = 0.0f;
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 		}
 		break;
 	case 3:
-		if (gridPosition.x == 12)
+		if (x == 12)
 		{
 			stunned = true;
+			stunTimer = 0.0f;
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 		}
@@ -611,8 +619,8 @@ void Enemy::destroy() {
 }
 
 void Enemy::positionToGrid(int gx, int gy, int& x, int& y) {
-	x = (gx - 8) / 16;
-	y = (gy - 32) / 16;
+	x = std::round((gx - 8) / 16.0f);
+	y = std::round((gy - 32) / 16.0f);
 }
 
 void Enemy::gridToPosition(int px, int py, int& x, int& y) {

@@ -43,6 +43,7 @@ public:
 	// Add an enemy into the queue to be spawned later
 	void AddEnemy(int x, int y);
 
+	bool EnemyInGridPosition(int x, int y);
 	bool EnemyInPosition(int x, int y);
 	bool NotStunnedEnemyInPosition(int x, int y);
 

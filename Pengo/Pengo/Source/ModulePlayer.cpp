@@ -268,17 +268,25 @@ Update_Status ModulePlayer::Update()
 		targetPosition.y = gridPosition.y * 16 + 32;
 
 		if (position.x < targetPosition.x) {
-			position.x += speed;
+			xpositionfraction += speed;
+			position.x += xpositionfraction;
+			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
 		else if (position.x > targetPosition.x) {
-			position.x -= speed;
+			xpositionfraction -= speed;
+			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
+			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
 		}
 
 		if (position.y < targetPosition.y) {
-			position.y += speed;
+			ypositionfraction += speed;
+			position.y += ypositionfraction;
+			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
 		}
 		else if (position.y > targetPosition.y) {
-			position.y -= speed;
+			ypositionfraction -= speed;
+			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
+			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
 		}
 
 		if (position.x == targetPosition.x && position.y == targetPosition.y) {
