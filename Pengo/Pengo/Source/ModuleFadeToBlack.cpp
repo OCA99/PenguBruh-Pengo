@@ -5,9 +5,12 @@
 
 #include "SDL/include/SDL_render.h"
 
+#include <stdio.h>
+
 ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 {
 	screenRect = {0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE};
+	firstScreenRect = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
@@ -34,6 +37,7 @@ Update_Status ModuleFadeToBlack::Update()
 		++frameCount;
 		if (frameCount >= maxFadeFrames)
 		{
+			printf("Ha cambiao");
 			moduleToDisable->Disable();
 			moduleToEnable->Enable();
 
@@ -49,6 +53,8 @@ Update_Status ModuleFadeToBlack::Update()
 		}
 	}
 
+	printf("FrameCount: %d\n MaxFrame: %d", frameCount, maxFadeFrames);
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -57,11 +63,13 @@ Update_Status ModuleFadeToBlack::PostUpdate()
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
 
-	float fadeRatio = (float)frameCount / (float)maxFadeFrames;
+	float fadeRatio = (float)frameCount / ((float)maxFadeFrames);
 
+	
 	// Render the black square with alpha on the screen
-	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(fadeRatio * 255.0f));
+	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(255.0f));
 	SDL_RenderFillRect(App->render->renderer, &screenRect);
+	screenRect.h = screenRect.h - firstScreenRect.h * fadeRatio;
 
 	return Update_Status::UPDATE_CONTINUE;
 }

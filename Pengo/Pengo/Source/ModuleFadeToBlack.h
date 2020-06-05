@@ -37,7 +37,9 @@ private:
 		NONE,
 		TO_BLACK,
 		FROM_BLACK
-	} currentStep = Fade_Step::NONE;
+	} 
+	
+	currentStep = Fade_Step::NONE;
 
 	// A frame count system to handle the fade time and ratio
 	Uint32 frameCount = 0;
@@ -45,6 +47,7 @@ private:
 
 	// The rectangle of the screen, used to render the black rectangle
 	SDL_Rect screenRect;
+	SDL_Rect firstScreenRect;
 
 	// The modules that should be switched after the first step
 	Module* moduleToEnable = nullptr;
