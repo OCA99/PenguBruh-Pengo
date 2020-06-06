@@ -7,7 +7,7 @@
 #include "ModuleAudio.h"
 
 #include "Block.h"
-
+#include <stdio.h>
 #include "Block_Normal.h"
 #include "Block_Diamond.h"
 #include "Block_Egg.h"

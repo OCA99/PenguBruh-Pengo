@@ -32,7 +32,7 @@ void Block_Diamond::DiamondsTogether(int x, int y)
 	{
 		//anim
 		//printf("1000 PUNTS");
-		App->score += 10000;
+		App->score->AddScore(10000);
 		Dia = 0;
 	}
 };

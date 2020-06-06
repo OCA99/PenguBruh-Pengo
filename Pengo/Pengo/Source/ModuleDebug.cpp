@@ -212,18 +212,22 @@ int ModuleDebug::CanPut(int x, int y)
 	canput = 1;
 	if (App->enemies->EnemyInGridPosition(a,b))
 	{
+		
 		canput = 0;
 	}
 	else if (App->blocks->BlockInGridPosition(a, b))
 	{
+		
 		canput = 0;
 	}
-	else if (x > 12 || y > 14 || x < 0 || y < 0)
+	else if ( x > 12 || y > 14 || x < 0 || y < 0)
 	{
+		
 		canput = 0;
 	}
-	else if ((App->player->position.x - 8) / 16 == a && (App->player->position.y - 32) / 16 == b)
+	else if (((App->player->position.x - 8) / 16 ) / SCREEN_SIZE == a && ((App->player->position.y - 32) / 16) / SCREEN_SIZE == b)
 	{
+		
 		canput = 0;
 	}
 	
@@ -231,13 +235,33 @@ int ModuleDebug::CanPut(int x, int y)
 }
 void ModuleDebug::BlockOnMap(int x, int y)
 {
-	int gridposX =  ( x - 8 ) / 16;
-	int gridposY =  (y - 32) / 16;
+	int gridposX =  (( x - 8 ) / 16 ) / SCREEN_SIZE;
+	int gridposY =  ((y - 32) / 16 ) / SCREEN_SIZE;
 	if (CanPut(gridposX, gridposY) == 1)
 	{
 		App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
 	}
 	
+}
+void ModuleDebug::DiamondOnMap(int x, int y)
+{
+	int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
+	int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+	if (CanPut(gridposX, gridposY) == 1)
+	{
+		App->blocks->AddBlock(Block_Type::DIAMOND, gridposX, gridposY);
+	}
+
+}
+void ModuleDebug::EggOnMap(int x, int y)
+{
+	int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
+	int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+	if (CanPut(gridposX, gridposY) == 1)
+	{
+		App->blocks->AddBlock(Block_Type::EGG, gridposX, gridposY);
+	}
+
 }
 void ModuleDebug::SnoBeeOnMap(int x, int y)
 {
