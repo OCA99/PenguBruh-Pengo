@@ -76,25 +76,32 @@ Update_Status ModuleInput::PreUpdate()
 		{
 			SDL_GetMouseState(&xpos, &ypos);
 			
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-				printf("X POS L MOUSE %d \n", xpos);
-				printf("y POS L MOUSE %d \n", xpos);
-				App->debug->BlockOnMap(xpos, ypos);
-			}
-			if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-				printf("X POS R MOUSE %d \n", xpos);
-				printf("y POS R MOUSE %d \n", xpos);
-				App->debug->SnoBeeOnMap(xpos, ypos);
-			}
-			if (event.button.button == SDL_BUTTON_X1)
-			{
-				printf("X POS R MOUSE %d \n", xpos);
-				printf("y POS R MOUSE %d \n", xpos);
-				App->debug->EggOnMap(xpos, ypos);
-			}
-			break;
+				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					printf("X POS L MOUSE %d \n", xpos);
+					printf("y POS L MOUSE %d \n", xpos);
+					App->debug->BlockOnMap(xpos, ypos);
+				}
+				if (event.button.button == SDL_BUTTON_RIGHT)
+				{
+					printf("X POS R MOUSE %d \n", xpos);
+					printf("y POS R MOUSE %d \n", xpos);
+					App->debug->SnoBeeOnMap(xpos, ypos);
+				}
+				if (event.button.button == SDL_BUTTON_X1)
+				{
+					printf("X POS R MOUSE %d \n", xpos);
+					printf("y POS R MOUSE %d \n", xpos);
+					App->debug->EggOnMap(xpos, ypos);
+				}
+				if (event.button.button == SDL_BUTTON_X2)
+				{
+					printf("X POS R MOUSE %d \n", xpos);
+					printf("y POS R MOUSE %d \n", xpos);
+					App->debug->DestroyBlock(xpos, ypos);
+				}
+				break;
+			
 		}
 		case(SDL_QUIT):
 		{

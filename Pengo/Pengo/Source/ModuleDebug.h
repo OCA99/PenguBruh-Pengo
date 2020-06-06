@@ -43,6 +43,7 @@ public:
 	void SnoBeeOnMap(int x, int y);
 	void DiamondOnMap(int x, int y);
 	void EggOnMap(int x, int y);
+	void DestroyBlock(int x, int y);
 	
 	inline bool IsEnabled() const { return isEnabled; }
 

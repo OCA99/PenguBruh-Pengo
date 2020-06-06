@@ -235,43 +235,69 @@ int ModuleDebug::CanPut(int x, int y)
 }
 void ModuleDebug::BlockOnMap(int x, int y)
 {
-	int gridposX =  (( x - 8 ) / 16 ) / SCREEN_SIZE;
-	int gridposY =  ((y - 32) / 16 ) / SCREEN_SIZE;
-	if (CanPut(gridposX, gridposY) == 1)
+	if (App->debug->DEBUG_MODE == 1)
 	{
-		App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
+		int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
+		int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+		if (CanPut(gridposX, gridposY) == 1)
+		{
+
+			App->blocks->AddBlock(Block_Type::NORMAL, gridposX, gridposY);
+		}
 	}
 	
 }
 void ModuleDebug::DiamondOnMap(int x, int y)
 {
-	int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
-	int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
-	if (CanPut(gridposX, gridposY) == 1)
+	if (App->debug->DEBUG_MODE == 1)
 	{
-		App->blocks->AddBlock(Block_Type::DIAMOND, gridposX, gridposY);
+		int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
+		int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+		if (CanPut(gridposX, gridposY) == 1)
+		{
+			App->blocks->AddBlock(Block_Type::DIAMOND, gridposX, gridposY);
+		}
 	}
 
 }
 void ModuleDebug::EggOnMap(int x, int y)
 {
-	int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
-	int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
-	if (CanPut(gridposX, gridposY) == 1)
+	if (App->debug->DEBUG_MODE == 1)
 	{
-		App->blocks->AddBlock(Block_Type::EGG, gridposX, gridposY);
+		int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
+		int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+		if (CanPut(gridposX, gridposY) == 1)
+		{
+			App->blocks->AddBlock(Block_Type::EGG, gridposX, gridposY);
+		}
 	}
 
 }
 void ModuleDebug::SnoBeeOnMap(int x, int y)
 {
-	int gridposX = (x - 8) / 16;
-	int gridposY = (y - 32) / 16;
-	if (CanPut(gridposX, gridposY) == 1)
+	if (App->debug->DEBUG_MODE == 1)
 	{
-		App->enemies->AddEnemy(gridposX, gridposY);
+		int gridposX = (x - 8) / 16;
+		int gridposY = (y - 32) / 16;
+		if (CanPut(gridposX, gridposY) == 1)
+		{
+			App->enemies->AddEnemy(gridposX, gridposY);
+		}
 	}
 
+	
+}
+void ModuleDebug::DestroyBlock(int x, int y)
+{
+	if (App->debug->DEBUG_MODE == 1)
+	{
+		int gridposX = (x - 8) / 16;
+		int gridposY = (y - 32) / 16;
+		if (CanPut(gridposX, gridposY) == 0)
+		{
+			App->blocks->DestroyBlock(gridposX, gridposY);
+		}
+	}
 }
 
 void ModuleDebug::Disable()
