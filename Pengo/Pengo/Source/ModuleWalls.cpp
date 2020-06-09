@@ -39,6 +39,8 @@ Update_Status ModuleWalls::PreUpdate()
 Update_Status ModuleWalls::Update()
 {
 
+	if (!wallsActive) return Update_Status::UPDATE_CONTINUE;
+
 	for (uint i = 0; i < MAX_WALLS; ++i)
 	{
 		if (walls[i] != nullptr) {
@@ -52,6 +54,8 @@ Update_Status ModuleWalls::Update()
 
 Update_Status ModuleWalls::PostUpdate()
 {
+	if (!wallsActive) return Update_Status::UPDATE_CONTINUE;
+
 	for (uint i = 0; i < MAX_WALLS; ++i)
 	{
 		if (walls[i] != nullptr) {

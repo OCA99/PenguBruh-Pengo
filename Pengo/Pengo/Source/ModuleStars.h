@@ -1,26 +1,24 @@
-#ifndef __MODULE_PARTICLES_H__
-#define __MODULE_PARTICLES_H__
+#pragma once
 
 #include "Module.h"
 
 #include "Globals.h"
-#include "Particle.h"
-//#include "Collider.h"
+#include "Star.h"
 
-#define MAX_ACTIVE_STARS 100
+#define MAX_ACTIVE_STARS 150
 
 struct SDL_Texture;
 struct Collider;
 
-class ModuleParticles : public Module
+class ModuleStars : public Module
 {
 public:
 	// Constructor
 	// Initializes all the particles in the array to nullptr
-	ModuleParticles(bool startEnabled);
+	ModuleStars(bool startEnabled);
 
 	//Destructor
-	~ModuleParticles();
+	~ModuleStars();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the particles
@@ -49,23 +47,19 @@ public:
 	// Param particle	- A template particle from which the new particle will be created
 	// Param x, y		- Position x,y in the screen (upper left axis)
 	// Param delay		- Delay time from the moment the function is called until the particle is displayed in screen
-	Particle* AddParticle(const Particle& particle, int x, int y);
+	void AddStar(int x, int y, int startPos);
 	//Particle* AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
+	bool starsActive = false;
+
 public:
-	Particle score100;
-	Particle score400;
-	Particle score1600;
-	Particle score3200;
-	Particle score6400;
+	
 
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* texture = nullptr;
 
 	// An array to store and handle all the particles
-	Particle* particles[MAX_ACTIVE_STARS] = { nullptr };
+	Star* stars[MAX_ACTIVE_STARS] = { nullptr };
 
 };
-
-#endif // !__MODULEPARTICLES_H__

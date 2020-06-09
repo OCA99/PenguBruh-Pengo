@@ -9,7 +9,7 @@
 
 ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled)
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for(uint i = 0; i < MAX_ACTIVE_STARS; ++i)
 		particles[i] = nullptr;
 }
 
@@ -43,7 +43,7 @@ bool ModuleParticles::Start()
 
 Update_Status ModuleParticles::PreUpdate()
 {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_STARS; ++i)
 	{
 		if (particles[i] != nullptr && particles[i]->pendingToDelete)
 		{
@@ -59,7 +59,7 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for(uint i = 0; i < MAX_ACTIVE_STARS; ++i)
 	{
 		if(particles[i] != nullptr)
 		{
@@ -73,7 +73,7 @@ bool ModuleParticles::CleanUp()
 
 Update_Status ModuleParticles::Update()
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for(uint i = 0; i < MAX_ACTIVE_STARS; ++i)
 	{
 		Particle* particle = particles[i];
 
@@ -92,7 +92,7 @@ Update_Status ModuleParticles::Update()
 Update_Status ModuleParticles::PostUpdate()
 {
 	//Iterating all particle array and drawing any active particles
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_STARS; ++i)
 	{
 		Particle* particle = particles[i];
 
@@ -109,7 +109,7 @@ Particle* ModuleParticles::AddParticle(const Particle& particle, int x, int y)
 {
 	Particle* newParticle = nullptr;
 
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_STARS; ++i)
 	{
 		//Finding an empty slot for a new particle
 		if (particles[i] == nullptr)

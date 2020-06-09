@@ -40,6 +40,7 @@
     <ClInclude Include="Source\ModuleParticles.h" />
     <ClInclude Include="Source\ModulePlayer.h" />
     <ClInclude Include="Source\ModuleRender.h" />
+    <ClInclude Include="Source\ModuleStars.h" />
     <ClInclude Include="Source\ModuleTextures.h" />
     <ClInclude Include="Source\ModuleUI.h" />
     <ClInclude Include="Source\ModuleWalls.h" />
@@ -67,6 +68,7 @@
     <ClInclude Include="Source\SceneLevel9.h" />
     <ClInclude Include="Source\SceneMenu.h" />
     <ClInclude Include="Source\Score.h" />
+    <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Wall.h" />
     <ClInclude Include="Source\WallHorizontal.h" />
     <ClInclude Include="Source\WallVertical.h" />
@@ -92,6 +94,7 @@
     <ClCompile Include="Source\ModuleParticles.cpp" />
     <ClCompile Include="Source\ModulePlayer.cpp" />
     <ClCompile Include="Source\ModuleRender.cpp" />
+    <ClCompile Include="Source\ModuleStars.cpp" />
     <ClCompile Include="Source\ModuleTextures.cpp" />
     <ClCompile Include="Source\ModuleUI.cpp" />
     <ClCompile Include="Source\ModuleWalls.cpp" />
@@ -118,6 +121,7 @@
     <ClCompile Include="Source\SceneLevel9.cpp" />
     <ClCompile Include="Source\SceneMenu.cpp" />
     <ClCompile Include="Source\Score.cpp" />
+    <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Wall.cpp" />
     <ClCompile Include="Source\WallHorizontal.cpp" />
     <ClCompile Include="Source\WallVertical.cpp" />

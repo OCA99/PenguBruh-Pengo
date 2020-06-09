@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 33
+#define NUM_MODULES 34
 
 class Module;
 class ModuleWindow;
@@ -42,6 +42,7 @@ class ModuleRender;
 class ModuleDebug;
 class ModuleUI;
 class Score;
+class ModuleStars;
 
 class Application
 {
@@ -111,6 +112,7 @@ public:
 	ModuleDebug* debug = nullptr;
 	ModuleUI* ui = nullptr;
 	Score* score = nullptr;
+	ModuleStars* stars = nullptr;
 
 private:
 	const int FPS = 60;

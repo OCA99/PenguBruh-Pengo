@@ -91,6 +91,10 @@ bool ModuleRender::CleanUp()
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, bool useCamera)
 {
 
+	if (x == 10 && y == 10) {
+		std::cout << section->x << " " << section->y << " " << section->w << " " << section->h << std::endl;
+	}
+
 	bool ret = true;
 
 	SDL_Rect dstRect{ x * SCREEN_SIZE, y * SCREEN_SIZE, 0, 0 };

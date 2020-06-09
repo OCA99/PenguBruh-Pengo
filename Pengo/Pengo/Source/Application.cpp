@@ -36,6 +36,7 @@
 #include "ModuleDebug.h"
 #include "ModuleUI.h"
 #include "Score.h"
+#include "ModuleStars.h"
 
 Application::Application()
 {
@@ -77,8 +78,9 @@ Application::Application()
 	modules[28] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
 	modules[29] =	debug =		  new ModuleDebug(true);
 	modules[30] = particles = new ModuleParticles(true);
-	modules[31] = render = new ModuleRender(true);
-	modules[32] = score = new Score(true);
+	modules[31] = stars = new ModuleStars(true);
+	modules[32] = render = new ModuleRender(true);
+	modules[33] = score = new Score(true);
 
 }
 

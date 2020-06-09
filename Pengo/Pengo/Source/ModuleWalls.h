@@ -37,6 +37,8 @@ public:
 
 	void PushWall(int i);
 
+	bool wallsActive = true;
+
 private:
 
 	// All spawned enemies in the scene
