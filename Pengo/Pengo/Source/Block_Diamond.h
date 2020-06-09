@@ -17,11 +17,17 @@ public:
 	void DiamondsTogether(int x, int y);
 
 	int Dia = 1;
+	void BlockTogether();
+
+	bool oscaretmato;
+
 private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation normalAnim;
+	Animation togetherAllAnim;
+	Animation twogetherAnim;
 };
 
 #endif // Block_Normal_H
