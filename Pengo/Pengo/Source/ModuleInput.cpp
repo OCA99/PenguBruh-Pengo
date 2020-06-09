@@ -88,6 +88,12 @@ Update_Status ModuleInput::PreUpdate()
 					printf("y POS R MOUSE %d \n", xpos);
 					App->debug->SnoBeeOnMap(xpos, ypos);
 				}
+				if (event.button.button == SDL_BUTTON_MIDDLE)
+				{
+					printf("X POS R MOUSE %d \n", xpos);
+					printf("y POS R MOUSE %d \n", xpos);
+					App->debug->DiamondOnMap(xpos, ypos);
+				}
 				if (event.button.button == SDL_BUTTON_X1)
 				{
 					printf("X POS R MOUSE %d \n", xpos);
