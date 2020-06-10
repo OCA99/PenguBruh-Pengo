@@ -13,7 +13,7 @@ Block_Diamond::Block_Diamond(int x, int y) : Block(x, y)
 	togetherAllAnim.loop = true;
 
 	twogetherAnim.GenerateAnimation({ 708,32, 32,16 }, 1, 2);
-	twogetherAnim.speed = 0.5f;
+	twogetherAnim.speed = 0.085f;
 	twogetherAnim.loop = true;
 
 	type = Block_Type::DIAMOND;
@@ -21,35 +21,91 @@ Block_Diamond::Block_Diamond(int x, int y) : Block(x, y)
 
 void Block_Diamond::Update()
 {
-	if (Dia == 1) 
+	if (App->blocks->allTogether != true)
 	{
-		
+		FirstDiamondTogether(gridPosition.x, gridPosition.y);
+	}
 		DiamondsTogether(gridPosition.x, gridPosition.y);
-	}
-	if (oscaretmato)
-	{
-		currentAnim = &togetherAllAnim;
-	}
+
 	
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Block::Update();
 }
 
-void Block_Diamond::BlockTogether()
-{
-	oscaretmato = 1;
-}
+
 void Block_Diamond::DiamondsTogether(int x, int y)
 {
-	if (App->blocks->DiamondInGridPosition(x - 1, y) && App->blocks->DiamondInGridPosition(x + 1, y) == 1
-		||
-		App->blocks->DiamondInGridPosition(x, y - 1) && App->blocks->DiamondInGridPosition(x, y + 1) == 1)
-	{
-		//anim
-		//printf("1000 PUNTS");
-		currentAnim = &togetherAllAnim;
-		App->score->AddScore(10000);
-		Dia = 0;
-	}
+
+		if (App->blocks->DiamondInGridPosition(x - 1, y) && App->blocks->DiamondInGridPosition(x + 1, y) == true
+			||
+			App->blocks->DiamondInGridPosition(x, y - 1) && App->blocks->DiamondInGridPosition(x, y + 1) == true)
+		{
+			printf("lavaina\n");
+			//anim
+			//printf("1000 PUNTS");
+			connected = true;
+			App->blocks->allTogether = true;
+			if (pointsOnce != true)
+			{
+				pointsOnce = true;
+				App->score->AddScore(10000);
+			}
+		} 
+
+		if (connected = true)
+		{
+			if (App->blocks->DiamondInGridPosition(x - 1, y) && App->blocks->DiamondInGridPosition(x + 1, y) &&
+				App->blocks->DiamondInGridPosition(x, y - 1) && App->blocks->DiamondInGridPosition(x, y + 1) == false)
+			{
+				connected = false;
+				App->blocks->disconnected = true;
+				App->blocks->allTogether = false;
+				pointsOnce = false;
+			}
+		}
+
+		if (App->blocks->allTogether == true)
+		{
+			currentAnim = &togetherAllAnim;
+		} else if (App->blocks->allTogether == false && App->blocks->disconnected != true)
+		{
+			currentAnim = &normalAnim;
+		}
 };
+
+void Block_Diamond::FirstDiamondTogether(int x, int y)
+{
+	if ((App->blocks->DiamondInGridPosition(x - 1, y) == true ) || (App->blocks->DiamondInGridPosition(x + 1, y) == true)
+		||
+		(App->blocks->DiamondInGridPosition(x, y - 1) == true )|| (App->blocks->DiamondInGridPosition(x, y + 1) == true))
+	{
+		connected = true;
+		App->blocks->twoTogether = true;
+	}
+
+	if (connected == true)
+	{
+		printf("haentrao");
+		if (App->blocks->DiamondInGridPosition(x - 1, y) && App->blocks->DiamondInGridPosition(x + 1, y) &&
+			App->blocks->DiamondInGridPosition(x, y - 1) && App->blocks->DiamondInGridPosition(x, y + 1) == false)
+		{
+			printf("%d", disconnected);
+			connected = false;
+			App->blocks->twoTogether = false;
+			App->blocks->disconnected = false;
+		}
+	}
+
+	if (App->blocks->twoTogether == true)
+	{
+		currentAnim = &twogetherAnim;
+	}
+	
+	
+
+	if (App->blocks->disconnected == false)
+	{
+		currentAnim = &normalAnim;
+	}
+}

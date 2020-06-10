@@ -58,6 +58,10 @@ public:
 	int remainingEggs = 0;
 	int waitToHatch = 0;
 
+	bool twoTogether = false;
+	bool allTogether = false;
+	bool disconnected = true;
+
 private:
 
 	// All spawned enemies in the scene

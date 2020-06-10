@@ -17,9 +17,14 @@ public:
 	void DiamondsTogether(int x, int y);
 
 	int Dia = 1;
-	void BlockTogether();
 
-	bool oscaretmato;
+	bool pointsOnce = false;
+	bool twoTogether = false;
+
+	bool connected = false;
+	bool disconnected = false;
+
+	void FirstDiamondTogether(int x, int y);
 
 private:
 
