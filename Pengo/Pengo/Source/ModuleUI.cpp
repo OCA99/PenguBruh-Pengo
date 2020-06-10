@@ -122,12 +122,12 @@ Update_Status ModuleUI::PostUpdate()
 		App->fonts->BlitText(116, 160, whiteFontID, "PTS.");
 
 
-		if (remainingBonus > 0) {
+		if (remainingBonus > 0 && showingCounter >= 1.0f) {
 			remainingBonus -= 100;
 			App->score->AddScore(100);
 		}
 
-		if (showingCounter >= 4.0f) {
+		if (showingCounter >= 5.0f) {
 			showingBonus = false;
 		}
 	}

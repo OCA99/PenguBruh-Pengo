@@ -103,7 +103,7 @@ Update_Status ModuleStars::Update()
 
 	starsCounter += 1.0f / 60.0f;
 
-	if (starsCounter >= 4.0f) {
+	if (starsCounter >= 3.0f) {
 		App->ui->Bonus(10000);
 	}
 
