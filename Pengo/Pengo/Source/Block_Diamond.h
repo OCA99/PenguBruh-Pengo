@@ -20,9 +20,10 @@ public:
 
 	bool pointsOnce = false;
 	bool twoTogether = false;
+	bool animationReset = false;
 
+	bool threeConnected = false;
 	bool connected = false;
-	bool disconnected = false;
 
 	void FirstDiamondTogether(int x, int y);
 
