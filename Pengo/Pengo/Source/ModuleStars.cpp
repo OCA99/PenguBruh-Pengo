@@ -4,6 +4,11 @@
 
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleWalls.h"
+#include "ModuleBlocks.h"
+#include "ModulePlayer.h"
+#include "ModuleEnemies.h"
+#include "ModuleUI.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -77,6 +82,8 @@ bool ModuleStars::CleanUp()
 	return true;
 }
 
+#include <iostream>
+
 Update_Status ModuleStars::Update()
 {
 	if (!starsActive) return Update_Status::UPDATE_CONTINUE;
@@ -92,6 +99,22 @@ Update_Status ModuleStars::Update()
 		{
 			star->SetToDelete();
 		}
+	}
+
+	starsCounter += 1.0f / 60.0f;
+
+	if (starsCounter >= 4.0f) {
+		App->ui->Bonus(10000);
+	}
+
+	if (starsCounter >= 8.0f) {
+		starsActive = false;
+		starsCounter = 0.0f;
+		App->walls->wallsActive = true;
+		App->blocks->rainbow = false;
+		App->player->Unpause();
+		App->enemies->Unpause();
+		App->blocks->diamondsDone = true;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -134,4 +157,12 @@ void ModuleStars::AddStar(int x, int y, int startPos)
 			break;
 		}
 	}
+}
+
+void ModuleStars::ActivateStars() {
+	starsActive = true;
+	App->walls->wallsActive = false;
+	App->blocks->rainbow = true;
+	App->enemies->Pause();
+	App->player->Pause();
 }

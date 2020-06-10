@@ -27,6 +27,7 @@ bool ModuleUI::Start() {
 	char lookupTable[] = { "0123456789.,\"!'-©ABCDEFGHIJKLMNOPQRSTUVWXYZ.    " };
 	whiteFontID = App->fonts->Load("assets/sprites/Fonts/white.png", lookupTable, 3);
 	blueFontID = App->fonts->Load("assets/sprites/Fonts/blue.png", lookupTable, 3);
+	yellowFontID = App->fonts->Load("assets/sprites/Fonts/yellow.png", lookupTable, 3);
 
 	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
@@ -108,6 +109,29 @@ Update_Status ModuleUI::PostUpdate()
 
 	//App->fonts->BlitText(124, 280, whiteFontID, "© SEGA 1982");
 
+	if (showingBonus) {
+		showingCounter += 1.0f / 60.0f;
+
+		App->render->DrawQuad({ 72, 136, 80, 48 }, 0, 0, 0, 255);
+		App->fonts->BlitText(80, 144, yellowFontID, "BONUS");
+
+		char remainingBonusText[DYNAMIC_TEXT_LEN + 1];
+		intToString(remainingBonusText, remainingBonus);
+		RenderDynamicText(remainingBonusText, 124, 152, whiteFontID, true);
+
+		App->fonts->BlitText(116, 160, whiteFontID, "PTS.");
+
+
+		if (remainingBonus > 0) {
+			remainingBonus -= 100;
+			App->score->AddScore(100);
+		}
+
+		if (showingCounter >= 4.0f) {
+			showingBonus = false;
+		}
+	}
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -138,4 +162,10 @@ void ModuleUI::RenderDynamicText(char* text, int x, int y, int fontIndex, bool i
 	else {
 		App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - 1 - i) * 9 : 0), y, fontIndex, text + i);
 	}
+}
+
+void ModuleUI::Bonus(int points) {
+	if (showingBonus) return;
+	remainingBonus = (float)points;
+	showingBonus = true;
 }

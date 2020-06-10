@@ -14,6 +14,11 @@ Block_Normal::Block_Normal(int x, int y) : Block(x, y)
 void Block_Normal::Update()
 {
 	Block::Update();
+
+	if (currentAnim != &destroyAnim) {
+		if (App->blocks->rainbow) currentAnim = &rainbowAnim;
+		else currentAnim = &normalAnim;
+	}
 }
 
 void Block_Normal::Pushed(int fromx, int fromy) {

@@ -52,6 +52,8 @@ public:
 
 	bool starsActive = false;
 
+	void ActivateStars();
+
 public:
 	
 
@@ -61,5 +63,7 @@ private:
 
 	// An array to store and handle all the particles
 	Star* stars[MAX_ACTIVE_STARS] = { nullptr };
+
+	float starsCounter = 0.0f;
 
 };

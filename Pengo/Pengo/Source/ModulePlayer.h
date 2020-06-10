@@ -45,6 +45,9 @@ public:
 
 	bool hasDied = false;
 
+	void Pause() { paused = true; }
+	void Unpause() { paused = false; }
+
 
 public:
 	// Position of the player in the map
@@ -62,7 +65,7 @@ public:
 	bool instaloss = false;
 	bool paused = false;
 	// The speed in which we move the player (pixels per frame)
-	float speed = 0.7f;
+	float speed = 1.0f;
 
 	//Counter to repeat animations
 	int deadPause = 0;

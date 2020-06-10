@@ -26,6 +26,9 @@ Block::Block(int x, int y) : position(x, y)
 	destroyAnim.GenerateAnimation({ 708,48,144,16 }, 1, 9);
 	destroyAnim.speed = 0.5f;
 	destroyAnim.loop = false;
+
+	rainbowAnim.GenerateAnimation({ 708, 0, 144, 16 }, 1, 9);
+	rainbowAnim.speed = 0.085f;
 }
 
 Block::~Block()

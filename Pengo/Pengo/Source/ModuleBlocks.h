@@ -62,6 +62,10 @@ public:
 	bool allTogether = false;
 	bool disconnected = true;
 
+	bool rainbow = false;
+
+	bool diamondsDone = false;
+
 private:
 
 	// All spawned enemies in the scene
@@ -71,6 +75,7 @@ private:
 	SDL_Texture* texture = nullptr;
 
 	int eggColor = 0;
+
 };
 
 #endif // __MODULE_ENEMIES_H__

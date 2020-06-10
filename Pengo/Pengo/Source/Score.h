@@ -9,6 +9,7 @@ public:
 	~Score();
 
 	void AddScore(int s);
+	void AddScore(float s);
 	void AddScore(int s, int x, int y);
 	void SetHighscore(int s);
 	int GetScore() { return score; };
@@ -18,4 +19,5 @@ public:
 private:
 	int highscore = 0;
 	int score = 0;
+	float scoreRemainder;
 };

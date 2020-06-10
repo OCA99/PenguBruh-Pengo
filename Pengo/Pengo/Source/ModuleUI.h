@@ -34,15 +34,22 @@ public:
 
 	void RenderDynamicText(char* text, int x, int y, int fontIndex, bool inverse);
 
+	void Bonus(int points);
+
 private:
 	int blueFontID = -1;
 	int whiteFontID = -1;
+	int yellowFontID = -1;
 
 	Animation life;
 	Animation egg;
 	Animation levelFlag;
 	Animation levelFlag5;
 	SDL_Texture* texture = nullptr;
+
+	bool showingBonus = false;
+	int remainingBonus = 0;
+	float showingCounter = 0.0f;
 };
 
 #endif

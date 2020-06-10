@@ -2,7 +2,10 @@
 #include "ModuleBlocks.h"
 #include "Score.h"
 #include "Application.h"
+#include "ModuleStars.h"
 #include <stdio.h>
+
+
 Block_Diamond::Block_Diamond(int x, int y) : Block(x, y)
 {
 	normalAnim.GenerateAnimation({ 708,16,16,16 }, 1, 1);
@@ -21,6 +24,11 @@ Block_Diamond::Block_Diamond(int x, int y) : Block(x, y)
 
 void Block_Diamond::Update()
 {
+	if (App->blocks->diamondsDone) {
+		currentAnim = &normalAnim;
+		return;
+	}
+
 	if (App->blocks->allTogether != true)
 	{
 		FirstDiamondTogether(gridPosition.x, gridPosition.y);
@@ -47,7 +55,7 @@ void Block_Diamond::DiamondsTogether(int x, int y)
 		{
 			togetherAllAnim.Reset();
 			pointsOnce = true;
-			App->score->AddScore(10000);
+			App->stars->ActivateStars();
 		}
 	} 
 
@@ -104,8 +112,6 @@ void Block_Diamond::FirstDiamondTogether(int x, int y)
 	{
 		currentAnim = &twogetherAnim;
 	}
-
-	std::cout << App->blocks->twoTogether << " " << App->blocks->allTogether << std::endl;
 
 	if (App->blocks->twoTogether == false && !App->blocks->allTogether)
 	{

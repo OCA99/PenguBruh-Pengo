@@ -3,6 +3,8 @@
 #include "ModuleParticles.h"
 #include "Application.h"
 
+#include <iostream>
+#include <math.h>
 
 Score::Score(bool startEnabled) : Module(startEnabled) {}
 
@@ -12,6 +14,14 @@ void Score::AddScore(int s) {
 	score += s;
 	if (score > 99999) score = 99999;
 	
+}
+
+void Score::AddScore(float s) {
+	scoreRemainder += fmod(s, 1.0f);
+	score += (int)round(floor(s) + floor(scoreRemainder));
+	scoreRemainder = fmod(scoreRemainder, 1.0f);
+	if (score > 99999) score = 99999;
+
 }
 
 #include <iostream>

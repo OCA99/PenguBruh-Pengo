@@ -69,6 +69,8 @@ protected:
 
 	Animation destroyAnim;
 
+	Animation rainbowAnim;
+
 private:
 	int speed = 3;
 	bool moving = false;
