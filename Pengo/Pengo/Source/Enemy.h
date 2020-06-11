@@ -113,7 +113,7 @@ protected:
 
 private:
 	int pushedSpeed = 3;
-	float speed = 1.0f;
+	float speed = 0.8f;
 	bool moving = false;
 	bool crushed = false;
 	bool breakingBlock = false;

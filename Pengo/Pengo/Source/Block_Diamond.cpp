@@ -8,6 +8,9 @@
 
 Block_Diamond::Block_Diamond(int x, int y) : Block(x, y)
 {
+	App->blocks->twoTogether = false;
+	App->blocks->allTogether = false;
+
 	normalAnim.GenerateAnimation({ 708,16,16,16 }, 1, 1);
 	currentAnim = &normalAnim;
 
