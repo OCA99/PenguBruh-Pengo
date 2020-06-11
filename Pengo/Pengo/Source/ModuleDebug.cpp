@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "Module.h"
+#include "ModuleWindow.h"
 #include "ModuleDebug.h"
 #include "ModuleInput.h"
 #include "Application.h"
@@ -71,6 +72,10 @@ Update_Status ModuleDebug::Update()
 		
 	}
 	
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
+	{
+		App->window->CleanUp();
+	}
 	if (DEBUG_MODE == 1)
 	{
 		if (GMODE)

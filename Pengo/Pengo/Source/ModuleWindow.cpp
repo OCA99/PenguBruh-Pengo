@@ -2,7 +2,7 @@
 
 #include "Application.h"
 #include "Globals.h"
-
+#include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 
 
@@ -68,6 +68,8 @@ bool ModuleWindow::CleanUp()
 
 	return true;
 }
+
+
 
 
 

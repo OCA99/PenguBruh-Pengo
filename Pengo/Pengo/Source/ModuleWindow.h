@@ -24,6 +24,8 @@ public:
 	// Destroys the window and uninitializes the SDL library
 	bool CleanUp() override;
 
+	
+
 public:
 	//The window we'll be rendering to
 	SDL_Window* window = nullptr;
