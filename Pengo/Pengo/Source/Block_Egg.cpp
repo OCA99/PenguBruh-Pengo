@@ -45,7 +45,7 @@ void Block_Egg::Update()
 		}
 	}
 
-	if (currentAnim != &destroyAnim) {
+	if (currentAnim != &destroyAnim && currentAnim != &initAnim) {
 		if (App->blocks->rainbow) currentAnim = &rainbowAnim;
 		else currentAnim = &normalAnim;
 	}

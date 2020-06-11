@@ -367,7 +367,7 @@ void Enemy::Update()
 		moving = false;
 		GetNextStepToTarget();
 	}
-	else {
+	else if (!pushed && currentAnim != &spawnAnim) {
 		moving = true;
 	}
 }
@@ -528,13 +528,13 @@ void Enemy::Draw()
 
 void Enemy::Pushed(int fromx, int fromy) {
 
-	if (fromx < gridPosition.x) {
+	if (fromx < position.x) {
 		direction = Directions::CrushRight;
-	} else if (fromx > gridPosition.x) {
+	} else if (fromx > position.x) {
 		direction = Directions::CrushLeft;
-	} else if (fromy < gridPosition.y) {
+	} else if (fromy < position.y) {
 		direction = Directions::CrushDown;
-	} else if (fromy > gridPosition.y) {
+	} else if (fromy > position.y) {
 		direction = Directions::CrushUp;
 	}
 
@@ -552,6 +552,7 @@ void Enemy::Pushed(int fromx, int fromy) {
 	moving = false;
 	pushed = true;
 	stunned = false;
+	spawning = false;
 }
 
 void Enemy::WallStunned(int wallID)
