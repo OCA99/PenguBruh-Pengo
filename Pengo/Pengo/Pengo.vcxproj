@@ -67,6 +67,7 @@
     <ClInclude Include="Source\SceneLevel8.h" />
     <ClInclude Include="Source\SceneLevel9.h" />
     <ClInclude Include="Source\SceneMenu.h" />
+    <ClInclude Include="Source\ScenePoints.h" />
     <ClInclude Include="Source\Score.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Wall.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="Source\SceneLevel8.cpp" />
     <ClCompile Include="Source\SceneLevel9.cpp" />
     <ClCompile Include="Source\SceneMenu.cpp" />
+    <ClCompile Include="Source\ScenePoints.cpp" />
     <ClCompile Include="Source\Score.cpp" />
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Wall.cpp" />

@@ -68,16 +68,21 @@ Update_Status ModuleDebug::Update()
 				GMODE = 0;
 			}
 		}
-		
-		
 	}
 	
+
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
 		return Update_Status::UPDATE_STOP;
 	}
 	if (DEBUG_MODE == 1)
 	{
+		if (App->input->keys[SDL_SCANCODE_K] == Key_State::KEY_DOWN)
+		{
+			App->player->dead = true;
+			App->player->currentAnimation = &App->player->dieAnim;
+		}
+
 		if (GMODE)
 		{
 			if (App->input->keys[SDL_SCANCODE_LSHIFT] == Key_State::KEY_DOWN)
