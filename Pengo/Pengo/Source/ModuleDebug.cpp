@@ -74,7 +74,7 @@ Update_Status ModuleDebug::Update()
 	
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
-		App->window->CleanUp();
+		return Update_Status::UPDATE_STOP;
 	}
 	if (DEBUG_MODE == 1)
 	{
