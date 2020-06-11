@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "SceneIntro.h"
 #include "SceneMenu.h"
+#include "ScenePoints.h"
 #include "SceneLevel.h"
 #include "SceneLevel1.h"
 #include "SceneLevel2.h"
@@ -81,6 +82,7 @@ Application::Application()
 	modules[31] = stars = new ModuleStars(true);
 	modules[32] = render = new ModuleRender(true);
 	modules[33] = score = new Score(true);
+	modules[34] = scenePoints = new ScenePoints(false);
 
 }
 

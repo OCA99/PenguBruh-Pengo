@@ -12,6 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleWalls.h"
 #include "ModuleFonts.h"
+#include "ScenePoints.h"
 #include "Score.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
@@ -125,7 +126,7 @@ Update_Status ModulePlayer::Update()
 			lifes = 3;
 			App->score->CheckAndSetHighscore();
 			App->score->ResetScore();
-			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
+			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->scenePoints, 90);
 		}
 	}
 
@@ -142,6 +143,7 @@ Update_Status ModulePlayer::Update()
 				currentAnimation = &dieAnim;
 				paused = true;
 				App->enemies->Pause();
+
 			}
 		}
 	
