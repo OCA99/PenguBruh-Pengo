@@ -49,15 +49,14 @@ bool SceneLevel1::Start()
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 
 	App->enemies->AddEnemy(1, 5);
-	/*App->enemies->AddEnemy(3, 3);
-	App->enemies->AddEnemy(9, 5);
+	App->enemies->AddEnemy(3, 3);
 	App->enemies->AddEnemy(11, 13);
 	
 	
 	App->blocks->AddBlock(Block_Type::EGG, 3, 14);
 	App->blocks->AddBlock(Block_Type::EGG, 9, 1);
 	App->blocks->AddBlock(Block_Type::EGG, 9, 9);
-	App->blocks->AddBlock(Block_Type::EGG, 11, 5);*/
+	App->blocks->AddBlock(Block_Type::EGG, 11, 5);
 
 	App->blocks->AddBlock(Block_Type::DIAMOND, 3, 11);
 	App->blocks->AddBlock(Block_Type::DIAMOND, 5, 5);
