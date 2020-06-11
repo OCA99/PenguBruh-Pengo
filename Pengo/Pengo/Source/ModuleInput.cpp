@@ -3,6 +3,8 @@
 #include "ModuleInput.h"
 #include "ModuleDebug.h"
 #include "SDL/include/SDL.h"
+#include "ModuleWindow.h"
+#include "ModuleRender.h"
 #include <stdio.h>
 
 ModuleInput::ModuleInput(bool startEnabled) : Module(startEnabled)
@@ -74,39 +76,72 @@ Update_Status ModuleInput::PreUpdate()
 		}
 		case(SDL_MOUSEBUTTONDOWN) :
 		{
+			int ww, wh;
+			SDL_GetWindowSize(App->window->window, &ww, &wh);
+
+			int lw, lh;
+			SDL_RenderGetLogicalSize(App->render->renderer, &lw, &lh);
+
 			SDL_GetMouseState(&xpos, &ypos);
+
+			float xf, yf;
+
+			if (ww == 0 || wh == 0 || lw == 0 || lh == 0) {
+				xf = xpos / SCREEN_SIZE;
+				yf = ypos / SCREEN_SIZE;
+			}
+			else {
+				printf("X size %.6f \n", ww);
+				printf("y size %.6f \n", wh);
+
+				printf("X logical %.6f \n", lw);
+				printf("y logical %.6f \n", lh);
+
+				float deltax = (float)ww / (float)lw;
+				float deltay = (float)wh / (float)lh;
+
+				float size = (deltax < deltay ? deltax : deltay);
+				float marginX = (ww - (lw * size)) / 2.0f;
+				float marginY = (wh - (lh * size)) / 2.0f;
+
+				printf("X margin %.6f \n", marginX);
+				printf("y margin %.6f \n", marginY);
+
+				xf = (xpos - marginX) / size;
+				yf = (ypos - marginY) / size;
+			}
 			
-				if (event.button.button == SDL_BUTTON_LEFT)
-				{
-					printf("X POS L MOUSE %d \n", xpos);
-					printf("y POS L MOUSE %d \n", xpos);
-					App->debug->BlockOnMap(xpos, ypos);
-				}
-				if (event.button.button == SDL_BUTTON_RIGHT)
-				{
-					printf("X POS R MOUSE %d \n", xpos);
-					printf("y POS R MOUSE %d \n", xpos);
-					App->debug->SnoBeeOnMap(xpos, ypos);
-				}
-				if (event.button.button == SDL_BUTTON_MIDDLE)
-				{
-					printf("X POS R MOUSE %d \n", xpos);
-					printf("y POS R MOUSE %d \n", xpos);
-					App->debug->DiamondOnMap(xpos, ypos);
-				}
-				if (event.button.button == SDL_BUTTON_X1)
-				{
-					printf("X POS R MOUSE %d \n", xpos);
-					printf("y POS R MOUSE %d \n", xpos);
-					App->debug->EggOnMap(xpos, ypos);
-				}
-				if (event.button.button == SDL_BUTTON_X2)
-				{
-					printf("X POS R MOUSE %d \n", xpos);
-					printf("y POS R MOUSE %d \n", xpos);
-					App->debug->DestroyBlock(xpos, ypos);
-				}
-				break;
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				printf("X POS L MOUSE %.6f \n", xf);
+				printf("y POS L MOUSE %.6f \n", yf);
+				App->debug->BlockOnMap(xf, yf);
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				printf("X POS R MOUSE %d \n", xpos);
+				printf("y POS R MOUSE %d \n", ypos);
+				App->debug->SnoBeeOnMap(xf, yf);
+			}
+			if (event.button.button == SDL_BUTTON_MIDDLE)
+			{
+				printf("X POS R MOUSE %d \n", xpos);
+				printf("y POS R MOUSE %d \n", ypos);
+				App->debug->DiamondOnMap(xf, yf);
+			}
+			if (event.button.button == SDL_BUTTON_X1)
+			{
+				printf("X POS R MOUSE %d \n", xpos);
+				printf("y POS R MOUSE %d \n", ypos);
+				App->debug->EggOnMap(xf, yf);
+			}
+			if (event.button.button == SDL_BUTTON_X2)
+			{
+				printf("X POS R MOUSE %d \n", xpos);
+				printf("y POS R MOUSE %d \n", ypos);
+				App->debug->DestroyBlock(xf, yf);
+			}
+			break;
 			
 		}
 		case(SDL_QUIT):

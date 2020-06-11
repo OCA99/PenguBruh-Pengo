@@ -26,15 +26,15 @@ void Block_Diamond::Update()
 {
 	if (App->blocks->diamondsDone) {
 		currentAnim = &normalAnim;
-		return;
 	}
+	else {
 
-	if (App->blocks->allTogether != true)
-	{
-		FirstDiamondTogether(gridPosition.x, gridPosition.y);
-	}
+		if (App->blocks->allTogether != true)
+		{
+			FirstDiamondTogether(gridPosition.x, gridPosition.y);
+		}
 		DiamondsTogether(gridPosition.x, gridPosition.y);
-
+	}
 	
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position

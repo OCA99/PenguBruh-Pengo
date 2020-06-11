@@ -13,9 +13,9 @@ Block_Egg::Block_Egg(int x, int y, int color) : Block(x, y)
 	initAnim.speed = 0.05f;
 	initAnim.loop = true;
 
-	destroyAnim.GenerateAnimation({ 708,48,144,16 }, 1, 9);
+	/*destroyAnim.GenerateAnimation({ 708,48,144,16 }, 1, 9);
 	destroyAnim.speed = 0.5f;
-	destroyAnim.loop = false;
+	destroyAnim.loop = false;*/
 
 	currentAnim = &initAnim;
 

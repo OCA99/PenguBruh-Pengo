@@ -151,7 +151,7 @@ int ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->gridPosition.x == x && enemies[i]->gridPosition.y == y) {
+			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 16) {
 				if (!enemies[i]->pushed) pushedEnemies++;
 				enemies[i]->Pushed(fromx, fromy);
 			}

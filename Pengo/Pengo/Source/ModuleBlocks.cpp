@@ -27,6 +27,7 @@ bool ModuleBlocks::Start()
 {
 	texture = App->textures->Load("assets/sprites/stages.png");
 	remainingEggs = 0;
+	diamondsDone = false;
 	return true;
 }
 

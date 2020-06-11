@@ -225,7 +225,7 @@ int ModuleDebug::CanPut(int x, int y)
 		
 		canput = 0;
 	}
-	else if (((App->player->position.x - 8) / 16 ) / SCREEN_SIZE == a && ((App->player->position.y - 32) / 16) / SCREEN_SIZE == b)
+	else if (App->player->gridPosition.x == a && App->player->gridPosition.y == b)
 	{
 		
 		canput = 0;
@@ -237,8 +237,9 @@ void ModuleDebug::BlockOnMap(int x, int y)
 {
 	if (App->debug->DEBUG_MODE == 1)
 	{
-		int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
-		int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+		int gridposX = ((x - 8) / 16);
+		int gridposY = ((y - 32) / 16);
+		printf("Grid: %d, %d\n", gridposX, gridposY);
 		if (CanPut(gridposX, gridposY) == 1)
 		{
 
@@ -251,8 +252,8 @@ void ModuleDebug::DiamondOnMap(int x, int y)
 {
 	if (App->debug->DEBUG_MODE == 1)
 	{
-		int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
-		int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+		int gridposX = ((x - 8) / 16);
+		int gridposY = ((y - 32) / 16);
 		if (CanPut(gridposX, gridposY) == 1)
 		{
 			App->blocks->AddBlock(Block_Type::DIAMOND, gridposX, gridposY);
@@ -264,8 +265,8 @@ void ModuleDebug::EggOnMap(int x, int y)
 {
 	if (App->debug->DEBUG_MODE == 1)
 	{
-		int gridposX = ((x - 8) / 16) / SCREEN_SIZE;
-		int gridposY = ((y - 32) / 16) / SCREEN_SIZE;
+		int gridposX = ((x - 8) / 16);
+		int gridposY = ((y - 32) / 16);
 		if (CanPut(gridposX, gridposY) == 1)
 		{
 			App->blocks->AddBlock(Block_Type::EGG, gridposX, gridposY);

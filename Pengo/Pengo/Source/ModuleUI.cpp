@@ -128,6 +128,7 @@ Update_Status ModuleUI::PostUpdate()
 		}
 
 		if (showingCounter >= 5.0f) {
+			showingCounter = 0.0f;
 			showingBonus = false;
 		}
 	}
