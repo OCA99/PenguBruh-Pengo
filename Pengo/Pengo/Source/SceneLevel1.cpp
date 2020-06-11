@@ -120,6 +120,7 @@ bool SceneLevel1::Start()
 	App->blocks->AddBlock(Block_Type::NORMAL, 8, 13);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 3);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 4);
+	App->blocks->AddBlock(Block_Type::NORMAL, 9, 5);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 6);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 7);
 	App->blocks->AddBlock(Block_Type::NORMAL, 9, 8);
