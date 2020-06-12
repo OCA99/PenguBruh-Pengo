@@ -3,6 +3,8 @@
 #define __SCENE_Points_H__
 
 #include "Module.h"
+#include "Application.h"
+#include "ModuleUI.h"
 //#include "Animation.h"
 
 struct SDL_Texture;
@@ -16,6 +18,9 @@ public:
 	//Destructor
 	~ScenePoints();
 
+	void intToString(char* buffer, int k);
+
+	void RenderDynamicText(char* text, int x, int y, int fontIndex, bool inverse);
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
 	bool Start() override;
