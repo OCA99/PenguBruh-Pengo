@@ -19,7 +19,34 @@ ScenePoints::~ScenePoints()
 {
 
 }
+void ScenePoints::intToString(char* buffer, int k) {
 
+	for (int i = 0; i < DYNAMIC_TEXT_LEN; i++) {
+		buffer[i] = '0';
+	}
+
+	buffer[DYNAMIC_TEXT_LEN] = 0;
+
+	int i = DYNAMIC_TEXT_LEN - 1;
+	while (k != 0) {
+		if (i < 0) break;
+		buffer[i--] += k % 10;
+		k /= 10;
+	}
+}
+
+void ScenePoints::RenderDynamicText(char* text, int x, int y, int fontIndex, bool inverse) {
+	int i = 0;
+	for (; i < DYNAMIC_TEXT_LEN; i++) {
+		if (text[i] != '0') break;
+	}
+	if (i == DYNAMIC_TEXT_LEN) {
+		App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - i) * 9 : 0), y, fontIndex, "0");
+	}
+	else {
+		App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - 1 - i) * 9 : 0), y, fontIndex, text + i);
+	}
+}
 
 bool ScenePoints::Start()
 {
@@ -53,7 +80,26 @@ Update_Status ScenePoints::PostUpdate()
 {
 	// Draw everything --------------------------------------
 
-	App->fonts->BlitText(16, 32, yellowFontID, "GAME TIME");
+	App->fonts->BlitText(8, 32, yellowFontID, "GAME TIME");
+	App->fonts->BlitText(104, 32, whiteFontID, "1");
+	App->fonts->BlitText(119, 32, yellowFontID, "MIN.");
+	App->fonts->BlitText(162, 32, whiteFontID, "35");
+	App->fonts->BlitText(183, 32, yellowFontID, "SEC.");
+
+	App->fonts->BlitText(16, 100, blueFontID, "1P");
+	int score = App->score->GetScore();
+	char scoreText[DYNAMIC_TEXT_LEN + 1];
+
+	intToString(scoreText, score);
+	RenderDynamicText(scoreText, 64, 100, whiteFontID, true);
+
+	App->fonts->BlitText(80, 100, blueFontID, "HI");
+
+	int highScore = App->score->GetHighscore();
+	char highScoreText[DYNAMIC_TEXT_LEN + 1];
+
+	intToString(highScoreText, highScore);
+	RenderDynamicText(highScoreText, 136, 100, whiteFontID, true);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
