@@ -27,18 +27,20 @@ bool SceneIntermission::Start()
 	texture = App->textures->Load("assets/sprites/Intro.png");
 
 	sky.GenerateAnimation({ 0,0, 896, 416 }, 4, 4);
-	sky.speed = 0.025f;
+	sky.speed = 0.01f;
 	sky.loop = false;
 
 	ground.GenerateAnimation({0, 432, 224, 184}, 1, 1);
 
 	pengoAnim.GenerateAnimation({ 227,599, 255, 17 }, 1, 15);
-	pengoAnim.speed = 0.05;
+	pengoAnim.speed = 0.02;
 	pengoAnim.loop = false;
 
 	pengoPos[0] = fPoint(100.0f, 100.0f);
 	pengoPos[1] = fPoint(180.0f, 140.0f);
-	pengoPos[2] = fPoint(25.0f, 150.0f);
+	pengoPos[2] = fPoint(50.0f, 155.0f);
+	pengoPos[3] = fPoint(7.0f, 210.0f);
+	pengoPos[4] = fPoint(100.0f, 300.0f);
 
 	currentPos = pengoPos[0];
 
@@ -58,14 +60,14 @@ Update_Status SceneIntermission::Update()
 
 	if (currentPos.DistanceTo(pengoPos[currentIndex]) < 5) {
 		currentIndex++;
-		if (currentIndex > 2) App->fade->FadeToBlack(this, (Module*)App->sceneMenu, 90);
+		if (currentIndex > 4) App->fade->FadeToBlack(this, (Module*)App->sceneMenu, 90);
 	}
 
-	if (currentIndex < 3) {
+	if (currentIndex < 5) {
 		fPoint diff = (pengoPos[currentIndex] - currentPos);
 		fPoint norm;
 		norm.x = diff.x / ((diff.x > 0 ? diff.x : -diff.x) + (diff.y > 0 ? diff.y : -diff.y));
-		norm.y = diff.y / (diff.x + diff.y);
+		norm.y = diff.y / ((diff.x > 0 ? diff.x : -diff.x) + (diff.y > 0 ? diff.y : -diff.y));
 		std::cout << norm.x << " " << norm.y << std::endl;
 		currentPos += fPoint(norm.x * pengoSpeed, norm.y * pengoSpeed);
 	}
