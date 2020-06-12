@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "Score.h"
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled)
 {
@@ -28,6 +29,8 @@ bool SceneMenu::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	App->score->ResetScore();
 
 	return ret;
 }

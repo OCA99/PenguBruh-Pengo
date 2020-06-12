@@ -86,20 +86,22 @@ Update_Status ScenePoints::PostUpdate()
 	App->fonts->BlitText(162, 32, whiteFontID, "35");
 	App->fonts->BlitText(183, 32, yellowFontID, "SEC.");
 
-	App->fonts->BlitText(16, 100, blueFontID, "1P");
+	App->fonts->BlitText(46, 100, blueFontID, "1P");
 	int score = App->score->GetScore();
 	char scoreText[DYNAMIC_TEXT_LEN + 1];
 
 	intToString(scoreText, score);
-	RenderDynamicText(scoreText, 64, 100, whiteFontID, true);
+	RenderDynamicText(scoreText, 100, 100, whiteFontID, true);
 
-	App->fonts->BlitText(80, 100, blueFontID, "HI");
+	App->fonts->BlitText(116, 100, blueFontID, "HI");
 
 	int highScore = App->score->GetHighscore();
 	char highScoreText[DYNAMIC_TEXT_LEN + 1];
 
 	intToString(highScoreText, highScore);
-	RenderDynamicText(highScoreText, 136, 100, whiteFontID, true);
+	RenderDynamicText(highScoreText, 172, 100, whiteFontID, true);
+
+	App->fonts->BlitText(30, 150, whiteFontID, "THANKS FOR PLAYING!");
 
 	return Update_Status::UPDATE_CONTINUE;
 }

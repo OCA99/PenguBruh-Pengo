@@ -125,7 +125,6 @@ Update_Status ModulePlayer::Update()
 		{
 			lifes = 3;
 			App->score->CheckAndSetHighscore();
-			App->score->ResetScore();
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->scenePoints, 90);
 		}
 	}

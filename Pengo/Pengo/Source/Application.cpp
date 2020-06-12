@@ -59,31 +59,31 @@ Application::Application()
 	modules[9] =	player = new ModulePlayer(false);	//Player starts disabled
 	//modules[9] =	collisions =	new ModuleCollisions(true);
 	modules[10] =	sceneMenu = new SceneMenu(false);
-	modules[11] = ui = new ModuleUI(false);
-	modules[12] =	fonts =			new ModuleFonts(true);
-	modules[13] =	fade =			new ModuleFadeToBlack(true);
-	modules[14] =	sceneLevel_1 =	new SceneLevel1(false);	
+	modules[11] = scenePoints = new ScenePoints(false);
+	modules[12] = ui = new ModuleUI(false);
+	modules[13] =	fonts =			new ModuleFonts(true);
+	modules[14] =	fade =			new ModuleFadeToBlack(true);
+	modules[15] =	sceneLevel_1 =	new SceneLevel1(false);	
 	//modules[13] = sceneLevel_1 = new SceneLevel1(false);	
-	modules[15] = sceneLevel_2 = new SceneLevel2(false);	
-	modules[16] = sceneLevel_3 = new SceneLevel3(false);	
-	modules[17] = sceneLevel_4 = new SceneLevel4(false);	
-	modules[18] = sceneLevel_5 = new SceneLevel5(false);	
-	modules[19] = sceneLevel_6 = new SceneLevel6(false);	
-	modules[20] = sceneLevel_7 = new SceneLevel7(false);	
-	modules[21] = sceneLevel_8 = new SceneLevel8(false);	
-	modules[22] = sceneLevel_9 = new SceneLevel9(false);	
-	modules[23] = sceneLevel_10 = new SceneLevel10(false);	
-	modules[24] = sceneLevel_11 = new SceneLevel11(false);	
-	modules[25] = sceneLevel_12 = new SceneLevel12(false);
-	modules[26] = sceneLevel_13 = new SceneLevel13(false);
-	modules[27] = sceneLevel_14 = new SceneLevel14(false);
-	modules[28] = sceneLevel_15 = new SceneLevel15(false);
-	modules[29] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
-	modules[30] =	debug =		  new ModuleDebug(true);
-	modules[31] = particles = new ModuleParticles(true);
-	modules[32] = stars = new ModuleStars(true);
-	modules[33] = score = new Score(true);
-	modules[34] = scenePoints = new ScenePoints(false);
+	modules[16] = sceneLevel_2 = new SceneLevel2(false);	
+	modules[17] = sceneLevel_3 = new SceneLevel3(false);	
+	modules[18] = sceneLevel_4 = new SceneLevel4(false);	
+	modules[19] = sceneLevel_5 = new SceneLevel5(false);	
+	modules[20] = sceneLevel_6 = new SceneLevel6(false);	
+	modules[21] = sceneLevel_7 = new SceneLevel7(false);	
+	modules[22] = sceneLevel_8 = new SceneLevel8(false);	
+	modules[23] = sceneLevel_9 = new SceneLevel9(false);	
+	modules[24] = sceneLevel_10 = new SceneLevel10(false);	
+	modules[25] = sceneLevel_11 = new SceneLevel11(false);	
+	modules[26] = sceneLevel_12 = new SceneLevel12(false);
+	modules[27] = sceneLevel_13 = new SceneLevel13(false);
+	modules[28] = sceneLevel_14 = new SceneLevel14(false);
+	modules[29] = sceneLevel_15 = new SceneLevel15(false);
+	modules[30] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
+	modules[31] =	debug =		  new ModuleDebug(true);
+	modules[32] = particles = new ModuleParticles(true);
+	modules[33] = stars = new ModuleStars(true);
+	modules[34] = score = new Score(true);
 	modules[35] = render = new ModuleRender(true);
 
 }
