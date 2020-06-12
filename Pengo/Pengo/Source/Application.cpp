@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "SceneIntro.h"
+#include "SceneIntermission.h"
 #include "SceneMenu.h"
 #include "ScenePoints.h"
 #include "SceneLevel.h"
@@ -51,38 +52,39 @@ Application::Application()
 	modules[3] =	audio =			new ModuleAudio(true);
 
 	modules[4] =	sceneIntro =	new SceneIntro(true);
-	modules[5] =	blocks =		new ModuleBlocks(false);
-	modules[6] =	walls =			new ModuleWalls(false);
-	modules[7] = enemies = new ModuleEnemies(false);	//Enemies start disabled	
-	modules[8] =	player = new ModulePlayer(false);	//Player starts disabled
+	modules[5] = intermission = new SceneIntermission(false);
+	modules[6] =	blocks =		new ModuleBlocks(false);
+	modules[7] =	walls =			new ModuleWalls(false);
+	modules[8] = enemies = new ModuleEnemies(false);	//Enemies start disabled	
+	modules[9] =	player = new ModulePlayer(false);	//Player starts disabled
 	//modules[9] =	collisions =	new ModuleCollisions(true);
-	modules[9] =	sceneMenu = new SceneMenu(false);
-	modules[12] =	fade =			new ModuleFadeToBlack(true);
-	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[10] = ui = new ModuleUI(false);
-	modules[13] =	sceneLevel_1 =	new SceneLevel1(false);	
+	modules[10] =	sceneMenu = new SceneMenu(false);
+	modules[11] = ui = new ModuleUI(false);
+	modules[12] =	fonts =			new ModuleFonts(true);
+	modules[13] =	fade =			new ModuleFadeToBlack(true);
+	modules[14] =	sceneLevel_1 =	new SceneLevel1(false);	
 	//modules[13] = sceneLevel_1 = new SceneLevel1(false);	
-	modules[14] = sceneLevel_2 = new SceneLevel2(false);	
-	modules[15] = sceneLevel_3 = new SceneLevel3(false);	
-	modules[16] = sceneLevel_4 = new SceneLevel4(false);	
-	modules[17] = sceneLevel_5 = new SceneLevel5(false);	
-	modules[18] = sceneLevel_6 = new SceneLevel6(false);	
-	modules[19] = sceneLevel_7 = new SceneLevel7(false);	
-	modules[20] = sceneLevel_8 = new SceneLevel8(false);	
-	modules[21] = sceneLevel_9 = new SceneLevel9(false);	
-	modules[22] = sceneLevel_10 = new SceneLevel10(false);	
-	modules[23] = sceneLevel_11 = new SceneLevel11(false);	
-	modules[24] = sceneLevel_12 = new SceneLevel12(false);
-	modules[25] = sceneLevel_13 = new SceneLevel13(false);
-	modules[26] = sceneLevel_14 = new SceneLevel14(false);
-	modules[27] = sceneLevel_15 = new SceneLevel15(false);
-	modules[28] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
-	modules[29] =	debug =		  new ModuleDebug(true);
-	modules[30] = particles = new ModuleParticles(true);
-	modules[31] = stars = new ModuleStars(true);
-	modules[32] = score = new Score(true);
-	modules[33] = scenePoints = new ScenePoints(false);
-	modules[34] = render = new ModuleRender(true);
+	modules[15] = sceneLevel_2 = new SceneLevel2(false);	
+	modules[16] = sceneLevel_3 = new SceneLevel3(false);	
+	modules[17] = sceneLevel_4 = new SceneLevel4(false);	
+	modules[18] = sceneLevel_5 = new SceneLevel5(false);	
+	modules[19] = sceneLevel_6 = new SceneLevel6(false);	
+	modules[20] = sceneLevel_7 = new SceneLevel7(false);	
+	modules[21] = sceneLevel_8 = new SceneLevel8(false);	
+	modules[22] = sceneLevel_9 = new SceneLevel9(false);	
+	modules[23] = sceneLevel_10 = new SceneLevel10(false);	
+	modules[24] = sceneLevel_11 = new SceneLevel11(false);	
+	modules[25] = sceneLevel_12 = new SceneLevel12(false);
+	modules[26] = sceneLevel_13 = new SceneLevel13(false);
+	modules[27] = sceneLevel_14 = new SceneLevel14(false);
+	modules[28] = sceneLevel_15 = new SceneLevel15(false);
+	modules[29] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
+	modules[30] =	debug =		  new ModuleDebug(true);
+	modules[31] = particles = new ModuleParticles(true);
+	modules[32] = stars = new ModuleStars(true);
+	modules[33] = score = new Score(true);
+	modules[34] = scenePoints = new ScenePoints(false);
+	modules[35] = render = new ModuleRender(true);
 
 }
 
@@ -134,8 +136,6 @@ Update_Status Application::Update()
 	if (frameDelay > frameTime) {
 		SDL_Delay(frameDelay - frameTime);
 	}
-
-	std::cout << gameTime << std::endl;
 
 	return ret;
 }

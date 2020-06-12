@@ -48,6 +48,7 @@
     <ClInclude Include="Source\p2Point.h" />
     <ClInclude Include="Source\Particle.h" />
     <ClInclude Include="Source\Path.h" />
+    <ClInclude Include="Source\SceneIntermission.h" />
     <ClInclude Include="Source\SceneIntro.h" />
     <ClInclude Include="Source\SceneLevel.h" />
     <ClInclude Include="Source\SceneLevel1.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="Source\ModuleWindow.cpp" />
     <ClCompile Include="Source\Particle.cpp" />
     <ClCompile Include="Source\Path.cpp" />
+    <ClCompile Include="Source\SceneIntermission.cpp" />
     <ClCompile Include="Source\SceneIntro.cpp" />
     <ClCompile Include="Source\SceneLevel.cpp" />
     <ClCompile Include="Source\SceneLevel1.cpp" />
