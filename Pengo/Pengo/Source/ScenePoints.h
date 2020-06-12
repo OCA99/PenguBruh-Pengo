@@ -3,7 +3,7 @@
 #define __SCENE_Points_H__
 
 #include "Module.h"
-#include "Animation.h"
+//#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -30,8 +30,11 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
-	SDL_Texture* bgTexture = nullptr;
 
+private:
+	int blueFontID = -1;
+	int whiteFontID = -1;
+	int yellowFontID = -1;
 };
 
 #endif

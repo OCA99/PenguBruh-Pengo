@@ -80,9 +80,9 @@ Application::Application()
 	modules[29] =	debug =		  new ModuleDebug(true);
 	modules[30] = particles = new ModuleParticles(true);
 	modules[31] = stars = new ModuleStars(true);
-	modules[32] = render = new ModuleRender(true);
-	modules[33] = score = new Score(true);
-	modules[34] = scenePoints = new ScenePoints(false);
+	modules[32] = score = new Score(true);
+	modules[33] = scenePoints = new ScenePoints(false);
+	modules[34] = render = new ModuleRender(true);
 
 }
 

@@ -6,6 +6,7 @@
 #include "ModuleFadeToBlack.h"
 #include "Score.h"
 
+#include "ModuleFonts.h"
 #include "ModuleUI.h"
 
 
@@ -26,10 +27,15 @@ bool ScenePoints::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("assets/sprites/menusprites.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	//fonts
+	char lookupTable[] = { "0123456789.,\"!'-©ABCDEFGHIJKLMNOPQRSTUVWXYZ.    " };
+	whiteFontID = App->fonts->Load("assets/sprites/Fonts/white.png", lookupTable, 3);
+	blueFontID = App->fonts->Load("assets/sprites/Fonts/blue.png", lookupTable, 3);
+	yellowFontID = App->fonts->Load("assets/sprites/Fonts/yellow.png", lookupTable, 3);
 
 	return ret;
 }
@@ -46,13 +52,17 @@ Update_Status ScenePoints::Update() {
 Update_Status ScenePoints::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	App->fonts->BlitText(16, 32, yellowFontID, "GAME TIME");
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 bool ScenePoints::CleanUp()
 {
+	App->fonts->UnLoad(whiteFontID);
+	App->fonts->UnLoad(blueFontID);
+
 
 	return true;
 }
