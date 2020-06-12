@@ -165,6 +165,7 @@ void Enemy::Update()
 	{
 		App->blocks->HatchNextEgg();
 		destroy();
+		App->audio->PlayFx(4, 0);
 		App->score->AddScore(100, position.x, position.y);
 	}
 
@@ -568,6 +569,7 @@ void Enemy::WallStunned(int wallID)
 		{
 			stunned = true;
 			stunTimer = 0.0f;
+			App->audio->PlayFx(14, 0);
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 
@@ -578,6 +580,7 @@ void Enemy::WallStunned(int wallID)
 		{
 			stunned = true;
 			stunTimer = 0.0f;
+			App->audio->PlayFx(14, 0);
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 		}
@@ -587,6 +590,7 @@ void Enemy::WallStunned(int wallID)
 		{
 			stunned = true;
 			stunTimer = 0.0f;
+			App->audio->PlayFx(14, 0);
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 		}
@@ -596,6 +600,7 @@ void Enemy::WallStunned(int wallID)
 		{
 			stunned = true;
 			stunTimer = 0.0f;
+			App->audio->PlayFx(14, 0);
 			currentAnim = &stunAnim;
 			currentAnim->Reset();
 		}

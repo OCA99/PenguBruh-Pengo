@@ -1,5 +1,5 @@
 #include "ModuleUI.h"
-
+#include "ModuleAudio.h"
 #include "Application.h"
 #include "ModuleFonts.h"
 #include "Score.h"
@@ -62,6 +62,8 @@ Update_Status ModuleUI::Update()
 
 Update_Status ModuleUI::PostUpdate()
 {
+
+	fx = true;
 	App->fonts->BlitText(8, 0, blueFontID, "1P");
 	int score = App->score->GetScore();
 	char scoreText[DYNAMIC_TEXT_LEN + 1];
@@ -114,7 +116,7 @@ Update_Status ModuleUI::PostUpdate()
 
 		App->render->DrawQuad({ 72, 136, 80, 48 }, 0, 0, 0, 255);
 		App->fonts->BlitText(80, 144, yellowFontID, "BONUS");
-
+		if(fx) FX();
 		char remainingBonusText[DYNAMIC_TEXT_LEN + 1];
 		intToString(remainingBonusText, remainingBonus);
 		RenderDynamicText(remainingBonusText, 124, 152, whiteFontID, true);
@@ -169,4 +171,9 @@ void ModuleUI::Bonus(int points) {
 	if (showingBonus) return;
 	remainingBonus = (float)points;
 	showingBonus = true;
+}
+
+void ModuleUI::FX()
+{
+	App->audio->PlayFx(3, 0);
 }

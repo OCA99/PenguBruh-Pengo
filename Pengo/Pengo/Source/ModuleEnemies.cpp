@@ -138,6 +138,7 @@ bool ModuleEnemies::NotStunnedEnemyInPosition(int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
+			
 			iPoint p = iPoint(x, y);
 			if (enemies[i]->position.DistanceTo(p) < 10 && !enemies[i]->stunned && !enemies[i]->spawning) return true;
 		}
@@ -201,6 +202,7 @@ void ModuleEnemies::WallPushed(int wallID)
 	{
 		if (enemies[i] != nullptr)
 		{
+			
 			enemies[i]->WallStunned(wallID);
 		}
 	}

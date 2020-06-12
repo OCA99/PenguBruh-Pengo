@@ -174,6 +174,7 @@ void Block::SetToDelete()
 {
 	pendingToDelete = true;
 	
+	
 	App->audio->PlayFx(6, 0);
 	
 	/*if (collider != nullptr)
@@ -207,15 +208,19 @@ void Block::destroy() {
 void Block::AddScore(int& pushedEnemies) {
 	switch (pushedEnemies) {
 	case 1:
+		App->audio->PlayFx(4, 0);
 		App->score->AddScore(400, position.x, position.y);
 		break;
 	case 2:
+		App->audio->PlayFx(4, 0);
 		App->score->AddScore(1600, position.x, position.y);
 		break;
 	case 3:
+		App->audio->PlayFx(4, 0);
 		App->score->AddScore(3200, position.x, position.y);
 		break;
 	case 4:
+		App->audio->PlayFx(4, 0);
 		App->score->AddScore(6400, position.x, position.y);
 		break;
 	default:

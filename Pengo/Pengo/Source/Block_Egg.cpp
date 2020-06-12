@@ -1,5 +1,5 @@
 #include "Block_Egg.h"
-
+#include "ModuleAudio.h"
 #include "Application.h"
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
@@ -40,6 +40,7 @@ void Block_Egg::Update()
 			hatching = false;
 			hatched = true;
 			destroy();
+			App->audio->PlayFx(12, 0);
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
 			App->blocks->remainingEggs--;
 		}

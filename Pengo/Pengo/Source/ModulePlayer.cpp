@@ -123,6 +123,9 @@ Update_Status ModulePlayer::Update()
 	else {
 		if (deadPause == 100)
 		{
+			//App->audio->MixHaltMusic(-1);
+			
+			App->audio->PlayFx(7, 0);
 			lifes = 3;
 			App->score->CheckAndSetHighscore();
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->scenePoints, 90);
@@ -138,6 +141,7 @@ Update_Status ModulePlayer::Update()
 				instaloss = false;
 				dead = true;
 				hasDied = true;
+				printf("FX 16");
 				App->audio->PlayFx(16, 0);
 				currentAnimation = &dieAnim;
 				paused = true;

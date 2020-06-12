@@ -1,5 +1,5 @@
 #include "ModuleStars.h"
-
+#include "ModuleAudio.h"
 #include "Application.h"
 
 #include "ModuleTextures.h"
@@ -104,6 +104,8 @@ Update_Status ModuleStars::Update()
 	starsCounter += 1.0f / 60.0f;
 
 	if (starsCounter >= 3.0f) {
+		
+		
 		App->ui->Bonus(10000);
 	}
 
@@ -160,6 +162,8 @@ void ModuleStars::AddStar(int x, int y, int startPos)
 }
 
 void ModuleStars::ActivateStars() {
+
+	
 	starsActive = true;
 	App->walls->wallsActive = false;
 	App->blocks->rainbow = true;

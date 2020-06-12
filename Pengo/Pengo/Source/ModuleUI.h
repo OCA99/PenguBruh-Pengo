@@ -36,6 +36,9 @@ public:
 
 	void Bonus(int points);
 
+	void FX();
+
+	bool fx;
 private:
 	int blueFontID = -1;
 	int whiteFontID = -1;

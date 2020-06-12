@@ -1,5 +1,6 @@
 #include "Block_Diamond.h"
 #include "ModuleBlocks.h"
+#include "ModuleAudio.h"
 #include "Score.h"
 #include "Application.h"
 #include "ModuleStars.h"
@@ -56,6 +57,7 @@ void Block_Diamond::DiamondsTogether(int x, int y)
 		App->blocks->allTogether = true;
 		if (pointsOnce != true)
 		{
+			App->audio->PlayFx(5, 0);
 			togetherAllAnim.Reset();
 			pointsOnce = true;
 			App->stars->ActivateStars();
@@ -67,6 +69,7 @@ void Block_Diamond::DiamondsTogether(int x, int y)
 		if ((App->blocks->DiamondInGridPosition(x - 1, y) == false || App->blocks->DiamondInGridPosition(x + 1, y) == false) &&
 			(App->blocks->DiamondInGridPosition(x, y - 1) == false || App->blocks->DiamondInGridPosition(x, y + 1) == false))
 		{
+			App->audio->PlayFx(5, 0);
 			threeConnected = false;
 			App->blocks->allTogether = false;
 			pointsOnce = false;
