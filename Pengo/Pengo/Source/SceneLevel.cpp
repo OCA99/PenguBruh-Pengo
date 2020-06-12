@@ -39,6 +39,7 @@ Update_Status SceneLevel::Update()
 	if (timer > 120.0f) {
 		App->enemies->Suicide();
 	}
+	App->gameTime += 1.0f / 60.0f;
 	return Update_Status::UPDATE_CONTINUE;
 }
 

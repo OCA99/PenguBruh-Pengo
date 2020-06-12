@@ -38,6 +38,7 @@ Update_Status SceneMenu::Update()
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)
 	{
+		App->gameTime = 0.0f;
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 	}
 

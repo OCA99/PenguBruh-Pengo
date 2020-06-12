@@ -112,6 +112,8 @@ bool Application::Init()
 	return ret;
 }
 
+#include <iostream>
+
 Update_Status Application::Update()
 {
 	frameStart = SDL_GetTicks();
@@ -132,6 +134,8 @@ Update_Status Application::Update()
 	if (frameDelay > frameTime) {
 		SDL_Delay(frameDelay - frameTime);
 	}
+
+	std::cout << gameTime << std::endl;
 
 	return ret;
 }

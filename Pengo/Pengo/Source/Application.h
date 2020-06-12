@@ -116,6 +116,8 @@ public:
 	Score* score = nullptr;
 	ModuleStars* stars = nullptr;
 
+	float gameTime = 0.0f;
+
 private:
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
