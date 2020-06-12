@@ -74,6 +74,8 @@ public:
 	// Iterates through all active gamepads and update all input data
 	void UpdateGamepadsInput();
 
+	void GetMousePos(int &x, int& y);
+
 	
 
 	bool ShakeController(int id, int duration, float strength = 0.5f);

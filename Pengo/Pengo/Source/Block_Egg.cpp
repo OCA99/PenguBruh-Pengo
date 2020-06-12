@@ -64,6 +64,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
+			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
@@ -73,6 +74,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
+			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
@@ -82,6 +84,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
+			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
@@ -91,6 +94,7 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
+			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
