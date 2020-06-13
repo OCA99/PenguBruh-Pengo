@@ -647,3 +647,17 @@ void Enemy::gridToPosition(int px, int py, int& x, int& y) {
 	x = px * 16 + 8;
 	y = py * 16 + 32;
 }
+
+void Enemy::Reset() {
+	stunned = false;
+	direction = Directions::Stopped;
+	breakingBlock = false;
+	moving = false;
+	pushed = false;
+	suicide = false;
+	suicideToWall = false;
+	suicideToCorner = false;
+	stunTimer = 0.0f;
+	currentAnim = &idleAnim;
+	currentAnim->Reset();
+}

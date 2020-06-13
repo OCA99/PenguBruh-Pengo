@@ -215,7 +215,7 @@ void ModuleEnemies::Reset() {
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 
 		if (enemies[i] != nullptr) {
-			enemies[i]->stunned = false;
+			enemies[i]->Reset();
 			switch (count) {
 			case 0:
 				if (App->blocks->BlockInGridPosition(0, 0)) {

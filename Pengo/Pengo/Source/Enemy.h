@@ -66,6 +66,8 @@ public:
 		suicideToWall = false;
 	}
 
+	void Reset();
+
 public:
 	// The current position in the world
 	iPoint position;
