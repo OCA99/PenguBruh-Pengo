@@ -32,7 +32,7 @@ public:
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
 
-	void Pushed(int fromx, int fromy);
+	void Pushed(int fromx, int fromy, int gridx, int gridy);
 
 	void WallStunned(int wallID);
 
@@ -41,6 +41,8 @@ public:
 	void GetNextTargetTile();
 
 	void GetNextStepToTarget();
+
+	int ABS(int x) { return (x > 0 ? x : -x); }
 
 	enum class Directions {
 		Up,

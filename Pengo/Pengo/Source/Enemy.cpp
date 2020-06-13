@@ -531,7 +531,8 @@ void Enemy::Draw()
 	}
 }
 
-void Enemy::Pushed(int fromx, int fromy) {
+void Enemy::Pushed(int fromx, int fromy, int gridx, int gridy) {
+	std::cout << "Pushed" << std::endl;
 	int x = 0;
 	int y = 0;
 
@@ -547,6 +548,8 @@ void Enemy::Pushed(int fromx, int fromy) {
 
 	targetPosition.x = x;
 	targetPosition.y = y;
+
+	if (gridPosition != iPoint(gridx, gridy)) return;
 
 	if (fromx < position.x) {
 		direction = Directions::CrushRight;

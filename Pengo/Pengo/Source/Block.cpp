@@ -224,6 +224,8 @@ void Block::AddScore(int& pushedEnemies) {
 		App->score->AddScore(6400, position.x, position.y);
 		break;
 	default:
+		App->audio->PlayFx(4, 0);
+		App->score->AddScore(6400, position.x, position.y);
 		break;
 	}
 	pushedEnemies = 0;
