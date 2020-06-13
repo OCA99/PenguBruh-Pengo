@@ -39,7 +39,7 @@ public:
 	fPoint currentPos;
 	int currentIndex = 0;
 	fPoint pengoPos[5] = {};
-	float pengoSpeed = 0.5f;
+	float pengoSpeed = 0.65f;
 };
 
 #endif
