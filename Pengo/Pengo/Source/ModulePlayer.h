@@ -70,6 +70,7 @@ public:
 	//Counter to repeat animations
 	int deadPause;
 	int deadPause2;
+	int deadPause3;
 	bool stayInLevel = false;
 	int lifes;
 	

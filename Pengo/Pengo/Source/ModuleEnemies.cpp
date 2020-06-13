@@ -213,6 +213,7 @@ void ModuleEnemies::WallPushed(int wallID)
 void ModuleEnemies::Reset() {
 	int count = 0;
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+
 		if (enemies[i] != nullptr) {
 			enemies[i]->stunned = false;
 			switch (count) {
@@ -257,7 +258,6 @@ void ModuleEnemies::Reset() {
 		}
 	}
 
-	Unpause();
 }
 
 void ModuleEnemies::NextColor() {

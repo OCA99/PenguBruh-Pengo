@@ -92,6 +92,7 @@ bool ModulePlayer::Start()
 	dead = false;
 	deadPause = 0;
 	deadPause2 = 0;
+	deadPause3 = 0;
 	paused = false;
 	lifes = 3;
 
@@ -125,18 +126,28 @@ Update_Status ModulePlayer::Update()
 		{
 			stayInLevel = true;
 			dieAnim.loop = false;
-			deadPause2++;
+			if(deadPause2 != 45) deadPause2++;
+
 
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->currentLevel, 90);
 
-			if (deadPause2 == 120)
+			if (deadPause2 == 45)
 			{
-				deadPause2 = 0;
-				dieAnim.loop = true;
-				lifes--;
+				if(deadPause3 != 75) deadPause3++;
+
 				App->enemies->Reset();
-				Reset();
+
+				if (deadPause3 == 75)
+				{
+					deadPause2 = 0;
+					deadPause3 = 0;
+					dieAnim.loop = true;
+					lifes--;
+					App->enemies->Unpause();
+					Reset();
+				}
 			}
+
 		}
 	}
 	else {
