@@ -149,8 +149,6 @@ void Enemy::SetPosition(int x, int y) {
 
 void Enemy::Update()
 {
-	if (pushed && !moving) std::cout << "begin" << std::endl;
-
 	if (paused) return;
 
 	if (stunned) {
@@ -264,7 +262,6 @@ void Enemy::Update()
 
 	if ((currentAnim != &spawnAnim || pushed) && !stunned && !crushed) {
 		if (position.x < targetPosition.x) {
-			if (pushed) std::cout << "x: " << position.x << " " << targetPosition.x << std::endl;
 			if (!breakingBlock) currentAnim = &walkRightAnim;
 			xpositionfraction += (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.x += xpositionfraction;
@@ -272,7 +269,6 @@ void Enemy::Update()
 			moving = true;
 		}
 		else if (position.x > targetPosition.x) {
-			if (pushed) std::cout << "x: " << position.x << " " << targetPosition.x << std::endl;
 			if (!breakingBlock) currentAnim = &walkLeftAnim;
 			xpositionfraction -= (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
@@ -281,7 +277,6 @@ void Enemy::Update()
 		}
 
 		if (position.y < targetPosition.y) {
-			if (pushed) std::cout << "y: " << position.y << " " << targetPosition.y << std::endl;
 			if (!breakingBlock) currentAnim = &walkDownAnim;
 			ypositionfraction += (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.y += ypositionfraction;
@@ -289,7 +284,6 @@ void Enemy::Update()
 			moving = true;
 		}
 		else if (position.y > targetPosition.y) {
-			if (pushed) std::cout << "y: " << position.y << " " << targetPosition.y << std::endl;
 			if (!breakingBlock) currentAnim = &walkUpAnim;
 			ypositionfraction -= (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
@@ -381,8 +375,6 @@ void Enemy::Update()
 	else if (!pushed && currentAnim != &spawnAnim) {
 		moving = true;
 	}
-
-	if (pushed && !moving) std::cout << "end" << std::endl;
 }
 
 void Enemy::GetNextTargetTile() {

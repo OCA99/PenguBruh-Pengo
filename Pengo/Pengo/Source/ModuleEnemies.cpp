@@ -115,7 +115,7 @@ bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 4) return true;
+			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 8) return true;
 		}
 	}
 	return false;
@@ -146,13 +146,16 @@ bool ModuleEnemies::NotStunnedEnemyInPosition(int x, int y) {
 	return false;
 }
 
+#include <iostream>
+
 int ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
 	int pushedEnemies = 0;
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 4) {
+			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 8) {
+				
 				if (!enemies[i]->pushed) pushedEnemies++;
 				enemies[i]->Pushed(fromx, fromy);
 			}
