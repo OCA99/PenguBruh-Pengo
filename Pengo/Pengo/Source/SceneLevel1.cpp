@@ -13,6 +13,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleUI.h"
+#include <SDL_mixer\include\SDL_mixer.h>
 
 SceneLevel1::SceneLevel1(bool startEnabled) : SceneLevel(startEnabled)
 {
@@ -28,6 +29,7 @@ SceneLevel1::~SceneLevel1()
 bool SceneLevel1::Start()
 {
 	LOG("Loading background assets");
+	musicon = true;
 	App->audio->PlayFx(1, 0);
 	App->player->Enable();
 	App->blocks->Enable();
@@ -45,8 +47,10 @@ bool SceneLevel1::Start()
 
 	win = false;
 
+
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
-	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
+
+	
 
 	App->enemies->AddEnemy(1, 5);
 	App->enemies->AddEnemy(3, 3);
@@ -152,6 +156,7 @@ bool SceneLevel1::Start()
 	//App->audio->PlayFx(1, 0);
 	App->currentLevel = this;
 
+	//App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 	return ret;
 }
 
@@ -168,13 +173,18 @@ Update_Status SceneLevel1::PostUpdate()
 		{
 			App->debug->ascending = false;
 			win = true;
+
 		}
 	}
 
 	if (win) 
 	{
+		musicon = false;
+		timer = 0.0f;
+
 		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_2, 90);
 		App->audio->PlayFx(0, 0);
+
 	}
 
 	if (App->debug->GMODE == true)
