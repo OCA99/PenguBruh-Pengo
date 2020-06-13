@@ -403,6 +403,7 @@ void ModulePlayer::Reset() {
 	dead = false;
 	deadPause = 0;
 	paused = false;
+	pushing = false;
 }
 
 void ModulePlayer::SetPosition(int x, int y) {
