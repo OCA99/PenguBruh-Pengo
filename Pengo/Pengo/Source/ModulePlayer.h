@@ -68,9 +68,10 @@ public:
 	float speed = 1.0f;
 
 	//Counter to repeat animations
-	int deadPause = 0;
-
-	int lifes = 3;
+	int deadPause;
+	int deadPause2;
+	bool stayInLevel = false;
+	int lifes;
 	
 
 	// The player spritesheet loaded into an SDL_Texture
@@ -98,6 +99,7 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
+	int spawnDelay = 0;
 
 	int lastPressed = NULL;
 	

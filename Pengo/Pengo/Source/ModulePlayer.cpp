@@ -87,10 +87,13 @@ bool ModulePlayer::Start()
 	position.y = gridPosition.y * 16 + 32;
 
 	destroyed = false;
+	spawnDelay = 0;
 
 	dead = false;
 	deadPause = 0;
+	deadPause2 = 0;
 	paused = false;
+	lifes = 3;
 
 	//collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
@@ -110,25 +113,40 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	if (dead) deadPause++;
+	if (deadPause != 100)
+	{
+		if (dead) deadPause++;
+	}
+	
 
 	if (lifes - 1 != 0)
 	{
 		if (deadPause == 100)
 		{
-			lifes--;
-			App->enemies->Reset();
-			Reset();
+			stayInLevel = true;
+			dieAnim.loop = false;
+			deadPause2++;
+
+			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->currentLevel, 90);
+
+			if (deadPause2 == 120)
+			{
+				deadPause2 = 0;
+				dieAnim.loop = true;
+				lifes--;
+				App->enemies->Reset();
+				Reset();
+			}
 		}
 	}
 	else {
 		if (deadPause == 100)
 		{
 			//App->audio->MixHaltMusic(-1);
-			
+			stayInLevel = false;
+			dieAnim.loop = true;
 			App->audio->PlayFx(7, 0);
 			Mix_HaltMusic();
-			lifes = 3;
 			App->score->CheckAndSetHighscore();
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->scenePoints, 90);
 		}
@@ -198,7 +216,7 @@ Update_Status ModulePlayer::Update()
 			lastPressed = (int)SDL_SCANCODE_0;
 		}
 
-		if (!dead && !pushing) {
+		if (!dead && !pushing && spawnDelay == 45) {
 			switch (lastPressed) {
 			case (int)SDL_SCANCODE_A:
 				if (!moving) {
@@ -307,7 +325,7 @@ Update_Status ModulePlayer::Update()
 			currentAnimation->running = false;
 		}
 
-		if (!dead)
+		if (!dead && spawnDelay == 45)
 		{
 			if (!moving && !pushing && (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)) {
 				pushing = true;
@@ -371,8 +389,9 @@ Update_Status ModulePlayer::Update()
 
 Update_Status ModulePlayer::PostUpdate()
 {
+	if (spawnDelay != 45) spawnDelay++;
 
-	if (!destroyed)
+	if (!destroyed && spawnDelay == 45)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect);

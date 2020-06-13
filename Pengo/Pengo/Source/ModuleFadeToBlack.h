@@ -41,6 +41,8 @@ private:
 	
 	currentStep = Fade_Step::NONE;
 
+	int fadePause = 0;
+
 	// A frame count system to handle the fade time and ratio
 	Uint32 frameCount = 0;
 	Uint32 maxFadeFrames = 0;

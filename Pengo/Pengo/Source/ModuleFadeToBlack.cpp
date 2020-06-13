@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleRender.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_render.h"
 
@@ -37,19 +38,38 @@ Update_Status ModuleFadeToBlack::Update()
 		++frameCount;
 		if (frameCount > maxFadeFrames)
 		{
-			moduleToDisable->Disable();
-			moduleToEnable->Enable();
+			fadePause = 0;
+			if (!App->player->stayInLevel)
+			{
+				moduleToDisable->Disable();
+				moduleToEnable->Enable();
+			}
 
 			currentStep = Fade_Step::FROM_BLACK;
 		}
 	}
 	else
 	{
-		--frameCount;
-		if (frameCount <= 0)
+		if (App->player->stayInLevel)
 		{
-			currentStep = Fade_Step::NONE;
+			if (fadePause != 30) fadePause++;
+
+			if (fadePause == 30)
+			{
+				--frameCount;
+				if (frameCount <= 0)
+				{
+					currentStep = Fade_Step::NONE;
+				}
+			}
+		} else{
+			--frameCount;
+			if (frameCount <= 0)
+			{
+				currentStep = Fade_Step::NONE;
+			}
 		}
+		
 	}
 
 	//printf("FrameCount: %d\n MaxFrame: %d", frameCount, maxFadeFrames);
