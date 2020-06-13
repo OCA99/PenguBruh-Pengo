@@ -14,7 +14,7 @@
 #include "ModuleFonts.h"
 #include "ScenePoints.h"
 #include "Score.h"
-
+#include <SDL_mixer\include\SDL_mixer.h>
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite
@@ -107,6 +107,7 @@ bool ModulePlayer::Start()
 
 #include <iostream>
 
+
 Update_Status ModulePlayer::Update()
 {
 	if (dead) deadPause++;
@@ -126,6 +127,7 @@ Update_Status ModulePlayer::Update()
 			//App->audio->MixHaltMusic(-1);
 			
 			App->audio->PlayFx(7, 0);
+			Mix_HaltMusic();
 			lifes = 3;
 			App->score->CheckAndSetHighscore();
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->scenePoints, 90);
