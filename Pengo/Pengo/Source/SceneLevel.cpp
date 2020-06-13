@@ -29,7 +29,6 @@ bool SceneLevel::Start()
 	App->render->camera.y = 0;
 
 	App->player->Enable();
-
 	return ret;
 }
 

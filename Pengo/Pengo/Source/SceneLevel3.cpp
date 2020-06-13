@@ -42,7 +42,6 @@ bool SceneLevel3::Start()
 	bool ret = true;
 
 	win = false;
-
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 
@@ -169,6 +168,7 @@ Update_Status SceneLevel3::PostUpdate()
 	{
 		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_4, 90);
 		App->audio->PlayFx(0, 0);
+
 	}
 
 	if (App->debug->GMODE == true)

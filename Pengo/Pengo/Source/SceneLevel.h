@@ -18,6 +18,7 @@ public:
 
 private:
 	float timer = 0.0f;
+
 };
 
 #endif
