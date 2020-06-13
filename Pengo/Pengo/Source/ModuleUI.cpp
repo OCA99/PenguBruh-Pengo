@@ -62,8 +62,6 @@ Update_Status ModuleUI::Update()
 
 Update_Status ModuleUI::PostUpdate()
 {
-
-	fx = true;
 	App->fonts->BlitText(8, 0, blueFontID, "1P");
 	int score = App->score->GetScore();
 	char scoreText[DYNAMIC_TEXT_LEN + 1];
@@ -116,16 +114,22 @@ Update_Status ModuleUI::PostUpdate()
 
 		App->render->DrawQuad({ 72, 136, 80, 48 }, 0, 0, 0, 255);
 		App->fonts->BlitText(80, 144, yellowFontID, "BONUS");
-		if(fx) FX();
+		
 		char remainingBonusText[DYNAMIC_TEXT_LEN + 1];
 		intToString(remainingBonusText, remainingBonus);
 		RenderDynamicText(remainingBonusText, 124, 152, whiteFontID, true);
 
 		App->fonts->BlitText(116, 160, whiteFontID, "PTS.");
 
+		
 
 		if (remainingBonus > 0 && showingCounter >= 1.0f) {
 			remainingBonus -= 100;
+			if (fx == true)
+			{
+				App->audio->PlayFx(3, 0);
+				fx = false;
+			}
 			App->score->AddScore(100);
 		}
 
@@ -133,6 +137,9 @@ Update_Status ModuleUI::PostUpdate()
 			showingCounter = 0.0f;
 			showingBonus = false;
 		}
+
+		
+
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -156,6 +163,7 @@ void ModuleUI::intToString(char* buffer, int k) {
 
 void ModuleUI::RenderDynamicText(char* text, int x, int y, int fontIndex, bool inverse) {
 	int i = 0;
+	
 	for (; i < DYNAMIC_TEXT_LEN; i++) {
 		if (text[i] != '0') break;
 	}
@@ -164,6 +172,7 @@ void ModuleUI::RenderDynamicText(char* text, int x, int y, int fontIndex, bool i
 	}
 	else {
 		App->fonts->BlitText(x - (inverse ? (DYNAMIC_TEXT_LEN - 1 - i) * 9 : 0), y, fontIndex, text + i);
+
 	}
 }
 
@@ -171,9 +180,4 @@ void ModuleUI::Bonus(int points) {
 	if (showingBonus) return;
 	remainingBonus = (float)points;
 	showingBonus = true;
-}
-
-void ModuleUI::FX()
-{
-	App->audio->PlayFx(3, 0);
 }
