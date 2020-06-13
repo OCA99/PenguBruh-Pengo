@@ -52,6 +52,7 @@ public:
 
 	bool starsActive = false;
 
+	
 	void ActivateStars();
 
 public:

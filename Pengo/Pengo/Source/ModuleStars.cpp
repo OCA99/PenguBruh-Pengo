@@ -105,6 +105,8 @@ Update_Status ModuleStars::Update()
 
 	if (starsCounter >= 3.0f) {
 		
+
+		
 		
 		App->ui->Bonus(10000);
 	}
@@ -117,6 +119,7 @@ Update_Status ModuleStars::Update()
 		App->player->Unpause();
 		App->enemies->Unpause();
 		App->blocks->diamondsDone = true;
+		App->ui->fx = true;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
