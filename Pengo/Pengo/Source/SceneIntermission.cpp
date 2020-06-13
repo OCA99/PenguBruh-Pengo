@@ -44,10 +44,13 @@ bool SceneIntermission::Start()
 
 	currentPos = pengoPos[0];
 
+	App->audio->PlayMusic("assets/Themes/Intermission.ogg", 1.0f);
+
 	return ret;
 }
 
 #include <iostream>
+#include <SDL_mixer\include\SDL_mixer.h>
 
 Update_Status SceneIntermission::Update()
 {
@@ -56,11 +59,15 @@ Update_Status SceneIntermission::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneMenu, 90);
+		Mix_HaltMusic();
 	}
 
 	if (currentPos.DistanceTo(pengoPos[currentIndex]) < 5) {
 		currentIndex++;
-		if (currentIndex > 4) App->fade->FadeToBlack(this, (Module*)App->sceneMenu, 90);
+		if (currentIndex > 4) {
+			Mix_HaltMusic();
+			App->fade->FadeToBlack(this, (Module*)App->sceneMenu, 90);
+		}
 	}
 
 	if (currentIndex < 5) {
