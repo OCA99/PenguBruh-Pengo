@@ -1,7 +1,6 @@
 #include "ModulePlayer.h"
 #include "ModuleDebug.h"
 #include "Application.h"
-#include "Module.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -15,7 +14,7 @@
 #include "ModuleFonts.h"
 #include "ScenePoints.h"
 #include "Score.h"
-
+#include <SDL_mixer\include\SDL_mixer.h>
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite
@@ -107,7 +106,7 @@ bool ModulePlayer::Start()
 }
 
 #include <iostream>
-#include <SDL_mixer\include\SDL_mixer.h>
+
 
 Update_Status ModulePlayer::Update()
 {
