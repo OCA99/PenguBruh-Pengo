@@ -115,7 +115,7 @@ bool ModuleEnemies::EnemyInGridPosition(int x, int y) {
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 12) return true;
+			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 12 ) return true;
 		}
 	}
 	return false;

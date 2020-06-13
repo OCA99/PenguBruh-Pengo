@@ -81,9 +81,21 @@ Update_Status ScenePoints::PostUpdate()
 	// Draw everything --------------------------------------
 
 	App->fonts->BlitText(8, 32, yellowFontID, "GAME TIME");
-	App->fonts->BlitText(104, 32, whiteFontID, "1");
+
+	int time = App->gameTime;
+	int minutes = time / 60;
+	int seconds = time % 60;
+
+	char minutesText[DYNAMIC_TEXT_LEN + 1];
+	intToString(minutesText, minutes);
+	RenderDynamicText(minutesText, 104, 32, whiteFontID, true);
+
 	App->fonts->BlitText(119, 32, yellowFontID, "MIN.");
-	App->fonts->BlitText(162, 32, whiteFontID, "35");
+
+	char secondsText[DYNAMIC_TEXT_LEN + 1];
+	intToString(secondsText, seconds);
+	RenderDynamicText(secondsText, 170, 32, whiteFontID, true);
+
 	App->fonts->BlitText(183, 32, yellowFontID, "SEC.");
 
 	App->fonts->BlitText(46, 100, blueFontID, "1P");
