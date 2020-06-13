@@ -207,6 +207,8 @@ void Block::destroy() {
 
 void Block::AddScore(int& pushedEnemies) {
 	switch (pushedEnemies) {
+	case 0:
+		break;
 	case 1:
 		App->audio->PlayFx(4, 0);
 		App->score->AddScore(400, position.x, position.y);
