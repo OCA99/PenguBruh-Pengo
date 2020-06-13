@@ -149,6 +149,8 @@ void Enemy::SetPosition(int x, int y) {
 
 void Enemy::Update()
 {
+	if (pushed && !moving) std::cout << "begin" << std::endl;
+
 	if (paused) return;
 
 	if (stunned) {
@@ -260,31 +262,39 @@ void Enemy::Update()
 	targetPosition.x = gridPosition.x * 16 + 8;
 	targetPosition.y = gridPosition.y * 16 + 32;
 
-	if (currentAnim != &spawnAnim && !stunned && !crushed) {
+	if ((currentAnim != &spawnAnim || pushed) && !stunned && !crushed) {
 		if (position.x < targetPosition.x) {
+			if (pushed) std::cout << "x: " << position.x << " " << targetPosition.x << std::endl;
 			if (!breakingBlock) currentAnim = &walkRightAnim;
 			xpositionfraction += (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.x += xpositionfraction;
 			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
+			moving = true;
 		}
 		else if (position.x > targetPosition.x) {
+			if (pushed) std::cout << "x: " << position.x << " " << targetPosition.x << std::endl;
 			if (!breakingBlock) currentAnim = &walkLeftAnim;
 			xpositionfraction -= (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.x += xpositionfraction - std::fmod(xpositionfraction, 1.0f);
 			xpositionfraction = std::fmod(xpositionfraction, 1.0f);
+			moving = true;
 		}
 
 		if (position.y < targetPosition.y) {
+			if (pushed) std::cout << "y: " << position.y << " " << targetPosition.y << std::endl;
 			if (!breakingBlock) currentAnim = &walkDownAnim;
 			ypositionfraction += (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.y += ypositionfraction;
 			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
+			moving = true;
 		}
 		else if (position.y > targetPosition.y) {
+			if (pushed) std::cout << "y: " << position.y << " " << targetPosition.y << std::endl;
 			if (!breakingBlock) currentAnim = &walkUpAnim;
 			ypositionfraction -= (pushed ? pushedSpeed : (breakingBlock ? speed / 2.0f : speed));
 			position.y += ypositionfraction - std::fmod(ypositionfraction, 1.0f);
 			ypositionfraction = std::fmod(ypositionfraction, 1.0f);
+			moving = true;
 		}
 	}
 
@@ -371,6 +381,8 @@ void Enemy::Update()
 	else if (!pushed && currentAnim != &spawnAnim) {
 		moving = true;
 	}
+
+	if (pushed && !moving) std::cout << "end" << std::endl;
 }
 
 void Enemy::GetNextTargetTile() {
@@ -528,19 +540,13 @@ void Enemy::Draw()
 }
 
 void Enemy::Pushed(int fromx, int fromy) {
-
-	if (fromx < position.x) {
-		direction = Directions::CrushRight;
-	} else if (fromx > position.x) {
-		direction = Directions::CrushLeft;
-	} else if (fromy < position.y) {
-		direction = Directions::CrushDown;
-	} else if (fromy > position.y) {
-		direction = Directions::CrushUp;
-	}
-
 	int x = 0;
 	int y = 0;
+
+	positionToGrid(position.x, position.y, x, y);
+
+	gridPosition.x = x;
+	gridPosition.y = y;
 
 	gridToPosition(gridPosition.x, gridPosition.y, x, y);
 
@@ -549,6 +555,19 @@ void Enemy::Pushed(int fromx, int fromy) {
 
 	targetPosition.x = x;
 	targetPosition.y = y;
+
+	if (fromx < position.x) {
+		direction = Directions::CrushRight;
+	}
+	else if (fromx > position.x) {
+		direction = Directions::CrushLeft;
+	}
+	else if (fromy < position.y) {
+		direction = Directions::CrushDown;
+	}
+	else if (fromy > position.y) {
+		direction = Directions::CrushUp;
+	}
 
 	moving = false;
 	pushed = true;
