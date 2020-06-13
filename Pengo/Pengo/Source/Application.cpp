@@ -81,9 +81,9 @@ Application::Application()
 	modules[29] = sceneLevel_15 = new SceneLevel15(false);
 	modules[30] = sceneLevel_16 = new SceneLevel16(false);//Gameplay scene starts disabled
 	modules[31] =	debug =		  new ModuleDebug(true);
-	modules[32] = particles = new ModuleParticles(true);
-	modules[33] = stars = new ModuleStars(true);
-	modules[34] = score = new Score(true);
+	modules[32] = particles = new ModuleParticles(false);
+	modules[33] = stars = new ModuleStars(false);
+	modules[34] = score = new Score(false);
 	modules[35] = render = new ModuleRender(true);
 
 }

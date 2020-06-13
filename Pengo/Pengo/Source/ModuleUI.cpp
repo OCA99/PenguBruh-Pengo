@@ -41,7 +41,6 @@ bool ModuleUI::Start() {
 #include <iostream>
 
 bool ModuleUI::CleanUp() {
-	std::cout << "doing it" << std::endl;
 
 	App->fonts->UnLoad(whiteFontID);
 	App->fonts->UnLoad(blueFontID);

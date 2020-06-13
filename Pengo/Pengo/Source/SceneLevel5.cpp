@@ -12,6 +12,8 @@
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleUI.h"
+#include "ModuleParticles.h"
+#include "ModuleStars.h"
 
 SceneLevel5::SceneLevel5(bool startEnabled) : SceneLevel(startEnabled)
 {
@@ -33,6 +35,8 @@ bool SceneLevel5::Start()
 	App->walls->Enable();
 	App->enemies->Enable();
 	App->ui->Enable();
+	App->particles->Enable();
+	App->stars->Enable();
 
 	App->enemies->NextColor();
 	int color = App->enemies->GetColor();
@@ -157,27 +161,22 @@ Update_Status SceneLevel5::PostUpdate()
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
 	win = App->enemies->VictoryCheck(win);
-	if (App->debug->GMODE == true)
+	if (App->debug->ascending == true)
 	{
-		if (App->debug->ascending == true)
-		{
-			App->debug->ascending = false;
-			win = true;
-		}
+		App->debug->ascending = false;
+		win = true;
 	}
 	if (win)
 	{
+		App->player->stayInLevel = false;
 		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_6, 90);
 		App->audio->PlayFx(0, 0);
 	}
 
-	if (App->debug->GMODE == true)
+	if (App->debug->descending == true)
 	{
-		if (App->debug->descending == true)
-		{
-			App->debug->descending = false;
-			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_4, 90);
-		}
+		App->debug->descending = false;
+		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_4, 90);
 	}
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -189,6 +188,8 @@ bool SceneLevel5::CleanUp()
 	App->walls->Disable();
 	App->enemies->Disable();
 	App->ui->Disable();
+	App->particles->Disable();
+	App->stars->Disable();
 
 	return true;
 }

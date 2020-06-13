@@ -56,8 +56,10 @@ public:
 	bool ascending = 0;
 	bool descending = 0;
 	bool DEBUG_MODE = 0;
+	bool memory = false;
 	
 	int levelChoose = 0;
+	int whiteFontID = -1;
 	
 
 private:

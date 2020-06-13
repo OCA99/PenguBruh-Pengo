@@ -40,6 +40,8 @@ public:
 	// An array of all the loaded textures
 	// Allows us to keep track of all textures and free them on application exit
 	SDL_Texture* textures[MAX_TEXTURES] = { nullptr };
+
+	int k = 0;
 };
 
 #endif // __ModuleTextures_H__

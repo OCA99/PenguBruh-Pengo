@@ -10,7 +10,11 @@
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
+#include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
+#include "ModuleFonts.h"
+#include "ModuleUI.h"
 
 ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled)
 {
@@ -30,6 +34,8 @@ bool ModuleDebug::Init()
 
 bool ModuleDebug::Start()
 {
+	char lookupTable[] = { "0123456789.,\"!'-©ABCDEFGHIJKLMNOPQRSTUVWXYZ.    " };
+	whiteFontID = App->fonts->Load("assets/sprites/Fonts/white.png", lookupTable, 3);
 	return true;
 }
 
@@ -69,6 +75,19 @@ Update_Status ModuleDebug::Update()
 			}
 		}
 	}
+	if (App->input->keys[SDL_SCANCODE_M] == Key_State::KEY_DOWN)
+	{
+		if (memory == 0)
+		{
+			memory = 1;
+			printf("GOD MODE ON");
+		}
+		else
+		{
+			memory = 0;
+		}
+	}
+
 	
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
@@ -177,6 +196,16 @@ Update_Status ModuleDebug::Update()
 				break;
 			}
 		}
+	}
+
+	if (memory) {
+		char currentTextures[10];
+		App->ui->intToString(currentTextures, App->textures->k);
+		App->ui->RenderDynamicText(currentTextures, 214, 2, whiteFontID, true);
+
+		char currentFx[10];
+		App->ui->intToString(currentFx, App->audio->k);
+		App->ui->RenderDynamicText(currentFx, 214, 11, whiteFontID, true);
 	}
 
 	
