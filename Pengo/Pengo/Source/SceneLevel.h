@@ -16,8 +16,7 @@ public:
 	virtual Update_Status PostUpdate();
 	virtual bool CleanUp();
 
-protected:
-	bool musicon = false;
+private:
 	float timer = 0.0f;
 
 };

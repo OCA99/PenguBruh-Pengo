@@ -34,14 +34,6 @@ bool SceneLevel::Start()
 
 Update_Status SceneLevel::Update()
 {
-	if (musicon == true) {
-		if (timer > 3.00)
-		{
-			App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
-			musicon = false;
-		}
-	}
-
 	if (!App->player->hasDied && !App->enemies->enemyHasDied) timer += 1.0f / 60.0f;
 	if (timer > 120.0f) {
 		App->enemies->Suicide();

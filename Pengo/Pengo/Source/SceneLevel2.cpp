@@ -27,7 +27,6 @@ SceneLevel2::~SceneLevel2()
 bool SceneLevel2::Start()
 {
 	LOG("Loading background assets");
-	musicon = true;
 	App->audio->PlayFx(1, 0);
 	App->player->Enable();
 	App->blocks->Enable();
@@ -45,7 +44,7 @@ bool SceneLevel2::Start()
 	win = false;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
-	//App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
+	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 	
 	App->enemies->AddEnemy(5, 3);
 	App->enemies->AddEnemy(7, 9);
@@ -165,8 +164,7 @@ Update_Status SceneLevel2::PostUpdate()
 	}
 	if (win)
 	{
-		musicon = false;
-		timer = 0.0f;
+
 		App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_3, 90);
 		App->audio->PlayFx(0, 0);
 
