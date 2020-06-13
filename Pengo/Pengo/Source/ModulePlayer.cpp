@@ -1,6 +1,7 @@
 #include "ModulePlayer.h"
 #include "ModuleDebug.h"
 #include "Application.h"
+#include "Module.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -106,6 +107,7 @@ bool ModulePlayer::Start()
 }
 
 #include <iostream>
+#include <SDL_mixer\include\SDL_mixer.h>
 
 Update_Status ModulePlayer::Update()
 {
@@ -126,6 +128,7 @@ Update_Status ModulePlayer::Update()
 			//App->audio->MixHaltMusic(-1);
 			
 			App->audio->PlayFx(7, 0);
+			Mix_HaltMusic();
 			lifes = 3;
 			App->score->CheckAndSetHighscore();
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->scenePoints, 90);
