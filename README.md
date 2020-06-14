@@ -45,7 +45,7 @@ Debug mode must be activated to use its commands.
 - R - Break block in mouse position.
 
 # The team
-![](https://github.com/OCA99/PenguBruh-Pengo/blob/master/Photo/grupo.jpeg)
+![](https://i.imgur.com/ny5SkTN.jpg)
 
 # Useful links
 [Wiki](https://github.com/OCA99/PenguBruh-Pengo/wiki)
