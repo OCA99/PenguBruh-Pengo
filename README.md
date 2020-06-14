@@ -4,7 +4,11 @@
 
 [GitHub repository](https://github.com/OCA99/PenguBruh-Pengo)
 
-Made by [Telmo Beroiz](https://github.com/Telmiyo), [Eduard Minguell](https://github.com/Eduardiko), [Andres Sanchez](https://github.com/WestGamesLOL) and [Oscar Cuatrecasas](https://github.com/OCA99)
+Made by [Telmo Beroiz](https://github.com/Telmiyo), [Eduard Minguell](https://github.com/Eduardiko), [Andres Sanchez](https://github.com/WestGamesLOL) and [Oscar Cuatrecasas](https://github.com/OCA99), students from CITM Barcelona.
+
+See the list of [tasks](https://github.com/OCA99/PenguBruh-Pengo/blob/master/TASKS.md).
+
+# About the game
 
 Pengo is an arcade game developed by Coreland and published by Sega in 1982. The player controls Pengo, a red penguin that resides in the Antarctic. The game takes place in an overhead maze made of ice blocks, where Pengo crushes blob-like Sno-Bees by sliding blocks into them. The objective is to survive each round by eliminating all Sno-Bees and Sno-Bee eggs, while optionally lining up the three diamond blocks for a large bonus.
 
@@ -28,3 +32,11 @@ Debug mode must be activated to use its commands.
 - MIDDLE MOUSE - Place diamond block in mouse position.
 - E - Place egg block in mouse position.
 - R - Break block in mouse position.
+
+# The team
+![](https://github.com/OCA99/PenguBruh-Pengo/blob/master/Photo/grupo.jpeg)
+
+# Useful links
+[Wiki](https://github.com/OCA99/PenguBruh-Pengo/wiki)
+[Download]()
+[GitHub](https://github.com/OCA99/PenguBruh-Pengo)
