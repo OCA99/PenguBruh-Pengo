@@ -44,6 +44,7 @@ private:
 	int yellowFontID = -1;
 
 	Animation life;
+	Animation death;
 	Animation egg;
 	Animation eggFX;
 	Animation levelFlag;

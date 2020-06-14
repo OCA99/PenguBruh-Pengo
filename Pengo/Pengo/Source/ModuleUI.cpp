@@ -18,7 +18,10 @@ ModuleUI::~ModuleUI()
 
 bool ModuleUI::Init() {
 
-	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
+	life.GenerateAnimation({ 0, 152, 32, 14 }, 1, 2);
+	life.loop = true;
+	life.speed = 0.05f;
+	death.GenerateAnimation({ 37, 151, 15, 14 }, 1, 1);
 	egg.GenerateAnimation({ 80, 82, 16, 8 }, 1, 2);
 	egg.loop = true;
 	egg.speed = 0.05f;
@@ -56,6 +59,7 @@ Update_Status ModuleUI::PreUpdate()
 
 Update_Status ModuleUI::Update()
 {
+	life.Update();
 	egg.Update();
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -77,13 +81,17 @@ Update_Status ModuleUI::PostUpdate()
 	intToString(highScoreText, highScore);
 	RenderDynamicText(highScoreText, 136, 0, whiteFontID, true);
 
-	if (App->player->lifes > 1) App->render->Blit(texture, 0, 10, &life.GetCurrentFrame());
-	if (App->player->lifes > 2) App->render->Blit(texture, 18, 10, &life.GetCurrentFrame());
-	if (App->player->lifes > 3) App->render->Blit(texture, 36, 10, &life.GetCurrentFrame());
+	if (App->player->lifes > 1 && !App->player->dead) App->render->Blit(texture, 0, 10, &life.GetCurrentFrame());
+	if (App->player->lifes > 1 && App->player->dead) App->render->Blit(texture, 0, 10, &death.GetCurrentFrame());
+	if (App->player->lifes > 2 && !App->player->dead) App->render->Blit(texture, 18, 10, &life.GetCurrentFrame());
+	if (App->player->lifes > 2 && App->player->dead) App->render->Blit(texture, 18, 10, &death.GetCurrentFrame());
+	if (App->player->lifes > 3 && !App->player->dead) App->render->Blit(texture, 36, 10, &life.GetCurrentFrame());
+	if (App->player->lifes > 3 && App->player->dead) App->render->Blit(texture, 36, 10, &death.GetCurrentFrame());
 
 	LOG("%d", App->blocks->eggTimer);
 
 	if (App->blocks->remainingEggs > 0) App->render->Blit(texture, 112, 16, &egg.GetCurrentFrame());
+
 	if (App->blocks->remainingEggs == 1 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
 		App->render->Blit(texture, 120, 16, &eggFX.GetCurrentFrame());
 	}
