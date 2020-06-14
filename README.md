@@ -1,4 +1,6 @@
-# Pengo
+![](https://github.com/OCA99/PenguBruh-Pengo/blob/master/Photo/title.png)
+
+# Our project
 
 [GitHub repository](https://github.com/OCA99/PenguBruh-Pengo)
 
