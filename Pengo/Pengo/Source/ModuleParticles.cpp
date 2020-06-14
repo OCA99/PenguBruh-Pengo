@@ -11,17 +11,6 @@ ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		particles[i] = nullptr;
-}
-
-ModuleParticles::~ModuleParticles()
-{
-
-}
-
-bool ModuleParticles::Start()
-{
-	LOG("Loading particles");
-	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
 	score100.anim.GenerateAnimation({ 3, 111, 13, 8 }, 1, 1);
 	score100.lifetime = 60;
@@ -37,6 +26,17 @@ bool ModuleParticles::Start()
 
 	score6400.anim.GenerateAnimation({ 72, 111, 16, 8 }, 1, 1);
 	score6400.lifetime = 60;
+}
+
+ModuleParticles::~ModuleParticles()
+{
+
+}
+
+bool ModuleParticles::Start()
+{
+	LOG("Loading particles");
+	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
 	return true;
 }

@@ -6,7 +6,23 @@ Made by [Telmo Beroiz](https://github.com/Telmiyo), [Eduard Minguell](https://gi
 
 Pengo is an arcade game developed by Coreland and published by Sega in 1982. The player controls Pengo, a red penguin that resides in the Antarctic. The game takes place in an overhead maze made of ice blocks, where Pengo crushes blob-like Sno-Bees by sliding blocks into them. The objective is to survive each round by eliminating all Sno-Bees and Sno-Bee eggs, while optionally lining up the three diamond blocks for a large bonus.
 
-#### Controls
-Press Space to start the game. Use W, A, S, D to move the player and use Space to push blocks and walls. In order to beat the game, you must push the blocks of the maze into the Sno-Bees. You can also earn bonus points by aligning the three diamond blocks. If you push a border wall, it will shake and kill any Sno-Bees next to it.
+At the start of each round, some blocks will flash to indicate they contain eggs. As the player destroys Sno-Bees, new ones will hatch from the eggs to replace them. Crushing multiple Sno-Bees with a single block will award extra points. Pushing against a wall causes it to vibrate and stun nearby Sno-Bees. Walking over a stunned Sno-Bee kills it. Diamond blocks cannot be destroyed and will award the player bonus points if they manage to put them in a line. If the player survives for 2 minutes without losing a life or completing the round, the Sno-Bees will walk to a corner and disappear. If only one Sno-Bee remains, it will walk to a corner and disappear after a short delay. Once all Sno-Bees are gone, the round ends.
 
-You can activate God Mode by pressing G. This will make you invincible.
+#### Controls
+Press Space or game pad A to jump between menu screens. Use W, A, S, D or game pad joystick to move the player and use Space or game pad A to push blocks and walls. Press ESC to exit the game.
+
+**Debug mode**:
+
+Debug mode must be activated to use its commands.
+
+- F - Toggle debug mode.
+- G - Toggle god mode.
+- M - Show memory usage.
+- K - Kill the player instantly.
+- LEFT SHIFT - Give the player an extra life.
+- UP / DOWN ARROWS - Jump to next / previous level.
+- LEFT MOUSE - Place block in mouse position.
+- RIGHT MOUSE - Place enemy in mouse position.
+- MIDDLE MOUSE - Place diamond block in mouse position.
+- E - Place egg block in mouse position.
+- R - Break block in mouse position.
