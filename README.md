@@ -27,6 +27,9 @@ Pengo is an arcade game developed by Coreland and published by Sega in 1982. The
 
 At the start of each round, some blocks will flash to indicate they contain eggs. As the player destroys Sno-Bees, new ones will hatch from the eggs to replace them. Crushing multiple Sno-Bees with a single block will award extra points. Pushing against a wall causes it to vibrate and stun nearby Sno-Bees. Walking over a stunned Sno-Bee kills it. Diamond blocks cannot be destroyed and will award the player bonus points if they manage to put them in a line. If the player survives for 2 minutes without losing a life or completing the round, the Sno-Bees will walk to a corner and disappear. If only one Sno-Bee remains, it will walk to a corner and disappear after a short delay. Once all Sno-Bees are gone, the round ends.
 
+# Video
+[![](https://img.youtube.com/vi/g3BuKmLYqdU/0.jpg)](https://www.youtube.com/watch?v=g3BuKmLYqdU)
+
 #### Controls
 Press Space or game pad A to jump between menu screens. Use W, A, S, D or game pad joystick to move the player and use Space or game pad A to push blocks and walls. Press ESC to exit the game.
 
