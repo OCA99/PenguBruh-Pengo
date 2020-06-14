@@ -81,21 +81,39 @@ Update_Status ModuleUI::PostUpdate()
 	if (App->player->lifes > 2) App->render->Blit(texture, 18, 10, &life.GetCurrentFrame());
 	if (App->player->lifes > 3) App->render->Blit(texture, 36, 10, &life.GetCurrentFrame());
 
+	LOG("%d", App->blocks->eggTimer);
+
 	if (App->blocks->remainingEggs > 0) App->render->Blit(texture, 112, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 1) App->render->Blit(texture, 120, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 1 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 120, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 1) App->render->Blit(texture, 120, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 2) App->render->Blit(texture, 128, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 2 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 128, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 2) App->render->Blit(texture, 128, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 3) App->render->Blit(texture, 136, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 3 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 136, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 3) App->render->Blit(texture, 136, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 4) App->render->Blit(texture, 144, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 4 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 144, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 4) App->render->Blit(texture, 144, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 5) App->render->Blit(texture, 152, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 5 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 152, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 5) App->render->Blit(texture, 152, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 6) App->render->Blit(texture, 160, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 6 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 160, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 6) App->render->Blit(texture, 160, 16, &egg.GetCurrentFrame());
-	if (App->blocks->remainingEggs = 7) App->render->Blit(texture, 168, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs == 7 && App->blocks->remainingEggs < App->blocks->maxEggs && App->blocks->eggTimer != 40) {
+		App->render->Blit(texture, 168, 16, &eggFX.GetCurrentFrame());
+	}
 	if (App->blocks->remainingEggs > 7) App->render->Blit(texture, 168, 16, &egg.GetCurrentFrame());
+
+	if(App->blocks->eggTimer != 40) App->blocks->eggTimer++;
 
 	App->fonts->BlitText(8, 280, whiteFontID, "ACT");
 	char currentLvlText[DYNAMIC_TEXT_LEN + 1];
