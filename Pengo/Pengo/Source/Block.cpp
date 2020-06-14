@@ -10,8 +10,6 @@
 
 #include "Score.h"
 
-#include <iostream>
-
 Block::Block(int x, int y) : position(x, y)
 {
 	gridPosition.x = x;

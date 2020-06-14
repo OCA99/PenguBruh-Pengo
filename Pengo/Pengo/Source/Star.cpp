@@ -19,9 +19,7 @@ Star::Star(const Star& p) : anim(p.anim), position(p.position)
 
 Star::~Star()
 {
-}
-
-#include <iostream>
+} 
 
 bool Star::Update()
 {

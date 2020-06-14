@@ -32,7 +32,7 @@ public:
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
 
-	void Pushed(int fromx, int fromy, int gridx, int gridy);
+	int Pushed(int fromx, int fromy, int gridx, int gridy);
 
 	void WallStunned(int wallID);
 

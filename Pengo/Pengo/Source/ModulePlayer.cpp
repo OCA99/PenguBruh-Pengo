@@ -15,6 +15,7 @@
 #include "ScenePoints.h"
 #include "Score.h"
 #include <SDL_mixer\include\SDL_mixer.h>
+
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite
@@ -65,6 +66,12 @@ ModulePlayer::~ModulePlayer()
 
 }
 
+bool ModulePlayer::CleanUp() {
+	App->textures->Unload(texture);
+
+	return true;
+}
+
 bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
@@ -108,9 +115,6 @@ bool ModulePlayer::Start()
 
 	return ret;
 }
-
-#include <iostream>
-
 
 Update_Status ModulePlayer::Update()
 {
@@ -172,7 +176,6 @@ Update_Status ModulePlayer::Update()
 				instaloss = false;
 				dead = true;
 				hasDied = true;
-				printf("FX 16");
 				App->audio->PlayFx(16, 0);
 				currentAnimation = &dieAnim;
 				paused = true;
@@ -180,28 +183,7 @@ Update_Status ModulePlayer::Update()
 
 			}
 		}
-	
 
-	////Debug key for gamepad rumble testing purposes
-	//if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN)
-	//{
-	//	App->input->ShakeController(0, 12, 0.33f);
-	//}
-
-	////Debug key for gamepad rumble testing purposes
-	//if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN)
-	//{
-	//	App->input->ShakeController(0, 36, 0.66f);
-	//}
-
-	////Debug key for gamepad rumble testing purposes
-	//if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN)
-	//{
-	//	App->input->ShakeController(0, 60, 1.0f);
-	//}
-
-	// Moving the player with the camera scroll
-	//App->player->position.x += 1;
 
 		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT || pad.l_x < 0.0f || pad.left == true)
 		{

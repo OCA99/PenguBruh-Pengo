@@ -36,6 +36,8 @@ bool ModuleDebug::Start()
 {
 	char lookupTable[] = { "0123456789.,\"!'-©ABCDEFGHIJKLMNOPQRSTUVWXYZ.    " };
 	whiteFontID = App->fonts->Load("assets/sprites/Fonts/white.png", lookupTable, 3);
+	yellowFontID = App->fonts->Load("assets/sprites/Fonts/yellow.png", lookupTable, 3);
+
 	return true;
 }
 
@@ -51,13 +53,11 @@ Update_Status ModuleDebug::Update()
 		if (DEBUG_MODE == 0)
 		{
 			DEBUG_MODE = 1;
-			printf("DEBUG ON");
 		}
 		else
 		{
 			GMODE = 0;
 			DEBUG_MODE = 0;
-			printf("DEBUG OFF");
 		}
 	}
 	if (App->input->keys[SDL_SCANCODE_G] == Key_State::KEY_DOWN)
@@ -67,7 +67,6 @@ Update_Status ModuleDebug::Update()
 			if (GMODE == 0)
 			{
 				GMODE = 1;
-				printf("GOD MODE ON");
 			}
 			else
 			{
@@ -80,7 +79,6 @@ Update_Status ModuleDebug::Update()
 		if (memory == 0)
 		{
 			memory = 1;
-			printf("GOD MODE ON");
 		}
 		else
 		{
@@ -198,6 +196,13 @@ Update_Status ModuleDebug::Update()
 		}
 	}
 
+	
+	
+	return Update_Status::UPDATE_CONTINUE;
+}
+
+Update_Status ModuleDebug::PostUpdate()
+{
 	if (memory) {
 		char currentTextures[10];
 		App->ui->intToString(currentTextures, App->textures->k);
@@ -206,20 +211,27 @@ Update_Status ModuleDebug::Update()
 		char currentFx[10];
 		App->ui->intToString(currentFx, App->audio->k);
 		App->ui->RenderDynamicText(currentFx, 214, 11, whiteFontID, true);
+
+		App->fonts->BlitText(120, 2, whiteFontID, "TEXTURES");
+		App->fonts->BlitText(121, 11, whiteFontID, "FX");
+
 	}
 
-	
-	
-	return Update_Status::UPDATE_CONTINUE;
-}
+	if (GMODE) {
+		App->fonts->BlitText(208, 280, yellowFontID, "G");
+	}
 
-Update_Status ModuleDebug::PostUpdate()
-{
+	if (DEBUG_MODE) {
+		App->fonts->BlitText(198, 280, yellowFontID, "F");
+	}
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 bool ModuleDebug::CleanUp()
 {
+	App->fonts->UnLoad(whiteFontID);
+	App->fonts->UnLoad(yellowFontID);
 	return true;
 }
 
@@ -265,7 +277,6 @@ void ModuleDebug::BlockOnMap(int x, int y)
 	{
 		int gridposX = ((x - 8) / 16);
 		int gridposY = ((y - 32) / 16);
-		printf("Grid: %d, %d\n", gridposX, gridposY);
 		if (CanPut(gridposX, gridposY) == 1)
 		{
 

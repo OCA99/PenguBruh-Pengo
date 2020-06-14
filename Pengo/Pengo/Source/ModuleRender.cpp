@@ -84,16 +84,9 @@ bool ModuleRender::CleanUp()
 	return true;
 }
 
-
-#include <iostream>
-
 // Blit to screen
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, bool useCamera)
 {
-
-	if (x == 10 && y == 10) {
-		std::cout << section->x << " " << section->y << " " << section->w << " " << section->h << std::endl;
-	}
 
 	bool ret = true;
 

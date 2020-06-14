@@ -31,6 +31,8 @@ public:
 	// Performs the render call of the player sprite
 	Update_Status PostUpdate() override;
 
+	bool CleanUp() override;
+
 	void Reset();
 
 	void SetPosition(int x, int y);

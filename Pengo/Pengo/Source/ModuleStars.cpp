@@ -79,10 +79,10 @@ bool ModuleStars::CleanUp()
 		}
 	}
 
+	App->textures->Unload(texture);
+
 	return true;
 }
-
-#include <iostream>
 
 Update_Status ModuleStars::Update()
 {
@@ -124,8 +124,6 @@ Update_Status ModuleStars::Update()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
-
-#include <iostream>
 
 Update_Status ModuleStars::PostUpdate()
 {

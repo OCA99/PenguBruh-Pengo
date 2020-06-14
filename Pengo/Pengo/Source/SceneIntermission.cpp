@@ -49,7 +49,6 @@ bool SceneIntermission::Start()
 	return ret;
 }
 
-#include <iostream>
 #include <SDL_mixer\include\SDL_mixer.h>
 
 Update_Status SceneIntermission::Update()
@@ -95,4 +94,11 @@ Update_Status SceneIntermission::PostUpdate()
 	
 
 	return Update_Status::UPDATE_CONTINUE;
+}
+
+bool SceneIntermission::CleanUp()
+{
+	App->textures->Unload(texture);
+
+	return true;
 }

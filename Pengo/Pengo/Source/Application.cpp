@@ -59,8 +59,8 @@ Application::Application()
 	//modules[9] =	collisions =	new ModuleCollisions(true);
 	modules[9] =	sceneMenu = new SceneMenu(false);
 	modules[10] = scenePoints = new ScenePoints(false);
-	modules[11] = ui = new ModuleUI(false);
-	modules[12] =	fonts =			new ModuleFonts(true);
+	modules[11] =	fonts =			new ModuleFonts(true);
+	modules[12] = ui = new ModuleUI(false);
 	modules[13] =	fade =			new ModuleFadeToBlack(true);
 	modules[14] =	player = new ModulePlayer(false);	//Player starts disabled
 	modules[15] =	sceneLevel_1 =	new SceneLevel1(false);	
@@ -113,8 +113,6 @@ bool Application::Init()
 
 	return ret;
 }
-
-#include <iostream>
 
 Update_Status Application::Update()
 {

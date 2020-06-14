@@ -4,7 +4,6 @@
 #include "Score.h"
 #include "Application.h"
 #include "ModuleStars.h"
-#include <stdio.h>
 
 
 Block_Diamond::Block_Diamond(int x, int y) : Block(x, y)
@@ -85,8 +84,6 @@ void Block_Diamond::DiamondsTogether(int x, int y)
 		currentAnim = &normalAnim;
 	}
 };
-
-#include <iostream>
 
 void Block_Diamond::FirstDiamondTogether(int x, int y)
 {

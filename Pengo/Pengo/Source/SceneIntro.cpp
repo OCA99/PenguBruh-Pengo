@@ -52,3 +52,10 @@ Update_Status SceneIntro::PostUpdate()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
+
+bool SceneIntro::CleanUp()
+{
+	App->textures->Unload(bgTexture);
+
+	return true;
+}

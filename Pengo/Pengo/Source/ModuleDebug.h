@@ -60,6 +60,7 @@ public:
 	
 	int levelChoose = 0;
 	int whiteFontID = -1;
+	int yellowFontID = -1;
 	
 
 private:

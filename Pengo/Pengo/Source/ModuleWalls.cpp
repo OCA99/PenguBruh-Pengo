@@ -80,6 +80,8 @@ bool ModuleWalls::CleanUp()
 		}
 	}
 
+	App->textures->Unload(texture);
+
 	return true;
 }
 

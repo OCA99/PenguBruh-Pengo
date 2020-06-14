@@ -122,6 +122,7 @@ bool ScenePoints::CleanUp()
 {
 	App->fonts->UnLoad(whiteFontID);
 	App->fonts->UnLoad(blueFontID);
+	App->fonts->UnLoad(yellowFontID);
 
 
 	return true;

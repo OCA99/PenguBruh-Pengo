@@ -93,6 +93,8 @@ bool ModuleEnemies::CleanUp()
 		}
 	}
 
+	App->textures->Unload(texture);
+
 	return true;
 }
 
@@ -146,8 +148,6 @@ bool ModuleEnemies::NotStunnedEnemyInPosition(int x, int y) {
 	return false;
 }
 
-#include <iostream>
-
 int ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
 	int pushedEnemies = 0;
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -156,7 +156,8 @@ int ModuleEnemies::PushEnemy(int fromx, int fromy, int x, int y) {
 		{
 			if (enemies[i]->position.DistanceTo(iPoint(x * 16 + 8, y * 16 + 32)) <= 12) {
 				if (!enemies[i]->pushed) pushedEnemies++;
-				enemies[i]->Pushed(fromx, fromy, x, y);
+				int n = enemies[i]->Pushed(fromx, fromy, x, y);
+				if (n == 0) pushedEnemies--;
 			}
 		}
 	}
@@ -178,7 +179,7 @@ bool ModuleEnemies::VictoryCheck(bool win)
 		//fx_once = false;
 	}*/
 
-	if (winCounter == 1) {
+	if (winCounter == 1 && App->blocks->remainingEggs == 0) {
 		suicideTimer += 1.0f / 60.0f;
 		if (suicideTimer > 12.0f) {
 			for (uint i = 0; i < MAX_ENEMIES; ++i)

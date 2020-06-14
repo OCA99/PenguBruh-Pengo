@@ -56,3 +56,10 @@ Update_Status SceneMenu::PostUpdate()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
+
+bool SceneMenu::CleanUp()
+{
+	App->textures->Unload(bgTexture);
+
+	return true;
+}

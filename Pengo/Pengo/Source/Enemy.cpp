@@ -8,7 +8,6 @@
 #include "ModuleEnemies.h"
 #include "Score.h"
 
-#include <iostream>
 
 Enemy::Enemy(int x, int y, int color) : position(x, y)
 {
@@ -531,25 +530,29 @@ void Enemy::Draw()
 	}
 }
 
-void Enemy::Pushed(int fromx, int fromy, int gridx, int gridy) {
-	std::cout << "Pushed" << std::endl;
+int Enemy::Pushed(int fromx, int fromy, int gridx, int gridy) {
 	int x = 0;
 	int y = 0;
+	bool parallel = false;
 
-	positionToGrid(position.x, position.y, x, y);
+	if (fromx == gridx && fromy == gridy) parallel = true;
 
-	gridPosition.x = x;
-	gridPosition.y = y;
+	if (!parallel) {
+		positionToGrid(position.x, position.y, x, y);
 
-	gridToPosition(gridPosition.x, gridPosition.y, x, y);
+		gridPosition.x = x;
+		gridPosition.y = y;
 
-	position.x = x;
-	position.y = y;
+		gridToPosition(gridPosition.x, gridPosition.y, x, y);
 
-	targetPosition.x = x;
-	targetPosition.y = y;
+		position.x = x;
+		position.y = y;
 
-	if (gridPosition != iPoint(gridx, gridy)) return;
+		targetPosition.x = x;
+		targetPosition.y = y;
+	}
+
+	if (gridPosition != iPoint(gridx, gridy) && !parallel) return 0;
 
 	if (fromx < position.x) {
 		direction = Directions::CrushRight;
@@ -568,6 +571,8 @@ void Enemy::Pushed(int fromx, int fromy, int gridx, int gridy) {
 	pushed = true;
 	stunned = false;
 	spawning = false;
+
+	return 1;
 }
 
 void Enemy::WallStunned(int wallID)

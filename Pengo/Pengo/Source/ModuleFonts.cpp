@@ -84,8 +84,6 @@ void ModuleFonts::UnLoad(int font_id)
 	k--;
 }
 
-#include <iostream>
-
 void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 {
 

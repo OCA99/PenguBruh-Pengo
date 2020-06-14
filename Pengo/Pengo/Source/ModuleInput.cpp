@@ -5,7 +5,6 @@
 #include "SDL/include/SDL.h"
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
-#include <stdio.h>
 
 ModuleInput::ModuleInput(bool startEnabled) : Module(startEnabled)
 {
@@ -62,16 +61,12 @@ Update_Status ModuleInput::PreUpdate()
 	{
 		int xf, yf;
 		GetMousePos(xf, yf);
-		printf("X POS R MOUSE %d \n", xpos);
-		printf("y POS R MOUSE %d \n", ypos);
 		App->debug->EggOnMap(xf, yf);
 	}
 	if (keys[SDL_SCANCODE_R] == 1)
 	{
 		int xf, yf;
 		GetMousePos(xf, yf);
-		printf("X POS R MOUSE %d \n", xpos);
-		printf("y POS R MOUSE %d \n", ypos);
 		App->debug->DestroyBlock(xf, yf);
 	}
 
@@ -98,20 +93,14 @@ Update_Status ModuleInput::PreUpdate()
 			
 			if (event.button.button == SDL_BUTTON_LEFT)
 			{
-				printf("X POS L MOUSE %.6f \n", xf);
-				printf("y POS L MOUSE %.6f \n", yf);
 				App->debug->BlockOnMap(xf, yf);
 			}
 			if (event.button.button == SDL_BUTTON_RIGHT)
 			{
-				printf("X POS R MOUSE %d \n", xpos);
-				printf("y POS R MOUSE %d \n", ypos);
 				App->debug->SnoBeeOnMap(xf, yf);
 			}
 			if (event.button.button == SDL_BUTTON_MIDDLE)
 			{
-				printf("X POS R MOUSE %d \n", xpos);
-				printf("y POS R MOUSE %d \n", ypos);
 				App->debug->DiamondOnMap(xf, yf);
 			}
 			break;
@@ -146,11 +135,6 @@ void ModuleInput::GetMousePos(int& x, int& y) {
 		yf = ypos / SCREEN_SIZE;
 	}
 	else {
-		printf("X size %.6f \n", ww);
-		printf("y size %.6f \n", wh);
-
-		printf("X logical %.6f \n", lw);
-		printf("y logical %.6f \n", lh);
 
 		float deltax = (float)ww / (float)lw;
 		float deltay = (float)wh / (float)lh;
@@ -158,9 +142,6 @@ void ModuleInput::GetMousePos(int& x, int& y) {
 		float size = (deltax < deltay ? deltax : deltay);
 		float marginX = (ww - (lw * size)) / 2.0f;
 		float marginY = (wh - (lh * size)) / 2.0f;
-
-		printf("X margin %.6f \n", marginX);
-		printf("y margin %.6f \n", marginY);
 
 		xf = (xpos - marginX) / size;
 		yf = (ypos - marginY) / size;

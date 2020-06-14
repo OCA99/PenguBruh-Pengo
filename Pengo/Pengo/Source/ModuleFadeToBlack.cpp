@@ -6,8 +6,6 @@
 
 #include "SDL/include/SDL_render.h"
 
-#include <stdio.h>
-
 ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 {
 	screenRect = {0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE};
@@ -72,12 +70,8 @@ Update_Status ModuleFadeToBlack::Update()
 		
 	}
 
-	//printf("FrameCount: %d\n MaxFrame: %d", frameCount, maxFadeFrames);
-
 	return Update_Status::UPDATE_CONTINUE;
 }
-
-#include <iostream>
 
 Update_Status ModuleFadeToBlack::PostUpdate()
 {

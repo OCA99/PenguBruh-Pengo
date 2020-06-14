@@ -8,8 +8,6 @@
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
 
-#include <iostream>
-
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
 }
@@ -38,12 +36,11 @@ bool ModuleUI::Start() {
 	return true;
 }
 
-#include <iostream>
-
 bool ModuleUI::CleanUp() {
 
 	App->fonts->UnLoad(whiteFontID);
 	App->fonts->UnLoad(blueFontID);
+	App->fonts->UnLoad(yellowFontID);
 	App->textures->Unload(texture);
 
 	return true;
