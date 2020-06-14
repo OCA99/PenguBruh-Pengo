@@ -383,17 +383,17 @@ void Enemy::GetNextTargetTile() {
 	std::normal_distribution<double> x_distribution(playerPos.x, 3.0);
 	std::normal_distribution<double> y_distribution(playerPos.y, 3.0);
 
-	int x;
-	do {
-		x = x_distribution(generator);
-	} while (x > 12 || x < 0);
+int x;
+do {
+	x = x_distribution(generator);
+} while (x > 12 || x < 0);
 
-	int y;
-	do {
-		y = y_distribution(generator);
-	} while (y > 14 || y < 0);
+int y;
+do {
+	y = y_distribution(generator);
+} while (y > 14 || y < 0);
 
-	targetTile = iPoint(x, y);
+targetTile = iPoint(x, y);
 }
 
 void Enemy::GetNextStepToTarget() {
@@ -473,6 +473,10 @@ void Enemy::GetNextStepToTarget() {
 	if (sample < prob) {
 		if (gridPosition.x < targetTile.x) {
 			if (blockx) {
+				if (!App->blocks->DestructibleByEnemy(gridPosition.x + 1, gridPosition.y) && !suicide) {
+					GetNextTargetTile();
+					return;
+				}
 				App->blocks->BreakBlock(gridPosition.x + 1, gridPosition.y);
 				breakingBlock = true;
 				currentAnim = &breakRightAnim;
@@ -482,6 +486,10 @@ void Enemy::GetNextStepToTarget() {
 		}
 		else if (gridPosition.x > targetTile.x) {
 			if (blockx) {
+				if (!App->blocks->DestructibleByEnemy(gridPosition.x - 1, gridPosition.y) && !suicide) {
+					GetNextTargetTile();
+					return;
+				}
 				App->blocks->BreakBlock(gridPosition.x - 1, gridPosition.y);
 				breakingBlock = true;
 				currentAnim = &breakLeftAnim;
@@ -497,6 +505,10 @@ void Enemy::GetNextStepToTarget() {
 	else {
 		if (gridPosition.y < targetTile.y) {
 			if (blocky) {
+				if (!App->blocks->DestructibleByEnemy(gridPosition.x, gridPosition.y + 1) && !suicide) {
+					GetNextTargetTile();
+					return;
+				}
 				App->blocks->BreakBlock(gridPosition.x, gridPosition.y + 1);
 				breakingBlock = true;
 				currentAnim = &breakDownAnim;
@@ -506,6 +518,10 @@ void Enemy::GetNextStepToTarget() {
 		}
 		else if (gridPosition.y > targetTile.y) {
 			if (blocky) {
+				if (!App->blocks->DestructibleByEnemy(gridPosition.x, gridPosition.y - 1) && !suicide) {
+					GetNextTargetTile();
+					return;
+				}
 				App->blocks->BreakBlock(gridPosition.x, gridPosition.y - 1);
 				breakingBlock = true;
 				currentAnim = &breakUpAnim;

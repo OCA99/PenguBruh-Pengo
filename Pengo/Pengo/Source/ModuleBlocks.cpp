@@ -150,7 +150,7 @@ void ModuleBlocks::PushBlock(int fromx, int fromy, int x, int y) {
 		if (blocks[i] != nullptr)
 		{
 			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) {
-				blocks[i]->Pushed(fromx, fromy);
+				if (!blocks[i]->destroying) blocks[i]->Pushed(fromx, fromy);
 			}
 		}
 	}
@@ -178,7 +178,7 @@ bool ModuleBlocks::DestructibleByEnemy(int x, int y) {
 		if (blocks[i] != nullptr)
 		{
 			if (blocks[i]->gridPosition.x == x && blocks[i]->gridPosition.y == y) {
-				return blocks[i]->type == Block::Block_Type::NORMAL && blocks[i]->direction == Block::Directions::Stopped;
+				return blocks[i]->type == Block::Block_Type::NORMAL && blocks[i]->destroying == false;
 			}
 		}
 	}

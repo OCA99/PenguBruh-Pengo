@@ -36,7 +36,13 @@ Block::~Block()
 
 void Block::Update()
 {
-	if (currentAnim == &destroyAnim && currentAnim->HasFinished()) SetToDelete();
+	if (currentAnim == &destroyAnim && currentAnim->HasFinished()) {
+		if (type == Block_Type::EGG) {
+			App->blocks->remainingEggs--;
+			App->blocks->eggTimer = 0;
+		}
+		SetToDelete();
+	}
 	if (!moving) {
 		int x = 0;
 		int y = 0;
@@ -196,7 +202,7 @@ void Block::Pushed(int fromx, int fromy) {
 }
 
 void Block::destroy() {
-	
+	destroying = true;
 	currentAnim = &destroyAnim;
 }
 

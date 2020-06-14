@@ -63,6 +63,8 @@ public:
 	virtual void Pushed(int fromx, int fromy);
 	Block_Type type = Block_Type::NO_TYPE;
 
+	bool destroying = false;
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;

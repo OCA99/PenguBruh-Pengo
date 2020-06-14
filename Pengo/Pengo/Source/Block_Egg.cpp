@@ -38,8 +38,6 @@ void Block_Egg::Update()
 			destroy();
 			App->audio->PlayFx(12, 0);
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
-			App->blocks->remainingEggs--;
-			App->blocks->eggTimer = 0;
 		}
 	}
 
@@ -62,8 +60,6 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
-			App->blocks->eggTimer = 0;
-			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
@@ -73,8 +69,6 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
-			App->blocks->eggTimer = 0;
-			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
@@ -84,8 +78,6 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
-			App->blocks->eggTimer = 0;
-			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
@@ -95,8 +87,6 @@ void Block_Egg::Pushed(int fromx, int fromy) {
 		if (App->blocks->BlockInGridPosition(x, y) || !App->blocks->PositionInMap(x, y)) {
 			App->blocks->waitToHatch++;
 			App->enemies->AddEnemy(gridPosition.x, gridPosition.y);
-			App->blocks->eggTimer = 0;
-			App->blocks->remainingEggs--;
 			destroy();
 		}
 		break;
