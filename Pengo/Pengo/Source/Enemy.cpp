@@ -398,8 +398,6 @@ void Enemy::GetNextTargetTile() {
 
 void Enemy::GetNextStepToTarget() {
 
-	//float xdiff = ABS(App->player->gridPosition.x - gridPosition.x);
-	//float ydiff = ABS(App->player->gridPosition.y - gridPosition.y);
 	float xdiff = ABS(targetTile.x - gridPosition.x);
 	float ydiff = ABS(targetTile.y - gridPosition.y);
 	float totaldiff = xdiff + ydiff;
@@ -633,12 +631,9 @@ void Enemy::WallStunned(int wallID)
 void Enemy::SetToDelete()
 {
 	pendingToDelete = true;
-	/*if (collider != nullptr)
-		collider->pendingToDelete = true;*/
 }
 
 void Enemy::destroy() {
-	//App->audio->PlayFx(10, 0);
 	App->enemies->enemyHasDied = true;
 	SetToDelete();
 }

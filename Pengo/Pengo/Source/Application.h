@@ -34,7 +34,6 @@ class SceneLevel15;
 class SceneLevel16;
 
 class ModuleParticles;
-//class ModuleCollisions;
 class ModuleEnemies;
 class ModuleBlocks;
 class ModuleWalls;
@@ -106,7 +105,6 @@ public:
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;
 
-	//ModuleCollisions* collisions = nullptr;
 	ModuleWalls* walls = nullptr;
 	ModuleBlocks* blocks = nullptr;
 	ModuleFadeToBlack* fade = nullptr;

@@ -173,12 +173,6 @@ bool ModuleEnemies::VictoryCheck(bool win)
 		
 	}
 
-	/*if (winCounter == 1 && fx_once == true)
-	{
-		//App->audio->PlayFx(8, 0);
-		//fx_once = false;
-	}*/
-
 	if (winCounter == 1 && App->blocks->remainingEggs == 0) {
 		suicideTimer += 1.0f / 60.0f;
 		if (suicideTimer > 12.0f) {

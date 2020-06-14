@@ -31,8 +31,7 @@ Block::Block(int x, int y) : position(x, y)
 
 Block::~Block()
 {
-	/*if (collider != nullptr)
-		collider->pendingToDelete = true;*/
+
 }
 
 void Block::Update()
@@ -175,8 +174,6 @@ void Block::SetToDelete()
 	
 	App->audio->PlayFx(6, 0);
 	
-	/*if (collider != nullptr)
-		collider->pendingToDelete = true;*/
 }
 
 void Block::Pushed(int fromx, int fromy) {

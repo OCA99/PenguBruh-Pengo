@@ -4,11 +4,8 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
-//#include "ModuleCollisions.h"
-//#include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
-//#include "Block_Normal.h"
 #include "ModuleWalls.h"
 #include "ModuleEnemies.h"
 #include "ModuleFadeToBlack.h"
@@ -51,8 +48,6 @@ bool SceneLevel1::Start()
 
 	win = false;
 
-
-	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 	
 
@@ -156,8 +151,7 @@ bool SceneLevel1::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
-	//App->audio->LoadFx("assets/fx/Act Start.wav");
-	//App->audio->PlayFx(1, 0);
+
 	App->currentLevel = this;
 
 	
@@ -168,7 +162,6 @@ bool SceneLevel1::Start()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	//App->render->Blit(bgTexture, 0, 0, NULL);
 
 	win = App->enemies->VictoryCheck(win);
 

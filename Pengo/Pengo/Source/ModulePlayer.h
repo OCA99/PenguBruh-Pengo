@@ -98,7 +98,6 @@ public:
 
 
 	// The player's collider
-	//Collider* collider = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
@@ -108,14 +107,6 @@ public:
 	
 	bool aPressed = true;
 
-	// Sound effects indices
-	//uint laserFx = 0;
-	//uint explosionFx = 0;
-
-	// Font score index
-	//uint score = 000;
-	//int scoreFont = -1;
-	//char scoreText[10] = { "\0" };
 
 private:
 	Directions direction;

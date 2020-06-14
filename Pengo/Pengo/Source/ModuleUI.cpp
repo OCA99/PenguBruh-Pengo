@@ -30,7 +30,9 @@ bool ModuleUI::Start() {
 	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
 
 	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
-	egg.GenerateAnimation({ 80, 82, 8, 8 }, 1, 1);
+	egg.GenerateAnimation({ 80, 82, 16, 8 }, 1, 2);
+	egg.loop = true;
+	egg.speed = 0.05f;
 	levelFlag.GenerateAnimation({ 54, 151, 15, 15}, 1, 1);
 	levelFlag5.GenerateAnimation({ 73, 151, 15, 15}, 1, 1);
 	return true;
@@ -53,6 +55,7 @@ Update_Status ModuleUI::PreUpdate()
 
 Update_Status ModuleUI::Update()
 {
+	egg.Update();
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -103,8 +106,6 @@ Update_Status ModuleUI::PostUpdate()
 		x += 14;
 	}
 
-	//App->fonts->BlitText(124, 280, whiteFontID, "© SEGA 1982");
-
 	if (showingBonus) {
 		showingCounter += 1.0f / 60.0f;
 
@@ -116,7 +117,6 @@ Update_Status ModuleUI::PostUpdate()
 		RenderDynamicText(remainingBonusText, 124, 152, whiteFontID, true);
 
 		App->fonts->BlitText(116, 160, whiteFontID, "PTS.");
-
 		
 
 		if (remainingBonus > 0 && showingCounter >= 1.0f) {

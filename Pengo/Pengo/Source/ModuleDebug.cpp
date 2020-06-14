@@ -86,12 +86,11 @@ Update_Status ModuleDebug::Update()
 		}
 	}
 
-	
-
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
 		return Update_Status::UPDATE_STOP;
 	}
+
 	if (DEBUG_MODE == 1)
 	{
 		if (App->input->keys[SDL_SCANCODE_K] == Key_State::KEY_DOWN)
@@ -103,7 +102,10 @@ Update_Status ModuleDebug::Update()
 
 		if (App->input->keys[SDL_SCANCODE_LSHIFT] == Key_State::KEY_DOWN)
 		{
+			if (App->player->lifes != 3)
+			{
 				App->player->lifes++;
+			}
 		}
 
 
@@ -116,84 +118,6 @@ Update_Status ModuleDebug::Update()
 			descending = true;
 		}
 
-		if (App->input->keys[SDL_SCANCODE_C] == Key_State::KEY_DOWN)
-		{
-
-			switch (levelChoose)
-			{
-			case 0:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneMenu, 90);
-				break;
-
-			case 1:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_1, 90);
-				break;
-
-			case 2:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_2, 90);
-				break;
-
-			case 3:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_3, 90);
-				break;
-
-			case 4:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_4, 90);
-				break;
-
-			case 5:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_5, 90);
-				break;
-
-			case 6:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_6, 90);
-				break;
-
-			case 7:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_7, 90);
-				break;
-
-			case 8:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_8, 90);
-				break;
-
-			case 9:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_9, 90);
-				break;
-
-			case 10:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_10, 90);
-				break;
-
-			case 11:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_11, 90);
-				break;
-
-			case 12:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_12, 90);
-				break;
-
-			case 13:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_13, 90);
-				break;
-
-			case 14:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_14, 90);
-				break;
-
-			case 15:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_15, 90);
-				break;
-
-			case 16:
-				App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->sceneLevel_16, 90);
-				break;
-
-
-			default:
-				break;
-			}
-		}
 	}
 
 	

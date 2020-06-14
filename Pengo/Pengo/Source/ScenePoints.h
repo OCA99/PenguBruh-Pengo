@@ -5,7 +5,6 @@
 #include "Module.h"
 #include "Application.h"
 #include "ModuleUI.h"
-//#include "Animation.h"
 
 struct SDL_Texture;
 
