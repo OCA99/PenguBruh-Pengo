@@ -45,6 +45,7 @@ private:
 
 	Animation life;
 	Animation egg;
+	Animation eggFX;
 	Animation levelFlag;
 	Animation levelFlag5;
 	SDL_Texture* texture = nullptr;

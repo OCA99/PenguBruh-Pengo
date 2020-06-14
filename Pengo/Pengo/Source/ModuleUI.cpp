@@ -18,6 +18,14 @@ ModuleUI::~ModuleUI()
 
 bool ModuleUI::Init() {
 
+	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
+	egg.GenerateAnimation({ 80, 82, 16, 8 }, 1, 2);
+	egg.loop = true;
+	egg.speed = 0.05f;
+	eggFX.GenerateAnimation({ 100, 83, 7, 7 }, 1, 1);
+	eggFX.speed = 0.05f;
+	levelFlag.GenerateAnimation({ 54, 151, 15, 15 }, 1, 1);
+	levelFlag5.GenerateAnimation({ 73, 151, 15, 15 }, 1, 1);
 	return true;
 }
 
@@ -28,13 +36,6 @@ bool ModuleUI::Start() {
 	yellowFontID = App->fonts->Load("assets/sprites/Fonts/yellow.png", lookupTable, 3);
 
 	texture = App->textures->Load("assets/sprites/Miscellaneous.png");
-
-	life.GenerateAnimation({ 0, 152, 16, 14 }, 1, 1);
-	egg.GenerateAnimation({ 80, 82, 16, 8 }, 1, 2);
-	egg.loop = true;
-	egg.speed = 0.05f;
-	levelFlag.GenerateAnimation({ 54, 151, 15, 15}, 1, 1);
-	levelFlag5.GenerateAnimation({ 73, 151, 15, 15}, 1, 1);
 	return true;
 }
 
@@ -81,9 +82,20 @@ Update_Status ModuleUI::PostUpdate()
 	if (App->player->lifes > 3) App->render->Blit(texture, 36, 10, &life.GetCurrentFrame());
 
 	if (App->blocks->remainingEggs > 0) App->render->Blit(texture, 112, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 1) App->render->Blit(texture, 120, 16, &eggFX.GetCurrentFrame());
 	if (App->blocks->remainingEggs > 1) App->render->Blit(texture, 120, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 2) App->render->Blit(texture, 128, 16, &eggFX.GetCurrentFrame());
 	if (App->blocks->remainingEggs > 2) App->render->Blit(texture, 128, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 3) App->render->Blit(texture, 136, 16, &eggFX.GetCurrentFrame());
 	if (App->blocks->remainingEggs > 3) App->render->Blit(texture, 136, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 4) App->render->Blit(texture, 144, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs > 4) App->render->Blit(texture, 144, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 5) App->render->Blit(texture, 152, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs > 5) App->render->Blit(texture, 152, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 6) App->render->Blit(texture, 160, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs > 6) App->render->Blit(texture, 160, 16, &egg.GetCurrentFrame());
+	if (App->blocks->remainingEggs = 7) App->render->Blit(texture, 168, 16, &eggFX.GetCurrentFrame());
+	if (App->blocks->remainingEggs > 7) App->render->Blit(texture, 168, 16, &egg.GetCurrentFrame());
 
 	App->fonts->BlitText(8, 280, whiteFontID, "ACT");
 	char currentLvlText[DYNAMIC_TEXT_LEN + 1];
