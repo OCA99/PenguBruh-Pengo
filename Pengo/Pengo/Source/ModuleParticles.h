@@ -7,7 +7,7 @@
 #include "Particle.h"
 //#include "Collider.h"
 
-#define MAX_ACTIVE_STARS 100
+#define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Texture;
 struct Collider;
@@ -64,7 +64,7 @@ private:
 	SDL_Texture* texture = nullptr;
 
 	// An array to store and handle all the particles
-	Particle* particles[MAX_ACTIVE_STARS] = { nullptr };
+	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
 
 };
 

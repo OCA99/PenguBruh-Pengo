@@ -101,7 +101,6 @@ bool ModulePlayer::Start()
 	deadPause2 = 0;
 	deadPause3 = 0;
 	paused = false;
-	lifes = 3;
 
 	//collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 

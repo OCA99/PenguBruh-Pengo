@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "Score.h"
+#include "ModulePlayer.h"
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled)
 {
@@ -42,6 +43,7 @@ Update_Status SceneMenu::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN || pad.a == true)
 	{
 		App->gameTime = 0.0f;
+		App->player->lifes = 3;
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 	}
 
