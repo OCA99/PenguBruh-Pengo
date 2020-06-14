@@ -6,6 +6,8 @@
 
 Made by [Telmo Beroiz](https://github.com/Telmiyo), [Eduard Minguell](https://github.com/Eduardiko), [Andres Sanchez](https://github.com/WestGamesLOL) and [Oscar Cuatrecasas](https://github.com/OCA99), students from CITM Barcelona.
 
+[Download Binary](https://github.com/OCA99/PenguBruh-Pengo/releases/download/1.0/PengoBruh_Pengo_1.0.zip)
+
 ### Tasks
 
 **Eduard Minguell:** Levels configuration, music, game pad, input system, debug functionality, enemy AI, egg blocks, wall mechanic, polishing, general bug fixes.
@@ -50,7 +52,7 @@ Debug mode must be activated to use its commands.
 # Useful links
 [Wiki](https://github.com/OCA99/PenguBruh-Pengo/wiki)
 
-[Download]()
+[Download Binary](https://github.com/OCA99/PenguBruh-Pengo/releases/download/1.0/PengoBruh_Pengo_1.0.zip)
 
 [GitHub](https://github.com/OCA99/PenguBruh-Pengo)
 
