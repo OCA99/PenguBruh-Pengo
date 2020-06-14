@@ -5,7 +5,6 @@
 
 #include "Globals.h"
 #include "Particle.h"
-//#include "Collider.h"
 
 #define MAX_ACTIVE_PARTICLES 100
 

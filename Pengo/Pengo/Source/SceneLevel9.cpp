@@ -4,8 +4,6 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
-//#include "ModuleCollisions.h"
-//#include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleBlocks.h"
 #include "ModuleWalls.h"
@@ -47,21 +45,12 @@ bool SceneLevel9::Start()
 
 	win = false;
 
-	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("assets/Themes/Popcorn/Main BGM (Popcorn).ogg", 1.0f);
 
 	App->enemies->AddEnemy(1, 1);
 	App->enemies->AddEnemy(3, 11);
 	App->enemies->AddEnemy(3, 13);
 	App->enemies->AddEnemy(7, 3);
-
-	//These are the enemies that will spawn inside a block (right coordinates)
-	//App->enemies->AddEnemy(1, 9);
-	//App->enemies->AddEnemy(3, 9);
-	//App->enemies->AddEnemy(5, 1);
-	//App->enemies->AddEnemy(9, 13);
-	//App->enemies->AddEnemy(11, 6);
-	//App->enemies->AddEnemy(11, 11);
 
 	App->blocks->AddBlock(Block_Type::EGG, 1, 9);
 	App->blocks->AddBlock(Block_Type::EGG, 3, 9);
@@ -169,7 +158,6 @@ bool SceneLevel9::Start()
 Update_Status SceneLevel9::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	//App->render->Blit(bgTexture, 0, 0, NULL);
 
 	win = App->enemies->VictoryCheck(win);
 	if (App->debug->ascending == true)

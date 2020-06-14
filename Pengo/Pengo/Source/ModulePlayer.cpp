@@ -4,9 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
-//#include "ModuleParticles.h"
 #include "ModuleAudio.h"
-//#include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleBlocks.h"
 #include "ModuleEnemies.h"
@@ -81,9 +79,6 @@ bool ModulePlayer::Start()
 	texture = App->textures->Load("assets/sprites/pengos.png");
 	currentAnimation = &idleAnim;
 
-	//laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
-	//explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
-
 	gridPosition.x = 6;
 	gridPosition.y = 6;
 
@@ -102,17 +97,8 @@ bool ModulePlayer::Start()
 	deadPause3 = 0;
 	paused = false;
 
-	//collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
-
-	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
-	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
-	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
-
-	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
-	//char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
-
 	return ret;
+
 }
 
 Update_Status ModulePlayer::Update()
@@ -130,7 +116,6 @@ Update_Status ModulePlayer::Update()
 			stayInLevel = true;
 			dieAnim.loop = false;
 			if(deadPause2 != 45) deadPause2++;
-
 
 			App->fade->FadeToBlack((Module*)App->currentLevel, (Module*)App->currentLevel, 90);
 
@@ -156,7 +141,6 @@ Update_Status ModulePlayer::Update()
 	else {
 		if (deadPause == 100)
 		{
-			//App->audio->MixHaltMusic(-1);
 			stayInLevel = false;
 			dieAnim.loop = true;
 			App->audio->PlayFx(7, 0);
@@ -377,6 +361,7 @@ Update_Status ModulePlayer::Update()
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
+
 }
 
 Update_Status ModulePlayer::PostUpdate()
@@ -390,16 +375,21 @@ Update_Status ModulePlayer::PostUpdate()
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
+
 }
 
 void ModulePlayer::positionToGrid(int gx, int gy, int& x, int& y) {
+
 	x = (gx - 8) / 16;
 	y = (gy - 32) / 16;
+
 }
 
 void ModulePlayer::gridToPosition(int px, int py, int& x, int& y) {
+
 	x = px * 16 + 8;
 	y = py * 16 + 32;
+
 }
 
 void ModulePlayer::Reset() {
@@ -415,6 +405,7 @@ void ModulePlayer::Reset() {
 	deadPause = 0;
 	paused = false;
 	pushing = false;
+
 }
 
 void ModulePlayer::SetPosition(int x, int y) {
