@@ -10,4 +10,4 @@
 
 
 
-**Note: **Some tasks were completed by more than one developer. Some tasks were completed using pair programming and don't have git commits from all members (eg. input system).
+**Note:** Some tasks were completed by more than one developer. Some tasks were completed using pair programming and don't have git commits from all members (eg. input system).
