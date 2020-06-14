@@ -38,5 +38,8 @@ Debug mode must be activated to use its commands.
 
 # Useful links
 [Wiki](https://github.com/OCA99/PenguBruh-Pengo/wiki)
+
 [Download]()
+
 [GitHub](https://github.com/OCA99/PenguBruh-Pengo)
+
