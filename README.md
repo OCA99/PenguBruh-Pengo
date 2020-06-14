@@ -1,4 +1,4 @@
-![](https://github.com/OCA99/PenguBruh-Pengo/blob/master/Photo/title.png)
+![](https://i.imgur.com/Nr61cEq.png)
 
 # Our project
 
